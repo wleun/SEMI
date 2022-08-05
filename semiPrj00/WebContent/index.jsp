@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+
 <h1>2조입니다^0^/semi</h1>
 </body>
 </html>
