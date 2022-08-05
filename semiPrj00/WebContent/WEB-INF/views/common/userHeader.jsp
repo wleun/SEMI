@@ -24,7 +24,7 @@
 
 <meta charset="UTF-8">
 <title>header</title>
-<link rel="stylesheet" href="../../../resources/css/common.css">
+<link rel="stylesheet" href="<%=contextPath %>/resources/css/common.css">
 <style>
         #wrap-div{
             /* border: 1px solid black; */
@@ -68,7 +68,7 @@
             color: black;
         }
         .nav-link:hover{
-            color: darkgreen;
+            color: #48CA7D;
         }
         .dropdown-item{
             font-size: 20px;
@@ -94,7 +94,8 @@
         #btn-div button{
             margin-top: 10px;
             border-radius: 100px;
-            background-color: darkgreen;
+            background-color: #48CA7D;
+            border: 0px
         }
         #serch-btn{
             margin-right : 10px;
@@ -112,7 +113,7 @@
         <header>
             <div id="img-div">
                 <button class="btn" onclick="location.href='<%=contextPath%>'">
-                    <img src="../../../resources/img/200perlogo_.png" alt="200% logo" id="logo">
+                    <img src="<%=contextPath %>/resources/img/200perlogo_.png" alt="200% logo" id="logo">
                 </button>
             </div>
             <div id="category-div" class="navbar navbar-light">
@@ -164,7 +165,7 @@
                 <form action="" method="get">
                     <div id="search-div" class="input-group">
                         <button id="search-btn" class="btn" type="submit">
-                            <img src="../../../resources/img/search_icon.png" alt="검색아이콘" id="search-icon">
+                            <img src="<%=contextPath %>/resources/img/search_icon.png" alt="검색아이콘" id="search-icon">
                         </button>
                         <input class="form-control" type="text" name="searching" placeholder="검색어를 입력하세요">
                     </div>
@@ -183,6 +184,6 @@
 	        
 	    });
     </script>
-    <script src="../../../resources/js/nav_color.js"></script>
+    <script src="<%=contextPath %>/resources/js/nav_color.js"></script>
 </body>
 </html>
