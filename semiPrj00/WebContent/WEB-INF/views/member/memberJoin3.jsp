@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <style>
-       #box{height: 150px;width: 1920px;}
+ <style>
+        #box{height: 150px;width: 1920px;}
         #join{
-            border: 2px solid red;
+            border: 2px solid blue;
             width: 700px;
             height: 800px;
             margin: 0 auto;
@@ -30,19 +30,24 @@
         }
         #form{
             border: 1px solid red;
-            width: 300px; height: 450px;
+            width: 500px; height: 450px;
             margin: 0 auto;
+            font-size: 20px;
+            padding-top: 20px;
         }
-       li{
+        li{
         list-style-type: none;
         line-height: 28px;
+        margin-bottom: 20px;
+    
        }
-       ul{
-        padding: 0;
-        margin: 0;
+       #form-ul{
+        padding: 0px;
+        padding-left: 120px;
        }
        input{
-        margin-bottom: 12px;
+        width: 250px;
+        background-color: white;
        }
        #pre{
         float: left;
@@ -55,15 +60,28 @@
         bottom: 12px;
         font-size: medium;
         color: red;
-        font-weight: bold;
+        
        }
        ::placeholder{
-        font-size: 12px;
+        font-size: 15px;
        }
+       #pre{
+        width: 60px;
+        float: left;
+       }
+       #next{
+        width: 60px;
+        float: right;
+       }
+       #check-btn{
+        width: 250px;
+        border: 1px solid lightgray;
+      }
     </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+    		
     <main>
         <div id="box"></div>
         <div id="join">
@@ -72,21 +90,19 @@
            
             <div id="form">
                 <form action="" method="post">
-                   <ul>
-                    <li>사업자번호</li>
-                    <li><input type="text" name="busi-no" placeholder="-제외 입력"> <button>중복확인</button></li>
-                    <li>메이커 타입</li>
-                    <li><select name="busi-type" id="busi-type" >
+                   <ul id="form-ul">
+                    <li>사업자번호<br><input type="text" name="busi-no" placeholder="-제외 입력"> <button id="check-btn">중복확인</button></li>
+                    <li>메이커 타입<br>
+                            <select name="busi-type" id="busi-type" >
                             <option value="개인사업자">개인사업자</option>
                             <option value="법인">법인</option>
                         </select>
                     </li>
-                    <li>법인명</li>
-                    <li><input type="text" name="company" placeholder="법인사업자 필수항목입니다."></li>
+                    <li>법인명 <br><input type="text" name="company" placeholder="법인일 경우 필수항목입니다."></li>
                     
-                    <li><br> <input type="button" value="이전" id="pre"><input type="submit" value="다음" id="next"></li>
-                   </ul>
-                    
+                   </ul><br>
+                   <input type="button" value="이전" id="pre" onclick="location.href='memberJoin2.jsp'"><input type="submit" value="다음" id="next">
+
                 </form>
                
             </div>

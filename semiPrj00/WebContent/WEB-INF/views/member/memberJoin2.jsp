@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <style>
+       <style>
        
         #box{height: 150px;width: 1920px;}
         #join{
-            border: 2px solid red;
+            border: 2px solid blue;
             width: 700px;
             height: 800px;
             margin: 0 auto;
@@ -17,43 +17,53 @@
         #join-h1{
             text-align: center;
         }
-       #content{
+        #content{
         border: 1px solid black;
         width: 500px;
         height: 200px;
         overflow: scroll;
         margin: 0 auto;
-       }
-       #check{
+        }
+        #check{
         position: relative;
         text-align: center;
         bottom: -10px;
         }
         #form{
             border: 1px solid red;
-            width: 300px; height: 450px;
+            width: 500px; height: 550px;
             margin: 0 auto;
+            font-size: 20px;
         }
        li{
         list-style-type: none;
         line-height: 28px;
+        margin-bottom: 20px;
+    
        }
-       ul{
-        padding: 0;
-        margin: 0;
+       #form-ul{
+        padding: 0px;
+        padding-left: 120px;
        }
        input{
-        margin-bottom: 12px;
+        width: 250px;
+        background-color: white;
        }
        #pre{
+        width: 60px;
         float: left;
        }
        #next{
+        width: 60px;
         float: right;
        }
        ::placeholder{
-        font-size: 12px;
+        font-size: 15px;
        } 
+      #check-btn{
+        width: 250px;
+        border: 1px solid lightgray;
+      }
     </style>
 </head>
 <body>
