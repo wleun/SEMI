@@ -8,14 +8,14 @@
   <style>
   
         #wrapper{
-        	margin-top: 100px
+            padding-top: 120px;
         }
 
-        #header{
+        #mypage-header{
             width: 1194px;
             height: 24px;
             left: 35%;
-            top: 100px;
+            margin-top: 200px;
             padding: 20px;
 
             margin: 0 auto;
@@ -63,15 +63,43 @@
             font-size: 12px;
         }
 
+         /* ------------------content-1---------------------------- */
+         #content-1 *{
+            display: flex;
+            flex-direction: column;
+        }
+        #content-1{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 1.2rem;
+            height: 550px;
+        }
+        #follow{
+            text-align: center;
+        }
+        #member-name{
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+        #mall{
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        #membership-img{
+            width: 130px;
+        }
+
     </style>
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+        <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
 	
     <div id="wrapper">
 
-        <div id="header">
+        <div id="mypage-header">
 
             <a href="">정보수정</a>
             <a href="">올린프로젝트</a>
@@ -87,43 +115,24 @@
             <div class="member-info">
                 <div id="content-1">
 
-                    <table>
-        
-                        <tr>
-                            <td colspan="2">ㅇㅇㅇ님</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">친환경몰</td>
-                        </tr>
-                        <tr>
-                            <td>필로우</td>
-                            <td>ㅇㅇㅇ명</td>
-                        </tr>
-                        <tr>
-                            <td>팔로워</td>
-                            <td>ㅇㅇㅇ명</td>
-                        </tr>
-                        <tr>
-                            <td>추천인 등록 수</td>
-                            <td>ㅇㅇㅇ명</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">goldmarke</td>
-                        </tr>
-                        <tr>
-                            <td>회원등급</td>
-                            <td>GOLD</td>
-                        </tr>
-                        <tr>
-                            <td>개인사업자</td>
-                            <td>회원</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><button>로그아웃</button></td>
-                        </tr>
-        
-                    </table>
-        
+                    <div id="member-name">
+                     <span>테스트 님</span>
+                    </div>
+                    <div id="mall">
+                     <span>친환경몰</span>
+                    </div>
+                    <div id="follow">
+                     <span>팔로우 200명</span>
+                     <span>팔로워 200명</span>
+                     <span>추천인 등록 수 200명</span>
+                    </div>
+                    <div>
+                     <img src="" alt="멤버십 이미지" id="membership-img">
+                     <span>회원등급 GOLD</span>
+                     <span>개인사업자 회원</span>
+                    </div>
+                    <button>로그아웃</button>
+         
                 </div>
             </div>
     

@@ -10,6 +10,7 @@
         #wrapper{
             border: 1px solid black;
             background-color: #F9F5EA;
+            padding-top: 120px;
         }
 
         #header{
@@ -55,13 +56,63 @@
             border: 0px
         }
 
+        section{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        #content-2{
+            width: 930px;
+            height: 400px;
+            font-size: 3rem;
+            font-weight: 900;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #prj-insert-btn{
+            width: 150px;
+            height: 40px;
+        }
+        /* ------------------content-1---------------------------- */
+        #content-1 *{
+            display: flex;
+            flex-direction: column;
+        }
+        #content-1{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 1.2rem;
+            height: 550px;
+        }
+        #follow{
+            text-align: center;
+        }
+        #member-name{
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+        #mall{
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        #membership-img{
+            width: 130px;
+        }
+
+
     </style>
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
-
-	<div id="wrapper">
+   <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+   
+   <div id="wrapper">
 
         <div id="header">
 
@@ -74,59 +125,40 @@
 
         </div>
             
-            <div class="member-info">
-                <div id="content-1">
+        <section>
 
-                    <table>
-        
-                        <tr>
-                            <td colspan="2">ㅇㅇㅇ님</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">친환경몰</td>
-                        </tr>
-                        <tr>
-                            <td>필로우</td>
-                            <td>ㅇㅇㅇ명</td>
-                        </tr>
-                        <tr>
-                            <td>팔로워</td>
-                            <td>ㅇㅇㅇ명</td>
-                        </tr>
-                        <tr>
-                            <td>추천인 등록 수</td>
-                            <td>ㅇㅇㅇ명</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">goldmarke</td>
-                        </tr>
-                        <tr>
-                            <td>회원등급</td>
-                            <td>GOLD</td>
-                        </tr>
-                        <tr>
-                            <td>개인사업자</td>
-                            <td>회원</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><button>로그아웃</button></td>
-                        </tr>
-        
-                    </table>
-        
-                </div>
+            <div id="content-1">
 
-                <div id="contrent-2">
+               <div id="member-name">
+                <span>테스트 님</span>
+               </div>
+               <div id="mall">
+                <span>친환경몰</span>
+               </div>
+               <div id="follow">
+                <span>팔로우 200명</span>
+                <span>팔로워 200명</span>
+                <span>추천인 등록 수 200명</span>
+               </div>
+               <div>
+                <img src="" alt="멤버십 이미지" id="membership-img">
+                <span>회원등급 GOLD</span>
+                <span>개인사업자 회원</span>
+               </div>
+               <button>로그아웃</button>
+    
+            </div>
 
-                    <h2>작성한 프로젝트가 없습니다.</h2>
+            <div id="content-2">
 
-                    <br>
-
-                    <button>프로젝트 올리기</button>
-
-                </div>
+                <p>작성한 프로젝트가 없습니다.</p>
+                <button id="prj-insert-btn">프로젝트 올리기</button>
 
             </div>
+
+
+        </section>
+           
     </div>
 
 </body>
