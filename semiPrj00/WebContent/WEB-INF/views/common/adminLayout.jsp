@@ -206,7 +206,7 @@
             <div id="navFirst">
                 <table>
                     <tr>
-                        <td rowspan="2"><a href=""><img src="<%=contextPath %>/resources/img/200%logo_pse.png" alt="로고" width="120px" height="54x"></a></td>
+                        <td rowspan="2"><a href=""><img src="<%=contextPath %>/resources/img/200perlogo_pse.png" alt="로고" width="120px" height="54x"></a></td>
                         <td height="23px"></td>
                     </tr>
                     <tr>
@@ -230,7 +230,7 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td><img src="./resource/dashboard-svg-icon-free-dashboard-icon-11553444664o1utwdkesz-removebg-preview.png" alt="대시보드 아이콘" width="40px" height="40px"></td>
+                            <td><img src="<%=contextPath %>/resources/img/adminDashboard.png" alt="대시보드 아이콘" width="40px" height="40px"></td>
                             <td>대시보드</td>
                             <td></td>
                         </tr>
@@ -254,7 +254,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="./resource/프로젝트.png" alt="프로젝트 아이콘" width="35px" height="34px"></td>
+                                <td><img src="<%=contextPath %>/resources/img/adminPrj_icon.png" alt="프로젝트 아이콘" width="35px" height="34px"></td>
                                 <td class="menegeAlign">프로젝트</td>
                                 <td></td>
                             </tr>
@@ -267,7 +267,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="./resource/제안서.png" alt="제안서 아이콘" width="33px" height="36px"></td>
+                                <td><img src="<%=contextPath %>/resources/img/adminProposal_icon.png" alt="제안서 아이콘" width="33px" height="36px"></td>
                                 <td class="menegeAlign">제안서</td>
                                 <td></td>
                             </tr>
@@ -280,7 +280,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="./resource/이벤트.png" alt="이벤트 아이콘" width="33px" height="33px"></td>
+                                <td><img src="<%=contextPath %>/resources/img/adminEvent_icon.png" alt="이벤트 아이콘" width="33px" height="33px"></td>
                                 <td class="menegeAlign">이벤트</td>
                                 <td></td>
                             </tr>
@@ -293,7 +293,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="./resource/공지사항.png" alt="공지사항 아이콘" width="32px" height="32px"></td>
+                                <td><img src="<%=contextPath %>/resources/img/adminNotice_icon.png" alt="공지사항 아이콘" width="32px" height="32px"></td>
                                 <td class="menegeAlign">공지사항</td>
                                 <td></td>
                             </tr>
@@ -306,7 +306,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="./resource/Group member free icon (1).png" alt="회원 아이콘" width="35px" height="35px"></td>
+                                <td><img src="<%=contextPath %>/resources/img/adminMember_icon.png" alt="회원 아이콘" width="35px" height="35px"></td>
                                 <td class="menegeAlign">회원관리</td>
                                 <td></td>
                             </tr>
@@ -319,7 +319,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="./resource/신고33.png" alt="신고 아이콘" width="35px" height="30px"></td>
+                                <td><img src="<%=contextPath %>/resources/img/adminReport_icon.png" alt="신고 아이콘" width="35px" height="30px"></td>
                                 <td class="menegeAlign">신고관리</td>
                                 <td></td>
                             </tr>
@@ -331,17 +331,8 @@
                 </div>
             </div>
 
-
         </nav>
-
-        <content> 
-
-        </content>
     </div>
-
-   
-
-
     
 </body>
 </html>
