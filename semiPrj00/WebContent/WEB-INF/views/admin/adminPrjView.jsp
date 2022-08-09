@@ -45,7 +45,7 @@
         }
 
         #boardDiv1_search * {
-            height: 40%;
+            height: 60%;
             font-size: 14px;
             display: flex;
             margin: 5px;
@@ -177,10 +177,6 @@
             border: 1px solid #C3B091;
         }
 
-
-        .left {
-        text-align : left;
-        }    
 </style>
 </head>
 <body>
@@ -188,7 +184,6 @@
 	<%@ include file="/WEB-INF/views/common/adminLayout.jsp" %>
 
 	<content>
-		<form action="">
                 <div id="prjManage">
 
                     <div id="board">
@@ -210,8 +205,9 @@
                                     <option value="maker">메이커</option>
                                 </select>
     
-                                <input type="search">
-                                <img src="<%=contextPath %>/resources/img/search_icon_pse.png" alt="검색">
+                                <input type="search" name="search">
+                                <input type="IMAGE" src="<%=contextPath %>/resources/img/search_icon_pse.png" name="submit" vlaue="submit">
+
                                </form>
                             </div>
                         </div>
@@ -288,7 +284,6 @@
                     </div>
     
                 </div>
-            </form>
 
             
 	</content>

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class adminPrjController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		req.setAttribute("functionName", "프로젝트 관리");
 		req.getRequestDispatcher("/WEB-INF/views/admin/adminPrjView.jsp").forward(req, resp);
 	}
 }

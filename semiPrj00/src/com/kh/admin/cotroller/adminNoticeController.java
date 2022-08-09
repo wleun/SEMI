@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/admin/main")
-public class adminMainController extends HttpServlet {
-
+@WebServlet (urlPatterns = "/admin/notice")
+public class adminNoticeController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.setAttribute("functionName", "대시보드");
-		req.getRequestDispatcher("/WEB-INF/views/admin/adminDashboard.jsp").forward(req, resp);
+		req.setAttribute("functionName", "공지사항 관리");
+		req.getRequestDispatcher("/WEB-INF/views/admin/adminNoticeView.jsp").forward(req, resp);
 	}
 }

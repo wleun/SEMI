@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+	String functionName = (String) request.getAttribute("functionName");
 %>
 <!DOCTYPE html>
 <html>
@@ -190,7 +191,7 @@
             <div id="headerUsed">
 
                 <div id="headerFirst">
-                    <h1>텍스트 영역</h1>
+                    <h1><%=functionName %></h1>
                 </div>
                 <div id="headerSecond">
                     <a href=""><img width="40px" height="40px" src="<%=contextPath %>/resources/img/search_icon_pse.png" alt="검색 아이콘"></a>
