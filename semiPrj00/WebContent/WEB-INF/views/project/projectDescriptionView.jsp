@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상세페이지</title>
-
+    <title>플젝명</title>
+    /* 부트스트랩 */
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 /* 공통 css */
     @font-face{font-family: 'twayair'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');}
@@ -21,6 +23,7 @@
         display: flex;
         flex-wrap: wrap;
     }
+    
 
     /* 버튼부분 */
     #btn-div1,#btn-div2{
@@ -198,8 +201,14 @@
         font-size: 25px;
     }
     
-    
-    
+    /* 커뮤니티 영역 */
+    #comment{
+        width: 100%;
+    }
+    #community-comment-wrap{
+        display: flex;
+        justify-content: end;
+    }
     
     
     
@@ -207,7 +216,6 @@
 </head>
 <body>
     
-    <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
     
     
     <div id="outer">
@@ -285,18 +293,62 @@
                 <div class="main-title" id="introduce">
                     <span>::프로젝트소개::</span>
                     <div>
-                        <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/상페1.JPG" alt="?">
-                        <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/상페2.JPG" alt="??">
-                        <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/상페3.JPG" alt="???">
+                        <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/desc1.JPG" alt="?">
+                        <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/desc2.JPG" alt="??">
+                        <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/desc3.JPG" alt="???">
                     </div>
                 </div>
-                <div class="main-title" id="notice">::공지사항::</div>
-                <div class="main-title" id="community">::커뮤니티::</div>
+                <div class="main-title" id="notice">
+                    <span>::공지사항::</span>
+                </div>
+                <div class="main-title" id="community">
+                    <span>::커뮤니티::</span>
+                    <!-- 부트스트랩 -->
+                    <div class="container mt-3">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#home">커뮤니티</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#menu1">리뷰</a>
+                          </li>
+                        </ul>
+                      
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                          <div id="home" class="container tab-pane active"><br>
+                            <form action="">
+                                <div id="community-comment-wrap">
+                                    <textarea name="community-comment" id="comment" cols="30" rows="10" ></textarea>
+                                    <input type="submit" value="글작성하기">
+                                </div>
+                            </form>
+                            <div id="">
+                                <div id="">작성된 게시글이 없습니다. 글을 작성해주세요.</div>
+                                <div id="">
+
+                                </div>
+                            </div>
+                          </div>
+                          <div id="menu1" class="container tab-pane fade"><br>
+                            <form action="">
+                                <textarea name="comment-community" id="comment" cols="30" rows="10"></textarea>
+                                <input type="submit" value="리뷰작성하기">
+                            </form>
+                          </div>
+                          
+                        </div>
+                      </div>
+                
                 <div class="main-title" id="etc">
                     <span>::예상되는어려움::</span>
                     <div>
                         <img style="width: 100%; height:auto" src="<%=request.getContextPath() %>/resources/etc.JPG" alt="">
                     </div>
+                </div>
+                <div>
+                    <button></button>
                 </div>
             </div>
             <div id="main-side">
