@@ -32,6 +32,7 @@
             height: 120px;
             width: 1920px;
             background-color: white;
+            z-index: 999;
         }
         header{
             width: 100%;
