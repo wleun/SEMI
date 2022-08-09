@@ -15,7 +15,7 @@
     }
     #login-form-div{
         /*border: 1px solid red;*/
-        margin: 0 auto;
+        margin: 20px auto;
         
     }
    
@@ -32,7 +32,7 @@
     #form-ul{
         position: relative;
         bottom: -80px;
-        right:-180px;
+        right:-160px;
 
     }
     li{
@@ -43,9 +43,10 @@
     input{
         border: 0px;
         height: 40px;
-        width: 250px;
+        width: 230px;
         border-bottom: 2px solid darkgray;
         background-color: rgba(255, 255, 255, 0.675);
+        
     }
     #submit input{
         background-color: #48ca7d;
@@ -57,12 +58,13 @@
     }
     #submit{
         position:relative;
-        left: 500px;
+        left: 510px;
         bottom: 5px;
         box-sizing: border-box;
     }
     #login-h1{
        text-align: center;
+       font-size: 40px;
     }
     /* .find{
         float: right;
@@ -106,12 +108,12 @@
             <form action="" method="post" id="login-form">
                
                 <ul id="form-ul">
-                    <li ><input type="email" name="memberEmail" required placeholder="이메일을 입력하세요."></li>
-                    <li ><input type="password" name="memberPwd" required placeholder="비밀번호를 입력하세요."></li>
+                    <li >E - mail&nbsp; <input type="email" name="memberEmail" required placeholder="이메일을 입력하세요."></li>
+                    <li >비밀번호&nbsp;&nbsp;<input type="password" name="memberPwd" required placeholder="비밀번호를 입력하세요." id="inputPwd"></li>
                 </ul>
                 <div id="submit"><input type="submit" value="로그인"></div>
                 <br><br>
-                <li class="join-find"> <a href="" class="join-find-a">회원가입 | </a><a href="" class="join-find-a">아이디/</a><a href="" class="join-find-a">비밀번호 찾기</a></li>
+                <li class="join-find"> <a href="memberJoin1.jsp" class="join-find-a">회원가입 | </a><a href="" class="join-find-a">아이디/</a><a href="" class="join-find-a">비밀번호 찾기</a></li>
                
             </form>
             
@@ -120,6 +122,7 @@
         
     </div>
    </main>
+    
     
 
 </body>
