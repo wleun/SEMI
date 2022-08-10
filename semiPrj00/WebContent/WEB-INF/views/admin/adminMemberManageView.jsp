@@ -91,27 +91,47 @@
         }
 
         .check {
-            width: 8%;
+            width: 7%;
         }
 
-        .important {
-            width: 8%;
+        .memberNo {
+            width: 7%;
         }
 
-        .noticeNo {
-            width: 8%;
+        .memberType {
+            width: 7%;
         }
 
-        .noticeName {
-            width: 48%;
+        .memberLevel {
+            width: 7%;
         }
 
-        .writeDate {
-            width: 20%;
+        .memberName {
+            width: 13%;
         }
 
-        .deleteYN {
-            width: 8%;
+        .memberEmail {
+            width: 12%;
+        }
+
+        .memberPhone {
+            width : 11%;
+        }
+
+        .memberEnrollDate {
+            width: 10%;
+        }
+        
+        .memberSuspendYN {
+        	width : 7%;
+        }
+
+        .memberQuitYN {
+            width: 7%;
+        }
+
+        .memberQuitDate {
+            width: 10%;
         }
 
         #memberManageDiv3 {
@@ -175,9 +195,9 @@
                          <form action="">
     
                            <select name="what" id="searchWhat">
-                              <option value="title">제목</option>
-                              <option value="content">내용</option>
-                               <option value="titleContent">제목+내용</option>
+                              <option value="normal">일반회원</option>
+                              <option value="business">사업자회원</option>
+                               <option value="juridicalPerson">기업회원</option>
                            </select>
     
                                 <input type="search" name="search">
@@ -189,29 +209,44 @@
                             <div class="memberManageWrap">
                                 <div id="memberManageFirstColumn" class="memberManageColumn">
                                     <div class="check">선택</div>
-                                    <div class="important">중요</div>
-                                    <div class="noticeNo">번호</div>
-                                    <div class="noticeName">공지사항 이름</div>
-                                    <div class="writeDate">작성일자</div>
-                                    <div class="deleteYN">삭제여부</div>
+                                    <div class="memberNo">회원번호</div>
+                                    <div class="memberType">회원타입</div>
+                                    <div class="memberLevel">회원등급</div>
+                                    <div class="memberName">이름</div>
+                                    <div class="memberEmail">이메일</div>
+                                    <div class="memberPhone">전화번호</div>
+                                    <div class="memberSuspendYN">정지여부</div>
+                                    <div class="memberQuitYN">탈퇴여부</div>
+                                    <div class="memberEnrollDate">가입일</div>
+                                    <div class="memberQuitDate">탈퇴일</div>
                                 </div>
                             
                                 <div class="memberManageColumn">
                                     <div class="check"><input type="checkbox"></div>
-                                    <div class="important">중요</div>
-                                    <div class="noticeNo">1</div>
-                                    <div class="noticeName">새로운 공지사항입니다.</div>
-                                    <div class="writeDate">2022-08-09</div>
-                                    <div class="deleteYN">N</div>
+                                    <div class="memberNo">1</div>
+                                    <div class="memberType">개인사업자</div>
+                                    <div class="memberLevel">브론즈</div>
+                                    <div class="memberName">와디즈</div>
+                                    <div class="memberEmail">Wadiz@wadiz.com</div>
+                                    <div class="memberPhone">010-000-0000</div>
+                                    <div class="memberSuspendYN">N</div>
+                                    <div class="memberQuitYN">N</div>
+                                    <div class="memberEnrollDate">2022-08-01</div>
+                                    <div class="memberQuitDate">X</div>
                                     
                                 </div>
                                 <div class="memberManageColumn">
                                     <div class="check"><input type="checkbox"></div>
-                                    <div class="important">중요</div>
-                                    <div class="noticeNo">2</div>
-                                    <div class="noticeName">강남역 일대 물바다...</div>
-                                    <div class="writeDate">2022-08-10</div>
-                                    <div class="deleteYN">Y</div>
+                                    <div class="memberNo">1</div>
+                                    <div class="memberType">개인사업자</div>
+                                    <div class="memberLevel">브론즈</div>
+                                    <div class="memberName">와디즈</div>
+                                    <div class="memberEmail">Wadiz@wadiz.com</div>
+                                    <div class="memberPhone">010-000-0000</div>
+                                    <div class="memberSuspendYN">N</div>
+                                    <div class="memberQuitYN">N</div>
+                                    <div class="memberEnrollDate">2022-08-01</div>
+                                    <div class="memberQuitDate">X</div>
                                     
                                 </div>
                                
