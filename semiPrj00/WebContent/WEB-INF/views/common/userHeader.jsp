@@ -5,6 +5,8 @@
 
 	String alertMsg = (String)session.getAttribute("alertMsg");
 	session.removeAttribute("alertMsg");
+    String errorMsg = (String)session.getAttribute("errorMsg");
+    session.removeAttribute("errorMsg");
 	
 	String contextPath = request.getContextPath();
 
@@ -24,7 +26,7 @@
 
 <meta charset="UTF-8">
 <title>header</title>
-<link rel="stylesheet" href="<%=contextPath %>/resources/css/common.css">
+<link rel="stylesheet" href="<%=contextPath%>/resources/css/common.css">
 <style>
         #wrap-div{
             /* border: 1px solid black; */
@@ -114,7 +116,7 @@
         <header>
             <div id="img-div">
                 <button class="btn" onclick="location.href='<%=contextPath%>'">
-                    <img src="<%=contextPath %>/resources/img/200perlogo_.png" alt="200% logo" id="logo">
+                    <img src="<%=contextPath%>/resources/img/200perlogo_.png" alt="200% logo" id="logo">
                 </button>
             </div>
             <div id="category-div" class="navbar navbar-light">
@@ -124,38 +126,38 @@
                         <ul class="dropdown-menu">
                             <table>
                                 <tr>
-                                    <td><a class="dropdown-item" href="#">푸드</a></td>
-                                    <td><a class="dropdown-item" href="#">홈, 리빙</a></td>
-                                    <td><a class="dropdown-item" href="#">테크, 가전</a></td>
-                                    <td><a class="dropdown-item" href="#">도서, 출판</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">푸드</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">홈, 리빙</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">테크, 가전</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">도서, 출판</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a class="dropdown-item" href="#">뷰티</a></td>
-                                    <td><a class="dropdown-item" href="#">패션, 잡화</a></td>
-                                    <td><a class="dropdown-item" href="#">여행, 레져</a></td>
-                                    <td><a class="dropdown-item" href="#">스포츠</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">뷰티</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">패션, 잡화</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">여행, 레져</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">스포츠</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a class="dropdown-item" href="#">모빌리티</a></td>
-                                    <td><a class="dropdown-item" href="#">반려동물</a></td>
-                                    <td><a class="dropdown-item" href="#">클래스</a></td>
-                                    <td><a class="dropdown-item" href="#">식테크</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">모빌리티</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">반려동물</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">클래스</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category">식테크</a></td>
                                 </tr>
                             </table>
                         </ul>
                     </li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="#">인기</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category">인기</a></li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="#">오픈예정</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category">오픈예정</a></li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="#">신규</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category">신규</a></li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="#">마감임박</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category">마감임박</a></li>
                 </ul>
             </div>
             <div id="etc">
@@ -163,10 +165,10 @@
                     <div id="upload-prj-div"><button class="btn btn-success" id="prj">프로젝트 오픈 신청</button></div>
                     <div id="member-div"><button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/WEB-INF/views/member/memberLogin.jsp'">로그인/회원가입</button></div>
                 </div>
-                <form action="" method="get">
+                <form action="<%=contextPath %>/project/search" method="get">
                     <div id="search-div" class="input-group">
                         <button id="search-btn" class="btn" type="submit">
-                            <img src="<%=contextPath %>/resources/img/search_icon.png" alt="검색아이콘" id="search-icon">
+                            <img src="<%=contextPath%>/resources/img/search_icon.png" alt="검색아이콘" id="search-icon">
                         </button>
                         <input class="form-control" type="text" name="searching" placeholder="검색어를 입력하세요">
                     </div>
@@ -182,9 +184,12 @@
 	        <%if(alertMsg!=null){%>
     			alert('<%=alertMsg%>');
     		<%}%>
-	        
+	       
+            <%if(errorMsg!=null){%>
+                alert('<%=errorMsg%>');
+            <%}%>
 	    });
     </script>
-    <script src="<%=contextPath %>/resources/js/nav_color.js"></script>
+    <script src="<%=contextPath%>/resources/js/nav_color.js"></script>
 </body>
 </html>
