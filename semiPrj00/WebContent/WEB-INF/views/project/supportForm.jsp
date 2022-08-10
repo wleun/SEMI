@@ -318,6 +318,12 @@
        </div>
        <%@ include file="/WEB-INF/views/project/paymentRegisterForm.jsp" %>
     </div>
+
+    <script>
+        $("#modal-submit-btn").click(function(){
+            $("#card-num").text($(".modal-radio:checked").val());	
+		});
+    </script>
 </body>
 
 
