@@ -24,6 +24,7 @@
 
         a {
             text-decoration: none;
+            color : inherit;
         }
 
         #pageWrap {
@@ -207,11 +208,11 @@
             <div id="navFirst">
                 <table>
                     <tr>
-                        <td rowspan="2"><a href=""><img src="<%=contextPath %>/resources/img/200perlogo_pse.png" alt="로고" width="120px" height="54x"></a></td>
+                        <td rowspan="2"><a href="<%=contextPath%>/admin/main"><img src="<%=contextPath %>/resources/img/200perlogo_pse.png" alt="로고" width="120px" height="54x"></a></td>
                         <td height="23px"></td>
                     </tr>
                     <tr>
-                        <td><a href="">ADMIN</a></td>
+                        <td><a href="<%=contextPath%>/admin/main">ADMIN</a></td>
                     </tr>
                 </table>
             </div>
@@ -232,7 +233,7 @@
                         </tr>
                         <tr>
                             <td><img src="<%=contextPath %>/resources/img/adminDashboard.png" alt="대시보드 아이콘" width="40px" height="40px"></td>
-                            <td>대시보드</td>
+                            <td><a href="<%=contextPath%>/admin/main">대시보드</a></td>
                             <td></td>
                         </tr>
                     </table>
@@ -256,7 +257,7 @@
                             </tr>
                             <tr>
                                 <td><img src="<%=contextPath %>/resources/img/adminPrj_icon.png" alt="프로젝트 아이콘" width="35px" height="34px"></td>
-                                <td class="menegeAlign">프로젝트</td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/prj">프로젝트</a></td>
                                 <td></td>
                             </tr>
 
@@ -269,7 +270,7 @@
                             </tr>
                             <tr>
                                 <td><img src="<%=contextPath %>/resources/img/adminProposal_icon.png" alt="제안서 아이콘" width="33px" height="36px"></td>
-                                <td class="menegeAlign">제안서</td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/proposal">제안서</a></td>
                                 <td></td>
                             </tr>
     
@@ -282,7 +283,7 @@
                             </tr>
                             <tr>
                                 <td><img src="<%=contextPath %>/resources/img/adminEvent_icon.png" alt="이벤트 아이콘" width="33px" height="33px"></td>
-                                <td class="menegeAlign">이벤트</td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/event">이벤트</a></td>
                                 <td></td>
                             </tr>
     
@@ -295,7 +296,7 @@
                             </tr>
                             <tr>
                                 <td><img src="<%=contextPath %>/resources/img/adminNotice_icon.png" alt="공지사항 아이콘" width="32px" height="32px"></td>
-                                <td class="menegeAlign">공지사항</td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/notice">공지사항</a></td>
                                 <td></td>
                             </tr>
     
@@ -308,7 +309,7 @@
                             </tr>
                             <tr>
                                 <td><img src="<%=contextPath %>/resources/img/adminMember_icon.png" alt="회원 아이콘" width="35px" height="35px"></td>
-                                <td class="menegeAlign">회원관리</td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/memberManage">회원관리</a></td>
                                 <td></td>
                             </tr>
     
@@ -321,7 +322,7 @@
                             </tr>
                             <tr>
                                 <td><img src="<%=contextPath %>/resources/img/adminReport_icon.png" alt="신고 아이콘" width="35px" height="30px"></td>
-                                <td class="menegeAlign">신고관리</td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/report">신고관리</a></td>
                                 <td></td>
                             </tr>
                         </tbody>
