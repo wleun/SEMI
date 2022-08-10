@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
+    #wrapper{
+        padding-top: 200px;
+    }
+
     a{
         text-decoration: none;
         color: black;
@@ -27,55 +32,61 @@
 </head>
 <body>
 
-    <div id="mypage-header">
+    <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
 
-        <a href="">정보수정</a>
-        <a href="">올린프로젝트</a>
-        <a href="">나의후원내역</a>
-        <a href="">팔로우</a>
-        <a href="">쿠폰내역</a>
-        <a href="">문의/답변내역</a>
+    <div id="wrapper">
 
-    </div>
-        
-    <div id="content-1">
+        <div id="mypage-header">
 
-        <table>
-
-            <tr>
-                <td colspan="2">ㅇㅇㅇ님</td>
-            </tr>
-            <tr>
-                <td colspan="2">친환경몰</td>
-            </tr>
-            <tr>
-                <td>필로우</td>
-                <td>ㅇㅇㅇ명</td>
-            </tr>
-            <tr>
-                <td>팔로워</td>
-                <td>ㅇㅇㅇ명</td>
-            </tr>
-            <tr>
-                <td>추천인 등록 수</td>
-                <td>ㅇㅇㅇ명</td>
-            </tr>
-            <tr>
-                <td colspan="2">goldmarke</td>
-            </tr>
-            <tr>
-                <td>회원등급</td>
-                <td>GOLD</td>
-            </tr>
-            <tr>
-                <td>개인사업자</td>
-                <td>회원</td>
-            </tr>
-            <tr>
-                <td colspan="2"><button>로그아웃</button></td>
-            </tr>
-
-        </table>
+            <a href="">정보수정</a>
+            <a href="">올린프로젝트</a>
+            <a href="">나의후원내역</a>
+            <a href="">팔로우</a>
+            <a href="">쿠폰내역</a>
+            <a href="">문의/답변내역</a>
+    
+        </div>
+            
+        <div id="content-1">
+    
+            <table>
+    
+                <tr>
+                    <td colspan="2">ㅇㅇㅇ님</td>
+                </tr>
+                <tr>
+                    <td colspan="2">친환경몰</td>
+                </tr>
+                <tr>
+                    <td>필로우</td>
+                    <td>ㅇㅇㅇ명</td>
+                </tr>
+                <tr>
+                    <td>팔로워</td>
+                    <td>ㅇㅇㅇ명</td>
+                </tr>
+                <tr>
+                    <td>추천인 등록 수</td>
+                    <td>ㅇㅇㅇ명</td>
+                </tr>
+                <tr>
+                    <td colspan="2">goldmarke</td>
+                </tr>
+                <tr>
+                    <td>회원등급</td>
+                    <td>GOLD</td>
+                </tr>
+                <tr>
+                    <td>개인사업자</td>
+                    <td>회원</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button>로그아웃</button></td>
+                </tr>
+    
+            </table>
+    
+        </div>
 
     </div>
 
