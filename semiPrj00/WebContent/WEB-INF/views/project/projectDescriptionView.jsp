@@ -12,6 +12,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 /* 공통 css */
+	#header-div{
+        width: 1920px;
+        height: 120px;
+    }
     @font-face{font-family: 'twayair'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');}
     a{text-decoration: none; color: black;}
     body, body button, body input{font-family: twayair; background-color: #F9F5EA;}
@@ -148,7 +152,7 @@
     /* 메인-내비게이션바 */
     #main-nav{
         position: sticky;
-        top: 0px;
+        top: 120px;
         width: 100%;
         height: 50px;
         line-height: 40px;
@@ -285,7 +289,7 @@
     }
     #reward-option{
         position: sticky;
-        top: 50px;
+        top: 170px;
         width: 100%;
     }
     #reward-option-title{
@@ -309,7 +313,9 @@
 </head>
 <body>
     
-    <%-- <%@ include file="/view/userHeader.jsp" %> --%>
+    <div id="header-div">
+        <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+    </div>
     
     <div id="outer">
 
@@ -320,7 +326,7 @@
             </div>
             <div id="head-img">
                 <div id="img-section">
-                    <img style="width:600px; height:600px" src="<%=request.getContextPath() %>/resources/main.JPG" alt="이미지왜안나옴?">
+                    <img style="width:600px; height:600px" src="<%=contextPath%>/resources/img/main.JPG" alt="이미지왜안나옴?">
                 </div>
             </div>
             <div id="head-info">
@@ -365,7 +371,7 @@
                 </div>
                 <div class="btns" id="btn-div1">
                     <button>
-                        <img id="heart-btn" width="20px" src="<%=request.getContextPath() %>/resources/project_like.png" alt="??">
+                        <img id="heart-btn" width="20px" src="<%=contextPath%>/resources/img/project_like.png" alt="??">
                     </button>
                     <input type="submit" value="이 프로젝트 후원하기">
                 </div>
@@ -386,9 +392,9 @@
                 <div class="main-title" id="introduce">
                     <div><span>프로젝트소개</span></div>
                     <div>
-                        <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/desc1.JPG" alt="?">
-                        <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/desc2.JPG" alt="??">
-                        <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/desc3.JPG" alt="???">
+                        <img style="width:100%; height:auto" src="<%=contextPath%>/resources/img/desc1.JPG" alt="?">
+                        <img style="width:100%; height:auto" src="<%=contextPath%>/resources/img/desc2.JPG" alt="??">
+                        <img style="width:100%; height:auto" src="<%=contextPath%>/resources/img/desc3.JPG" alt="???">
                     </div>
                 </div>
                 <div class="main-title" id="notice">
@@ -445,7 +451,7 @@
                                 <div id="community-comment-wrap">
                                     <form action="">
                                         <textarea name="community-comment-area" class="comment" maxlength="500" placeholder="500자 이내로 입력해주세요."></textarea>
-                                        <button><img src="<%=request.getContextPath()%>/resources/send-button-371579.png" width="30px" alt="??"></button>
+                                        <button><img src="<%=contextPath%>/resources/img/send-button-371579.png" width="30px" alt="??"></button>
                                     </form>
                                 </div>
                             </form>
@@ -509,7 +515,7 @@
                 <div class="main-title" id="etc">
                     <div><span>예상되는어려움</span></div>
                     <div>
-                        <img style="width: 100%; height:auto" src="<%=request.getContextPath() %>/resources/etc.JPG" alt="">
+                        <img style="width: 100%; height:auto" src="<%=contextPath%>/resources/img/etc.JPG" alt="">
                     </div>
                 </div>
              	<div>
