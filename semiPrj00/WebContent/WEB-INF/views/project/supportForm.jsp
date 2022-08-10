@@ -94,7 +94,7 @@
         padding: 20px;
         font-size: 16px;
     }
-    #radio-btn{
+    #radio-btn:checked{
         background-color: #48CA7D;
         border: 0;
     }
@@ -247,10 +247,10 @@
                                 <input type="radio" id="radio-btn" class="form-check-input" checked>
                                 <label for="radio-btn">카드</label>
                             </td>
-                            <td rowspan="2" class="btn-td"><button class="btn btn-success" id="change-reward">변경</button></td>
+                            <td rowspan="2" class="btn-td"><button class="btn btn-success" id="change-reward" data-bs-toggle="modal" data-bs-target="#payment-register">변경</button></td>
                         </tr>
                         <tr>
-                            <td id="card-name">사과카드</td>
+                            <td id="card-name"></td>
                             <td><div class="btn btn-sm btn-danger disabled">기본</div></td>
                             <td id="card-num">************1234</td>
                         </tr>
@@ -316,6 +316,10 @@
                 <button class="btn btn-success final-div" id="support-btn">후원하기</button>
             </div>
        </div>
+       <%@ include file="/WEB-INF/views/project/paymentRegisterForm.jsp" %>
     </div>
 </body>
+
+
+
 </html>
