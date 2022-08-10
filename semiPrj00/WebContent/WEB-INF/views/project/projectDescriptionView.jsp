@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>플젝명</title>
-    /* 부트스트랩 */
+    <!-- 부트스트랩 소스 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 /* 공통 css */
     @font-face{font-family: 'twayair'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');}
     a{text-decoration: none; color: black;}
-    body, body button, body input{font-family: twayair;}
+    body, body button, body input{font-family: twayair; background-color: #F9F5EA;}
     div{box-sizing: border-box;}
     #outer{
         width: 1344px;
@@ -23,6 +23,7 @@
         display: flex;
         flex-wrap: wrap;
     }
+    
     
 
     /* 버튼부분 */
@@ -67,9 +68,7 @@
     #btn-div1>button,#btn-div1>input, #btn-div2>button,#reward-btn>button:hover{
         cursor: pointer;
     }
-    #btn-div1>input:{
-        background-color: #2fa15d;
-    }
+    
     #reward-btn>button:focus{
         background-color: #48CA7D;
     }   
@@ -144,29 +143,130 @@
    
     
 /* 메인영역 */
+    
+
+    /* 메인-내비게이션바 */
     #main-nav{
         position: sticky;
         top: 0px;
         width: 100%;
-    }
-    /* 메인-내비게이션바 */
-    #main-nav{
         height: 50px;
         line-height: 40px;
-        background-color: white;
+        background-color: #F9F5EA;
         border-top: 1px lightgray solid;
         border-bottom: 1px lightgray solid;
+        z-index: 9;
     }
+   
     .nav-text{
-        margin-right: 20px;
+        margin-right: 40px;
+        font-size: 18px;
     }
-    /* 메인-상세페이지 */
+    /* 메인-상세페이지 전체*/
     #main-prj{
         width: 70%;
     }
     .main-title{
        padding: 70px 100px 70px 0px;
+       /* border-bottom: 1px solid gray; */
     }
+    .main-title>div:first-child{
+        background-color: white;
+        padding: 10px 50px 10px 50px;
+        margin-bottom: 50px;
+        display: inline-block;
+        border-radius: 50px;
+    }
+    
+    /* 공지사항 영역 */
+    #notice-comment-wrap,#review-comment-wrap{
+        margin-top: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: end;
+    }
+    #notice-comment-wrap input{
+        margin: 20px 0px 20px 20px;
+        height: 50px;
+        width: 150px;
+        border: 0px;
+        border-radius: 10px;
+        background-color: #48CA7D;
+        color: white;
+    }
+    #notice-comment-area{
+        height: 200px;
+    }
+
+    /* 리뷰영역 */
+    #review-comment-wrap input{
+        margin: 20px;
+    }
+    #review-comment-wrap input:first-child{
+        margin: 20px 20px 20px 0px;
+        border: none;
+        background-color: #48CA7D;
+    }
+
+    /* 커뮤니티 영역 */
+    #community-comment-wrap{
+        position: relative;
+        width: 100%;
+        height: 100px;
+        margin: 30px 0px 30px 0px;
+    }
+    .nav-link,.nav-link:hover{
+        color: gray;
+    }
+    .comment{
+        width: 100%;
+        height: 80px;
+        resize: none;
+        padding: 10px 100px 10px 20px;
+        background-color: rgb(230, 230, 230);
+        border: none;
+        box-decoration-break: unset;
+    }
+    #community-comment-wrap button{
+        position: absolute;
+        right: 30px;
+        top: 24px;
+        background-color: rgb(230, 230, 230);
+        border: none;
+    }
+    .post-area-no-post{
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+        padding: 200px 200px 200px 200px;
+        /* margin: 200px 200px 200px 200px; */
+    }
+    .post-area{
+        padding: 30px 0px 30px 0px;
+        border-bottom: 1px solid lightgray;
+    }
+    .post-writer-area{
+        margin: 30px 0px 30px 0px;
+    }
+    #post-writer,#notice-writer,#review-writer{
+        margin-right: 50px;
+        font-weight: 600;
+    }
+    #post-date,#notice-date,#review-date{
+        color: gray;
+        font-weight: 100;
+        font-size: 15px;
+    }
+    #post-content,#notice-content,#review-content{
+        font-weight: 100;
+        font-size: 15px;
+    }
+    .post-content-area{
+        margin: 50px 0px 50px 0px;
+        
+    }
+
+    
+
     /* 메인-창작자정보 및 리워드 영역 */
     #main-side{
         width: 30%;
@@ -201,14 +301,7 @@
         font-size: 25px;
     }
     
-    /* 커뮤니티 영역 */
-    #comment{
-        width: 100%;
-    }
-    #community-comment-wrap{
-        display: flex;
-        justify-content: end;
-    }
+    
     
     
     
@@ -216,7 +309,7 @@
 </head>
 <body>
     
-    
+    <%-- <%@ include file="/view/userHeader.jsp" %> --%>
     
     <div id="outer">
 
@@ -282,16 +375,16 @@
             <div id="main-nav">
                 <table id="nav-table">
                     <tr>
-                        <td><a class="nav-text" href="#introduce">프로젝트소개</a></td>
-                        <td><a class="nav-text" href="#notice">공지사항</a></td>
-                        <td><a class="nav-text" href="#community">커뮤니티</a></td>
-                        <td><a class="nav-text" href="#etc">예상되는어려움</a></td>
+                        <td><a id="a-introduce" class="nav-text" href="#introduce">프로젝트소개</a></td>
+                        <td><a id="a-notice" class="nav-text" href="#notice">공지사항</a></td>
+                        <td><a id="a-community" class="nav-text" href="#community">커뮤니티</a></td>
+                        <td><a id="a-etc" class="nav-text" href="#etc">예상되는어려움</a></td>
                     </tr>
                 </table>
             </div>
             <div id="main-prj">
                 <div class="main-title" id="introduce">
-                    <span>::프로젝트소개::</span>
+                    <div><span>프로젝트소개</span></div>
                     <div>
                         <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/desc1.JPG" alt="?">
                         <img style="width:100%; height:auto" src="<%=request.getContextPath() %>/resources/desc2.JPG" alt="??">
@@ -299,16 +392,46 @@
                     </div>
                 </div>
                 <div class="main-title" id="notice">
-                    <span>::공지사항::</span>
+                    <div><span>공지사항</span></div>
+                    <div>
+                        <form action="">
+                            <div id="notice-comment-wrap">
+                                <textarea name="notice-comment-area" class="comment" id="notice-comment-area" maxlength="500" placeholder="500자 이내로 입력해주세요."></textarea>
+                                <input type="submit" value="작성하기">
+                            </div>
+                        </form>
+                        <div id="">
+                            <div class="post-area-no-post"><h5>작성된 공지사항이 없습니다. 글을 작성해주세요.</h5></div>
+                            <div class="post-area">
+                               
+                                <div class="post-writer-area"><span id="notice-writer">크리에이터명</span><span id="notice-date">2022/08/11</span></div>
+                                <div class="post-content-area">
+                                    <span id="notice-content">
+                                        EVENT <br>
+                                        10위권 랭킹 기념 및 후원자님들의 멋진 의견과
+                                        기대평을 듣고 더욱 성장할 수 있는 시간을 갖고자
+                                        소소한 EVENT를 준비하였어요.
+
+                                    </span>
+                                </div>
+                                <div class="post-reply-area" id="notice-reply-area"><span id="notice-reply">답글</span></div>
+                                <!-- 해당 크리에이터가 로그인 했을 때 -->
+                                <a href="">수정</a>
+                                <a href="">삭제</a>
+                              
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="main-title" id="community">
-                    <span>::커뮤니티::</span>
+                    <div><span>커뮤니티</span></div>
+
                     <!-- 부트스트랩 -->
                     <div class="container mt-3">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
                           <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#home">커뮤니티</a>
+                            <a class="nav-link active" data-bs-toggle="tab" href="#home">게시판</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#menu1">리뷰</a>
@@ -320,36 +443,80 @@
                           <div id="home" class="container tab-pane active"><br>
                             <form action="">
                                 <div id="community-comment-wrap">
-                                    <textarea name="community-comment" id="comment" cols="30" rows="10" ></textarea>
-                                    <input type="submit" value="글작성하기">
+                                    <form action="">
+                                        <textarea name="community-comment-area" class="comment" maxlength="500" placeholder="500자 이내로 입력해주세요."></textarea>
+                                        <button><img src="<%=request.getContextPath()%>/resources/send-button-371579.png" width="30px" alt="??"></button>
+                                    </form>
                                 </div>
                             </form>
                             <div id="">
-                                <div id="">작성된 게시글이 없습니다. 글을 작성해주세요.</div>
-                                <div id="">
-
+                                <div class="post-area-no-post"><h5>작성된 게시글이 없습니다. 글을 작성해주세요.</h5></div>
+                                <div class="post-area">
+                                    <div class="post-writer-area"><span id="post-writer">작성자명</span><span id="post-date">2022/08/10</span></div>
+                                    <div class="post-content-area">
+                                        <span id="post-content">
+                                            넵튠과 우라노스 향을 골랐는데,
+                                        푸른 하늘 속 흐르는 구름과
+                                        상냥한 바다의 조화.
+                                        이름만 들어도 벌써 시원한 느낌이 들어요
+                                        한번 믿고 기대해봅니다!</span></div>
+                                    <div class="post-reply-area"><span id="post-reply">답글</span></div>
+                                </div>
+                                <div class="post-area">
+                                    <div class="post-writer-area"><span id="post-writer">작성자명</span><span id="post-date">2022/08/10</span></div>
+                                    <div class="post-content-area">
+                                        <span id="post-content">
+                                            넵튠과 우라노스 향을 골랐는데,
+                                        푸른 하늘 속 흐르는 구름과
+                                        상냥한 바다의 조화.
+                                        이름만 들어도 벌써 시원한 느낌이 들어요
+                                        한번 믿고 기대해봅니다!</span></div>
+                                    <div class="post-reply-area"><span id="post-reply">답글</span></div>
                                 </div>
                             </div>
                           </div>
                           <div id="menu1" class="container tab-pane fade"><br>
                             <form action="">
-                                <textarea name="comment-community" id="comment" cols="30" rows="10"></textarea>
-                                <input type="submit" value="리뷰작성하기">
+                                <div id="review-comment-wrap">
+                                    <textarea name="review-comment-area" class="comment" maxlength="500" placeholder="500자 이내로 입력해주세요."></textarea>
+                                    <input type="submit" value="작성하기">
+                                    <input type="file">
+                                </div>
                             </form>
+                            <div id="">
+                                <div class="post-area-no-post"><h5>작성된 리뷰가 없습니다. 리뷰를 작성해주세요.</h5></div>
+                                <div class="post-area">
+                                   
+                                    <div class="post-writer-area"><span id="review-writer">회원명</span><span id="review-date">2022/08/11</span></div>
+                                    <div class="post-content-area">
+                                        <span id="review-content">
+                                            좋아요~~
+                                        </span>
+                                    </div>
+                                    <div class="post-reply-area" id="review-reply-area"><span id="review-reply">답글</span></div>
+                                    <!-- 해당 작성자가 로그인 했을 때 -->
+                                    <a href="">수정</a>
+                                    <a href="">삭제</a>
+                                </div>
+                            </div>
+
                           </div>
-                          
                         </div>
-                      </div>
-                
+                    </div>
+                    <!-- 부트스트랩 -->
+                    
+                </div>
                 <div class="main-title" id="etc">
-                    <span>::예상되는어려움::</span>
+                    <div><span>예상되는어려움</span></div>
                     <div>
                         <img style="width: 100%; height:auto" src="<%=request.getContextPath() %>/resources/etc.JPG" alt="">
                     </div>
                 </div>
-                <div>
+             	<div>
                     <button></button>
                 </div>
+                
+                
             </div>
             <div id="main-side">
                 <div id="creator-info">
@@ -397,7 +564,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 </html>
