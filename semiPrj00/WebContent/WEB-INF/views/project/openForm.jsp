@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>200% 프로젝트 오픈 신청</title>
 
 
  <style>
