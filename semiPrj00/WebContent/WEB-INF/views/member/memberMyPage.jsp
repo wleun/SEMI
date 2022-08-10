@@ -8,10 +8,10 @@
   <style>
   
         #wrapper{
-            padding-top: 120px;
+            padding-top: 200px;
         }
 
-        #mypage-header{
+        #header{
             width: 1194px;
             height: 24px;
             left: 35%;
@@ -23,7 +23,6 @@
         }
 
         a{
-            text-decoration: none;
             color: black;
             padding: 10px;
         }
@@ -33,9 +32,12 @@
         }
 
         #content-wrap{
-            width: 30%;
-
-            
+            width: 930px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         #content-6 button{
@@ -55,6 +57,7 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
+            margin-top: 100px;
         }
 
         input{
@@ -99,14 +102,14 @@
 	
     <div id="wrapper">
 
-        <div id="mypage-header">
+        <div id="header">
 
-            <a href="">정보수정</a>
-            <a href="">올린프로젝트</a>
-            <a href="">나의후원내역</a>
-            <a href="">팔로우</a>
-            <a href="">쿠폰내역</a>
-            <a href="">문의/답변내역</a>
+            <a href="" style="text-decoration: none;">정보수정</a>
+            <a href="" style="text-decoration: none;">올린프로젝트</a>
+            <a href="" style="text-decoration: none;">나의후원내역</a>
+            <a href="" style="text-decoration: none;">팔로우</a>
+            <a href="" style="text-decoration: none;">쿠폰내역</a>
+            <a href="" style="text-decoration: none;">문의/답변내역</a>
 
         </div>
 

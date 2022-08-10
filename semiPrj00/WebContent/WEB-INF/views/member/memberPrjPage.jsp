@@ -8,13 +8,10 @@
 <style>
 
         #wrapper{
-            border: 1px solid black;
-            background-color: #F9F5EA;
-            padding-top: 120px;
+            padding-top: 200px;
         }
 
         #header{
-            border: 1px solid black;
             width: 1194px;
             height: 24px;
             left: 35%;
@@ -32,20 +29,11 @@
         }
 
         #content-1{
-            border: 1px solid black;
             width: 300px;
         }
 
         #content-wrap{
-            border: 1px solid black;
             width: 30%;
-
-            
-        }
-
-        #content-2{
-            border: 1px solid black;
-
         }
 
         button {
@@ -73,10 +61,6 @@
             align-items: center;
         }
 
-        #prj-insert-btn{
-            width: 150px;
-            height: 40px;
-        }
         /* ------------------content-1---------------------------- */
         #content-1 *{
             display: flex;
@@ -111,7 +95,7 @@
 <body>
 
    <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
-   
+
    <div id="wrapper">
 
         <div id="header">
@@ -152,7 +136,7 @@
             <div id="content-2">
 
                 <p>작성한 프로젝트가 없습니다.</p>
-                <button id="prj-insert-btn">프로젝트 올리기</button>
+                <button>프로젝트 올리기</button>
 
             </div>
 
