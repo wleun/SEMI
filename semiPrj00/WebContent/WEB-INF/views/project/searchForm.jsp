@@ -61,6 +61,7 @@
         margin: 42px;
     }
     .prj-img{
+    	background-color: gray;
         height: 200px;
         width: 300px;
     }
