@@ -8,7 +8,8 @@
   <style>
   
         #wrapper{
-            padding-top: 200px;
+            padding-top: 150px;
+            padding-bottom: 150px;
         }
 
         #header{
@@ -22,51 +23,47 @@
             text-align: center;
         }
 
-        a{
+        #header a{
+            padding: 15px;
+            text-decoration: none;
+
+            font-size: 1.3rem;
+        }
+
+        #header a:visited{
             color: black;
-            padding: 10px;
         }
 
-        #content-1{
-            width: 300px;
+        #header a:hover{
+            color: #48CA7D;
         }
 
-        #content-wrap{
-            width: 930px;
-            height: 400px;
+        section{
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            flex-direction: row;
+            justify-content: flex-start;
+            padding-top: 100px;
         }
 
-        #content-6 button{
-            width: 300px;
-            height: 50px;
+        hr{
+            border: 1px black;
+            width: 600px;
         }
 
-        button {
+        section button {
             color: white;
-            margin-top: 10px;
             border-radius: 100px;
             background-color: #48CA7D;
             border: 0px
         }
-        
-        section{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin-top: 100px;
-        }
-
-        input{
-            width: 200px;
-            height: 20px;
-            font-size: 12px;
-        }
 
          /* ------------------content-1---------------------------- */
+
+        .member-info{
+            padding-left: 300px;
+            padding-right: 100px;
+        }
+
          #content-1 *{
             display: flex;
             flex-direction: column;
@@ -74,20 +71,21 @@
         #content-1{
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-evenly;
             align-items: center;
-            font-size: 1.2rem;
-            height: 550px;
+            font-size: 1rem;
+            width: 300px;
+            height: 500px;
         }
         #follow{
             text-align: center;
         }
         #member-name{
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
         #mall{
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
         }
         #membership-img{
@@ -104,12 +102,14 @@
 
         <div id="header">
 
-            <a href="" style="text-decoration: none;">정보수정</a>
-            <a href="" style="text-decoration: none;">올린프로젝트</a>
-            <a href="" style="text-decoration: none;">나의후원내역</a>
-            <a href="" style="text-decoration: none;">팔로우</a>
-            <a href="" style="text-decoration: none;">쿠폰내역</a>
-            <a href="" style="text-decoration: none;">문의/답변내역</a>
+            <a href="/semiPrj00/member/mypage">정보수정</a>
+            <a href="/semiPrj00/member/myprj">나의 프로젝트</a>
+            <a href="/semiPrj00/member/mysponsor">나의 후원내역</a>
+            <a href="">팔로우</a>
+            <a href="">좋아요</a>
+            <a href="">관심카테고리</a>
+            <a href="">쿠폰내역</a>
+            <a href="">문의&답변내역</a>
 
         </div>
 
@@ -145,52 +145,42 @@
     
                     <table>
          
-                         <tr>
-                             <td colspan="2">이메일</td>
-                         </tr>
-                         <tr>
-                             <td colspan="2">KH12234@kh.com</td>
-                         </tr>
-                         <tr>
-                             <td colspan="2">비밀번호 수정</td>
-                         </tr>
-                         <tr>
-                             <td colspan="2"><input type="password" placeholder="비밀번호를 입력하세요."></td>
-                         </tr>
-                         <tr>
-                             <td colspan="2"><input type="password" placeholder="비밀번호를 확인합니다."></td>
-                         </tr>
-                         <tr>
-                             <td colspan="2">이름</td>
-                         </tr>
-                         <tr>
-                             <td colspan="2">김누구</td>
-                         </tr>
-                         <tr>
-                             <td colspan="2">닉네임</td>
-                         </tr>
-                         <tr>
-                             <td colspan="2">테스트</td>
-                         </tr>
-                         <tr>
-                             <td><input type="text" placeholder="변경하시려면, 닉네임을 입력하세요"></td>
-                             <td><button>중복확인</button></td>
-                         </tr>
-                         <tr>
-                             <td colspan="2">전화번호</td>
-                         </tr>
-                         <tr>
-                             <td colspan="2">010-1234-1234</td>
-                         </tr>
-                         <tr>
-                             <td colspan="2"><input type="tel" placeholder="변경하시려면, 전화번호를 입력하세요.('-'제외)"></td>
-                         </tr>
+                        <tr>
+                            <th colspan="2">이메일</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">KH12234@kh.com</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">비밀번호 수정</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="password" placeholder="비밀번호를 입력하세요."></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="password" placeholder="비밀번호를 확인합니다."></td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">이름</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">김누구</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">전화번호</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">010-1234-1234</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="tel" placeholder="변경하시려면, 전화번호를 입력하세요.('-'제외)"></td>
+                        </tr>
          
                     </table>
          
                  </div>
 
-                 <hr style="border:1px color= black;" width="100%">
+                 <hr>
          
                  <div id="content-3">
          
@@ -198,7 +188,7 @@
          
                          
                          <tr>
-                             <td>배송지</td>
+                             <th>배송지</th>
                              <td></td>
                              <td></td>
                              <td></td>
@@ -240,7 +230,7 @@
                              <td><button>주소추가</button></td>
                          </tr>
                          <tr>
-                             <td colspan="4">결제정보 등록</td>
+                             <th colspan="4">결제정보 등록</th>
                          </tr>
                          <tr>
                              <td colspan="4">BC카드 (기본)</td>
@@ -279,14 +269,14 @@
          
                  </div>
 
-                 <hr style="border:1px color= black;" width="100%">
+                 <hr>
          
                  <div id="content-4">
          
                      <table>
          
                          <tr>
-                             <td>사업자/법인 정보</td>
+                             <th>사업자/법인 정보</th>
                          </tr>
                          <tr>
                              <td>012-34-56789</td>
@@ -305,21 +295,21 @@
          
                  </div>
 
-                 <hr style="border:1px color= black;" width="100%">
+                 <hr>
          
                  <div id="content-5">
          
                      <table>
          
                          <tr>
-                             <td colspan="2">등록한 추천인</td>
+                             <th colspan="2">등록한 추천인</th>
                          </tr>
                          <tr>
                              <td>테스트2님</td>
                              <td>ABCde6</td>
                          </tr>
                          <tr>
-                             <td colspan="2">나의 추천코드</td>
+                             <th colspan="2">나의 추천코드</th>
                          </tr>
                          <tr>
                              <td>ABCde1</td>
@@ -330,7 +320,7 @@
          
                  </div>
 
-                 <hr style="border:1px color= black;" width="100%">
+                 <hr>
          
                  <div id="content-6">
          
