@@ -8,7 +8,7 @@
 <style>
     #box{height: 150px;width: 1920px;}
     #login-outer{
-        border: 1px solid blue;
+        /*border: 1px solid blue;*/
         width: 700px;
         height: 800px;
         margin: 0px auto;
@@ -32,13 +32,14 @@
     #form-ul{
         position: relative;
         bottom: -80px;
-        right:-160px;
+        right:-145px;
 
     }
-    li{
+    .login-li{
         list-style-type: none;
         line-height: 29px;
         margin-bottom: 5px;
+        font-size: 20px;
     }
     input{
         border: 0px;
@@ -54,7 +55,7 @@
         height: 55px;
         border: 0;
         border-radius: 8px;
-        font-size: 15px;
+        font-size: 19px;
     }
     #submit{
         position:relative;
@@ -84,9 +85,12 @@
     } */
     .join-find-a{
         text-decoration: none;
-        color: #48ca7d;
+        color: black;
         text-align: center;
        
+    }
+    .join-find-a:hover{
+        color: #48ca7d;
     }
     .join-find{float: right;}
     
@@ -108,12 +112,12 @@
             <form action="" method="post" id="login-form">
                
                 <ul id="form-ul">
-                    <li >E - mail&nbsp; <input type="email" name="memberEmail" required placeholder="이메일을 입력하세요."></li>
-                    <li >비밀번호&nbsp;&nbsp;<input type="password" name="memberPwd" required placeholder="비밀번호를 입력하세요." id="inputPwd"></li>
+                    <li class="login-li">E - mail&nbsp; <input type="email" name="memberEmail" required placeholder="이메일을 입력하세요."></li>
+                    <li class="login-li">비밀번호&nbsp;&nbsp;<input type="password" name="memberPwd" required placeholder="비밀번호를 입력하세요." id="inputPwd"></li>
                 </ul>
                 <div id="submit"><input type="submit" value="로그인"></div>
                 <br><br>
-                <li class="join-find"> <a href="memberJoin1.jsp" class="join-find-a">회원가입 | </a><a href="" class="join-find-a">아이디/</a><a href="" class="join-find-a">비밀번호 찾기</a></li>
+                <li class="join-find login-li"> <a href="<%=contextPath %>/member/join" class="join-find-a">회원가입 | </a><a href="findId.jsp" class="join-find-a">아이디/</a><a href="findPwd.jsp" class="join-find-a">비밀번호 찾기</a></li>
                
             </form>
             
