@@ -189,9 +189,9 @@
 
         content {
             position: absolute;
-            width: 1632px;
-            height: 973px;
-            left: 294px;
+            width: 1630px;
+            height: 965px;
+            left: 288px;
             top: 108px;
             border-right: 1px solid black;
             border-bottom: 1px solid black;

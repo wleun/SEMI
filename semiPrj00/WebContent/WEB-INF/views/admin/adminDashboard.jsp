@@ -220,7 +220,7 @@
                                     <td>0건</td>
                                     <td width="10px"></td>
                                     <td>|</td>
-                                    <td>마감임박 이벤트</td>
+                                    <td>오늘 업로드된 공지사항</td>
                                     <td>0건</td>
                                 </tr>
                             </table>
