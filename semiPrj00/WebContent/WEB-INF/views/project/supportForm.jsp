@@ -316,7 +316,7 @@
                 <button class="btn btn-success final-div" id="support-btn">후원하기</button>
             </div>
        </div>
-       <%@ include file="/WEB-INF/views/project/paymentRegisterForm.jsp" %>
+       <%@ include file="/WEB-INF/views/project/paymentSelectForm.jsp" %>
     </div>
 
     <script>
