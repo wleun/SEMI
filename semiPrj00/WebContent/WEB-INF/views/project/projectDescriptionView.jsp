@@ -33,9 +33,9 @@
     /* 버튼부분 */
     #btn-div1,#btn-div2{
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
     }
-    #btn-div1>*, #btn-div2>button{
+    #btn-div1>*{
     width: 100%;
     padding: 10px;
     background-color: white;
@@ -45,6 +45,11 @@
     }
     #btn-div1>button{
         width: 50px;
+    }
+    #btn-div2>button{
+        border: none;
+        height: 30px;
+        border-radius: 10px;
     }
     #btn-div1>input, #btn-div2>button:nth-child(2){
         background-color: #48CA7D;
@@ -99,16 +104,39 @@
         width: 100%;
         height: 200px;
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
-        align-self: center;
+        align-items: center;
     }
-    #category{
+    #project-category{
+        width: 70px;
+        height: 40px;
+        border-radius: 10px;
+        margin: 10px;
+        background-color: #48CA7D;
+    }
+    #project-category>a{
+        display: inline-block;
+        padding: 8px 8px 8px 20px;
         width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: white;
+    }
+    #project-title{
         display: flex;
         justify-content: center;
-        align-self: flex-end;
+        width: 100%;
+        height: 50px;
     }
+    #project-title>a{
+        text-align: center;
+        font-size: 40px;
+        width: 100%;
+        height: 100%;
+    }
+
     /* 헤드-이미지 영역 */
     #head-img{
         width: 60%;
@@ -165,6 +193,11 @@
     .nav-text{
         margin-right: 40px;
         font-size: 18px;
+        text-decoration: none;
+        color: black;
+    }
+    .nav-text:hover{
+        color: #48CA7D;
     }
     /* 메인-상세페이지 전체*/
     #main-prj{
@@ -203,13 +236,54 @@
     }
 
     /* 리뷰영역 */
-    #review-comment-wrap input{
-        margin: 20px;
+    #review-comment-wrap>input{
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
-    #review-comment-wrap input:first-child{
-        margin: 20px 20px 20px 0px;
-        border: none;
+    .filebox{
+        width: 320px;
+        height: 110px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .filebox .upload-name{
+        display: inline-block;
+        height: 50px;
+        padding: 0 10px;
+        vertical-align: middle;
+        border: 1px solid #dddddd;
+        /* width: 100%; */
+        color: #999999;
+    }
+    .filebox label {
+        display: inline-block;
+        padding: 14px 20px;
+        color: #fff;
+        vertical-align: middle;
         background-color: #48CA7D;
+        cursor: pointer;
+        border-radius: 10px;
+        height: 50px;
+        margin-left: 10px;
+    }
+    .filebox input[type="file"] {
+        position: absolute;
+        width: 0;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+    }
+
+    #review-comment-wrap>input:last-child{
+        width: 100px;
+        height: 50px;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        background-color: #48CA7D;
+        margin-left: 30px;
     }
 
     /* 커뮤니티 영역 */
@@ -219,8 +293,12 @@
         height: 100px;
         margin: 30px 0px 30px 0px;
     }
-    .nav-link,.nav-link:hover{
+    .nav-link.nav-link:hover{
         color: gray;
+    }
+    .nav-item a{
+        margin: 10px;
+        font-size: 16px;
     }
     .comment{
         width: 100%;
@@ -235,6 +313,7 @@
         position: absolute;
         right: 30px;
         top: 24px;
+        width: 30px;
         background-color: rgb(230, 230, 230);
         border: none;
     }
@@ -245,8 +324,12 @@
         /* margin: 200px 200px 200px 200px; */
     }
     .post-area{
-        padding: 30px 0px 30px 0px;
+        padding: 10px;
+        margin-top: 30px;
+        margin-bottom: 30px;
         border-bottom: 1px solid lightgray;
+        border-radius: 10px;
+        background-color: white;
     }
     .post-writer-area{
         margin: 30px 0px 30px 0px;
@@ -287,13 +370,30 @@
         flex-direction: column;
         justify-content: space-between;
     }
+    #creator-title{
+        padding-bottom: 10px;
+        font-weight: 600;
+        border-bottom: 1px solid gray;
+    }
+    #creator-name{
+        font-weight: 600;
+        font-size: 16px;
+        height: 30px;
+    }
+    #creator-desc{
+        font-weight: 100;
+        font-size: 14px;
+        height: 100px;
+    }
+
     #reward-option{
         position: sticky;
-        top: 170px;
+        top: 190px;
         width: 100%;
     }
     #reward-option-title{
         height: 50px;
+        font-weight: 900;
         line-height: 40px;
     }
     .option-attribute{
@@ -305,9 +405,19 @@
         font-size: 25px;
     }
     
-    
-    
-    
+    /* 신고하기 부분 */
+    #report-area{
+        padding: 50px;
+        margin: 50px 50px 50px 0px;
+        border-top: 1px solid gray;
+        border-bottom: 1px solid gray;
+    }
+    #report-area>a{
+        color: black;
+    }
+    #report-area>a:hover{
+        color: #48CA7D;
+    }
     
 </style>
 </head>
@@ -321,12 +431,16 @@
 
         <div class="desc-section" id="desc-head">
             <div id="head-title">
-                <div id="category"><h4>푸드</h4></div>
-                <div id="project-title"><h1>찐크림치즈에 옥수수를 더하다 글루텐프리, 옥수수치크케이크</h1></div>
+                <div id="project-category">
+                    <a href="">푸드</a>
+                </div>
+                <div id="project-title">
+                    <a>찐크림치즈에 옥수수를 더하다 글루텐프리, 옥수수치크케이크 찐크림치즈에 옥수수를 더하다 글루텐프리, 옥수수치크케이크</a>
+                </div>
             </div>
             <div id="head-img">
                 <div id="img-section">
-                    <img style="width:600px; height:600px" src="<%=contextPath%>/resources/img/main.JPG" alt="이미지왜안나옴?">
+                    <img style="width:600px; height:600px" src="<%=contextPath%>/resources/img/main.PNG" alt="이미지왜안나옴?">
                 </div>
             </div>
             <div id="head-info">
@@ -384,7 +498,7 @@
                         <td><a id="a-introduce" class="nav-text" href="#introduce">프로젝트소개</a></td>
                         <td><a id="a-notice" class="nav-text" href="#notice">공지사항</a></td>
                         <td><a id="a-community" class="nav-text" href="#community">커뮤니티</a></td>
-                        <td><a id="a-etc" class="nav-text" href="#etc">예상되는어려움</a></td>
+                        <td><a id="a-etc" class="nav-text" href="#project-etc">예상되는어려움</a></td>
                     </tr>
                 </table>
             </div>
@@ -397,7 +511,8 @@
                         <img style="width:100%; height:auto" src="<%=contextPath%>/resources/img/desc3.JPG" alt="???">
                     </div>
                 </div>
-                <div class="main-title" id="notice">
+                <div id="notice">1</div>
+                <div class="main-title">
                     <div><span>공지사항</span></div>
                     <div>
                         <form action="">
@@ -485,8 +600,12 @@
                             <form action="">
                                 <div id="review-comment-wrap">
                                     <textarea name="review-comment-area" class="comment" maxlength="500" placeholder="500자 이내로 입력해주세요."></textarea>
+                                    <div class="filebox">
+                                        <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                                        <label for="file">파일첨부</label> 
+                                        <input type="file" id="file">
+                                    </div>
                                     <input type="submit" value="작성하기">
-                                    <input type="file">
                                 </div>
                             </form>
                             <div id="">
@@ -512,14 +631,14 @@
                     <!-- 부트스트랩 -->
                     
                 </div>
-                <div class="main-title" id="etc">
+                <div class="main-title" id="project-etc">
                     <div><span>예상되는어려움</span></div>
                     <div>
                         <img style="width: 100%; height:auto" src="<%=contextPath%>/resources/img/etc.JPG" alt="">
                     </div>
                 </div>
-             	<div>
-                    <button></button>
+             	<div id="report-area">
+                    <a href="">이 프로젝트 신고하기</a>
                 </div>
                 
                 
@@ -532,7 +651,7 @@
                         글로벌 시장을 대상으로 다양한 만화를 제작, 출판, 유통하고 있습니다.</div>
                     <div class="btns" id="btn-div2">
                         <button>+ 팔로우</button>
-                        <button>창작자에게 문의하기</button>
+                        <button>1:1 문의하기</button>
                     </div>
                 </div>
 
@@ -570,6 +689,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+    $("#file").on('change',function(){
+        var fileName = $("#file").val();
+        $(".upload-name").val(fileName);
+      });
+    </script>
 
 </body>
 </html>
