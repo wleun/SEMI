@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	    #reportManage {
+    #proposalManage {
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -14,7 +14,7 @@
             height: 972px;
         }
 
-        #reportManageDivWrap {
+        #proposalManageDivWrap {
             display: flex;
             flex-direction: column;
             align-self: center;
@@ -22,7 +22,7 @@
             height: 85%;
         }
 
-        #reportManageDiv1 {
+        #proposalManageDiv1 {
             width: 100%;
             height: 10%;
             display: flex;
@@ -30,13 +30,13 @@
             align-items: flex-start;
         }
 
-        #reportManageDiv1_not_used {
+        #proposalManageDiv1_not_used {
             width: 80%;
             height: 100%;
         }
 
 
-        #reportManageDiv1_search {
+        #proposalManageDiv1_search {
             width: 20%;
             height: 100%;
             display: flex;
@@ -44,7 +44,7 @@
             justify-content: space-evenly;
         }
 
-        #reportManageDiv1_search * {
+        #proposalManageDiv1_search * {
             height: 60%;
             font-size: 14px;
             display: flex;
@@ -54,18 +54,18 @@
             border-radius: 16px;
         }
         
-        #reportManageDiv1_search select {
+        #proposalManageDiv1_search select {
         	width : 80px;
         }
 
-        #reportManageDiv2 {
+        #proposalManageDiv2 {
             width: 100%;
             height: 80%;
             display: flex;
         }
 
         
-        .reportManageWrap {
+        .proposalManageWrap {
             width: 1469px;
             height: 100%;
             display: flex;
@@ -74,13 +74,13 @@
             border-radius: 16px;
         }
 
-        #reportManageFirstColumn {
+        #proposalManageFirstColumn {
             background-color: #F9F5EA;
             border-radius: 16px 16px 0px 0px;
             border-bottom: 1px solid #C3B091;
         }
 
-        .reportManageColumn {
+        .proposalManageColumn {
             width: 100%;
             height: 9%;
             font-size: 18px;
@@ -95,42 +95,38 @@
         }
 
         .check {
-            width: 7%;
+            width: 8%;
         }
 
-        .reportNo {
-            width: 7%;
+        .proposalNo {
+            width: 8%;
         }
 
-        .reportMember {
+        .proposalMember {
+            width: 14%;
+        }
+
+        .proposalPrjCategory {
+            width: 14%;
+        }
+
+        .proposalPrjName {
+            width: 25%;
+        }
+
+        .proposalDate {
             width: 13%;
-        }
-
-        .reportPrj {
-            width: 13%;
-        }
-
-        .reportContent {
-            width : 20%;
-        }
-
-        .reportDate {
-            width: 10%;
         }
         
-        .reportStatus {
+        .proposalStatus {
         	width : 10%;
         }
 
-        .reportAction {
-        	width : 13%;
+        .proposaldeleteYN {
+            width: 8%;
         }
 
-        .reportQuitYN {
-            width: 7%;
-        }
-
-        #reportManageDiv3 {
+        #proposalManageDiv3 {
             width: 100%;
             height: 10%;
             display: flex;
@@ -139,12 +135,12 @@
 
 
 
-        #reportManageDiv3_not_used {
+        #proposalManageDiv3_not_used {
             width: 20%;
             height: 100%;
         }
 
-        #reportManageDiv3_paging {
+        #proposalManageDiv3_paging {
             width: 60%;
             height: 100%;
             display: flex;
@@ -153,11 +149,11 @@
             align-items: center;
             font-size: 18px;
         }
-        #reportManageDiv3_paging>div {
+        #proposalManageDiv3_paging>div {
             padding: 10px;
         }
 
-        #reportManageDiv3_delete {
+        #proposalManageDiv3_delete {
             width: 20%;
             height: 100%;
             display : flex;
@@ -168,7 +164,7 @@
             padding-right: 10px;
         }
         
-        #reportManageDiv3_delete>div>input {
+        #proposalManageDiv3_delete>div>input {
         	width: 80px; 
         	height: 30px; 
         	border-radius: 16px; 
@@ -178,22 +174,23 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/common/adminLayout.jsp" %>
+    <%@ include file="/WEB-INF/views/common/adminLayout.jsp" %>
 	
 	
 	<content>
-       <div id="reportManage">
+       <div id="proposalManage">
 
-         <div id="reportManageDivWrap">
-             <div id="reportManageDiv1">
-                 <div id="reportManageDiv1_not_used"></div>
-                     <div id="reportManageDiv1_search">
+         <div id="proposalManageDivWrap">
+             <div id="proposalManageDiv1">
+                 <div id="proposalManageDiv1_not_used"></div>
+                     <div id="proposalManageDiv1_search">
                          <form action="">
     
                            <select name="what" id="searchWhat">
                               <option value="receipt">접수</option>
                               <option value="processing">처리중</option>
-                               <option value="completion">조치완료</option>
+                              <option value="completion">반려</option>
+                              <option value="completion">승인</option>
                            </select>
     
                                 <input type="search" name="search">
@@ -201,51 +198,49 @@
                                </form>
                             </div>
                         </div>
-                        <div id="reportManageDiv2">
-                            <div class="reportManageWrap">
-                                <div id="reportManageFirstColumn" class="reportManageColumn">
+                        <div id="proposalManageDiv2">
+                            <div class="proposalManageWrap">
+                                <div id="proposalManageFirstColumn" class="proposalManageColumn">
                                     <div class="check">선택</div>
-                                    <div class="reportNo">신고번호</div>
-                                    <div class="reportMember">신고자</div>
-                                    <div class="reportPrj">신고 프로젝트</div>
-                                    <div class="reportContent">신고내용</div>
-                                    <div class="reportDate">접수날짜</div>
-                                    <div class="reportStatus">처리상태</div>
-                                    <div class="reportAction">조치내용</div>
-                                    <div class="reportQuitYN">탈퇴여부</div>
+                                    <div class="proposalNo">제안서번호</div>
+                                    <div class="proposalMember">제안 회원</div>
+                                    <div class="proposalPrjCategory">프로젝트 카테고리</div>
+                                    <div class="proposalPrjName">프로젝트 이름</div>
+                                    <div class="proposalDate">접수날짜</div>
+                                    <div class="proposalStatus">처리상태</div>
+                                    <div class="proposaldeleteYN">삭제여부</div>
+                                </div>
+
+                                <div class="proposalManageColumn">
+                                    <div class="check"><input type="checkbox"></div>
+                                    <div class="proposalNo">1</div>
+                                    <div class="proposalMember">텀블벅</div>
+                                    <div class="proposalPrjCategory">IT테크</div>
+                                    <div class="proposalPrjName">프로젝트1111</div>
+                                    <div class="proposalDate">접수날짜</div>
+                                    <div class="proposalStatus">처리상태</div>
+                                    <div class="proposaldeleteYN">삭제여부</div>
+                                </div>
+
+                                <div class="proposalManageColumn">
+                                    <div class="check">선택</div>
+                                    <div class="proposalNo">1</div>
+                                    <div class="proposalMember">와디즈</div>
+                                    <div class="proposalPrjCategory">웰빙</div>
+                                    <div class="proposalPrjName">프로젝트2222</div>
+                                    <div class="proposalDate">접수날짜</div>
+                                    <div class="proposalStatus">처리상태</div>
+                                    <div class="proposaldeleteYN">삭제여부</div>
                                 </div>
                             
-                                <div class="reportManageColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="reportNo">1</div>
-                                    <div class="reportMember">신고자1</div>
-                                    <div class="reportPrj">신고 프로젝트11</div>
-                                    <div class="reportContent">신고내용1111111</div>
-                                    <div class="reportDate">2022-08-09</div>
-                                    <div class="reportStatus">접수</div>
-                                    <div class="reportAction"></div>
-                                    <div class="reportQuitYN">N</div>
-                                    
-                                </div>
-                                <div class="reportManageColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="reportNo">2</div>
-                                    <div class="reportMember">신고자2</div>
-                                    <div class="reportPrj">신고 프로젝트22</div>
-                                    <div class="reportContent">신고내용2222222</div>
-                                    <div class="reportDate">2022-08-09</div>
-                                    <div class="reportStatus">조치완료</div>
-                                    <div class="reportAction">신고 프로젝트 삭제</div>
-                                    <div class="reportQuitYN">N</div>
-                                    
-                                </div>
+                                
                                
                             </div>
                         </div>
-                        <div id="reportManageDiv3">
+                        <div id="proposalManageDiv3">
     
-                            <div id="reportManageDiv3_not_used"></div>
-                            <div id="reportManageDiv3_paging">
+                            <div id="proposalManageDiv3_not_used"></div>
+                            <div id="proposalManageDiv3_paging">
                                 <div>◀</div>
                                 <div>1</div>
                                 <div>2</div>
@@ -254,7 +249,7 @@
                                 <div>5</div>
                                 <div>▶</div>
                             </div>
-                            <div id="reportManageDiv3_delete">
+                            <div id="proposalManageDiv3_delete">
                                 <div><input type="button" value="삭제하기"></div>
                </div>
     
@@ -264,6 +259,7 @@
       </div>
 
 	</content>
+
 
 </body>
 </html>

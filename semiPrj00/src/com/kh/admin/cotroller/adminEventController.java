@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class adminEventController extends HttpServlet {
 @Override
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	req.setAttribute("", "이벤트 관리");
+	req.setAttribute("functionName", "이벤트 관리");
 	req.getRequestDispatcher("/WEB-INF/views/admin/adminEventView.jsp").forward(req, resp);
 }
 }

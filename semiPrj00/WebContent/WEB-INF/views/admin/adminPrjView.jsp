@@ -82,7 +82,7 @@
 
         .boardColumn {
             width: 100%;
-            height: 8%;
+            height: 9%;
             font-size: 18px;
             display: flex;
             flex-direction: row;   
@@ -262,6 +262,94 @@
                                     <div class="reportCnt">0</div>
                                     <div class="deleteYN">Y</div>
                                 </div>
+                                <div class="boardColumn">
+                                    <div class="check"><input type="checkbox"></div>
+                                    <div class="status">진행중</div>
+                                    <div class="prjNo">1</div>
+                                    <div class="category">테크</div>
+                                    <div class="percent">67.7%</div>
+                                    <div class="prjName">우리의 삶을 바꿀 그 것!</div>
+                                    <div class="makerName">그냥 메이커</div>
+                                    <div class="period">2022.08.08~2022.08.09</div>
+                                    <div class="reportCnt">0</div>
+                                    <div class="deleteYN">N</div>
+                                </div>
+                                <div class="boardColumn">
+                                    <div class="check"><input type="checkbox"></div>
+                                    <div class="status">성사됨</div>
+                                    <div class="prjNo">2</div>
+                                    <div class="category">레저/스포츠</div>
+                                    <div class="percent">655%</div>
+                                    <div class="prjName">이 텐트 보고가세용</div>
+                                    <div class="makerName">텐트 메이커</div>
+                                    <div class="period">2022.06.08~2022.07.15</div>
+                                    <div class="reportCnt">4</div>
+                                    <div class="deleteYN">N</div>
+                                </div>
+                                <div class="boardColumn">
+                                    <div class="check"><input type="checkbox"></div>
+                                    <div class="status">펀딩예정</div>
+                                    <div class="prjNo">3</div>
+                                    <div class="category">뷰티</div>
+                                    <div class="percent">0.0%</div>
+                                    <div class="prjName">스네일 크림!</div>
+                                    <div class="makerName">비오는날엔 스네일</div>
+                                    <div class="period">2022.09.03~2022.09.22</div>
+                                    <div class="reportCnt">0</div>
+                                    <div class="deleteYN">Y</div>
+                                </div>
+                                <div class="boardColumn">
+                                    <div class="check"><input type="checkbox"></div>
+                                    <div class="status">진행중</div>
+                                    <div class="prjNo">1</div>
+                                    <div class="category">테크</div>
+                                    <div class="percent">67.7%</div>
+                                    <div class="prjName">우리의 삶을 바꿀 그 것!</div>
+                                    <div class="makerName">그냥 메이커</div>
+                                    <div class="period">2022.08.08~2022.08.09</div>
+                                    <div class="reportCnt">0</div>
+                                    <div class="deleteYN">N</div>
+                                </div>
+                                <div class="boardColumn">
+                                    <div class="check"><input type="checkbox"></div>
+                                    <div class="status">성사됨</div>
+                                    <div class="prjNo">2</div>
+                                    <div class="category">레저/스포츠</div>
+                                    <div class="percent">655%</div>
+                                    <div class="prjName">이 텐트 보고가세용</div>
+                                    <div class="makerName">텐트 메이커</div>
+                                    <div class="period">2022.06.08~2022.07.15</div>
+                                    <div class="reportCnt">4</div>
+                                    <div class="deleteYN">N</div>
+                                </div>
+                                <div class="boardColumn">
+                                    <div class="check"><input type="checkbox"></div>
+                                    <div class="status">펀딩예정</div>
+                                    <div class="prjNo">3</div>
+                                    <div class="category">뷰티</div>
+                                    <div class="percent">0.0%</div>
+                                    <div class="prjName">스네일 크림!</div>
+                                    <div class="makerName">비오는날엔 스네일</div>
+                                    <div class="period">2022.09.03~2022.09.22</div>
+                                    <div class="reportCnt">0</div>
+                                    <div class="deleteYN">Y</div>
+                                </div>
+                                <div class="boardColumn">
+                                    <div class="check"><input type="checkbox"></div>
+                                    <div class="status">진행중</div>
+                                    <div class="prjNo">1</div>
+                                    <div class="category">테크</div>
+                                    <div class="percent">67.7%</div>
+                                    <div class="prjName">우리의 삶을 바꿀 그 것!</div>
+                                    <div class="makerName">그냥 메이커</div>
+                                    <div class="period">2022.08.08~2022.08.09</div>
+                                    <div class="reportCnt">0</div>
+                                    <div class="deleteYN">N</div>
+                                </div>
+                                
+                                
+                                
+                                
                             </div>
                         </div>
                         <div id="boardDiv3">
