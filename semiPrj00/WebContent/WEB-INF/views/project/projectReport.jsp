@@ -69,7 +69,7 @@
   
         <!-- Modal body -->
         <div class="modal-body">
-      	  <form action="" method="post">
+      	  <form action="/project/report" method="post">
         	<input type="hidden" name="prjNo" value="">
 	            <table id="reportForm">
 	            	<tr>

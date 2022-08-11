@@ -18,4 +18,10 @@ public class PrjOpenController extends HttpServlet{
 		req.getRequestDispatcher("/WEB-INF/views/project/openForm.jsp").forward(req, resp);
 		
 	}
+	
+	//오픈 폼 데이터 처리
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
 }
