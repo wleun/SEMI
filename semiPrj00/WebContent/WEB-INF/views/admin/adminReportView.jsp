@@ -94,12 +94,9 @@
             text-align: center;
         }
 
-        .check {
-            width: 7%;
-        }
 
         .reportNo {
-            width: 7%;
+            width: 9%;
         }
 
         .reportMember {
@@ -107,7 +104,7 @@
         }
 
         .reportPrj {
-            width: 13%;
+            width: 20%;
         }
 
         .reportContent {
@@ -115,7 +112,7 @@
         }
 
         .reportDate {
-            width: 10%;
+            width: 13%;
         }
         
         .reportStatus {
@@ -123,11 +120,7 @@
         }
 
         .reportAction {
-        	width : 13%;
-        }
-
-        .reportQuitYN {
-            width: 7%;
+        	width : 15%;
         }
 
         #reportManageDiv3 {
@@ -204,7 +197,6 @@
                         <div id="reportManageDiv2">
                             <div class="reportManageWrap">
                                 <div id="reportManageFirstColumn" class="reportManageColumn">
-                                    <div class="check">선택</div>
                                     <div class="reportNo">신고번호</div>
                                     <div class="reportMember">신고자</div>
                                     <div class="reportPrj">신고 프로젝트</div>
@@ -212,11 +204,9 @@
                                     <div class="reportDate">접수날짜</div>
                                     <div class="reportStatus">처리상태</div>
                                     <div class="reportAction">조치내용</div>
-                                    <div class="reportQuitYN">탈퇴여부</div>
                                 </div>
                             
                                 <div class="reportManageColumn">
-                                    <div class="check"><input type="checkbox"></div>
                                     <div class="reportNo">1</div>
                                     <div class="reportMember">신고자1</div>
                                     <div class="reportPrj">신고 프로젝트11</div>
@@ -224,11 +214,9 @@
                                     <div class="reportDate">2022-08-09</div>
                                     <div class="reportStatus">접수</div>
                                     <div class="reportAction"></div>
-                                    <div class="reportQuitYN">N</div>
                                     
                                 </div>
                                 <div class="reportManageColumn">
-                                    <div class="check"><input type="checkbox"></div>
                                     <div class="reportNo">2</div>
                                     <div class="reportMember">신고자2</div>
                                     <div class="reportPrj">신고 프로젝트22</div>
@@ -236,7 +224,7 @@
                                     <div class="reportDate">2022-08-09</div>
                                     <div class="reportStatus">조치완료</div>
                                     <div class="reportAction">신고 프로젝트 삭제</div>
-                                    <div class="reportQuitYN">N</div>
+                                    
                                     
                                 </div>
                                
@@ -254,9 +242,7 @@
                                 <div>5</div>
                                 <div>▶</div>
                             </div>
-                            <div id="reportManageDiv3_delete">
-                                <div><input type="button" value="삭제하기"></div>
-               </div>
+                 
     
             </div>
          </div>
