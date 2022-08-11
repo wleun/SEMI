@@ -95,36 +95,33 @@
         }
 
         .check {
-            width: 8%;
+            width: 9%;
         }
 
         .proposalNo {
-            width: 8%;
+            width: 9%;
         }
 
         .proposalMember {
-            width: 14%;
+            width: 13%;
         }
 
         .proposalPrjCategory {
-            width: 14%;
+            width: 12%;
         }
 
         .proposalPrjName {
-            width: 25%;
+            width: 35%;
         }
 
         .proposalDate {
-            width: 13%;
+            width: 12%;
         }
         
         .proposalStatus {
-        	width : 10%;
+        	width : 9%;
         }
 
-        .proposaldeleteYN {
-            width: 8%;
-        }
 
         #proposalManageDiv3 {
             width: 100%;
@@ -190,7 +187,8 @@
                               <option value="receipt">접수</option>
                               <option value="processing">처리중</option>
                               <option value="completion">반려</option>
-                              <option value="completion">승인</option>
+                              <option value="">승인</option>
+                              <option value="deleted">삭제</option>
                            </select>
     
                                 <input type="search" name="search">
@@ -208,7 +206,6 @@
                                     <div class="proposalPrjName">프로젝트 이름</div>
                                     <div class="proposalDate">접수날짜</div>
                                     <div class="proposalStatus">처리상태</div>
-                                    <div class="proposaldeleteYN">삭제여부</div>
                                 </div>
 
                                 <div class="proposalManageColumn">
@@ -217,20 +214,18 @@
                                     <div class="proposalMember">텀블벅</div>
                                     <div class="proposalPrjCategory">IT테크</div>
                                     <div class="proposalPrjName">프로젝트1111</div>
-                                    <div class="proposalDate">접수날짜</div>
-                                    <div class="proposalStatus">처리상태</div>
-                                    <div class="proposaldeleteYN">삭제여부</div>
+                                    <div class="proposalDate">2022-08-10</div>
+                                    <div class="proposalStatus">처리중</div>
                                 </div>
 
                                 <div class="proposalManageColumn">
-                                    <div class="check">선택</div>
-                                    <div class="proposalNo">1</div>
+                                    <div class="check"><input type="checkbox"></div>
+                                    <div class="proposalNo">2</div>
                                     <div class="proposalMember">와디즈</div>
                                     <div class="proposalPrjCategory">웰빙</div>
                                     <div class="proposalPrjName">프로젝트2222</div>
-                                    <div class="proposalDate">접수날짜</div>
-                                    <div class="proposalStatus">처리상태</div>
-                                    <div class="proposaldeleteYN">삭제여부</div>
+                                    <div class="proposalDate">2022-08-11</div>
+                                    <div class="proposalStatus">반려</div>
                                 </div>
                             
                                 
