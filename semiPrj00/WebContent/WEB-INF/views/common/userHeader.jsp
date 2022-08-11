@@ -163,7 +163,7 @@
             <div id="etc">
                 <div id="btn-div">
                     <div id="upload-prj-div"><button class="btn btn-success" id="prj">프로젝트 오픈 신청</button></div>
-                    <div id="member-div"><button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/WEB-INF/views/member/memberLogin.jsp'">로그인/회원가입</button></div>
+                    <div id="member-div"><button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/member/login'">로그인/회원가입</button></div>
                 </div>
                 <form action="<%=contextPath %>/project/search" method="get">
                     <div id="search-div" class="input-group">
