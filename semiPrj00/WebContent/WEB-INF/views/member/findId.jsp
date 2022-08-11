@@ -6,18 +6,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+#box{height: 150px;width: 1920px;}
     #outer{
         border: 1px solid blue;
         width: 700px;
         height: 800px;
         margin: 0 auto;
     }
-    #find-id-form-div{
+    #find-id-pwd-div{
         border: 1px solid red;
         margin: 0 auto;
-        width: 400px;
-        height: 200px;
+        width: 500px;
+        height: 300px;
         margin: 0 auto;
+        background-color:  rgba(255, 255, 255, 0.675);;
     }
    
     #find-id-form{
@@ -63,22 +65,23 @@
 <head>
     <meta charset="UTF-8">
    
-    <title>아이디 찾기</title>
+    <title>아이디/비밀번호 찾기</title>
 </head>
 <body>
+   <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
    
-    <div id="outer">
-        <h1>아이디찾기</h1>
-        <div id="find-id-form-div">
-            <form action="" method="post" id="find-id-form">
-                <ul>
-                    <li>이름</li>
-                    <li><input type="text" name="memberName" required></li>
-                    <li>전화번호</li>
-                    <li><input type="phone" name="memberPhone" required></li>
-                    <br><li><input type="submit" value="아이디찾기" id="submit"></li>
-                </ul>
-            </form>   
+   <main>
+    <div id="box"></div>
+     <div id="outer">
+        <h1>아이디 / 비밀번호 찾기</h1>
+        <div id="find-id-pwd-div">
+            <div id="btn-div">
+                <button>아이디 찾기</button>
+                <button>비밀번호 찾기</button>
+            </div>
+
+
+
                 <a href="">회원가입</a>
             <span><a href="">비밀번호 찾기</a></span>
           
@@ -87,6 +90,8 @@
         </div>
         
     </div>
+    </main>
+   
 
 </body>
 </html>
