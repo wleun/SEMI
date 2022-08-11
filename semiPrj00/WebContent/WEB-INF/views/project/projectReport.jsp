@@ -12,22 +12,8 @@
             height: 900px;
         }
         
-        table{
-            margin: 0px;
-        }
-        table td{
-            text-align: left;
-            padding: 25px; 
-        } 
-        #reportInfo{
-            font-size: x-small;
-            color: gray;
-            text-align: center;
-        }
-
         #prjReport {
             margin-top: 300px;
-            
         }
         
         #prjReport span {
@@ -36,8 +22,27 @@
             
         }
         
+
+
+        #reportForm{
+       		margin : 0 auto;
+       }
+        table td{
+            padding: 25px; 
+            
+        } 
+        #content{
+        	width: 400px;
+        }
         
+        #reportInfo{
+            font-size: x-small;
+            color: gray;
+            text-align: center;
+        }
         
+
+
 </style>
 </head>
 
@@ -47,7 +52,6 @@
 	
 	
 	    <!-- Open the Modal -->
-        
         <button type="button" id="prjReport" class="btn shadow-none" data-bs-toggle="modal" data-bs-target="#myModal">
             <span>프로젝트 신고</span>
           </button>
@@ -59,32 +63,34 @@
   
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">프로젝트 신고</h4>
+          <h4 class="modal-title">프로젝트 신고하기</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
   
         <!-- Modal body -->
         <div class="modal-body">
-            <table>
-                <tr>
-                    <td>프로젝트명</td>
-                    <td>어떠한 프로젝트</td>
-                </tr>
-                <tr>
-                    <td>신고 내용</td>
-                    <td><textarea name="" id="content" cols="30" rows="10" style="resize: none;" placeholder="해당 프로젝트의 문제를 적어주세요."></textarea></td>
-                </tr>
-                <tr>
-                   
-                    <td colspan="2" id="reportInfo"><span  style="color: gray;">문제를 자세하게 적어주시면 확인하는데 큰 도움이 됩니다!</span></td>
-                </tr>
-            </table>
+      	  <form action="" method="post">
+        	<input type="hidden" name="prjNo" value="">
+	            <table id="reportForm">
+	            	<tr>
+	            		 <td>신고 사유</td>
+	           		</tr>
+	                <tr>
+	                   
+	                    <td><textarea name="reportContent" id="content" cols="30" rows="10" style="resize: none;" placeholder="내용이 충분하지 않을 경우 사실 확인이 어려울 수 있습니다."></textarea></td>
+	                </tr>
+	                <tr>
+	                   
+	                    <td id="reportInfo"><span style="color: gray;">신고 사유를 상세히 작성해주세요. 문제 확인 및 조치가 보다 신속하게 진행됩니다.</span></td>
+	                </tr>
+	            </table>
+            </form>
 
         </div>
   
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">신고</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">접수하기</button>
         </div>
   
       </div>

@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <meta charset="UTF-8">
 <title>200% 프로젝트 오픈 신청</title>
 
@@ -24,18 +26,22 @@
             height: 150px;
             
         }
+        
         #topSide *{
             font-weight: 600;
             margin-left: 200px;
         }
+        
         main{
             margin: 0 auto;
             width: 70%;
         }
+        
         main table{
             margin: 0 auto;
             width: 700px;
         }
+        
         #title{
             margin: 100px 300px;
             font-weight: 600;
@@ -45,37 +51,46 @@
             background-color: #48CA7D; 
             color: white;
         }
+        
         table td{
             text-align: center;
             padding: 25px; 
         } 
+        
         #dateCalc{
             font-size: x-large;
             font-weight: 800;
         }
+        
         #dateInfo{
             text-align: center;
             font-size: larger;
             margin-bottom: 100px;
         }
+        
         #form .form-control{
         	width: 300px;
         	margin : 0 auto;
         	 box-shadow: none;
         }
+        
         #form input[type="date"] {
             width: 200px;
         }
+        
+        <!--input 태그 number일 경우 증가, 감소 버튼 없애기-->
         input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
+        
         .info{
             font-size:x-small;
             color: gray;
             padding-top: 0px;
             padding-left: 210px;
         }
+        
         #btn {
         	background-Color:  #48CA7D; 
         }
@@ -92,7 +107,7 @@
     </div>
     
     <main id="form">
-        <form action="" method="post">
+        <form action="<%=contextPath%>/project/open" method="post">
             <div id="title" class="rounded-pill">1. 기본정보</div>
             <table>
                 <tr>
@@ -142,7 +157,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="info"><div >펀딩 성공 시 예상 수령액 <span id="priceCalcResult">0</span>원 (플랫폼 수수료 5%)</div></td>
+                    <td colspan="2"><div class="info">펀딩 성공 시 예상 수령액 <span id="priceCalcResult">0</span>원 (플랫폼 수수료 5%)</div></td>
                 </tr>
                
                 <tr>
@@ -152,7 +167,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="info"><div>대표이미지는 1개만 업로드해주세요.</div></td>
+                    <td colspan="2"><div class="info">대표이미지는 1개만 업로드해주세요.</div></td>
                 </tr>
                 <tr>
                     <td>상세 이미지/영상*</td>
@@ -173,13 +188,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>예상 전달일</td>
+                    <td>예상 전달일*</td>
                     <td>
                         결제 종료일로부터 <input style="width: 50px; display:inline;" class="form-control" type="number" id="shippingDate" name="shippingDate" min="0" value="0" required> 일 뒤
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="info"><div>배송 시작일 <span id="shippingCalcResult"></span></div></td>
+                    <td colspan="2"><div class="info">배송 시작일 <span id="shippingCalcResult"></span></div></td>
                 </tr>
             </table>
  
@@ -210,18 +225,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="padding-top: 150px;"><button type="submit" onclick="location.href='/'" class="btn text-white" id="btn">다음으로</button></td>
+                    <td colspan="2" style="padding-top: 150px;"><button type="submit" class="btn text-white" id="btn">다음으로</button></td>
                 </tr>     
             </table>
         </form>
     </main>
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
 
     <script>
         
 
-        // 오늘 날짜 
+        // 오늘 날짜 (시작날짜가 오늘날짜 이전이면 자동으로 오늘날짜로 설정됨)
         function getToday(){
             var date = new Date();
             var year = date.getFullYear();
@@ -230,7 +245,7 @@
             return year + "-" + month + "-" + day;
         }
 
-        // 내일 날짜 
+        // 내일 날짜 (마감날짜가 시작날짜 이전이면 자동으로 시작날짜 1일후로 설정)
         function getTomorrow(startDay){
             var temp = new Date(startDay);
             var date = new Date(temp.setDate(temp.getDate()+1));
@@ -275,7 +290,7 @@
            }
               
         }
-        //수수료를 뺀 정산
+        //수수료(5%)를 뺀 정산값 표시 (실제 목표금액은 설정한 그대로 넣기)
         function amountCalc(){
             let amount = document.getElementById("prjAmount").value;
             let priceCalc = amount - (amount/100*5);
@@ -288,13 +303,15 @@
             $('#shippingDate').on('change', function(){
                 let shippingDate = parseInt($('#shippingDate').val());
                 let date = new Date($('#endDate').val());
+                //날짜에 마감날짜 + 7일 + 설정한 일수로 설정
                 date = new Date(date.setDate(date.getDate()+7+shippingDate));
-                var year = date.getFullYear();
-                var month = ("0" + (1 + date.getMonth())).slice(-2);
-                var day = ("0" + date.getDate()).slice(-2);
+                let year = date.getFullYear();
+                let month = ("0" + (1 + date.getMonth())).slice(-2);
+                let day = ("0" + date.getDate()).slice(-2);
                 if($.isNumeric(year)){
                		$('#shippingCalcResult').html(year + "-" + month + "-" + day);
                 }else{
+                	//시작, 마감날짜 설정전이면 공란으로 표시
                 	$('#shippingCalcResult').html("");        	
                 }
             });
