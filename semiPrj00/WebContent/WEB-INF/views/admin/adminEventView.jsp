@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <style>
-		#noticeManage {
+		#eventManage {
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -15,7 +15,7 @@
             height: 972px;
         }
 
-        #notice {
+        #event {
             display: flex;
             flex-direction: column;
             align-self: center;
@@ -23,7 +23,7 @@
             height: 85%;
         }
 
-        #noticeDiv1 {
+        #eventDiv1 {
             width: 100%;
             height: 10%;
             display: flex;
@@ -31,13 +31,13 @@
             align-items: flex-start;
         }
 
-        #noticeDiv1_not_used {
+        #eventDiv1_not_used {
             width: 80%;
             height: 100%;
         }
 
 
-        #noticeDiv1_search {
+        #eventDiv1_search {
             width: 20%;
             height: 100%;
             display: flex;
@@ -45,7 +45,7 @@
             justify-content: space-evenly;
         }
 
-        #noticeDiv1_search * {
+        #eventDiv1_search * {
             height: 60%;
             font-size: 14px;
             display: flex;
@@ -55,67 +55,42 @@
             border-radius: 16px;
         }
 
-        #noticeDiv2 {
+        #eventDiv2 {
             width: 100%;
             height: 80%;
             display: flex;
         }
 
         
-        .noticeWrap {
+        .eventWrap {
             width: 1469px;
             height: 100%;
             display: flex;
-            flex-direction: column;
-            border: 1px solid #C3B091;
-            border-radius: 16px;
+            flex-direction: row;
         }
 
-        #noticeFirstColumn {
+        .eventArea {
+            width: 33.33%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .eventArea>div {
+            width: 100%;
+            height: 33.33%;
+            border : 1px solid black;
+        }
+
+        #eventFirstColumn {
             background-color: #F9F5EA;
             border-radius: 16px 16px 0px 0px;
             border-bottom: 1px solid #C3B091;
         }
 
-        .noticeColumn {
-            width: 100%;
-            height: 9%;
-            font-size: 18px;
-            display: flex;
-            flex-direction: row;   
-            text-align: center;
-            align-items: center;
-        }
+        
 
-        .text_align_center {
-            text-align: center;
-        }
-
-        .check {
-            width: 10%;
-        }
-
-        .important {
-            width: 10%;
-        }
-
-        .noticeNo {
-            width: 10%;
-        }
-
-        .noticeName {
-            width: 40%;
-        }
-
-        .writeDate {
-            width: 20%;
-        }
-
-        .deleteYN {
-            width: 10%;
-        }
-
-        #noticeDiv3 {
+        #eventDiv3 {
             width: 100%;
             height: 10%;
             display: flex;
@@ -124,12 +99,12 @@
 
 
 
-        #noticeDiv3_not_used {
+        #eventDiv3_not_used {
             width: 20%;
             height: 100%;
         }
 
-        #noticeDiv3_paging {
+        #eventDiv3_paging {
             width: 60%;
             height: 100%;
             display: flex;
@@ -138,11 +113,11 @@
             align-items: center;
             font-size: 18px;
         }
-        #noticeDiv3_paging>div {
+        #eventDiv3_paging>div {
             padding: 10px;
         }
 
-        #noticeDiv3_edit {
+        #eventDiv3_edit {
             width: 20%;
             height: 100%;
             display : flex;
@@ -153,7 +128,7 @@
             padding-right: 10px;
         }
         
-        #noticeDiv3_edit>div>input {
+        #eventDiv3_edit>div>input {
         	width: 80px; 
         	height: 30px; 
         	border-radius: 16px; 
@@ -165,16 +140,15 @@
 </head>
 <body>
 
-	<%@ include file="/WEB-INF/views/common/adminLayout.jsp" %>
-	
-	
-	<content>
-       <div id="noticeManage">
+<%@ include file="/WEB-INF/views/common/adminLayout.jsp" %>
 
-         <div id="notice">
-             <div id="noticeDiv1">
-                 <div id="noticeDiv1_not_used"></div>
-                     <div id="noticeDiv1_search">
+<content>
+       <div id="eventManage">
+
+         <div id="event">
+             <div id="eventDiv1">
+                 <div id="eventDiv1_not_used"></div>
+                     <div id="eventDiv1_search">
                          <form action="">
     
                            <select name="what" id="searchWhat">
@@ -188,42 +162,31 @@
                                </form>
                             </div>
                         </div>
-                        <div id="noticeDiv2">
-                            <div class="noticeWrap">
-                                <div id="noticeFirstColumn" class="noticeColumn">
-                                    <div class="check">선택</div>
-                                    <div class="important">중요</div>
-                                    <div class="noticeNo">번호</div>
-                                    <div class="noticeName">공지사항 이름</div>
-                                    <div class="writeDate">작성일자</div>
-                                    <div class="deleteYN">삭제여부</div>
+                        <div id="eventDiv2">
+                            <div class="eventWrap">
+
+                                <div class="eventArea">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
                                 </div>
-                            
-                                <div class="noticeColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="important">중요</div>
-                                    <div class="noticeNo">1</div>
-                                    <div class="noticeName">새로운 공지사항입니다.</div>
-                                    <div class="writeDate">2022-08-09</div>
-                                    <div class="deleteYN">N</div>
-                                    
+                                <div class="eventArea">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
                                 </div>
-                                <div class="noticeColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="important">중요</div>
-                                    <div class="noticeNo">2</div>
-                                    <div class="noticeName">강남역 일대 물바다...</div>
-                                    <div class="writeDate">2022-08-10</div>
-                                    <div class="deleteYN">Y</div>
-                                    
+                                <div class="eventArea">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
                                 </div>
-                               
+                                
                             </div>
                         </div>
-                        <div id="noticeDiv3">
+                        <div id="eventDiv3">
     
-                            <div id="noticeDiv3_not_used"></div>
-                            <div id="noticeDiv3_paging">
+                            <div id="eventDiv3_not_used"></div>
+                            <div id="eventDiv3_paging">
                                 <div>◀</div>
                                 <div>1</div>
                                 <div>2</div>
@@ -232,7 +195,7 @@
                                 <div>5</div>
                                 <div>▶</div>
                             </div>
-                            <div id="noticeDiv3_edit">
+                            <div id="eventDiv3_edit">
                             	<div><input type="button" value="작성하기"></div>
                             	<div><input type="button" value="수정하기"></div>
                                 <div><input type="button" value="삭제하기"></div>
@@ -244,6 +207,7 @@
       </div>
 
 	</content>
+
 
 </body>
 </html>

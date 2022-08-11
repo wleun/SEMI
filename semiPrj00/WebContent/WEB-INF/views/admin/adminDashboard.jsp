@@ -60,12 +60,12 @@
 
         #proposal {
             width: 430px;
-            height: 160px;
+            height: 240px;
         }
 
         #proposalText {
             width: 100%;
-            height: 35%;
+            height: 25%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -85,7 +85,7 @@
 
         #message {
             width: 430px;
-            height: 300px;
+            height: 240px;
         }
 
         #messageText {
@@ -227,14 +227,14 @@
                         </div>
                     </div>
                     <div id="proposal">
-                        <div id="proposalText">제안서</div>
+                        <div id="proposalText"><a>제안서</a></div>
                         <div id="proposalTable">
                             <table></table>
                             
                         </div>
                     </div>
                     <div id="message">
-                        <div id="messageText">메세지</div>
+                        <div id="messageText"><a>접수된 신고</a></div>
                         <div id="messageTable">
                             <table></table>
                         </div>
@@ -244,7 +244,7 @@
                     <div id="eventDashBoard">
                         <div id="eventThumbnail"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                         <div id="eventOngoing">
-                            <div id="eventOngoingText">진행중인 이벤트</div>
+                            <div id="eventOngoingText"><a>진행중인 이벤트</a></div>
                             <div id="eventOngoingTable">
                                 <table></table>
                             </div>
@@ -252,7 +252,7 @@
                     </div>
                     <div id="noticeDashBoard">
                         <div id="noticeDashBoardText">
-                            공지사항 관리
+                            <a>공지사항 관리</a>
                         </div>
                         <div id="noticeDashBoardTable">
                             <table>
@@ -264,21 +264,21 @@
                 <div id="dashBoardDiv3" class="dashBoard">
                     <div id="todaySuccessPrj">
                         <div id="todaySuccessPrjText">
-                            오늘 성사된 프로젝트
+                            <a>오늘 성사된 프로젝트</a>
                         </div>
                         <div id="todaySuccessPrjTable">
 
                         </div>
                     </div>
                     <div id="todayStartPrj">
-                        <div id="todayStartPrjText">오늘 시작하는 프로젝트</div>
+                        <div id="todayStartPrjText"><a>오늘 시작하는 프로젝트</a></div>
                         <div id="todayStartPrjTable">
                             <table></table>
                         </div>
                     </div>
                     <div id="todayReport">
                         <div id="todayReportText">
-                            접수된 신고
+                            <a>마감임박 이벤트</a>
                         </div>
                         <div id="todayReportTable">
                             <table></table>

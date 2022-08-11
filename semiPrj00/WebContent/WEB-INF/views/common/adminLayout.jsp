@@ -3,12 +3,17 @@
 <%
 	String contextPath = request.getContextPath();
 	String functionName = (String) request.getAttribute("functionName");
+
+    String errorMsg = (String)session.getAttribute("errorMsg");
+    session.removeAttribute("errorMsg");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
 	@font-face {
             font-family: 'twayair';
@@ -232,7 +237,7 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td><img src="<%=contextPath %>/resources/img/adminDashboard.png" alt="대시보드 아이콘" width="40px" height="40px"></td>
+                            <td><a href="<%=contextPath%>/admin/main"><img src="<%=contextPath %>/resources/img/adminDashboard.png" alt="대시보드 아이콘" width="40px" height="40px"></a></td>
                             <td><a href="<%=contextPath%>/admin/main">대시보드</a></td>
                             <td></td>
                         </tr>
@@ -256,7 +261,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="<%=contextPath %>/resources/img/adminPrj_icon.png" alt="프로젝트 아이콘" width="35px" height="34px"></td>
+                                <td><a href="<%=contextPath%>/admin/prj"><img src="<%=contextPath %>/resources/img/adminPrj_icon.png" alt="프로젝트 아이콘" width="35px" height="34px"></a></td>
                                 <td class="menegeAlign"><a href="<%=contextPath%>/admin/prj">프로젝트</a></td>
                                 <td></td>
                             </tr>
@@ -269,7 +274,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="<%=contextPath %>/resources/img/adminProposal_icon.png" alt="제안서 아이콘" width="33px" height="36px"></td>
+                                <td><a href="<%=contextPath%>/admin/proposal"><img src="<%=contextPath %>/resources/img/adminProposal_icon.png" alt="제안서 아이콘" width="33px" height="36px"></a></td>
                                 <td class="menegeAlign"><a href="<%=contextPath%>/admin/proposal">제안서</a></td>
                                 <td></td>
                             </tr>
@@ -282,7 +287,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="<%=contextPath %>/resources/img/adminEvent_icon.png" alt="이벤트 아이콘" width="33px" height="33px"></td>
+                                <td><a href="<%=contextPath%>/admin/event"><img src="<%=contextPath %>/resources/img/adminEvent_icon.png" alt="이벤트 아이콘" width="33px" height="33px"></a></td>
                                 <td class="menegeAlign"><a href="<%=contextPath%>/admin/event">이벤트</a></td>
                                 <td></td>
                             </tr>
@@ -295,7 +300,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="<%=contextPath %>/resources/img/adminNotice_icon.png" alt="공지사항 아이콘" width="32px" height="32px"></td>
+                                <td><a href="<%=contextPath%>/admin/notice"><img src="<%=contextPath %>/resources/img/adminNotice_icon.png" alt="공지사항 아이콘" width="32px" height="32px"></a></td>
                                 <td class="menegeAlign"><a href="<%=contextPath%>/admin/notice">공지사항</a></td>
                                 <td></td>
                             </tr>
@@ -308,7 +313,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="<%=contextPath %>/resources/img/adminMember_icon.png" alt="회원 아이콘" width="35px" height="35px"></td>
+                                <td><a href="<%=contextPath%>/admin/memberManage"><img src="<%=contextPath %>/resources/img/adminMember_icon.png" alt="회원 아이콘" width="35px" height="35px"></a></td>
                                 <td class="menegeAlign"><a href="<%=contextPath%>/admin/memberManage">회원관리</a></td>
                                 <td></td>
                             </tr>
@@ -321,7 +326,7 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><img src="<%=contextPath %>/resources/img/adminReport_icon.png" alt="신고 아이콘" width="35px" height="30px"></td>
+                                <td><a href="<%=contextPath%>/admin/report"><img src="<%=contextPath %>/resources/img/adminReport_icon.png" alt="신고 아이콘" width="35px" height="30px"></a></td>
                                 <td class="menegeAlign"><a href="<%=contextPath%>/admin/report">신고관리</a></td>
                                 <td></td>
                             </tr>
@@ -335,6 +340,9 @@
 
         </nav>
     </div>
-    
+
+<script>
+</script>   
+
 </body>
 </html>

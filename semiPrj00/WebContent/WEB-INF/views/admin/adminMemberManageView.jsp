@@ -78,7 +78,7 @@
 
         .memberManageColumn {
             width: 100%;
-            height: 8%;
+            height: 9%;
             font-size: 18px;
             display: flex;
             flex-direction: row;   
@@ -99,11 +99,11 @@
         }
 
         .memberType {
-            width: 7%;
+            width: 8%;
         }
 
         .memberLevel {
-            width: 7%;
+            width: 11%;
         }
 
         .memberName {
@@ -111,7 +111,7 @@
         }
 
         .memberEmail {
-            width: 12%;
+            width: 13%;
         }
 
         .memberPhone {
@@ -119,7 +119,7 @@
         }
 
         .memberEnrollDate {
-            width: 10%;
+            width: 8%;
         }
         
         .memberSuspendYN {
@@ -131,7 +131,7 @@
         }
 
         .memberQuitDate {
-            width: 10%;
+            width: 8%;
         }
 
         #memberManageDiv3 {
@@ -224,7 +224,7 @@
                                 <div class="memberManageColumn">
                                     <div class="check"><input type="checkbox"></div>
                                     <div class="memberNo">1</div>
-                                    <div class="memberType">개인사업자</div>
+                                    <div class="memberType">사업자회원</div>
                                     <div class="memberLevel">브론즈</div>
                                     <div class="memberName">와디즈</div>
                                     <div class="memberEmail">Wadiz@wadiz.com</div>
@@ -238,8 +238,8 @@
                                 <div class="memberManageColumn">
                                     <div class="check"><input type="checkbox"></div>
                                     <div class="memberNo">1</div>
-                                    <div class="memberType">개인사업자</div>
-                                    <div class="memberLevel">브론즈</div>
+                                    <div class="memberType">일반회원</div>
+                                    <div class="memberLevel">일반</div>
                                     <div class="memberName">와디즈</div>
                                     <div class="memberEmail">Wadiz@wadiz.com</div>
                                     <div class="memberPhone">010-000-0000</div>
@@ -265,9 +265,9 @@
                                 <div>▶</div>
                             </div>
                             <div id="memberManageDiv3_edit">
-                            	<div><input type="button" value="작성하기"></div>
-                            	<div><input type="button" value="수정하기"></div>
-                                <div><input type="button" value="삭제하기"></div>
+                            	<div><input type="button" value="회원정지"></div>
+                            	<div><input type="button" value="정지해제"></div>
+                                <div><input type="button" value="회원탈퇴"></div>
                </div>
     
             </div>
