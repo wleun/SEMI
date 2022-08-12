@@ -7,6 +7,11 @@
 
 	String categoryName = (String)request.getAttribute("categoryName");
 
+    int currentPage = 5;
+	int startPage = 1;
+	int endPage = 10;
+	int maxPage = 10;
+
 %>
     
 <!DOCTYPE html>
@@ -90,6 +95,14 @@
     .amount{
         color: gray;
     }
+    .btn-success{
+        background-color: #48CA7D!important;
+        border: 0px!important;
+    }
+    #page-area{
+        text-align: center;
+        padding: 30px;
+    }
 </style>
 </head>
 <body>
@@ -147,6 +160,23 @@
                 </div>
             </div>
             <%//}%>
+        </div>
+        <div id="page-area">
+            <%if(currentPage!=1){ %>
+				<a class="btn btn-sm btn-success" href="#"> &lt; </a>
+			<%} %>
+			
+			<% for(int i=startPage; i<=endPage;i++){ %>
+				<%if(i==currentPage){%>
+					<a class="btn btn-sm btn-success"><%=i%></a>
+				<%}else{%>
+					<a class="btn btn-sm" href="#"><%=i%></a>				
+				<%}%>
+			<% } %>
+			
+			<%if(currentPage!=maxPage){ %>
+				<a class="btn btn-sm btn-success" href="#"> &gt; </a>
+			<%} %>
         </div>
     </div>
 
