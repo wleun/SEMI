@@ -206,7 +206,8 @@
                                     <div class="reportAction">조치내용</div>
                                 </div>
                             
-                                <div class="reportManageColumn">
+                                	<div class="reportManageColumn">
+
                                     <div class="reportNo">1</div>
                                     <div class="reportMember">신고자1</div>
                                     <div class="reportPrj">신고 프로젝트11</div>
@@ -216,7 +217,7 @@
                                     <div class="reportAction"></div>
                                     
                                 </div>
-                                <div class="reportManageColumn">
+                                <div class="reportManageColumn" >
                                     <div class="reportNo">2</div>
                                     <div class="reportMember">신고자2</div>
                                     <div class="reportPrj">신고 프로젝트22</div>
@@ -250,6 +251,9 @@
       </div>
 
 	</content>
+
+    
+
 
 </body>
 </html>
