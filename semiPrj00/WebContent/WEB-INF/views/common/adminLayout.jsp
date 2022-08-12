@@ -6,6 +6,9 @@
 
     String errorMsg = (String)session.getAttribute("errorMsg");
     session.removeAttribute("errorMsg");
+
+    String alertMsg = (String)session.getAttribute("alertMsg");
+    session.removeAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html>
