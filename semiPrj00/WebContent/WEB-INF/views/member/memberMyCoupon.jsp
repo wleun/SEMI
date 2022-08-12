@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <style>
-  
+<style>
+
         #wrapper{
             padding-top: 150px;
             padding-bottom: 150px;
@@ -38,18 +38,6 @@
             color: #48CA7D;
         }
 
-        section{
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            padding-top: 100px;
-        }
-
-        hr{
-            border: 1px black;
-            width: 600px;
-        }
-
         button {
             color: white;
             margin-top: 10px;
@@ -58,9 +46,73 @@
             border: 0px
         }
 
-         /* ------------------content-1---------------------------- */
+        section{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            padding-top: 100px;
+        }
 
-        .member-info{
+        section button {
+            color: white;
+            border-radius: 100px;
+            background-color: #48CA7D;
+            border: 0px
+        }
+
+        
+        /*----------------coupon-------------*/
+        #content-wrap{
+            display: inline-flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 930px;
+            height: auto;
+            max-height: auto;
+        }
+        .coupon-wrap{
+            width: 370px;
+            height: 130px;
+            background-color: white;
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            margin: 30px;
+        }
+        .coupon-name{
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            font-weight: 600;
+        }
+        .coupon-name :first-child{
+            font-size: 1.3rem;
+            margin: 35px;
+            text-align: center;
+            font-weight: 900;
+        }
+        .coupon-name :last-child{
+            font-size: 0.4rem;
+        }
+        .sale{
+            width: 50%;
+            font-size: 2.2rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .line{
+            border-right: 1px solid darkgray;
+            height: 80%;
+            align-self: center;
+        }
+
+       /* ------------------content-1---------------------------- */
+
+       .member-info{
             padding-left: 300px;
             padding-right: 100px;
         }
@@ -78,6 +130,14 @@
             width: 300px;
             height: 500px;
         }
+
+        #content-1 button{
+            width: 100px;
+            height: 30px;
+            font-size: large;
+            text-align: right;
+        }
+
         #follow{
             text-align: center;
         }
@@ -97,25 +157,26 @@
 </head>
 <body>
 
-        <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
-	
-    <div id="wrapper">
+    <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+
+   <div id="wrapper">
 
         <div id="header">
 
             <a href="/semiPrj00/member/mypage">정보수정</a>
             <a href="/semiPrj00/member/myprj">나의 프로젝트</a>
             <a href="/semiPrj00/member/mysponsor">나의 후원내역</a>
-            <a href="">팔로우</a>
-            <a href="">좋아요</a>
+            <a href="/semiPrj00/member/myfollow">팔로우</a>
+            <a href="/semiPrj00/member/mylike">좋아요</a>
             <a href="">관심카테고리</a>
-            <a href="">쿠폰내역</a>
+            <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>
             <a href="">문의&답변내역</a>
 
-        </div>
 
-        <section>
+        </div>
             
+        <section>
+
             <div class="member-info">
                 <div id="content-1">
 
@@ -131,7 +192,7 @@
                      <span>추천인 등록 수 200명</span>
                     </div>
                     <div>
-                     <img src="" alt="멤버십 이미지" id="membership-img">
+                     <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
                      <span>회원등급 GOLD</span>
                      <span>개인사업자 회원</span>
                     </div>
@@ -139,17 +200,76 @@
          
                 </div>
             </div>
-    
-            <div id="content-wrap">
-    
-                
-    
-            </div>
-        </section>
-        
 
+            <div id="content-wrap">
+
+                <div class="coupon-wrap">
+                    <div class="coupon-name">
+                        <span>생일 쿠폰</span>
+                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
+                    </div>
+                    <div class="line"></div>
+                    <div class="sale">
+                        <span>50%할인</span>
+                    </div>
+                </div>   
+
+                <div class="coupon-wrap">
+                    <div class="coupon-name">
+                        <span>생일 쿠폰</span>
+                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
+                    </div>
+                    <div class="line"></div>
+                    <div class="sale">
+                        <span>50%할인</span>
+                    </div>
+                </div>  
+
+                <div class="coupon-wrap">
+                    <div class="coupon-name">
+                        <span>생일 쿠폰</span>
+                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
+                    </div>
+                    <div class="line"></div>
+                    <div class="sale">
+                        <span>50%할인</span>
+                    </div>
+                </div>  
+
+                <div class="coupon-wrap">
+                    <div class="coupon-name">
+                        <span>생일 쿠폰</span>
+                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
+                    </div>
+                    <div class="line"></div>
+                    <div class="sale">
+                        <span>50%할인</span>
+                    </div>
+                </div>  
+
+                <div class="coupon-wrap">
+                    <div class="coupon-name">
+                        <span>생일 쿠폰</span>
+                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
+                    </div>
+                    <div class="line"></div>
+                    <div class="sale">
+                        <span>50%할인</span>
+                    </div>
+                </div>  
+
+                
+                
+                
+
+            </div>
+
+            
+
+
+        </section>
+           
     </div>
 
 </body>
-
 </html>
