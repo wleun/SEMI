@@ -53,9 +53,10 @@
             text-align: center;
             border-radius: 16px;
         }
+        
 
         #boardDiv1_search select {
-            width: 100px;
+            width: 80px;
         }
 
         #boardDiv2 {
@@ -196,6 +197,7 @@
                                     <option value="doing">진행중</option>
                                     <option value="done">종료된</option>
                                     <option value="success">성공한</option>
+                                    <option value="deleted">삭제된</option>
                                 </select>
     
                                 <select name="what" id="searchWhat">

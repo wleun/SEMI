@@ -31,17 +31,17 @@
         }
 
         #memberManageDiv1_not_used {
-            width: 80%;
+            width: 50%;
             height: 100%;
         }
 
 
         #memberManageDiv1_search {
-            width: 20%;
+            width: 50%;
             height: 100%;
             display: flex;
             flex-direction: row;
-            justify-content: space-evenly;
+            justify-content:flex-end;
         }
 
         #memberManageDiv1_search * {
@@ -52,6 +52,11 @@
             align-self: center;
             text-align: center;
             border-radius: 16px;
+        }
+
+        
+        #memberManageDiv1_search select {
+            width: 80px;
         }
 
         #memberManageDiv2 {
@@ -115,19 +120,20 @@
         }
 
         .memberPhone {
-            width : 11%;
+            width : 10%;
+        }
+
+        
+        .memberStatus {
+            width : 7%;
+        }
+        
+        .memberSuspendedDate {
+            width: 7%;
         }
 
         .memberEnrollDate {
             width: 8%;
-        }
-        
-        .memberSuspendYN {
-        	width : 7%;
-        }
-
-        .memberQuitYN {
-            width: 7%;
         }
 
         .memberQuitDate {
@@ -144,12 +150,12 @@
 
 
         #memberManageDiv3_not_used {
-            width: 20%;
+            width: 15%;
             height: 100%;
         }
 
         #memberManageDiv3_paging {
-            width: 60%;
+            width: 70%;
             height: 100%;
             display: flex;
             text-align: center;
@@ -162,7 +168,7 @@
         }
 
         #memberManageDiv3_edit {
-            width: 20%;
+            width: 15%;
             height: 100%;
             display : flex;
             text-align: center;
@@ -193,7 +199,12 @@
                  <div id="memberManageDiv1_not_used"></div>
                      <div id="memberManageDiv1_search">
                          <form action="">
-    
+                            
+                            <select name="status" id="searchWhat">
+                                <option value="normal">활동</option>
+                                <option value="suspend">정지</option>
+                                <option value="quit">탈퇴</option>
+                             </select>
                            <select name="what" id="searchWhat">
                               <option value="normal">일반회원</option>
                               <option value="business">사업자회원</option>
@@ -215,9 +226,9 @@
                                     <div class="memberName">이름</div>
                                     <div class="memberEmail">이메일</div>
                                     <div class="memberPhone">전화번호</div>
-                                    <div class="memberSuspendYN">정지여부</div>
-                                    <div class="memberQuitYN">탈퇴여부</div>
+                                    <div class="memberStatus">상태</div>
                                     <div class="memberEnrollDate">가입일</div>
+                                    <div class="memberSuspendedDate">정지일</div>
                                     <div class="memberQuitDate">탈퇴일</div>
                                 </div>
                             
@@ -229,10 +240,10 @@
                                     <div class="memberName">와디즈</div>
                                     <div class="memberEmail">Wadiz@wadiz.com</div>
                                     <div class="memberPhone">010-000-0000</div>
-                                    <div class="memberSuspendYN">N</div>
-                                    <div class="memberQuitYN">N</div>
+                                    <div class="memberStatus">탈퇴</div>
                                     <div class="memberEnrollDate">2022-08-01</div>
-                                    <div class="memberQuitDate">X</div>
+                                    <div class="memberSuspendedDate">2022-08-05</div>
+                                    <div class="memberQuitDate">2022-08-13</div>
                                     
                                 </div>
                                 <div class="memberManageColumn">
@@ -243,9 +254,9 @@
                                     <div class="memberName">와디즈</div>
                                     <div class="memberEmail">Wadiz@wadiz.com</div>
                                     <div class="memberPhone">010-000-0000</div>
-                                    <div class="memberSuspendYN">N</div>
-                                    <div class="memberQuitYN">N</div>
+                                    <div class="memberStatus">정지</div>
                                     <div class="memberEnrollDate">2022-08-01</div>
+                                    <div class="memberSuspendedDate">2022-08-10</div>
                                     <div class="memberQuitDate">X</div>
                                     
                                 </div>
@@ -267,7 +278,6 @@
                             <div id="memberManageDiv3_edit">
                             	<div><input type="button" value="회원정지"></div>
                             	<div><input type="button" value="정지해제"></div>
-                                <div><input type="button" value="회원탈퇴"></div>
                </div>
     
             </div>

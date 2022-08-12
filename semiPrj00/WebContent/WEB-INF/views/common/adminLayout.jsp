@@ -80,6 +80,8 @@
         #headerFirst {
             width: 81.7%;
             align-self: center;
+            font-weight:700;
+            font-size: 33px;
             padding: 50px;
         }
 
@@ -189,9 +191,9 @@
 
         content {
             position: absolute;
-            width: 1632px;
-            height: 973px;
-            left: 294px;
+            width: 1630px;
+            height: 965px;
+            left: 288px;
             top: 108px;
             border-right: 1px solid black;
             border-bottom: 1px solid black;
@@ -208,7 +210,7 @@
             <div id="headerUsed">
 
                 <div id="headerFirst">
-                    <h1><%=functionName %></h1>
+                	<%=functionName %>
                 </div>
                 <div id="headerSecond">
                     <a href=""><img width="40px" height="40px" src="<%=contextPath %>/resources/img/search_icon_pse.png" alt="검색 아이콘"></a>

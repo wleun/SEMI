@@ -94,20 +94,16 @@
             text-align: center;
         }
 
-        .check {
-            width: 9%;
-        }
-
         .proposalNo {
-            width: 9%;
+            width: 10%;
         }
 
         .proposalMember {
-            width: 13%;
+            width: 15%;
         }
 
         .proposalPrjCategory {
-            width: 12%;
+            width: 15%;
         }
 
         .proposalPrjName {
@@ -115,11 +111,11 @@
         }
 
         .proposalDate {
-            width: 12%;
+            width: 15%;
         }
         
         .proposalStatus {
-        	width : 9%;
+        	width : 10%;
         }
 
 
@@ -186,9 +182,8 @@
                            <select name="what" id="searchWhat">
                               <option value="receipt">접수</option>
                               <option value="processing">처리중</option>
-                              <option value="completion">반려</option>
-                              <option value="">승인</option>
-                              <option value="deleted">삭제</option>
+                              <option value="return">반려</option>
+                              <option value="approve">승인</option>
                            </select>
     
                                 <input type="search" name="search">
@@ -199,7 +194,7 @@
                         <div id="proposalManageDiv2">
                             <div class="proposalManageWrap">
                                 <div id="proposalManageFirstColumn" class="proposalManageColumn">
-                                    <div class="check">선택</div>
+                                    
                                     <div class="proposalNo">제안서번호</div>
                                     <div class="proposalMember">제안 회원</div>
                                     <div class="proposalPrjCategory">프로젝트 카테고리</div>
@@ -209,7 +204,6 @@
                                 </div>
 
                                 <div class="proposalManageColumn">
-                                    <div class="check"><input type="checkbox"></div>
                                     <div class="proposalNo">1</div>
                                     <div class="proposalMember">텀블벅</div>
                                     <div class="proposalPrjCategory">IT테크</div>
@@ -219,7 +213,6 @@
                                 </div>
 
                                 <div class="proposalManageColumn">
-                                    <div class="check"><input type="checkbox"></div>
                                     <div class="proposalNo">2</div>
                                     <div class="proposalMember">와디즈</div>
                                     <div class="proposalPrjCategory">웰빙</div>

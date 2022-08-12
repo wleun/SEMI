@@ -42,7 +42,7 @@
             height: 100%;
             display: flex;
             flex-direction: row;
-            justify-content: space-evenly;
+            justify-content: flex-end;
         }
 
         #noticeDiv1_search * {
@@ -54,6 +54,11 @@
             text-align: center;
             border-radius: 16px;
         }
+
+        #noticeDiv1_search select {
+            width: 80px;
+        }
+
 
         #noticeDiv2 {
             width: 100%;
@@ -125,12 +130,12 @@
 
 
         #noticeDiv3_not_used {
-            width: 20%;
+            width: 15%;
             height: 100%;
         }
 
         #noticeDiv3_paging {
-            width: 60%;
+            width: 70%;
             height: 100%;
             display: flex;
             text-align: center;
@@ -143,7 +148,7 @@
         }
 
         #noticeDiv3_edit {
-            width: 20%;
+            width: 15%;
             height: 100%;
             display : flex;
             text-align: center;
@@ -176,7 +181,11 @@
                  <div id="noticeDiv1_not_used"></div>
                      <div id="noticeDiv1_search">
                          <form action="">
-    
+                             
+                            <select name="deleteYN" id="searchWhat">
+                              <option value="N">일반</option>
+                              <option value="Y">삭제된</option>
+                              </select>
                            <select name="what" id="searchWhat">
                               <option value="title">제목</option>
                               <option value="content">내용</option>
@@ -234,7 +243,6 @@
                             </div>
                             <div id="noticeDiv3_edit">
                             	<div><input type="button" value="작성하기"></div>
-                            	<div><input type="button" value="수정하기"></div>
                                 <div><input type="button" value="삭제하기"></div>
                </div>
     
