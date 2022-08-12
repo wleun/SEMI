@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>200% 후원하기</title>
 <style>
     #header-div{
         width: 1920px;
@@ -88,6 +88,9 @@
         padding: 20px;
         font-size: 18px;
         font-weight: 900;
+    }
+    #addr-2nd-td{
+        width: 470px;
     }
     #addr{
         width: 600px;
@@ -214,14 +217,14 @@
                     <table>
                         <tr>
                             <td id="name">김과일</td>
-                            <td><div id="default" class="btn btn-sm btn-danger disabled">기본</div></td>
-                            <td rowspan="3" class="btn-td"><button class="btn btn-success">변경</button></td>
+                            <td id="addr-2nd-td"><div id="addr-default" class="btn btn-sm btn-danger disabled opacity-0">기본</div></td>
+                            <td rowspan="3" class="btn-td"><button id="change-addr" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addr-select">변경</button></td>
                         </tr>
                         <tr>
-                            <td colspan="2" id="addr">주소1+주소2</td>
+                            <td colspan="3" id="addr">주소1+주소2</td>
                         </tr>
                         <tr>
-                            <td colspan="2" class="content">전화번호</td>
+                            <td colspan="3" class="content">전화번호</td>
                         </tr>
                     </table>
                 </div>
@@ -247,11 +250,11 @@
                                 <input type="radio" id="radio-btn" class="form-check-input" checked>
                                 <label for="radio-btn">카드</label>
                             </td>
-                            <td rowspan="2" class="btn-td"><button class="btn btn-success" id="change-reward" data-bs-toggle="modal" data-bs-target="#payment-register">변경</button></td>
+                            <td rowspan="2" class="btn-td"><button class="btn btn-success" id="change-card" data-bs-toggle="modal" data-bs-target="#payment-select">변경</button></td>
                         </tr>
                         <tr>
                             <td id="card-name"></td>
-                            <td><div class="btn btn-sm btn-danger disabled">기본</div></td>
+                            <td><div id="card-default" class="btn btn-sm btn-danger disabled opacity-0">기본</div></td>
                             <td id="card-num">************1234</td>
                         </tr>
                     </table>
@@ -317,12 +320,42 @@
             </div>
        </div>
        <%@ include file="/WEB-INF/views/project/paymentSelectForm.jsp" %>
+       <%@ include file="/WEB-INF/views/project/deliveryAddrSelectForm.jsp" %>
     </div>
 
     <script>
-        $("#modal-submit-btn").click(function(){
-            $("#card-num").text($(".modal-radio:checked").val());	
-		});
+        $(function(){
+            $("#card-modal-submit-btn").click(function(){
+                $("#card-num").text($(".card-modal-radio:checked").val());	
+            });
+            if($(".card-modal-radio:checked").parent().parent().children().eq(1).children().first().hasClass("opacity-0") === false){
+                $("#card-default").removeClass("opacity-0");
+            }
+
+            $("#addr-modal-submit-btn").click(function(){
+                $("#addr").text($(".addr-modal-radio:checked").val());	
+            });
+            if($(".addr-modal-radio:checked").parent().parent().children().eq(1).children().first().hasClass("opacity-0") === false){
+                $("#addr-default").removeClass("opacity-0");
+            }
+        });
+
+        $("#card-modal-submit-btn").click(function(){
+            if($(".card-modal-radio:checked").parent().parent().children().eq(1).children().first().hasClass("opacity-0")){
+                $("#card-default").addClass("opacity-0");
+            }else{
+                $("#card-default").removeClass("opacity-0");
+            }
+        });
+
+        $("#addr-modal-submit-btn").click(function(){
+            if($(".addr-modal-radio:checked").parent().parent().children().eq(1).children().first().hasClass("opacity-0")){
+                $("#addr-default").addClass("opacity-0");
+            }else{
+                $("#addr-default").removeClass("opacity-0");
+            }
+        });
+        
     </script>
 </body>
 
