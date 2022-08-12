@@ -43,7 +43,7 @@
     border-radius: 10px;
     margin: 10px;
     }
-    #btn-div1>button{
+    #btn-div1>a:first-child{
         width: 50px;
     }
     #btn-div2>button{
@@ -51,15 +51,21 @@
         height: 30px;
         border-radius: 10px;
     }
-    #btn-div1>input, #btn-div2>button:nth-child(2){
+    #btn-div1>a:last-child{
+        text-align: center;
+    }
+    #btn-div1>a:last-child, #btn-div2>button:nth-child(2){
         background-color: #48CA7D;
         color: white;
     }
     
     #reward-btn{
+        height: 700px;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        overflow: scroll;
+        overflow-x: auto;
     }
     #reward-btn>button{
         width: 100%;
@@ -74,7 +80,7 @@
         margin: 10px;
     }
     /* 버튼효과 */
-    #btn-div1>button,#btn-div1>input, #btn-div2>button,#reward-btn>button:hover{
+    #btn-div1>a, #btn-div2>button,#reward-btn>button:hover{
         cursor: pointer;
     }
     
@@ -484,10 +490,10 @@
                     </table>
                 </div>
                 <div class="btns" id="btn-div1">
-                    <button>
+                    <a>
                         <img id="heart-btn" width="20px" src="<%=contextPath%>/resources/img/project_like.png" alt="??">
-                    </button>
-                    <input type="submit" value="이 프로젝트 후원하기">
+                    </a>
+                    <a href="#reward-option">이 프로젝트 후원하기</a>
                 </div>
             </div>
         </div>
@@ -511,8 +517,7 @@
                         <img style="width:100%; height:auto" src="<%=contextPath%>/resources/img/desc3.JPG" alt="???">
                     </div>
                 </div>
-                <div id="notice">1</div>
-                <div class="main-title">
+                <div class="main-title" id="notice">
                     <div><span>공지사항</span></div>
                     <div>
                         <form action="">
@@ -692,9 +697,9 @@
 
     <script>
     $("#file").on('change',function(){
-        var fileName = $("#file").val();
-        $(".upload-name").val(fileName);
-      });
+    	var fileName = $("#file").val();
+   		$(".upload-name").val(fileName);
+   	});
     </script>
 
 </body>
