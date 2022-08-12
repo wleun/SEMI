@@ -57,12 +57,56 @@
             width: 600px;
         }
 
-        button {
+        #content-2 button {
+            width: 100px;
+            height: 40px;
             color: white;
             margin-top: 10px;
             border-radius: 100px;
             background-color: #48CA7D;
             border: 0px
+        }
+
+        #content-3 table{
+            width: 90%;
+            height: 90%;
+        }
+
+        #content-3{
+            width: 800px;
+            height: 150px;
+            margin-top: 30px;
+            border: 5px solid #48CA7D;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        #content-4 table{
+            width: 90%;
+            height: 90%;
+        }
+
+        #content-4{
+            width: 800px;
+            height: 150px;
+            margin-top: 30px;
+            border: 5px solid #48CA7D;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        #content-5 table{
+            width: 90%;
+            height: 90%;
+        }
+
+        #content-5{
+            width: 800px;
+            height: 150px;
+            margin-top: 30px;
+            border: 5px solid #48CA7D;
+            border-radius: 16px;
+            text-align: center;
         }
 
          /* ------------------content-1---------------------------- */
@@ -85,6 +129,14 @@
             width: 300px;
             height: 500px;
         }
+
+        #content-1 button{
+            width: 100px;
+            height: 30px;
+            font-size: large;
+            text-align: right;
+        }
+
         #follow{
             text-align: center;
         }
@@ -113,10 +165,10 @@
             <a href="/semiPrj00/member/mypage">정보수정</a>
             <a href="/semiPrj00/member/myprj">나의 프로젝트</a>
             <a href="/semiPrj00/member/mysponsor">나의 후원내역</a>
-            <a href="">팔로우</a>
-            <a href="">좋아요</a>
+            <a href="/semiPrj00/member/myfollow">팔로우</a>
+            <a href="/semiPrj00/member/mylike">좋아요</a>
             <a href="">관심카테고리</a>
-            <a href="">쿠폰내역</a>
+            <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>
             <a href="">문의&답변내역</a>
 
         </div>
@@ -138,7 +190,7 @@
                      <span>추천인 등록 수 200명</span>
                     </div>
                     <div>
-                     <img src="" alt="멤버십 이미지" id="membership-img">
+                     <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
                      <span>회원등급 GOLD</span>
                      <span>개인사업자 회원</span>
                     </div>
@@ -151,16 +203,10 @@
     
                 <div id="content-2">
     
-                    <table>
-         
-                        <tr>
-                            <td><button>전체</button></td>
-                            <td><button>심사중</button></td>
-                            <td><button>진행중</button></td>
-                            <td><button>종료</button></td>
-                        </tr>
-         
-                    </table>
+                   <button>전체</button>
+                   <button>심사중</button>
+                   <button>진행중</button>
+                   <button>종료</button>
          
                 </div>
 
@@ -169,29 +215,68 @@
                     <table>
 
                         <tr>
-                            <th>프로젝트</th>
-                            <th>등록일자</th>
-                            <th>상태</th>
+                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
+                            <td>이런이런프로젝트</td>
                         </tr>
                         <tr>
-                            <td>프로젝트111</td>
-                            <td>2022-08-08</td>
-                            <td>심사중</td>
+                            <td>목표펀딩 : 50000원</td>
                         </tr>
                         <tr>
-                            <td>프로젝트222</td>
-                            <td>2022-08-05</td>
-                            <td>진행중</td>
+                            <td>등록일자 : 2022-08-05</td>
                         </tr>
                         <tr>
-                            <td>프로젝트333</td>
-                            <td>2022-08-01</td>
-                            <td>종료</td>
+                            <td>상태 : 심사중</td>
                         </tr>
 
                     </table>
 
                 </div>
+
+                <div id="content-4">
+
+                    <table>
+
+                        <tr>
+                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
+                            <td>이런이런프로젝트</td>
+                        </tr>
+                        <tr>
+                            <td>목표펀딩 : 50000원</td>
+                        </tr>
+                        <tr>
+                            <td>등록일자 : 2022-08-05</td>
+                        </tr>
+                        <tr>
+                            <td>상태 : 진행중</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+
+                <div id="content-5">
+
+                    <table>
+
+                        <tr>
+                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
+                            <td>이런이런프로젝트</td>
+                        </tr>
+                        <tr>
+                            <td>목표펀딩 : 50000원</td>
+                        </tr>
+                        <tr>
+                            <td>등록일자 : 2022-08-05</td>
+                        </tr>
+                        <tr>
+                            <td>상태 : 종료</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
 
             </div>
 

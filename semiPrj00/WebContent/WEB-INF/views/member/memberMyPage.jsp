@@ -77,6 +77,14 @@
             width: 300px;
             height: 500px;
         }
+
+        #content-1 button{
+            width: 100px;
+            height: 30px;
+            font-size: large;
+            text-align: right;
+        }
+
         #follow{
             text-align: center;
         }
@@ -105,10 +113,10 @@
             <a href="/semiPrj00/member/mypage">정보수정</a>
             <a href="/semiPrj00/member/myprj">나의 프로젝트</a>
             <a href="/semiPrj00/member/mysponsor">나의 후원내역</a>
-            <a href="">팔로우</a>
-            <a href="">좋아요</a>
+            <a href="/semiPrj00/member/myfollow">팔로우</a>
+            <a href="/semiPrj00/member/mylike">좋아요</a>
             <a href="">관심카테고리</a>
-            <a href="">쿠폰내역</a>
+            <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>
             <a href="">문의&답변내역</a>
 
         </div>
@@ -130,7 +138,7 @@
                      <span>추천인 등록 수 200명</span>
                     </div>
                     <div>
-                     <img src="" alt="멤버십 이미지" id="membership-img">
+                     <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
                      <span>회원등급 GOLD</span>
                      <span>개인사업자 회원</span>
                     </div>

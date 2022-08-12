@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <style>
-  
+<style>
+
         #wrapper{
             padding-top: 150px;
             padding-bottom: 150px;
@@ -52,21 +52,16 @@
             border: 0px
         }
 
-        button {
-            color: white;
-            margin-top: 10px;
-            border-radius: 100px;
-            background-color: #48CA7D;
-            border: 0px
+        #prj-info{
+            display: flex;
         }
-        #content-2 button {
-            width: 100px;
-            height: 40px;
-            color: white;
-            margin-top: 10px;
-            border-radius: 100px;
-            background-color: #48CA7D;
-            border: 0px
+
+        #prj-img{
+            width: 200px;
+        }
+
+        .area{
+            margin-top: 50px;
         }
 
         #content-3 table{
@@ -76,8 +71,7 @@
 
         #content-3{
             width: 800px;
-            height: 150px;
-            margin-top: 30px;
+            height: 250px;
             border: 5px solid #48CA7D;
             border-radius: 16px;
             text-align: center;
@@ -90,8 +84,7 @@
 
         #content-4{
             width: 800px;
-            height: 150px;
-            margin-top: 30px;
+            height: 200px;
             border: 5px solid #48CA7D;
             border-radius: 16px;
             text-align: center;
@@ -104,16 +97,28 @@
 
         #content-5{
             width: 800px;
-            height: 150px;
-            margin-top: 30px;
+            height: 300px;
             border: 5px solid #48CA7D;
             border-radius: 16px;
             text-align: center;
         }
 
-         /* ------------------content-1---------------------------- */
+        #content-6 table{
+            width: 90%;
+            height: 90%;
+        }
 
-        .member-info{
+        #content-6{
+            width: 800px;
+            height: 250px;
+            border: 5px solid #48CA7D;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+       /* ------------------content-1---------------------------- */
+
+       .member-info{
             padding-left: 300px;
             padding-right: 100px;
         }
@@ -158,25 +163,25 @@
 </head>
 <body>
 
-        <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
-	
-    <div id="wrapper">
+    <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+
+   <div id="wrapper">
 
         <div id="header">
 
             <a href="/semiPrj00/member/mypage">정보수정</a>
             <a href="/semiPrj00/member/myprj">나의 프로젝트</a>
             <a href="/semiPrj00/member/mysponsor">나의 후원내역</a>
-            <a href="/semiPrj00/member/myfollow">팔로우</a>
-            <a href="/semiPrj00/member/mylike">좋아요</a>
+            <a href="">팔로우</a>
+            <a href="">좋아요</a>
             <a href="">관심카테고리</a>
-            <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>
+            <a href="">쿠폰내역</a>
             <a href="">문의&답변내역</a>
 
         </div>
-
-        <section>
             
+        <section>
+
             <div class="member-info">
                 <div id="content-1">
 
@@ -200,87 +205,106 @@
          
                 </div>
             </div>
-    
+
             <div id="content-wrap">
-    
-                <div id="content-2">
-    
-                   <button>전체</button>
-                   <button>팔로잉</button>
-                   <button>팔로우</button>
-         
-                </div>
 
+                <div id="prj-info">
+                    <img id="prj-img" src="" alt="프로젝트 이미지">
+                    
+                    <div id="content-2">
+                        <table>
+                            <tr>
+                                <td>카테고리</td>
+                            </tr>
+                            <tr>
+                                <td>프로젝트 명</td>
+                            </tr>
+                            <tr>
+                                <td>달성 | 모인금액 | 남은날짜</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                
+                <div class="area">후원 정보</div>
                 <div id="content-3">
-
                     <table>
-
                         <tr>
-                            <td rowspan="2"><img src="" alt="프로젝트사진"></td>
-                            <td>여긴이름</td>
+                            <td>펀딩상태</td>
+                            <td>진행중</td>
                         </tr>
                         <tr>
-                            <td>올린 프로젝트 1개</td>
-                            <td rowspan="2"><button>팔로잉</button></td>
+                            <td>후원날짜</td>
+                            <td>2022-08-05</td>
                         </tr>
-
+                        <tr>
+                            <td>펀딩마감일</td>
+                            <td>2022-12-25</td>
+                        </tr>
                     </table>
-
                 </div>
 
+                <div class="area">선물 정보</div>
                 <div id="content-4">
-
                     <table>
-
                         <tr>
-                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
+                            <td>선물 구성</td>
+                            <td>선물선물</td>
                         </tr>
                         <tr>
-                            <td>후원금액 : 50000원</td>
+                            <td>후원 금액</td>
+                            <td>50000원</td>
                         </tr>
-                        <tr>
-                            <td>후원일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 진행중</td>
-                        </tr>
-
                     </table>
-
                 </div>
 
-
+                <div class="area">배송지</div>
                 <div id="content-5">
-
                     <table>
-
                         <tr>
-                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
+                            <td>이름</td>
+                            <td>김누구</td>
                         </tr>
                         <tr>
-                            <td>후원금액 : 50000원</td>
+                            <td>주소</td>
+                            <td>방구참아왕국</td>
                         </tr>
                         <tr>
-                            <td>후원일자 : 2022-08-05</td>
+                            <td>전화번호</td>
+                            <td>010-1234-1234</td>
                         </tr>
                         <tr>
-                            <td>상태 : 종료</td>
+                            <td>배송상태</td>
+                            <td>배송 준비중</td>
                         </tr>
-
                     </table>
-
                 </div>
 
+                <div class="area">결제 정보</div>
+                <div id="content-6">
+                    <table>
+                        <tr>
+                            <td>결제수단</td>
+                            <td>카드</td>
+                        </tr>
+                        <tr>
+                            <td>결제금액</td>
+                            <td>50000원</td>
+                        </tr>
+                        <tr>
+                            <td>결제상태</td>
+                            <td>결제완료</td>
+                        </tr>
+                    </table>
+                </div>
 
             </div>
 
-        </section>
-        
 
+        </section>
+           
     </div>
 
 </body>
-
 </html>
