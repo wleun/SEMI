@@ -41,9 +41,28 @@
             text-decoration: none;
             color : inherit;
         }
+
+        a:hover {
+            color : #48CA7D;
+
+        }
         
         h1 {
         	font-family: 'twayair';
+        }
+
+        button {
+            background-color: #48CA7D;
+            border: 1px solid #C3B091;
+            border-radius: 16px;
+            color: white;
+        }
+
+        .button {
+            background-color: #48CA7D;
+            border: 1px solid #C3B091;
+            border-radius: 16px;
+            color: white;
         }
 
         #pageWrap {
@@ -195,11 +214,9 @@
         content {
             position: absolute;
             width: 1630px;
-            height: 965px;
             left: 288px;
             top: 108px;
             border-right: 1px solid black;
-            border-bottom: 1px solid black;
 
         }
 </style>

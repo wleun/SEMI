@@ -74,15 +74,22 @@
             border-radius: 16px;
         }
 
+        .reportManageWrap>a {
+            width: 100%;
+            height: 9%;
+        }
+
         #reportManageFirstColumn {
             background-color: #F9F5EA;
             border-radius: 16px 16px 0px 0px;
             border-bottom: 1px solid #C3B091;
+            width: 100%;
+            height: 9%;
         }
 
         .reportManageColumn {
             width: 100%;
-            height: 9%;
+            height: 100%;
             font-size: 18px;
             display: flex;
             flex-direction: row;   
@@ -206,28 +213,31 @@
                                     <div class="reportAction">조치내용</div>
                                 </div>
                             
-                                	<div class="reportManageColumn">
+                                <a href="">
+                                    <div class="reportManageColumn">
 
-                                    <div class="reportNo">1</div>
-                                    <div class="reportMember">신고자1</div>
-                                    <div class="reportPrj">신고 프로젝트11</div>
-                                    <div class="reportContent">신고내용1111111</div>
-                                    <div class="reportDate">2022-08-09</div>
-                                    <div class="reportStatus">접수</div>
-                                    <div class="reportAction"></div>
-                                    
-                                </div>
-                                <div class="reportManageColumn" >
-                                    <div class="reportNo">2</div>
-                                    <div class="reportMember">신고자2</div>
-                                    <div class="reportPrj">신고 프로젝트22</div>
-                                    <div class="reportContent">신고내용2222222</div>
-                                    <div class="reportDate">2022-08-09</div>
-                                    <div class="reportStatus">조치완료</div>
-                                    <div class="reportAction">신고 프로젝트 삭제</div>
-                                    
-                                    
-                                </div>
+                                        <div class="reportNo">1</div>
+                                        <div class="reportMember">신고자1</div>
+                                        <div class="reportPrj">신고 프로젝트11</div>
+                                        <div class="reportContent">신고내용1111111</div>
+                                        <div class="reportDate">2022-08-09</div>
+                                        <div class="reportStatus">접수</div>
+                                        <div class="reportAction"></div>
+                                        
+                                    </div>
+                                </a>
+                                
+                                <a href="">
+                                    <div class="reportManageColumn" >
+                                        <div class="reportNo">2</div>
+                                        <div class="reportMember">신고자2</div>
+                                        <div class="reportPrj">신고 프로젝트22</div>
+                                        <div class="reportContent">신고내용2222222</div>
+                                        <div class="reportDate">2022-08-09</div>
+                                        <div class="reportStatus">조치완료</div>
+                                        <div class="reportAction">신고 프로젝트 삭제</div>
+                                    </div>
+                                </a>
                                
                             </div>
                         </div>

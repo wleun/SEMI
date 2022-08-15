@@ -75,15 +75,24 @@
             border-radius: 16px;
         }
 
+        .boardWrap>a {
+            width: 100%;
+            height: 9%;
+            display: flex;
+            flex-direction: row;   
+        }
+
         #boardFirstColumn {
             background-color: #F9F5EA;
             border-radius: 16px 16px 0px 0px;
             border-bottom: 1px solid #C3B091;
+            width: 100%;
+            height: 9%;
         }
 
         .boardColumn {
             width: 100%;
-            height: 9%;
+            height: 100%;
             font-size: 18px;
             display: flex;
             flex-direction: row;   
@@ -228,128 +237,104 @@
                                     <div class="deleteYN">삭제여부</div>
                                 </div>
                             
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">진행중</div>
-                                    <div class="prjNo">1</div>
-                                    <div class="category">테크</div>
-                                    <div class="percent">67.7%</div>
-                                    <div class="prjName">우리의 삶을 바꿀 그 것!</div>
-                                    <div class="makerName">그냥 메이커</div>
-                                    <div class="period">2022.08.08~2022.08.09</div>
-                                    <div class="reportCnt">0</div>
-                                    <div class="deleteYN">N</div>
-                                </div>
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">성사됨</div>
-                                    <div class="prjNo">2</div>
-                                    <div class="category">레저/스포츠</div>
-                                    <div class="percent">655%</div>
-                                    <div class="prjName">이 텐트 보고가세용</div>
-                                    <div class="makerName">텐트 메이커</div>
-                                    <div class="period">2022.06.08~2022.07.15</div>
-                                    <div class="reportCnt">4</div>
-                                    <div class="deleteYN">N</div>
-                                </div>
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">펀딩예정</div>
-                                    <div class="prjNo">3</div>
-                                    <div class="category">뷰티</div>
-                                    <div class="percent">0.0%</div>
-                                    <div class="prjName">스네일 크림!</div>
-                                    <div class="makerName">비오는날엔 스네일</div>
-                                    <div class="period">2022.09.03~2022.09.22</div>
-                                    <div class="reportCnt">0</div>
-                                    <div class="deleteYN">Y</div>
-                                </div>
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">진행중</div>
-                                    <div class="prjNo">1</div>
-                                    <div class="category">테크</div>
-                                    <div class="percent">67.7%</div>
-                                    <div class="prjName">우리의 삶을 바꿀 그 것!</div>
-                                    <div class="makerName">그냥 메이커</div>
-                                    <div class="period">2022.08.08~2022.08.09</div>
-                                    <div class="reportCnt">0</div>
-                                    <div class="deleteYN">N</div>
-                                </div>
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">성사됨</div>
-                                    <div class="prjNo">2</div>
-                                    <div class="category">레저/스포츠</div>
-                                    <div class="percent">655%</div>
-                                    <div class="prjName">이 텐트 보고가세용</div>
-                                    <div class="makerName">텐트 메이커</div>
-                                    <div class="period">2022.06.08~2022.07.15</div>
-                                    <div class="reportCnt">4</div>
-                                    <div class="deleteYN">N</div>
-                                </div>
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">펀딩예정</div>
-                                    <div class="prjNo">3</div>
-                                    <div class="category">뷰티</div>
-                                    <div class="percent">0.0%</div>
-                                    <div class="prjName">스네일 크림!</div>
-                                    <div class="makerName">비오는날엔 스네일</div>
-                                    <div class="period">2022.09.03~2022.09.22</div>
-                                    <div class="reportCnt">0</div>
-                                    <div class="deleteYN">Y</div>
-                                </div>
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">진행중</div>
-                                    <div class="prjNo">1</div>
-                                    <div class="category">테크</div>
-                                    <div class="percent">67.7%</div>
-                                    <div class="prjName">우리의 삶을 바꿀 그 것!</div>
-                                    <div class="makerName">그냥 메이커</div>
-                                    <div class="period">2022.08.08~2022.08.09</div>
-                                    <div class="reportCnt">0</div>
-                                    <div class="deleteYN">N</div>
-                                </div>
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">성사됨</div>
-                                    <div class="prjNo">2</div>
-                                    <div class="category">레저/스포츠</div>
-                                    <div class="percent">655%</div>
-                                    <div class="prjName">이 텐트 보고가세용</div>
-                                    <div class="makerName">텐트 메이커</div>
-                                    <div class="period">2022.06.08~2022.07.15</div>
-                                    <div class="reportCnt">4</div>
-                                    <div class="deleteYN">N</div>
-                                </div>
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">펀딩예정</div>
-                                    <div class="prjNo">3</div>
-                                    <div class="category">뷰티</div>
-                                    <div class="percent">0.0%</div>
-                                    <div class="prjName">스네일 크림!</div>
-                                    <div class="makerName">비오는날엔 스네일</div>
-                                    <div class="period">2022.09.03~2022.09.22</div>
-                                    <div class="reportCnt">0</div>
-                                    <div class="deleteYN">Y</div>
-                                </div>
-                                <div class="boardColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="status">진행중</div>
-                                    <div class="prjNo">1</div>
-                                    <div class="category">테크</div>
-                                    <div class="percent">67.7%</div>
-                                    <div class="prjName">우리의 삶을 바꿀 그 것!</div>
-                                    <div class="makerName">그냥 메이커</div>
-                                    <div class="period">2022.08.08~2022.08.09</div>
-                                    <div class="reportCnt">0</div>
-                                    <div class="deleteYN">N</div>
-                                </div>
-                                
-                                
+                                <a href="">
+                                    <div class="boardColumn">
+                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="status">진행중</div>
+                                        <div class="prjNo">1</div>
+                                        <div class="category">테크</div>
+                                        <div class="percent">67.7%</div>
+                                        <div class="prjName">우리의 삶을 바꿀 그 것!</div>
+                                        <div class="makerName">그냥 메이커</div>
+                                        <div class="period">2022.08.08~2022.08.09</div>
+                                        <div class="reportCnt">0</div>
+                                        <div class="deleteYN">N</div>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="boardColumn">
+                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="status">성사됨</div>
+                                        <div class="prjNo">2</div>
+                                        <div class="category">레저/스포츠</div>
+                                        <div class="percent">655%</div>
+                                        <div class="prjName">이 텐트 보고가세용</div>
+                                        <div class="makerName">텐트 메이커</div>
+                                        <div class="period">2022.06.08~2022.07.15</div>
+                                        <div class="reportCnt">4</div>
+                                        <div class="deleteYN">N</div>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="boardColumn">
+                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="status">펀딩예정</div>
+                                        <div class="prjNo">3</div>
+                                        <div class="category">뷰티</div>
+                                        <div class="percent">0.0%</div>
+                                        <div class="prjName">스네일 크림!</div>
+                                        <div class="makerName">비오는날엔 스네일</div>
+                                        <div class="period">2022.09.03~2022.09.22</div>
+                                        <div class="reportCnt">0</div>
+                                        <div class="deleteYN">Y</div>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="boardColumn">
+                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="status">진행중</div>
+                                        <div class="prjNo">1</div>
+                                        <div class="category">테크</div>
+                                        <div class="percent">67.7%</div>
+                                        <div class="prjName">우리의 삶을 바꿀 그 것!</div>
+                                        <div class="makerName">그냥 메이커</div>
+                                        <div class="period">2022.08.08~2022.08.09</div>
+                                        <div class="reportCnt">0</div>
+                                        <div class="deleteYN">N</div>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="boardColumn">
+                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="status">성사됨</div>
+                                        <div class="prjNo">2</div>
+                                        <div class="category">레저/스포츠</div>
+                                        <div class="percent">655%</div>
+                                        <div class="prjName">이 텐트 보고가세용</div>
+                                        <div class="makerName">텐트 메이커</div>
+                                        <div class="period">2022.06.08~2022.07.15</div>
+                                        <div class="reportCnt">4</div>
+                                        <div class="deleteYN">N</div>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="boardColumn">
+                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="status">펀딩예정</div>
+                                        <div class="prjNo">3</div>
+                                        <div class="category">뷰티</div>
+                                        <div class="percent">0.0%</div>
+                                        <div class="prjName">스네일 크림!</div>
+                                        <div class="makerName">비오는날엔 스네일</div>
+                                        <div class="period">2022.09.03~2022.09.22</div>
+                                        <div class="reportCnt">0</div>
+                                        <div class="deleteYN">Y</div>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="boardColumn">
+                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="status">진행중</div>
+                                        <div class="prjNo">1</div>
+                                        <div class="category">테크</div>
+                                        <div class="percent">67.7%</div>
+                                        <div class="prjName">우리의 삶을 바꿀 그 것!</div>
+                                        <div class="makerName">그냥 메이커</div>
+                                        <div class="period">2022.08.08~2022.08.09</div>
+                                        <div class="reportCnt">0</div>
+                                        <div class="deleteYN">N</div>
+                                    </div>
+                                </a>
                                 
                                 
                             </div>
@@ -367,7 +352,7 @@
                                 <div>▶</div>
                             </div>
                             <div id="boardDiv3_delete">
-                                <div><input type="submit" value="삭제하기" style="width: 80px; height: 30px; border-radius: 16px; background-color: white;"></div>
+                                <div><input type="submit" value="삭제하기" class="button" style="width: 80px; height:30px;"></div>
                             </div>
     
                         </div>

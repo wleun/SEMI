@@ -74,15 +74,22 @@
             border-radius: 16px;
         }
 
+        .proposalManageWrap>a {
+            width: 100%;
+            height: 9%;
+        }
+
         #proposalManageFirstColumn {
             background-color: #F9F5EA;
             border-radius: 16px 16px 0px 0px;
             border-bottom: 1px solid #C3B091;
+            width: 100%;
+            height: 9%;
         }
 
         .proposalManageColumn {
             width: 100%;
-            height: 9%;
+            height: 100%;
             font-size: 18px;
             display: flex;
             flex-direction: row;   
@@ -160,8 +167,6 @@
         #proposalManageDiv3_delete>div>input {
         	width: 80px; 
         	height: 30px; 
-        	border-radius: 16px; 
-        	background-color: white
         }
 </style>
 </head>
@@ -203,23 +208,27 @@
                                     <div class="proposalStatus">처리상태</div>
                                 </div>
 
-                                <div class="proposalManageColumn">
-                                    <div class="proposalNo">1</div>
-                                    <div class="proposalMember">텀블벅</div>
-                                    <div class="proposalPrjCategory">IT테크</div>
-                                    <div class="proposalPrjName">프로젝트1111</div>
-                                    <div class="proposalDate">2022-08-10</div>
-                                    <div class="proposalStatus">처리중</div>
-                                </div>
+                                <a href="<%=contextPath%>/admin/proposalDetail">
+                                    <div class="proposalManageColumn">
+                                        <div class="proposalNo">1</div>
+                                        <div class="proposalMember">텀블벅</div>
+                                        <div class="proposalPrjCategory">IT테크</div>
+                                        <div class="proposalPrjName">프로젝트1111</div>
+                                        <div class="proposalDate">2022-08-10</div>
+                                        <div class="proposalStatus">처리중</div>
+                                    </div>
+                                </a>
 
-                                <div class="proposalManageColumn">
-                                    <div class="proposalNo">2</div>
-                                    <div class="proposalMember">와디즈</div>
-                                    <div class="proposalPrjCategory">웰빙</div>
-                                    <div class="proposalPrjName">프로젝트2222</div>
-                                    <div class="proposalDate">2022-08-11</div>
-                                    <div class="proposalStatus">반려</div>
-                                </div>
+                                <a href="<%=contextPath%>/admin/proposalDetail">
+                                    <div class="proposalManageColumn">
+                                        <div class="proposalNo">2</div>
+                                        <div class="proposalMember">와디즈</div>
+                                        <div class="proposalPrjCategory">웰빙</div>
+                                        <div class="proposalPrjName">프로젝트2222</div>
+                                        <div class="proposalDate">2022-08-11</div>
+                                        <div class="proposalStatus">반려</div>
+                                    </div>
+                                </a>
                             
                                 
                                
@@ -238,7 +247,7 @@
                                 <div>▶</div>
                             </div>
                             <div id="proposalManageDiv3_delete">
-                                <div><input type="button" value="삭제하기"></div>
+                                <div><input type="button" value="삭제하기" class="button"></div>
                </div>
     
             </div>

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 
 <style>
+    
 		#eventManage {
             display: flex;
             flex-direction: row;
@@ -81,7 +82,7 @@
             flex-direction: column;
         }
 
-        .eventBox {
+        .eventArea>a {
             width: 100%;
             height: 50%;
             display: flex;
@@ -89,10 +90,13 @@
             border-radius: 16px;
         }
 
-        #eventFirstColumn {
-            background-color: #F9F5EA;
-            border-radius: 16px 16px 0px 0px;
-            border-bottom: 1px solid #C3B091;
+
+        .eventBox {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            border-radius: 16px;
         }
 
         
@@ -138,8 +142,6 @@
         #eventDiv3_edit>div>input {
         	width: 80px; 
         	height: 30px; 
-        	border-radius: 16px; 
-        	background-color: white
         }
 
         .imgArea {
@@ -219,68 +221,79 @@
                             <div class="eventWrap">
 
                                 <div class="eventArea">
-                                    <div class="eventBox">
-                                        <div class="half">
-                                            <div class="eventTitle"><h2>이벤트6</h2></div>
-                                            <div class="eventPeriod">2022-10-11~2022-11-10</div>
-                                            <div class="eventStatus">진행예정</div>
+                                    <a href="<%=contextPath%>/admin/eventDetail">
+                                        <div class="eventBox">
+                                            <div class="half">
+                                                <div class="eventTitle"><h2>이벤트6</h2></div>
+                                                <div class="eventPeriod">2022-10-11~2022-11-10</div>
+                                                <div class="eventStatus">진행예정</div>
+                                            </div>
+                                            <div class="half">
+                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                            </div>
                                         </div>
-                                        <div class="half">
-                                            <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                    </a>
+                                    <a href="<%=contextPath%>/admin/eventDetail">
+                                        <div class="eventBox">
+                                            <div class="half">
+                                                <div class="eventTitle"><h2>이벤트5</h2></div>
+                                                <div class="eventPeriod">2022-08-11~2022-09-10</div>
+                                                <div class="eventStatus">진행중</div>
+                                            </div>
+                                            <div class="half">
+                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="eventBox">
-                                        <div class="half">
-                                            <div class="eventTitle"><h2>이벤트5</h2></div>
-                                            <div class="eventPeriod">2022-08-11~2022-09-10</div>
-                                            <div class="eventStatus">진행중</div>
+                                    </a>
+                                    <a href="<%=contextPath%>/admin/eventDetail">
+                                        <div class="eventBox">
+                                            <div class="half">
+                                                <div class="eventTitle"><h2>이벤트5</h2></div>
+                                                <div class="eventPeriod">2022-08-11~2022-09-10</div>
+                                                <div class="eventStatus">진행중</div>
+                                            </div>
+                                            <div class="half">
+                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                            </div>
                                         </div>
-                                        <div class="half">
-                                            <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                        </div>
-                                    </div>
-                                    <div class="eventBox">
-                                        <div class="half">
-                                            <div class="eventTitle"><h2>이벤트4</h2></div>
-                                            <div class="eventPeriod">2022-04-11~2022-05-10</div>
-                                            <div class="eventStatus">종료됨</div>
-                                        </div>
-                                        <div class="half">
-                                            <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <div class="eventArea">
-                                    <div class="eventBox">
-                                        <div class="half">
-                                            <div class="eventTitle"><h2>이벤트3</h2></div>
-                                            <div class="eventPeriod">2022-03-11~2022-04-10</div>
-                                            <div class="eventStatus">종료됨</div>
+                                    <a href="<%=contextPath%>/admin/eventDetail">
+                                        <div class="eventBox">
+                                            <div class="half">
+                                                <div class="eventTitle"><h2>이벤트3</h2></div>
+                                                <div class="eventPeriod">2022-03-11~2022-04-10</div>
+                                                <div class="eventStatus">종료됨</div>
+                                            </div>
+                                            <div class="half">
+                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                            </div>
                                         </div>
-                                        <div class="half">
-                                            <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                    </a>
+                                    <a href="<%=contextPath%>/admin/eventDetail">
+                                        <div class="eventBox">
+                                            <div class="half">
+                                                <div class="eventTitle"><h2>이벤트3</h2></div>
+                                                <div class="eventPeriod">2022-03-11~2022-04-10</div>
+                                                <div class="eventStatus">종료됨</div>
+                                            </div>
+                                            <div class="half">
+                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                                         </div>
-                                    </div>
-                                    <div class="eventBox">
-                                        <div class="half">
-                                            <div class="eventTitle"><h2>이벤트2</h2></div>
-                                            <div class="eventPeriod">2022-02-10~2022-02-10</div>
-                                            <div class="eventStatus">종료됨</div>
+                                    </div></a>
+                                    <a href="<%=contextPath%>/admin/eventDetail">
+                                        <div class="eventBox">
+                                            <div class="half">
+                                                <div class="eventTitle"><h2>이벤트1</h2></div>
+                                                <div class="eventPeriod">2022-01-11~2022-02-10</div>
+                                                <div class="eventStatus">종료됨</div>
+                                            </div>
+                                            <div class="half">
+                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                            </div>
                                         </div>
-                                        <div class="half">
-                                            <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                        </div>
-                                    </div>
-                                    <div class="eventBox">
-                                        <div class="half">
-                                            <div class="eventTitle"><h2>이벤트1</h2></div>
-                                            <div class="eventPeriod">2022-01-11~2022-02-10</div>
-                                            <div class="eventStatus">종료됨</div>
-                                        </div>
-                                        <div class="half">
-                                            <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 
                             </div>
@@ -298,8 +311,8 @@
                                 <div>▶</div>
                             </div>
                             <div id="eventDiv3_edit">
-                            	<div><input type="button" value="작성하기"></div>
-                                <div><input type="button" value="삭제하기"></div>
+                            	<div><input type="button" value="작성하기" class="button"></div>
+                                <div><input type="button" value="삭제하기" class="button"></div>
                </div>
     
             </div>
