@@ -184,8 +184,6 @@
         #memberManageDiv3_edit>div>input {
         	width: 80px; 
         	height: 30px; 
-        	border-radius: 16px; 
-        	background-color: white
         }
 </style>
 </head>
@@ -282,8 +280,8 @@
                                 <div>▶</div>
                             </div>
                             <div id="memberManageDiv3_edit">
-                            	<div><input type="button" value="회원정지"></div>
-                            	<div><input type="button" value="정지해제"></div>
+                            	<div><input type="button" value="회원정지" class="button"></div>
+                            	<div><input type="button" value="정지해제" class="button"></div>
                </div>
     
             </div>

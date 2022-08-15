@@ -352,7 +352,7 @@
                                 <div>▶</div>
                             </div>
                             <div id="boardDiv3_delete">
-                                <div><input type="submit" value="삭제하기" style="width: 80px; height: 30px; border-radius: 16px; background-color: white;"></div>
+                                <div><input type="submit" value="삭제하기" class="button" style="width: 80px; height:30px;"></div>
                             </div>
     
                         </div>

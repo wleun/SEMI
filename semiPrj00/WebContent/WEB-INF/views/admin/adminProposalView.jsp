@@ -167,8 +167,6 @@
         #proposalManageDiv3_delete>div>input {
         	width: 80px; 
         	height: 30px; 
-        	border-radius: 16px; 
-        	background-color: white
         }
 </style>
 </head>
@@ -210,7 +208,7 @@
                                     <div class="proposalStatus">처리상태</div>
                                 </div>
 
-                                <a href="">
+                                <a href="<%=contextPath%>/admin/proposalDetail">
                                     <div class="proposalManageColumn">
                                         <div class="proposalNo">1</div>
                                         <div class="proposalMember">텀블벅</div>
@@ -221,7 +219,7 @@
                                     </div>
                                 </a>
 
-                                <a href="">
+                                <a href="<%=contextPath%>/admin/proposalDetail">
                                     <div class="proposalManageColumn">
                                         <div class="proposalNo">2</div>
                                         <div class="proposalMember">와디즈</div>
@@ -249,7 +247,7 @@
                                 <div>▶</div>
                             </div>
                             <div id="proposalManageDiv3_delete">
-                                <div><input type="button" value="삭제하기"></div>
+                                <div><input type="button" value="삭제하기" class="button"></div>
                </div>
     
             </div>

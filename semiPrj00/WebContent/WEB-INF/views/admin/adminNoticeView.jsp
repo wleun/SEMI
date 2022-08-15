@@ -170,8 +170,6 @@
         #noticeDiv3_edit>div>input {
         	width: 80px; 
         	height: 30px; 
-        	border-radius: 16px; 
-        	background-color: white
         }
         
 
@@ -253,8 +251,8 @@
                                 <div>▶</div>
                             </div>
                             <div id="noticeDiv3_edit">
-                            	<div><input type="button" value="작성하기"></div>
-                                <div><input type="button" value="삭제하기"></div>
+                            	<div><input type="button" value="작성하기" class="button"></div>
+                                <div><input type="button" value="삭제하기" class="button"></div>
                </div>
     
             </div>
