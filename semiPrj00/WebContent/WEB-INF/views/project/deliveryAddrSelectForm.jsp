@@ -45,7 +45,7 @@
 			<!-- Modal Header -->
 			<div class="modal-header">
 			<h4 class="modal-title">주소 변경</h4>
-			<button class="btn"><a href="<%=request.getContextPath()%>/project/addrRegister">+추가하기</a></button>
+			<button class="btn"><a href="<%=request.getContextPath()%>/member/addrRegister">+추가하기</a></button>
 			<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 			</div>
 	
