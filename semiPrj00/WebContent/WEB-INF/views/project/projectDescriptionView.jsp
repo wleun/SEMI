@@ -27,8 +27,6 @@
         display: flex;
         flex-wrap: wrap;
     }
-    
-    
 
     /* 버튼부분 */
     #btn-div1,#btn-div2{
@@ -79,15 +77,40 @@
     #reward-btn>button>div{ 
         margin: 10px;
     }
+    #option-select-area{
+        width: 100%;
+    }
+
     /* 버튼효과 */
     #btn-div1>a, #btn-div2>button,#reward-btn>button:hover{
         cursor: pointer;
     }
-    
-    #reward-btn>button:focus{
+    #reward-btn>button:hover{
+        border: 1px solid #48CA7D;
+    }
+    #option-select-area>input[type='number']{
+        width: 20%;
+        border: 1px solid #48CA7D;
+        border-radius: 10px;
+        padding-left: 10px;
+        margin-left: 20px;
+    }
+    #option-select-area>input[type='submit']{
+        border: none;
         background-color: #48CA7D;
-    }   
-  
+        color: white;
+        border-radius: 10px;    
+        margin-top: 20px;
+        width: 100%;
+        height: 2em;
+        
+    }
+    
+    #option-select-area{
+        display: none;
+        padding: 20px 10px 10px 10px;
+        border-top: 1px solid #48CA7D;
+    }
 
 /* 헤드와 메인으로 2분할 */
     #desc-head{
@@ -302,7 +325,10 @@
     .nav-link.nav-link:hover{
         color: gray;
     }
-    .nav-item a{
+    #nav-link-active{
+        background-color: #F9F5EA;
+    }
+    .navigation-item a{
         margin: 10px;
         font-size: 16px;
     }
@@ -424,6 +450,19 @@
     #report-area>a:hover{
         color: #48CA7D;
     }
+
+    /* 상단이동 버튼 */
+    #go-top-btn{
+        position: fixed;
+        top: 90%;
+        left: 90%;
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        border: 1px solid #48CA7D;
+        border-radius: 30px;
+    }
+
     
 </style>
 </head>
@@ -438,7 +477,7 @@
         <div class="desc-section" id="desc-head">
             <div id="head-title">
                 <div id="project-category">
-                    <a href="">푸드</a>
+                    <a href="/project/category">푸드</a>
                 </div>
                 <div id="project-title">
                     <a>찐크림치즈에 옥수수를 더하다 글루텐프리, 옥수수치크케이크 찐크림치즈에 옥수수를 더하다 글루텐프리, 옥수수치크케이크</a>
@@ -556,10 +595,10 @@
                     <div class="container mt-3">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                          <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#home">게시판</a>
+                          <li class="navigation-item">
+                            <a class="nav-link active" id="nav-link-active" data-bs-toggle="tab" href="#home">게시판</a>
                           </li>
-                          <li class="nav-item">
+                          <li class="navigation-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#menu1">리뷰</a>
                           </li>
                         </ul>
@@ -668,12 +707,24 @@
                             <div><span class="option-attribute" id="option-price">25,000</span><span class="option-attribute" id="option-price"> 원</span></div>
                             <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
                             <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
+                            <form action="">
+                                <div id="option-select-area">
+                                    수량선택 <input type="number">
+                                    <input type="submit" value="후원하기">
+                                </div>
+                            </form>
                         </button>
                         <button>
-                            <div><span class="option-attribute" id="option-name">옵션1</span></div>
+                            <div><span class="option-attribute" id="option-name">옵션2</span></div>
                             <div><span class="option-attribute" id="option-price">25,000</span><span class="option-attribute" id="option-price"> 원</span></div>
                             <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
                             <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
+                            <form action="">
+                                <div id="option-select-area">
+                                    sss
+                                    <input type="submit">
+                                </div>
+                            </form>
                         </button>
                         <button>
                             <div><span class="option-attribute" id="option-name">옵션1</span></div>
@@ -688,18 +739,55 @@
                             <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
                         </button>
                         
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div id="go-top-btn">
+        <a href="#header-div">
+            <img src="<%=contextPath%>/resources/img/go-top.png" alt="">
+        </a>
+    </div>
+    
+
     <script>
-    $("#file").on('change',function(){
-    	var fileName = $("#file").val();
-   		$(".upload-name").val(fileName);
-   	});
+        $("#file").on('change',function(){
+            var fileName = $("#file").val();
+            $(".upload-name").val(fileName);
+        });
+    </script>
+
+    <script>
+        $(function(){
+            
+            $('#btn-div1>a').on({
+                'click': function() {
+                    var src = ($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png')
+                        ? '<%=contextPath%>/resources/img/project_liked.png'
+                        : '<%=contextPath%>/resources/img/project_like.png';
+                    $('#btn-div1 img').attr('src', src);    
+                }
+            });
+
+        });
+    </script>
+
+    <script>
+        $(function(){
+            $('#reward-btn button').click(function(){
+                console.log(this);
+                const div = $(this).find('#option-select-area');
+                
+                if(div.css('display') == 'none')  {
+                    $(div).show();    
+                // }else {
+                //     $(div).hide();
+                }
+                // $('#reward-btn button').off('click');
+            });
+        });
     </script>
 
 </body>
