@@ -74,12 +74,15 @@
             border: 1px solid #C3B091;
             border-radius: 16px;
         }
-
+        
         #memberManageFirstColumn {
             background-color: #F9F5EA;
             border-radius: 16px 16px 0px 0px;
             border-bottom: 1px solid #C3B091;
+            width: 100%;
+            height: 9%;
         }
+
 
         .memberManageColumn {
             width: 100%;
@@ -232,34 +235,37 @@
                                     <div class="memberQuitDate">탈퇴일</div>
                                 </div>
                             
-                                <div class="memberManageColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="memberNo">1</div>
-                                    <div class="memberType">사업자회원</div>
-                                    <div class="memberLevel">브론즈</div>
-                                    <div class="memberName">와디즈</div>
-                                    <div class="memberEmail">Wadiz@wadiz.com</div>
-                                    <div class="memberPhone">010-000-0000</div>
-                                    <div class="memberStatus">탈퇴</div>
-                                    <div class="memberEnrollDate">2022-08-01</div>
-                                    <div class="memberSuspendedDate">2022-08-05</div>
-                                    <div class="memberQuitDate">2022-08-13</div>
-                                    
-                                </div>
-                                <div class="memberManageColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="memberNo">1</div>
-                                    <div class="memberType">일반회원</div>
-                                    <div class="memberLevel">일반</div>
-                                    <div class="memberName">와디즈</div>
-                                    <div class="memberEmail">Wadiz@wadiz.com</div>
-                                    <div class="memberPhone">010-000-0000</div>
-                                    <div class="memberStatus">정지</div>
-                                    <div class="memberEnrollDate">2022-08-01</div>
-                                    <div class="memberSuspendedDate">2022-08-10</div>
-                                    <div class="memberQuitDate">X</div>
-                                    
-                                </div>
+                                    <div class="memberManageColumn">
+                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="memberNo">1</div>
+                                        <div class="memberType">사업자회원</div>
+                                        <div class="memberLevel">브론즈</div>
+                                        <div class="memberName">와디즈</div>
+                                        <div class="memberEmail">Wadiz@wadiz.com</div>
+                                        <div class="memberPhone">010-000-0000</div>
+                                        <div class="memberStatus">탈퇴</div>
+                                        <div class="memberEnrollDate">2022-08-01</div>
+                                        <div class="memberSuspendedDate">2022-08-05</div>
+                                        <div class="memberQuitDate">2022-08-13</div>
+                                        
+                                    </div>
+
+
+                                    <div class="memberManageColumn">
+                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="memberNo">1</div>
+                                        <div class="memberType">일반회원</div>
+                                        <div class="memberLevel">일반</div>
+                                        <div class="memberName">와디즈</div>
+                                        <div class="memberEmail">Wadiz@wadiz.com</div>
+                                        <div class="memberPhone">010-000-0000</div>
+                                        <div class="memberStatus">정지</div>
+                                        <div class="memberEnrollDate">2022-08-01</div>
+                                        <div class="memberSuspendedDate">2022-08-10</div>
+                                        <div class="memberQuitDate">X</div>
+                                        
+                                    </div>
+
                                
                             </div>
                         </div>

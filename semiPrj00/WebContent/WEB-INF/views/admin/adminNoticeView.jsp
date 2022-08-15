@@ -76,15 +76,24 @@
             border-radius: 16px;
         }
 
+        .noticeWrap>a {
+            width: 100%;
+            height: 9%;
+            display: flex;
+            flex-direction: row; 
+        }
+
         #noticeFirstColumn {
             background-color: #F9F5EA;
             border-radius: 16px 16px 0px 0px;
             border-bottom: 1px solid #C3B091;
+            width: 100%;
+            height: 9%;
         }
 
         .noticeColumn {
             width: 100%;
-            height: 9%;
+            height: 100%;
             font-size: 18px;
             display: flex;
             flex-direction: row;   
@@ -206,26 +215,28 @@
                                     <div class="noticeName">공지사항 이름</div>
                                     <div class="writeDate">작성일자</div>
                                     <div class="deleteYN">삭제여부</div>
-                                </div>
+                               </div>
                             
-                                <div class="noticeColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="important">중요</div>
-                                    <div class="noticeNo">1</div>
-                                    <div class="noticeName">새로운 공지사항입니다.</div>
-                                    <div class="writeDate">2022-08-09</div>
-                                    <div class="deleteYN">N</div>
-                                    
-                                </div>
-                                <div class="noticeColumn">
-                                    <div class="check"><input type="checkbox"></div>
-                                    <div class="important">중요</div>
-                                    <div class="noticeNo">2</div>
-                                    <div class="noticeName">강남역 일대 물바다...</div>
-                                    <div class="writeDate">2022-08-10</div>
-                                    <div class="deleteYN">Y</div>
-                                    
-                                </div>
+                                <a href="<%=contextPath%>/admin/noticeDetail">
+                                    <div class="noticeColumn">
+                                        <div class="check">선택</div>
+                                        <div class="important">중요</div>
+                                        <div class="noticeNo">번호</div>
+                                        <div class="noticeName">공지사항 이름</div>
+                                        <div class="writeDate">작성일자</div>
+                                        <div class="deleteYN">삭제여부</div>
+                                    </div>
+                                </a>
+                                <a href="<%=contextPath%>/admin/noticeDetail">
+                                    <div class="noticeColumn">
+                                        <div class="check">선택</div>
+                                        <div class="important">중요</div>
+                                        <div class="noticeNo">번호</div>
+                                        <div class="noticeName">공지사항 이름</div>
+                                        <div class="writeDate">작성일자</div>
+                                        <div class="deleteYN">삭제여부</div>
+                                    </div>
+                                </a>
                                
                             </div>
                         </div>

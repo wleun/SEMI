@@ -195,11 +195,9 @@
         content {
             position: absolute;
             width: 1630px;
-            height: 965px;
             left: 288px;
             top: 108px;
             border-right: 1px solid black;
-            border-bottom: 1px solid black;
 
         }
 </style>
