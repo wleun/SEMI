@@ -8,7 +8,7 @@
 <style>
     #box{height: 150px;width: 1920px;}
     #finish-outer{
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
         width: 700px;
         height: 800px;
         margin: 0px auto;
@@ -20,22 +20,14 @@
         height: 300px;
         /* border: 1px solid gray; */
         margin: 0px auto;
-        background-color: rgba(255, 255, 255, 0.675);
+        /*background-color: rgba(255, 255, 255, 0.675);*/
         border-radius: 8px;
     }
 
-    input{
-        border: 0px;
-        height: 40px;
-        width: 230px;
-        border-bottom: 2px solid darkgray;
-        background-color: rgba(255, 255, 255, 0.675);
-        
-    }
- 
+   
     #finish-h1{
        text-align: center;
-       font-size: 40px;
+       font-size: 60px;
     }
     
     .join-find-a{
@@ -46,17 +38,18 @@
     }
     .join-find{float: right;}
     #finish-img{
-        width: 200px;
-        height: 180px;
+        width: 300px;
+        height: 280px;
+        /* margin: 0 auto; */
         position: relative;
         left: 250px;
     }
     .go{
         position: relative;
-        left: 250px;
+        left: 290px;
         width: 100px;
         height: 60px;
-        border: 1px solid gray ;
+        border: 0px solid gray ;
         border-radius: 8px;
         background-color: #48CA7D;
         font-size: 20px;
@@ -72,13 +65,13 @@
    <main>
     <div id="box"></div>
     <div id="finish-outer">
-        <h1 id="finish-h1">환영합니다!</h1>
+        <h1 id="finish-h1">&nbsp; &nbsp; &nbsp;환영합니다!</h1>
         
         <div id="finish-div">
             <br>
             <img src="<%=contextPath%>/resources/img/finish.png" alt="" id="finish-img">
             <br><br>
-            <button class="go"onclick="location.href='<%=contextPath%>/member/login">로그인</button>
+            <button class="go"onclick="location.href='<%=contextPath%>/member/login'">로그인</button>
             <button class="go" onclick="location.href='<%=contextPath%>'">메인</button>
             
             

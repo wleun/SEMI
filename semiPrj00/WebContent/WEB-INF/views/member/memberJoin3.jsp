@@ -34,7 +34,7 @@
             margin: 0 auto;
             font-size: 20px;
             padding-top: 20px;
-            background-color: rgba(255, 255, 255, 0.675);;
+            background-color: rgba(255, 255, 255, 0.675);
         }
         .join-li{
         list-style-type: none;
@@ -73,17 +73,22 @@
         font-size: 15px;
        }
        #pre{
+        border: 0px;
         width: 60px;
         float: left;
+        margin-left: 5px;
        }
        #next{
+        margin-right: 5px;
+        border: 0px;
         width: 60px;
         float: right;
        }
        #check-btn{
-        width: 250px;
+        width: 80px;
         border: 1px solid lightgray;
-      }
+        font-size: medium;
+        }
       .img-join{
         width: 70px;
         height: 70px;
@@ -116,7 +121,7 @@
                             <option value="법인">법인</option>
                         </select>
                     </li>
-                    <liclass="join-li">법인명 <br><input type="text" name="company" placeholder="법인일 경우 필수항목입니다."></liclass=>
+                    <li class="join-li">법인명 <br><input type="text" name="company" placeholder="법인일 경우 필수항목입니다."></li>
                     
                    </ul><br>
                    <input type="button" value="이전" id="pre" onclick="history.go(-1)"><input type="submit" value="다음" id="next">

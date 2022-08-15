@@ -14,29 +14,32 @@
         list-style: none;
        }
         #event{
-            border: 2px solid red;
+            /* border: 2px solid red; */
             width: 700px;
             height: 800px;
             margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.675);
         }
         #event-h1{
             text-align: center;
-            border-bottom: 1px solid black;
+            border-bottom: 2px solid lightgray;
         }
        #event-outer{
-        border: 1px solid blue;
-        width: 600px;
-        height: 700px;
+        /* border: 1px solid blue; */
+        width: 700px;
+        height: 750px;
         box-sizing: border-box;
         margin: 0 auto;
        }
        #event-title{
         text-align: center;
-        font-size: 20px;
+        font-size: 28px;
        }
        .event-date{
         text-align: right;
-        border-bottom: 1px solid black;
+        width: 700px;
+        margin-left: -34px;
+        border-bottom: 1px solid  lightgray;
         font-size: small;
        } 
        .event-img{
@@ -48,15 +51,24 @@
        }
        .event-term{
         text-align: center;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid lightgray;
+        margin-left: -34px;
        }
-       a{
+       /* a{
         text-decoration: none;
         color: black;
-       }
-       #event-pre{position: relative; left: 50px;}
-       #event-list{position: relative; left: 300px;}
-       #event-next{position: relative; left: 550px;}
+        border:none;
+        font-size: 18px;
+        text-align: center;
+       } */
+       #event-btn-div{
+            border-top: 2px solid lightgray; 
+            text-align: center;
+            font-size: 18px;
+        }
+       #event-pre{margin-top:5px; box-sizing: border-box; position: relative; right: 260px; border-radius: 8px; width: 50px; height:30px;  text-decoration: none; color: black; background-color: #48CA7D;border: 0px;}
+       #event-list{margin-top:5px; box-sizing: border-box; border-radius: 8px; width: 50px; height:30px;text-decoration: none; color: black; background-color: #48CA7D; border: 0px;}
+       #event-next{margin-top:5px; box-sizing: border-box; position: relative; left: 260px; border-radius: 8px; width: 50px; height:30px; text-decoration: none; color: black; background-color: #48CA7D;border: 0px;}
     </style>
 </head>
 <body>
@@ -70,7 +82,7 @@
                 <div>
                  <ul>
                      <li><div id="event-title">[특가]여름맞이 행사</div></li>
-                     <li><div class="event-date">작성일 : 2022-08-03</div></li>
+                     <li><div class="event-date">작성일 : 2022-08-03 &nbsp; 조회수 : 0 &nbsp;</div></li>
                      <li><div class="event-term">이벤트 기간 : 2022-01-01 ~ 2022-03-03</div></li>
                      <li><div class="event-img"><img src="" alt="이미지파일입니다"></div></li>
                      <li><div>텍스트내용..</div></li>
@@ -78,9 +90,11 @@
                 </div>
                 
             </div>
-           <a href="" id="event-pre">이전</a>
-           <a href="" id="event-list">목록</a>
-           <a href="" id="event-next">다음</a>
+            <div id="event-btn-div">
+                <button id="event-pre" onclick="location.href=''">이전</button>
+                <button id="event-list" onclick="location.href='<%=contextPath%>/member/eventList'">목록</button>
+                <button id="event-next" onclick="location.href=''">다음</button>
+            </div>
         </div>
        
 
