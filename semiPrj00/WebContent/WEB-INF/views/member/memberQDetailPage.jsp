@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-  <style>
-  
+<style>
+
         #wrapper{
             padding-top: 150px;
             padding-bottom: 150px;
@@ -45,22 +45,42 @@
             padding-top: 100px;
         }
 
-        hr{
-            border: 1px black;
-            width: 600px;
-        }
-
-        button {
+        section button {
             color: white;
-            margin-top: 10px;
             border-radius: 100px;
             background-color: #48CA7D;
             border: 0px
         }
 
-         /* ------------------content-1---------------------------- */
+        #content-2 table{
+            width: 50%;
+            height: 90%;
+        }
 
-        .member-info{
+        #content-2{
+            width: 800px;
+            height: 500px;
+            border: 5px solid #48CA7D;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #content-3 table{
+            width: 90%;
+            height: 90%;
+        }
+
+        #content-3{
+            width: 800px;
+            height: 500px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+       /* ------------------content-1---------------------------- */
+
+       .member-info{
             padding-left: 300px;
             padding-right: 100px;
         }
@@ -105,9 +125,9 @@
 </head>
 <body>
 
-        <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
-	
-    <div id="wrapper">
+    <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+
+   <div id="wrapper">
 
         <div id="header">
 
@@ -116,14 +136,13 @@
             <a href="/semiPrj00/member/mysponsor">나의 후원내역</a>
             <a href="/semiPrj00/member/myfollow">팔로우</a>
             <a href="/semiPrj00/member/mylike">좋아요</a>
-            <a href="">관심카테고리</a>
             <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>
-            <a href="">문의&답변내역</a>
+            <a href="/semiPrj00/member/qanda">문의&답변내역</a>
 
         </div>
-
-        <section>
             
+        <section>
+
             <div class="member-info">
                 <div id="content-1">
 
@@ -147,17 +166,63 @@
          
                 </div>
             </div>
-    
-            <div id="content-wrap">
-    
-                
-    
-            </div>
-        </section>
-        
 
+            <div id="content-wrap">
+                
+                <div id="content-2">
+                    <table>
+                        <tr>
+                            <td>제목 : </td>
+                            <td>이건 왜 이런거죠?</td>
+                        </tr>
+                        <tr>
+                            <td>유형 :</td>
+                            <td>선물/후원</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">저는 정말 이해가 안가요</td>
+                        </tr>
+                        <tr>
+                            <td>보낸 날짜 : </td>
+                            <td>2022-08-05</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="content-3">
+                    <table>
+                        <tr>
+                            <td>제목</td>
+                            <td><input type="text" placeholder="제목을 입력해 주세요."></td>
+                        </tr>
+                        <tr>
+                            <td>유형</td>
+                            <td>
+
+                                <select  style="width: 50%;">
+                                    <option value="선물/후원"></option>
+                                    <option value="프로젝트"></option>
+                                    <option value="수령자 정보"></option>
+                                    <option value="교환/환불"></option>
+                                    <option value="배송"></option>
+                                    <option value="기타"></option>
+                                </select>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>내용</td>
+                            <td><input type="text" placeholder="내용을 입력해주세요."></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+
+        </section>
+           
     </div>
 
 </body>
-
 </html>

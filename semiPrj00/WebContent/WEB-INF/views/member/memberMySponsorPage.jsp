@@ -169,9 +169,8 @@
             <a href="/semiPrj00/member/mysponsor">나의 후원내역</a>
             <a href="/semiPrj00/member/myfollow">팔로우</a>
             <a href="/semiPrj00/member/mylike">좋아요</a>
-            <a href="">관심카테고리</a>
             <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>
-            <a href="">문의&답변내역</a>
+            <a href="/semiPrj00/member/qanda">문의&답변내역</a>
 
         </div>
 
