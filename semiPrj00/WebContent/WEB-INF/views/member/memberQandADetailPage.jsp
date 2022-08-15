@@ -38,14 +38,6 @@
             color: #48CA7D;
         }
 
-        button {
-            color: white;
-            margin-top: 10px;
-            border-radius: 100px;
-            background-color: #48CA7D;
-            border: 0px
-        }
-
         section{
             display: flex;
             flex-direction: row;
@@ -60,54 +52,32 @@
             border: 0px
         }
 
-        
-        /*----------------coupon-------------*/
-        #content-wrap{
-            display: inline-flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            width: 930px;
-            height: auto;
-            max-height: auto;
-        }
-        .coupon-wrap{
-            width: 370px;
-            height: 130px;
-            background-color: white;
-            display: flex;
-            flex-direction: row;
-            text-align: center;
-            margin: 30px;
-        }
-        .coupon-name{
-            display: flex;
-            flex-direction: column;
+        #content-2 table{
             width: 50%;
-            font-weight: 600;
+            height: 90%;
         }
-        .coupon-name :first-child{
-            font-size: 1.3rem;
-            margin: 35px;
+
+        #content-2{
+            width: 800px;
+            height: 500px;
+            border: 5px solid #48CA7D;
+            border-radius: 16px;
             text-align: center;
-            font-weight: 900;
+            margin-top: 50px;
         }
-        .coupon-name :last-child{
-            font-size: 0.4rem;
-        }
-        .sale{
+
+        #content-3 table{
             width: 50%;
-            font-size: 2.2rem;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            height: 90%;
         }
-        .line{
-            border-right: 1px solid darkgray;
-            height: 80%;
-            align-self: center;
+
+        #content-3{
+            width: 800px;
+            height: 500px;
+            border: 5px solid #48CA7D;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 50px;
         }
 
        /* ------------------content-1---------------------------- */
@@ -171,7 +141,6 @@
             <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>
             <a href="/semiPrj00/member/qanda">문의&답변내역</a>
 
-
         </div>
             
         <section>
@@ -201,69 +170,48 @@
             </div>
 
             <div id="content-wrap">
-
-                <div class="coupon-wrap">
-                    <div class="coupon-name">
-                        <span>생일 쿠폰</span>
-                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
-                    </div>
-                    <div class="line"></div>
-                    <div class="sale">
-                        <span>50%할인</span>
-                    </div>
-                </div>   
-
-                <div class="coupon-wrap">
-                    <div class="coupon-name">
-                        <span>생일 쿠폰</span>
-                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
-                    </div>
-                    <div class="line"></div>
-                    <div class="sale">
-                        <span>50%할인</span>
-                    </div>
-                </div>  
-
-                <div class="coupon-wrap">
-                    <div class="coupon-name">
-                        <span>생일 쿠폰</span>
-                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
-                    </div>
-                    <div class="line"></div>
-                    <div class="sale">
-                        <span>50%할인</span>
-                    </div>
-                </div>  
-
-                <div class="coupon-wrap">
-                    <div class="coupon-name">
-                        <span>생일 쿠폰</span>
-                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
-                    </div>
-                    <div class="line"></div>
-                    <div class="sale">
-                        <span>50%할인</span>
-                    </div>
-                </div>  
-
-                <div class="coupon-wrap">
-                    <div class="coupon-name">
-                        <span>생일 쿠폰</span>
-                        <span>2022.08.01~2022.08.01 까지 사용가능</span>
-                    </div>
-                    <div class="line"></div>
-                    <div class="sale">
-                        <span>50%할인</span>
-                    </div>
-                </div>  
-
                 
-                
-                
+                <div id="content-2">
+                    <table>
+                        <tr>
+                            <td>제목 : </td>
+                            <td>이건 왜 이런거죠?</td>
+                        </tr>
+                        <tr>
+                            <td>유형 :</td>
+                            <td>선물/후원</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">저는 정말 이해가 안가요</td>
+                        </tr>
+                        <tr>
+                            <td>보낸 날짜 : </td>
+                            <td>2022-08-05</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="content-3">
+                    <table>
+                        <tr>
+                            <td>제목 : </td>
+                            <td>이건 왜 이런거죠?</td>
+                        </tr>
+                        <tr>
+                            <td>유형 : </td>
+                            <td>선물/후원</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">그렇다면 어쩔 수 없네요</td>
+                        </tr>
+                        <tr>
+                            <td>보낸 날짜 : </td>
+                            <td>2022-08-05</td>
+                        </tr>
+                    </table>
+                </div>
 
             </div>
-
-            
 
 
         </section>

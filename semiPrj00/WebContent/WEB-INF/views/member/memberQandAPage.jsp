@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-
+  <style>
+  
         #wrapper{
             padding-top: 150px;
             padding-bottom: 150px;
@@ -52,16 +52,22 @@
             border: 0px
         }
 
-        #prj-info{
-            display: flex;
+        button {
+            color: white;
+            margin-top: 10px;
+            border-radius: 100px;
+            background-color: #48CA7D;
+            border: 0px
         }
 
-        #prj-img{
-            width: 200px;
-        }
-
-        .area{
-            margin-top: 50px;
+        #content-2 button {
+            width: 100px;
+            height: 40px;
+            color: white;
+            margin-top: 10px;
+            border-radius: 100px;
+            background-color: #48CA7D;
+            border: 0px
         }
 
         #content-3 table{
@@ -71,7 +77,8 @@
 
         #content-3{
             width: 800px;
-            height: 250px;
+            height: 150px;
+            margin-top: 30px;
             border: 5px solid #48CA7D;
             border-radius: 16px;
             text-align: center;
@@ -84,41 +91,16 @@
 
         #content-4{
             width: 800px;
-            height: 200px;
+            height: 150px;
+            margin-top: 30px;
             border: 5px solid #48CA7D;
             border-radius: 16px;
             text-align: center;
         }
 
-        #content-5 table{
-            width: 90%;
-            height: 90%;
-        }
+         /* ------------------content-1---------------------------- */
 
-        #content-5{
-            width: 800px;
-            height: 300px;
-            border: 5px solid #48CA7D;
-            border-radius: 16px;
-            text-align: center;
-        }
-
-        #content-6 table{
-            width: 90%;
-            height: 90%;
-        }
-
-        #content-6{
-            width: 800px;
-            height: 250px;
-            border: 5px solid #48CA7D;
-            border-radius: 16px;
-            text-align: center;
-        }
-
-       /* ------------------content-1---------------------------- */
-
-       .member-info{
+        .member-info{
             padding-left: 300px;
             padding-right: 100px;
         }
@@ -163,9 +145,9 @@
 </head>
 <body>
 
-    <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
-
-   <div id="wrapper">
+        <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+	
+    <div id="wrapper">
 
         <div id="header">
 
@@ -178,9 +160,9 @@
             <a href="/semiPrj00/member/qanda">문의&답변내역</a>
 
         </div>
-            
-        <section>
 
+        <section>
+            
             <div class="member-info">
                 <div id="content-1">
 
@@ -204,106 +186,67 @@
          
                 </div>
             </div>
-
+    
             <div id="content-wrap">
-
-                <div id="prj-info">
-                    <img id="prj-img" src="" alt="프로젝트 이미지">
-                    
-                    <div id="content-2">
-                        <table>
-                            <tr>
-                                <td>카테고리</td>
-                            </tr>
-                            <tr>
-                                <td>프로젝트 명</td>
-                            </tr>
-                            <tr>
-                                <td>달성 | 모인금액 | 남은날짜</td>
-                            </tr>
-                        </table>
-                    </div>
-
+    
+                <div id="content-2">
+    
+                   <button>전체</button>
+                   <button>보낸 메세지</button>
+                   <button>받은 메세지</button>
+                   <button onclick="location.href='/semiPrj00/member/qdetail'">문의하기</button>
+         
                 </div>
-                
-                <div class="area">후원 정보</div>
+
                 <div id="content-3">
+
                     <table>
+
                         <tr>
-                            <td>펀딩상태</td>
-                            <td>진행중</td>
+                            <td><a href="/semiPrj00/member/qandadetail">이런이런 프로젝트</a></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>후원날짜</td>
-                            <td>2022-08-05</td>
+                            <td>회원이름</td>
+                            <td><button onclick="location.href='/semiPrj00/member/adetail'">답변하기</button></td>
                         </tr>
                         <tr>
-                            <td>펀딩마감일</td>
-                            <td>2022-12-25</td>
+                            <td>받은 날짜 : 2022-08-05</td>
+                            <td></td>
                         </tr>
+
                     </table>
+
                 </div>
 
-                <div class="area">선물 정보</div>
                 <div id="content-4">
-                    <table>
-                        <tr>
-                            <td>선물 구성</td>
-                            <td>선물선물</td>
-                        </tr>
-                        <tr>
-                            <td>후원 금액</td>
-                            <td>50000원</td>
-                        </tr>
-                    </table>
-                </div>
 
-                <div class="area">배송지</div>
-                <div id="content-5">
                     <table>
-                        <tr>
-                            <td>이름</td>
-                            <td>김누구</td>
-                        </tr>
-                        <tr>
-                            <td>주소</td>
-                            <td>방구참아왕국</td>
-                        </tr>
-                        <tr>
-                            <td>전화번호</td>
-                            <td>010-1234-1234</td>
-                        </tr>
-                        <tr>
-                            <td>배송상태</td>
-                            <td>배송 준비중</td>
-                        </tr>
-                    </table>
-                </div>
 
-                <div class="area">결제 정보</div>
-                <div id="content-6">
-                    <table>
                         <tr>
-                            <td>결제수단</td>
-                            <td>카드</td>
+                            <td><a href="/semiPrj00/member/qandadetail">이런이런 프로젝트</a></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td>결제금액</td>
-                            <td>50000원</td>
+                            <td>회원이름</td>
+                            <td><button>삭제</button></td>
                         </tr>
                         <tr>
-                            <td>결제상태</td>
-                            <td>결제완료</td>
+                            <td>받은 날짜 : 2022-08-05</td>
+                            <td></td>
                         </tr>
+
                     </table>
+
                 </div>
 
             </div>
 
-
         </section>
-           
+        
+
     </div>
 
 </body>
+
 </html>

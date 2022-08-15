@@ -59,6 +59,7 @@
             background-color: #48CA7D;
             border: 0px
         }
+
         #content-2 button {
             width: 100px;
             height: 40px;
@@ -169,9 +170,8 @@
             <a href="/semiPrj00/member/mysponsor">나의 후원내역</a>
             <a href="/semiPrj00/member/myfollow">팔로우</a>
             <a href="/semiPrj00/member/mylike">좋아요</a>
-            <a href="">관심카테고리</a>
             <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>
-            <a href="">문의&답변내역</a>
+            <a href="/semiPrj00/member/qanda">문의&답변내역</a>
 
         </div>
 
@@ -216,7 +216,7 @@
                     <table>
 
                         <tr>
-                            <td rowspan="2"><img src="" alt="프로젝트사진"></td>
+                            <td rowspan="2"><img src="" alt="프로필사진"></td>
                             <td>여긴이름</td>
                         </tr>
                         <tr>
@@ -233,17 +233,12 @@
                     <table>
 
                         <tr>
-                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
+                            <td rowspan="2"><img src="" alt="프로필사진"></td>
+                            <td>여긴이름</td>
                         </tr>
                         <tr>
-                            <td>후원금액 : 50000원</td>
-                        </tr>
-                        <tr>
-                            <td>후원일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 진행중</td>
+                            <td>올린 프로젝트 1개</td>
+                            <td rowspan="2"><button>팔로잉</button></td>
                         </tr>
 
                     </table>
@@ -256,17 +251,12 @@
                     <table>
 
                         <tr>
-                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
+                            <td rowspan="2"><img src="" alt="프로필사진"></td>
+                            <td>여긴이름</td>
                         </tr>
                         <tr>
-                            <td>후원금액 : 50000원</td>
-                        </tr>
-                        <tr>
-                            <td>후원일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 종료</td>
+                            <td>올린 프로젝트 1개</td>
+                            <td rowspan="2"><button>팔로잉</button></td>
                         </tr>
 
                     </table>
