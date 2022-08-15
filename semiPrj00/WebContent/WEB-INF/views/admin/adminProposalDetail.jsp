@@ -36,7 +36,7 @@
 
     #projectInfo {
         width: 100%;
-        height: 30%;
+        height: 20%;
         display: flex;
         flex-direction: column;
     }
@@ -72,7 +72,7 @@
 
     #projectInfoBox {
         width: 100%;
-        height: 430px;
+        height: 270px;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -89,7 +89,7 @@
 
     .projectInfo {
         width: 100%;
-        height: 12.5%;
+        height: 16.66%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -103,6 +103,16 @@
     .justify-left {
         justify-content:flex-start;
         padding-left: 30px;
+    }
+
+    .mediaText {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
 
@@ -145,8 +155,6 @@
                         <div class="projectInfo justify-right">프로젝트 시작일자 </div>
                         <div class="projectInfo justify-right">프로젝트 마감일자</div>
                         <div class="projectInfo justify-right">프로젝트 목표금액</div>
-                        <div class="projectInfo justify-right">대표이미지</div>
-                        <div class="projectInfo justify-right">상세 이미지/영상</div>
                         <div class="projectInfo justify-right">상세 설명</div>
                         <div class="projectInfo justify-right">예상되는 어려움</div>
                         <div class="projectInfo justify-right">예상 전달일</div>
@@ -155,13 +163,19 @@
                         <div class="projectInfo justify-left">프로젝트 시작일자 </div>
                         <div class="projectInfo justify-left">프로젝트 마감일자</div>
                         <div class="projectInfo justify-left">프로젝트 목표금액</div>
-                        <div class="projectInfo justify-left">대표이미지</div>
-                        <div class="projectInfo justify-left">상세 이미지/영상</div>
                         <div class="projectInfo justify-left">상세 설명</div>
                         <div class="projectInfo justify-left">예상되는 어려움</div>
                         <div class="projectInfo justify-left">예상 전달일</div>
                     </div>
                 </div>
+
+            </div>
+            <div id="projectMedia">
+                <div class="proposalInfoBar">3.프로젝트 자료</div>
+                <div class="mediaText">대표 이미지</div>
+                <div class="mediaBox"></div>
+                <div class="mediaText">상세 이미지/영상</div>
+                <div class="mediaBox"></div>
             </div>
         </div>
     </div>
