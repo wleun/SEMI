@@ -54,24 +54,28 @@
        #pre{
         width: 60px;
         float: left;
-        border: 1px solid gray ;
+        border: 0px solid gray ;
         border-radius: 8px;
         background-color: #48CA7D;
+        margin-left: 5px;
        }
        #next{
         width: 60px;
         float: right;
-        border: 1px solid gray ;
+        border: 0px solid gray ;
         border-radius: 8px;
         background-color: #48CA7D;
+        margin-right: 5px;
        }
        ::placeholder{
         font-size: 15px;
        } 
-      #check-btn{
-        width: 250px;
+        #check-btn{
+        width: 80px;
         border: 1px solid lightgray;
-      }
+        font-size: medium;
+        }
+      
       .img-join{
         width: 70px;
         height: 70px;
@@ -80,6 +84,9 @@
         margin-bottom: -50px;
         /* left: 80px;
         bottom: -27px; */
+      }
+      .modal-div{
+        display: none;
       }
     </style>
 </head>
@@ -102,7 +109,9 @@
                     <li class="join-li">*E-mail <br><input type="email" name="memberEmail" placeholder="이메일 형식으로 입력하세요."> <button id="check-btn">중복확인</button></li>
                     <li class="join-li">*비밀번호 <br><input type="password" name="memberPwd" required placeholder="4글자 이상으로 입력하세요"></li>
                     <li class="join-li">*비밀번호 확인<br><input type="password" name="memberPwd2" required></li>
-                    <li class="join-li">*사용할 이름<br><input type="text" name="memberName"></li>
+                    <li class="join-li">*이름 (법인 : 대표명)<br><input type="text" name="memberName"></li>
+                    <li class="join-li">*닉네임<br><input type="text" name="memberName"></li>
+                    
                    
                    
                    </ul>
@@ -114,5 +123,6 @@
         </div>
 
     </main>
+   
 </body>
 </html>

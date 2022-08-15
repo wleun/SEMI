@@ -67,22 +67,7 @@
        text-align: center;
        font-size: 40px;
     }
-    /* .find{
-        float: right;
-    
-    } */
-    /* #join{
-        font-size:small;
-        text-decoration: none;
-        color: #48ca7d;
-        
-    }
-    .find-a{
-        font-size: small;
-        text-decoration: none;
-        color: #48ca7d;
-        font-weight: bold;
-    } */
+   
     .join-find-a{
         text-decoration: none;
         color: black;
@@ -92,8 +77,8 @@
     .join-find-a:hover{
         color: #48ca7d;
     }
-    .join-find{float: right;}
-    
+    .join-find{float: right; font-size: 18px;}
+    ::placeholder{font-size: 15px;}
 </style>
 <head>
     <meta charset="UTF-8">
@@ -116,8 +101,8 @@
                     <li class="login-li">비밀번호&nbsp;&nbsp;<input type="password" name="memberPwd" required placeholder="비밀번호를 입력하세요." id="inputPwd"></li>
                 </ul>
                 <div id="submit"><input type="submit" value="로그인"></div>
-                <br><br>
-                <li class="join-find login-li"> <a href="<%=contextPath %>/member/join" class="join-find-a">회원가입 | </a><a href="findId.jsp" class="join-find-a">아이디/</a><a href="findPwd.jsp" class="join-find-a">비밀번호 찾기</a></li>
+                <br><br><br><br>
+                <li class="join-find login-li"> <a href="<%=contextPath %>/member/join" class="join-find-a">회원가입 | </a><a href="<%=contextPath %>/member/findId" class="join-find-a">아이디/비밀번호 찾기 &nbsp;</a></li>
                
             </form>
             

@@ -8,15 +8,16 @@
    <style>
        #box{height: 150px;width: 1920px;}
         #event{
-            border: 2px solid red;
+            /* border: 2px solid red; */
             width: 700px;
-            height: 800px;
+            height: 900px;
             margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.675);
         }
         #event-h1{
             margin-left: 30px;
             margin-bottom: 30px;
-            
+            padding-top: 20px;
         }
        
         li{
@@ -26,12 +27,12 @@
             right: 3%;
             box-sizing: border-box;
         }
-       a{
+       .event-a{
         text-decoration: none;
         color: black;
        }
        .event-info{
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
         height: 130px;
        }
        .event-img{
@@ -63,26 +64,31 @@
        }
        hr{
         box-sizing: border-box;
-        width: 80%;
+        width: 100%;
         border: 0.3px dashed gray;
+        
        }
        .event-img .event-info .event-title .event-date #event{
         box-sizing: border-box;
+       }
+       .page{
+        text-align: center;
        }
     </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
     <main>
-        
+        <div id="box"></div>
         <div id="event">
             <div id="event-h1"><h1>이벤트</h1></div>
             <ul>
                 <li >
+                    <hr>
                     <a href="" class="event-a">
                         <div class="event-info">
-                            <div class="event-img"><img src="/resources/images/loginIcon.png" alt=""></div>
-                            <h3 class="event-title">[특가]행사합니다라라ㅏ람쥐</h3>
+                            <div class="event-img"><img src="<%=contextPath%>/resources/img/finish.png" alt=""></div>
+                            <h3 class="event-title">[특가]행사합니다!!</h3>
                             <span class="event-date">2022-08-03</span>
                         </div>
                     </a>
@@ -91,8 +97,8 @@
                 <li >
                     <a href="" class="event-a">
                         <div class="event-info">
-                            <div class="event-img"><img src="/resources/images/loginIcon.png" alt=""></div>
-                            <h3 class="event-title">[특가]행사합니다라라ㅏ람쥐며느리어카센타</h3>
+                            <div class="event-img"><img src="<%=contextPath%>/resources/img/finish.png" alt=""></div>
+                            <h3 class="event-title">[특가]여름맞이 행사</h3>
                             <span class="event-date">2022-08-03</span>
                         </div>
                     </a>
@@ -101,14 +107,32 @@
                 <li >
                     <a href="" class="event-a">
                         <div class="event-info">
-                            <div class="event-img"><img src="/resources/images/loginIcon.png" alt=""></div>
-                            <h3 class="event-title">[마감임박]대박ㄷ대대대박적이네옹</h3>
+                            <div class="event-img"><img src="<%=contextPath%>/resources/img/finish.png" alt=""></div>
+                            <h3 class="event-title">[마감임박]얼른 오세요</h3>
+                            <span class="event-date">2022-08-03</span>
+                        </div>
+                    </a>
+                    <hr>
+                </li>
+                <li >
+                    <a href="" class="event-a">
+                        <div class="event-info">
+                            <div class="event-img"><img src="<%=contextPath%>/resources/img/finish.png" alt=""></div>
+                            <h3 class="event-title">[마감임박]곧 마감입니다?</h3>
                             <span class="event-date">2022-08-03</span>
                         </div>
                     </a>
                     <hr>
                 </li>
             </ul>
+
+            <div class="page">
+                <a>1</a>
+                <a>2</a>
+                <a>3</a>
+                <a>4</a>
+                <a>5</a>
+            </div>
         </div>
 
     </main>

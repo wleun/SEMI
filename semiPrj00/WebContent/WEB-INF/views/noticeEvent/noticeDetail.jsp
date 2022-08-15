@@ -15,19 +15,20 @@
         list-style: none;
        }
         #notice{
-            border: 2px solid red;
+            /* border: 2px solid red; */
             width: 700px;
-            height: 800px;
+            height: 900px;
             margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.675);
         }
         #notice-h1{
             text-align: center;
-            border-bottom: 1px solid black;
+            border-bottom: 2px solid lightgray;
         }
        #noti-outer{
-        border: 1px solid blue;
-        width: 600px;
-        height: 700px;
+        /* border: 1px solid black; */
+        width: 700px;
+        height: 750px;
         box-sizing: border-box;
         margin: 0 auto;
        }
@@ -37,8 +38,9 @@
        }
        .noti-date{
         text-align: right;
-        border-bottom: 1px solid black;
+        border-bottom: 2px solid lightgray;
         font-size: small;
+        margin-left: -34px;
        } 
        .noti-img{
         border: 1px solid blue;
@@ -47,13 +49,21 @@
         margin: 10px auto;
     
        }
-       a{
+       /* a{
         text-decoration: none;
         color: black;
-       }
-       #noti-pre{position: relative; left: 50px;}
-       #noti-list{position: relative; left: 300px;}
-       #noti-next{position: relative; left: 550px;}
+        border:none;
+        font-size: 18px;
+        text-align: center;
+        } */
+        #noti-btn-div{
+            border-top: 2px solid lightgray; 
+            text-align: center;
+            font-size: 18px;
+        }
+       #noti-pre{margin-top:5px; box-sizing: border-box; position: relative; right: 120px; border-radius: 8px; width: 50px; height:30px;  text-decoration: none; color: black; background-color: #48CA7D;border: 0px;}
+       #noti-list{margin-top:5px; box-sizing: border-box; border-radius: 8px; width: 50px; height:30px;text-decoration: none; color: black; background-color: #48CA7D;border: 0px;}
+       #noti-next{margin-top:5px; box-sizing: border-box; position: relative; left: 120px; border-radius: 8px; width: 50px; height:30px; text-decoration: none; color: black; background-color: #48CA7D;border: 0px;}
     </style>
 </head>
 <body>
@@ -67,7 +77,7 @@
                 <div>
                  <ul>
                      <li><div id="noti-title">[공지]사기꾼 조심하세요!</div></li>
-                     <li><div class="noti-date">작성일 : 2022-08-03</div></li>
+                     <li><div class="noti-date">작성일 : 2022-08-03 &nbsp; 조회수 : 0 &nbsp;</div></li>
                    
                      <li><div class="noti-img"><img src="" alt="이미지파일입니다"></div></li>
                      <li><div>텍스트내용..</div></li>
@@ -75,10 +85,11 @@
                 </div>
                 
             </div>
-           <a href="" id="noti-pre">이전</a>
-           <a href="" id="noti-list">목록</a>
-           <a href="" id="noti-next">다음</a>
-        </div>
+            <div id="noti-btn-div">
+                <button id="noti-pre"  onclick="location.href=''">이전</button>
+                <button id="noti-list"  onclick="location.href='<%=contextPath%>/member/noticeList'">목록</button>
+                <button id="noti-next"  onclick="location.href=''">다음</button> </div>
+             </div>
        
 
     </main>

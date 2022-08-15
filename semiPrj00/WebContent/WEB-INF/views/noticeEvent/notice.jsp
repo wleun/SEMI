@@ -8,15 +8,16 @@
    <style>
        #box{height: 150px;width: 1920px;}
         #notice{
-            border: 2px solid red;
+            /* border: 2px solid red; */
             width: 700px;
-            height: 800px;
+            height: 900px;
             margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.675);
         }
         #notice-h1{
             margin-left: 30px;
             margin-bottom: 30px;
-            
+            padding-top: 20px;
         }
        
         li{
@@ -31,7 +32,7 @@
         color: black;
        }
        .noti-info{
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
         height: 130px;
        }
        .noti-img{
@@ -63,13 +64,15 @@
        }
        hr{
         box-sizing: border-box;
-        width: 80%;
+        width: 100%;
         border: 0.3px dashed gray;
        }
        .noti-img .noti-info .noti-title .noti-date #notice{
         box-sizing: border-box;
        }
-       
+       .page{
+        text-align: center;
+       }
     </style>
 </head>
 <body>
@@ -80,11 +83,12 @@
             <div id="notice-h1"><h1>공지사항</h1></div>
             <ul>
                 <li >
+                    <hr>
                     <a href="" class="noti-a">
                         <div class="noti-info">
-                            <div class="noti-img"><img src="/resources/images/loginIcon.png" alt=""></div>
-                            <h3 class="noti-title">[중요]공지되떻되는걸까요다잉공지되떻</h3>
-                            <span class="noti-date">2022-08-03</span>
+                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
+                            <h3 class="noti-title">[중요]꼭 읽어보세요!</h3>
+                            <span class="noti-date">2022-08-03 &nbsp; 조회수 : 0</span> 
                         </div>
                     </a>
                     <hr>
@@ -92,9 +96,9 @@
                 <li >
                     <a href="" class="noti-a">
                         <div class="noti-info">
-                            <div class="noti-img"><img src="/resources/images/loginIcon.png" alt=""></div>
-                            <h3 class="noti-title">[중요]공지되떻되는걸까요다잉공지되떻</h3>
-                            <span class="noti-date">2022-08-03</span>
+                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
+                            <h3 class="noti-title">[중요]공지사항입니다</h3>
+                            <span class="noti-date">2022-08-03 &nbsp; 조회수 : 0</span> 
                         </div>
                     </a>
                     <hr>
@@ -102,14 +106,32 @@
                 <li >
                     <a href="" class="noti-a">
                         <div class="noti-info">
-                            <div class="noti-img"><img src="/resources/images/loginIcon.png" alt=""></div>
-                            <h3 class="noti-title">[중요]공지되떻되는걸까요다잉공지되떻</h3>
-                            <span class="noti-date">2022-08-03</span>
+                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
+                            <h3 class="noti-title">[중요]공지공지공지공지입니다</h3>
+                            <span class="noti-date">2022-08-03 &nbsp; 조회수 : 0</span> 
+                        </div>
+                    </a>
+                    <hr class="last-hr">
+                </li>
+                <li >
+                    <a href="" class="noti-a">
+                        <div class="noti-info">
+                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
+                            <h3 class="noti-title">[중요]공지입니다입니다입니다공지입니다공지공지</h3>
+                            <span class="noti-date">2022-08-03 &nbsp; 조회수 : 0</span> 
                         </div>
                     </a>
                     <hr class="last-hr">
                 </li>
             </ul>
+
+            <div class="page">
+                <a>1</a>
+                <a>2</a>
+                <a>3</a>
+                <a>4</a>
+                <a>5</a>
+            </div>
         </div>
 
     </main>

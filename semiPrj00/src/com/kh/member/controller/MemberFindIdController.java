@@ -12,6 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberFindIdController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/member/findId.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/member/findIdPwd.jsp").forward(req, resp);
 	}
 }

@@ -46,7 +46,22 @@
         left: 50px;
         bottom: -27px;
       }
-           
+    #pre{
+        background-color: #48CA7D;
+        border:none;
+        border-radius: 8px;
+        width: 50px;
+        height:30px;
+        margin: 5px;
+    }
+    #next{
+        background-color: #48CA7D;
+        border:none;
+        border-radius: 8px;
+        width: 50px;
+        height:30px;
+        margin: 5px;
+    }
     </style>
 </head>
 <body>
