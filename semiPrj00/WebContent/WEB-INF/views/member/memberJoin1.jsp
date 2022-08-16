@@ -20,6 +20,7 @@
             height: 100%;
             margin: 0 auto;
             background-color: rgba(255, 255, 255, 0.675);
+            border-radius: 10px;
         }
         #join-h1{
             text-align: center;
@@ -49,18 +50,20 @@
     #pre{
         background-color: #48CA7D;
         border:none;
-        border-radius: 8px;
+        border-radius: 50px;
         width: 50px;
         height:30px;
         margin: 5px;
+        color: white;
     }
     #next{
         background-color: #48CA7D;
         border:none;
-        border-radius: 8px;
+        border-radius: 50px;
         width: 50px;
         height:30px;
         margin: 5px;
+        color: white;
     }
     </style>
 </head>

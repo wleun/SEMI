@@ -9,7 +9,7 @@
        
         #box{height: 150px;width: 1920px;}
         #join{
-            border: 2px solid blue;
+            /* border: 2px solid blue; */
             width: 700px;
             height: 800px;
             margin: 0 auto;
@@ -36,6 +36,7 @@
             font-size: 20px;
             background-color: rgba(255, 255, 255, 0.675);
             margin-top: 20px;
+            border-radius: 10px;
         }
         .join-li{
         list-style-type: none;
@@ -55,17 +56,21 @@
         width: 60px;
         float: left;
         border: 0px solid gray ;
-        border-radius: 8px;
+        border-radius: 50px;
         background-color: #48CA7D;
         margin-left: 5px;
+        color: white;
+        font-size: 18px;
        }
        #next{
         width: 60px;
         float: right;
         border: 0px solid gray ;
-        border-radius: 8px;
+        border-radius: 50px;
         background-color: #48CA7D;
         margin-right: 5px;
+        color: white;
+        font-size: 18px;
        }
        ::placeholder{
         font-size: 15px;
@@ -74,6 +79,7 @@
         width: 80px;
         border: 1px solid lightgray;
         font-size: medium;
+        border-radius: 50px;
         }
       
       .img-join{

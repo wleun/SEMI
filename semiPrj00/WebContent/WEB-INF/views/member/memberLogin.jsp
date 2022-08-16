@@ -47,20 +47,21 @@
         width: 230px;
         border-bottom: 2px solid darkgray;
         background-color: rgba(255, 255, 255, 0.675);
-        
+        border-radius: 10px;
     }
     #submit input{
         background-color: #48ca7d;
+        color: white;
         width: 70px;
-        height: 55px;
+        height: 45px;
         border: 0;
-        border-radius: 8px;
+        border-radius: 50px;
         font-size: 19px;
     }
     #submit{
         position:relative;
         left: 510px;
-        bottom: 5px;
+        bottom: -10px;
         box-sizing: border-box;
     }
     #login-h1{
