@@ -80,10 +80,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-        }
-
-        .eventArea>a:hover {
-            background-color: ;
+            justify-content: space-evenly;
         }
 
 
@@ -94,6 +91,7 @@
             flex-direction: row;
             border-radius: 16px;
         }
+
 
         
 
@@ -181,6 +179,16 @@
             align-items: flex-start;
         }
 
+        .hoverCss {
+            background-color: #48CA7D;
+            color: white;
+        }
+
+        .hoverOutCss {
+            background-color: white;
+            color: black;
+        }
+
 </style>
 </head>
 <body>
@@ -219,7 +227,7 @@
                                 <div class="eventArea">
                                     <a href="<%=contextPath%>/admin/eventDetail">
                                         <div class="eventBox">
-                                            <div class="half">
+                                            <div class="half textBox">
                                                 <div class="eventTitle"><h2>이벤트6</h2></div>
                                                 <div class="eventPeriod">2022-10-11~2022-11-10</div>
                                                 <div class="eventStatus">진행예정</div>
@@ -317,7 +325,6 @@
       </div>
 
 	</content>
-	
 	
 	
 
