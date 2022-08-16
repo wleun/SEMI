@@ -86,7 +86,7 @@
 							프로젝트 이름<br>우리, Less Waste부터 함께 해보아요!
 						</div>
 					</div>
-					<form action="" method="post" id="reportForm">
+					<form action="<%=contextPath%>/project/report" method="post" id="reportForm">
 						<input type="hidden" name="prjNo">
 						<div>신고 내용</div>
 						<textarea style="resize: none;" name="reportContent"
