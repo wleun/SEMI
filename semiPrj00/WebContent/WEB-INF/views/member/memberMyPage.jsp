@@ -45,6 +45,10 @@
             padding-top: 100px;
         }
 
+        #content-wrap{
+            height: 100%;
+        }
+
         hr{
             border: 1px black;
             width: 600px;
@@ -52,7 +56,7 @@
 
         section button {
             color: white;
-            border-radius: 100px;
+            border-radius: 50px;
             background-color: #48CA7D;
             border: 0px
         }
@@ -76,13 +80,6 @@
             font-size: 1rem;
             width: 300px;
             height: 500px;
-        }
-
-        #content-1 button{
-            width: 100px;
-            height: 30px;
-            font-size: large;
-            text-align: right;
         }
 
         #follow{
@@ -153,34 +150,34 @@
                     <table>
          
                         <tr>
-                            <th colspan="2">이메일</th>
+                            <th>이메일</th>
                         </tr>
                         <tr>
-                            <td colspan="2">KH12234@kh.com</td>
+                            <td>KH12234@kh.com</td>
                         </tr>
                         <tr>
-                            <th colspan="2">비밀번호 수정</th>
+                            <th>비밀번호 수정</th>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="password" placeholder="비밀번호를 입력하세요."></td>
+                            <td><input type="password" placeholder="비밀번호를 입력하세요."></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="password" placeholder="비밀번호를 확인합니다."></td>
+                            <td><input type="password" placeholder="비밀번호를 확인합니다."></td>
                         </tr>
                         <tr>
-                            <th colspan="2">이름</th>
+                            <th>이름</th>
                         </tr>
                         <tr>
-                            <td colspan="2">김누구</td>
+                            <td>테스트</td>
                         </tr>
                         <tr>
-                            <th colspan="2">전화번호</th>
+                            <th>전화번호</th>
                         </tr>
                         <tr>
-                            <td colspan="2">010-1234-1234</td>
+                            <td>010-1234-1234</td>
                         </tr>
                         <tr>
-                            <td colspan="2"><input type="tel" placeholder="변경하시려면, 전화번호를 입력하세요.('-'제외)"></td>
+                            <td><input type="tel" placeholder="변경하시려면, 전화번호를 입력하세요.('-'제외)"></td>
                         </tr>
          
                     </table>
@@ -198,78 +195,45 @@
                              <th>배송지</th>
                              <td></td>
                              <td></td>
-                             <td></td>
                          </tr>
                          <tr>
                              <td>주소1</td>
                              <td></td>
                              <td></td>
-                             <td></td>
                          </tr>
                          <tr>
                              <td>12345</td>
                              <td></td>
                              <td></td>
-                             <td></td>
                          </tr>
                          <tr>
-                             <td colspan="3">대한민국 어딘가1</td>
+                             <td colspan="2">대한민국 어딘가1</td>
                              <td><button>삭제</button></td>
                          </tr>
                          <tr>
-                             <td>주소2</td>
                              <td></td>
+                             <td></td>
+                             <td onclick="location.href='/semiPrj00/member/addrRegister'"><button>배송지 등록</button></td>
+                         </tr>
+                         <tr>
+                             <th>결제정보 등록</th>
                              <td></td>
                              <td></td>
                          </tr>
                          <tr>
-                             <td>12345</td>
+                             <td>BC카드 (기본)</td>
                              <td></td>
                              <td></td>
-                             <td></td>
-                         </tr>
-                         <tr>
-                             <td colspan="3">대한민국 어딘가2</td>
-                             <td><button>삭제</button></td>
-                         </tr>
-                         <tr>
-                             <td colspan="3"><input type="text" placeholder="배송지 입력버튼을 눌러주세요."></td>
-                             <td><button>주소추가</button></td>
-                         </tr>
-                         <tr>
-                             <th colspan="4">결제정보 등록</th>
-                         </tr>
-                         <tr>
-                             <td colspan="4">BC카드 (기본)</td>
                          </tr>
                          <tr>
                              <td>****-****-****-1234</td>
+                             <td></td>
                              <td><button>삭제</button></td>
                          </tr>
                          <tr>
-                             <td colspan="4">BC카드</td>
-                         </tr>
-                         <tr>
-                             <td>****-****-****-5678</td>
-                             <td><button>삭제</button></td>
-                         </tr>
-                         <tr>
-                             <td colspan="4">카드번호 0000-0000-0000-0000</td>
-                         </tr>
-                         <tr>
-                             <td><input type="text" placeholder="MM"></td>
-                             <td><input type="text" placeholder="YYYY"></td>
-                             <td colspan="2"><input type="text" placeholder="카드비밀번호 앞 2자리"></td>
-                         </tr>
-                         <tr>
-                             <td colspan="2"><input type="text" placeholder="생년월일 6자리"></td>
-                             <td colspan="2"><input type="text" placeholder="결제비밀번호 6자리"></td>
-                         </tr>
-                         <tr>
                              <td></td>
                              <td></td>
-                             <td></td>
-                             <td><button>카드 등록</button></td>
+                             <td><button onclick="location.href='/semiPrj00/member/paymentRegister'">카드 등록</button></td>
                          </tr>
          
                      </table>

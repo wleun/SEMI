@@ -131,13 +131,6 @@
             height: 500px;
         }
 
-        #content-1 button{
-            width: 100px;
-            height: 30px;
-            font-size: large;
-            text-align: right;
-        }
-
         #follow{
             text-align: center;
         }
