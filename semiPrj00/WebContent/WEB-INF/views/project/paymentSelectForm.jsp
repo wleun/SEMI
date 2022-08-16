@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>200%</title>
 <style>
 	#radio-btn:checked{
         background-color: #48CA7D;
@@ -29,7 +29,7 @@
 	#card-modal-submit-btn{
 		background-color: #48CA7D;
 		border: 0;
-		border-radius: 100px;
+		border-radius: 50px;
 	}
 </style>
 </head>

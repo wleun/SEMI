@@ -4,8 +4,7 @@
 <%
     //ArrayList<PrjVo> prjList = (ArrayList<PrjVo>)request.getAttribute("prjList");
 
-
-	String categoryName = (String)request.getAttribute("categoryName");
+	String searching = (String)request.getParameter("searching");
 
     int currentPage = 5;
 	int startPage = 1;
@@ -99,9 +98,16 @@
         background-color: #48CA7D!important;
         border: 0px!important;
     }
+    .btn{
+        border-radius: 50px !important;
+    }
     #page-area{
         text-align: center;
         padding: 30px;
+    }
+    #page-area a{
+        width: 35px;
+        font-size: 18px;
     }
 </style>
 </head>
@@ -122,10 +128,10 @@
                 상태
             </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">전체 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="#">진행중인 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="#">성사된 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="#">공개예정 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=all">전체 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=ongoing">진행중인 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=complete">성사된 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=intended">공개예정 프로젝트</a></li>
                 </ul>
         </div>
         <div id="quantity">
@@ -133,7 +139,7 @@
         </div>
         <div id="category-content-wrap">
             <%//for(int i=0;i<prjVo;i++){%>
-            <div class="prj-wrap">
+            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view'">
                 <div class="prj-content prj-img">
                     <img src="" alt="프로젝트 메인 사진">
                 </div>
