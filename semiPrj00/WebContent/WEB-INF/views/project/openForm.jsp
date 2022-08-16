@@ -118,7 +118,7 @@
 	</div>
 
 	<main id="projectForm">
-		<form action="<%=contextPath%>/project/open" method="post">
+		<form action="<%=contextPath%>/project/open" method="post" enctype="multipart/form-data">
 			<div id="project">
 				<div id="title">1. 기본정보</div>
 				<table>
@@ -153,7 +153,7 @@
 					</tr>
 					<tr>
 						<td>프로젝트 마감일자*</td>
-						<td><input type="date" class="form-control" name="end-date"
+						<td><input type="date" class="form-control" name="endDate"
 							id="endDate" onchange=dateCalc() max="2022-12-31" required>
 						</td>
 					</tr>
