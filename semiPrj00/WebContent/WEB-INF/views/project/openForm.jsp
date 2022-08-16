@@ -49,6 +49,7 @@
 		padding-left: 20px;
 		background-color: #48CA7D;
 		color: white;
+		border-radius: 10px;
 	}
 	
 	table td {
@@ -77,8 +78,8 @@
 		width: 200px;
 	}
 	
-	<!--
-	input 태그 number일 경우 증가, 감소 버튼 없애기-->input[type="number"]::-webkit-outer-spin-button,
+	/*input 태그 number일 경우 증가, 감소 버튼 없애기*/
+	input[type="number"]::-webkit-outer-spin-button,
 		input[type="number"]::-webkit-inner-spin-button {
 		-webkit-appearance: none;
 		margin: 0;
@@ -101,10 +102,6 @@
 		margin: 0 50px;
 	}
 	
-	button {
-		background-Color: #48CA7D;
-	}
-	
 	#maker, #reward {
 		display: none;
 	}
@@ -123,7 +120,7 @@
 	<main id="projectForm">
 		<form action="<%=contextPath%>/project/open" method="post">
 			<div id="project">
-				<div id="title" class="rounded-pill">1. 기본정보</div>
+				<div id="title">1. 기본정보</div>
 				<table>
 					<tr>
 						<td>프로젝트 카테고리*</td>
@@ -220,14 +217,14 @@
 					<tr>
 						<td colspan="2" style="padding-top: 150px;"><button
 								type="button" class="btn text-white" id="prjNextBtn"
-								style="background-color: #48CA7D;">다음으로</button></td>
+								style="background-color: #48CA7D; border-radius: 50px;">다음으로</button></td>
 					</tr>
 				</table>
 			</div>
 
 
 			<div id="maker">
-				<div id="title" class="rounded-pill">2. 창작자 정보</div>
+				<div id="title">2. 창작자 정보</div>
 				<table>
 					<tr>
 						<td>메이커 정보</td>
@@ -257,13 +254,13 @@
 					<tr>
 						<td colspan="2" style="padding-top: 150px;"><button
 								type="button" class="btn text-white" id="makerNextBtn"
-								style="background-color: #48CA7D;">다음으로</button></td>
+								style="background-color: #48CA7D; border-radius: 50px;">다음으로</button></td>
 					</tr>
 				</table>
 			</div>
 
 			<div id="reward">
-				<div id="title" class="rounded-pill">3. 리워드 추가하기</div>
+				<div id="title">3. 리워드 추가하기</div>
 				<table id="rewardTable">
 					<tr>
 						<td>리워드 금액*</td>
@@ -298,14 +295,15 @@
 
 				<div class="btn-area">
 					<button type="button"
-						style="background-color: #48CA7D; margin: 0 20px;"
+						style="background-color: #48CA7D; border-radius: 50px; margin: 0 20px;"
 						class="btn text-white" id="addReward" data-bs-toggle="tooltip"
 						title="옵션을 추가하려면 눌러주세요.">+</button>
 					<button type="button"
-						style="background-color: #48CA7D; margin: 0 20px;"
+						style="background-color: #48CA7D; border-radius: 50px; margin: 0 20px;"
 						class="btn text-white" id="delReward" data-bs-toggle="tooltip"
 						title="옵션을 삭제하려면 눌러주세요.">-</button>
-					<button type="submit" style="background-color: #48CA7D;"
+					<button type="submit"
+						style="background-color: #48CA7D; border-radius: 50px;"
 						class="btn text-white" id="btn">신청완료하기</button>
 				</div>
 			</div>
