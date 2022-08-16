@@ -8,7 +8,7 @@
  <style>
         #box{height: 150px;width: 1920px;}
         #join{
-            border: 2px solid blue;
+            /* border: 2px solid blue; */
             width: 700px;
             height: 800px;
             margin: 0 auto;
@@ -35,6 +35,7 @@
             font-size: 20px;
             padding-top: 20px;
             background-color: rgba(255, 255, 255, 0.675);
+            border-radius: 10px;
         }
         .join-li{
         list-style-type: none;
@@ -77,17 +78,22 @@
         width: 60px;
         float: left;
         margin-left: 5px;
+        border-radius: 50px;
+        color: white;
        }
        #next{
         margin-right: 5px;
         border: 0px;
         width: 60px;
         float: right;
+        border-radius: 50px;
+        color: white;
        }
        #check-btn{
         width: 80px;
         border: 1px solid lightgray;
         font-size: medium;
+        border-radius: 50px;
         }
       .img-join{
         width: 70px;

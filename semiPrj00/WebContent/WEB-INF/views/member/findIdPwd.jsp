@@ -89,13 +89,14 @@
         height: 120px;
         font-size: 23px;
         margin-right: -40px; 
-
+        color: white;
     }
     #modal_btn_pwd{
         width: 120px;
         height: 120px;
         font-size: 23px;
         margin-left: -40px;
+        color: white;
     }
     .modal_wrap{
         display: none;
@@ -104,7 +105,7 @@
         position: absolute;
         top: 18%;
         /* left: 50%; */
-        
+        border-radius: 10px;
         background: #F9F5EA;
         z-index: 2;
     }
@@ -125,6 +126,8 @@
         position: absolute;
         bottom: 30px;
         right: 50px;
+        border-radius: 50px;
+        color: white;
     }
     .modal_close_pwd {
         width: 26px;
@@ -162,12 +165,12 @@
         height: 450px;
         /* border: 1px solid gray; */
         background-color: rgba(255, 255, 255, 0.675);
-        border-radius: 8px;
+        border-radius: 10px;
         margin: 0 auto;
         margin-top: 20px;
     }
     #btn_div{
-        text-align: center;
+        float: right;
         margin-top: 60px;
     }
     #btn_div button{
@@ -176,11 +179,13 @@
     .after_check{
         display: none;
     }
-    .under-btn{
-        /* background-color: #48ca7d; */
-        border-radius: 8px;
-        height:30px;
-        margin: 5px;
+    #btn_div a{
+        text-decoration: none;
+        color:black;
+        font-size: 18px;
+    }
+    #btn_div a:hover{
+        color: #48ca7d;
     }
 </style>
 <head>
@@ -239,8 +244,8 @@
                         </form>
                     </div>
                 </div>
-                <div id="btn_div"><button onclick="location.href='<%=contextPath%>/member/join'" class="under-btn">회원가입</button> <button onclick="location.href='<%=contextPath%>/member/login'" class="under-btn">로그인</button></div>
-                
+                <!-- <div id="btn_div"><button onclick="location.href='<%=contextPath%>/member/join'" class="under-btn">회원가입</button> <button onclick="location.href='<%=contextPath%>/member/login'" class="under-btn">로그인</button></div> -->
+                <div id="btn_div"><a href="'<%=contextPath%>/member/join'"class="under-btn">회원가입 |</a><a href="'<%=contextPath%>/member/login'"class="under-btn">&nbsp;로그인&nbsp;</a></div>
             </div>
             
 

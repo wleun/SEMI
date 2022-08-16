@@ -12,6 +12,8 @@
         width: 700px;
         height: 800px;
         margin: 0px auto;
+        background-color: rgba(255, 255, 255, 0.675);
+        border-radius: 10px;
     }
    
     #finish-div{
@@ -26,8 +28,11 @@
 
    
     #finish-h1{
+        box-sizing: border-box;
        text-align: center;
        font-size: 60px;
+       padding-right: 90px;
+       padding-top: 15px;
     }
     
     .join-find-a{
@@ -38,21 +43,22 @@
     }
     .join-find{float: right;}
     #finish-img{
+        box-sizing: border-box;
         width: 300px;
         height: 280px;
-        /* margin: 0 auto; */
-        position: relative;
-        left: 250px;
+        position: relative; 
+        left: 200px;
     }
     .go{
         position: relative;
-        left: 290px;
+        left: 250px;
         width: 100px;
         height: 60px;
         border: 0px solid gray ;
-        border-radius: 8px;
+        border-radius: 50px;
         background-color: #48CA7D;
-        font-size: 20px;
+        font-size: 22px;
+        color: white;
     }
 </style>
 <head>
