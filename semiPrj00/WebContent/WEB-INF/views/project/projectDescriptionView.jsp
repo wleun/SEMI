@@ -7,19 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>플젝명</title>
-    <!-- 부트스트랩 소스 -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    
 <style>
 /* 공통 css */
 	#header-div{
         width: 1920px;
         height: 120px;
     }
-    /* @font-face{font-family: 'twayair'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');} */
     a{text-decoration: none; color: black;}
-    /* body, body button, body input{font-family: twayair; background-color: #F9F5EA;}
-    div{box-sizing: border-box;} */
+    
     #outer{
         width: 1344px;
         height: auto;
@@ -27,10 +23,7 @@
         display: flex;
         flex-wrap: wrap;
     }
-    #category-dropdown[type='data-bs-toggle']{
-    	data
-    }
-
+   
     /* 버튼부분 */
     #btn-div1,#btn-div2{
         display: flex;
@@ -41,7 +34,7 @@
     padding: 10px;
     background-color: white;
     border: 1px #48CA7D solid;
-    border-radius: 10px;
+    border-radius: 50px;
     margin: 10px;
     }
     #btn-div1>a:first-child{
@@ -50,7 +43,7 @@
     #btn-div2>button{
         border: none;
         height: 30px;
-        border-radius: 10px;
+        border-radius: 50px;
     }
     #btn-div1>a:last-child{
         text-align: center;
@@ -58,6 +51,12 @@
     #btn-div1>a:last-child, #btn-div2>button:nth-child(2){
         background-color: #48CA7D;
         color: white;
+    }
+    #support-btn{
+        text-decoration: none;
+    }
+    #support-btn:hover{
+        color: burlywood;
     }
     
     #reward-btn{
@@ -102,7 +101,7 @@
         border: none;
         background-color: #48CA7D;
         color: white;
-        border-radius: 10px;    
+        border-radius: 50px;    
         margin-top: 20px;
         width: 100%;
         height: 2em;
@@ -144,7 +143,7 @@
     #project-category{
         width: 70px;
         height: 40px;
-        border-radius: 10px;
+        border-radius: 50px;
         margin: 10px;
         background-color: #48CA7D;
     }
@@ -244,7 +243,7 @@
         padding: 10px 50px 10px 50px;
         margin-bottom: 50px;
         display: inline-block;
-        border-radius: 50px;
+        border-radius: 10px;
     }
     
     /* 공지사항 영역 */
@@ -259,7 +258,7 @@
         height: 50px;
         width: 150px;
         border: 0px;
-        border-radius: 10px;
+        border-radius: 50px;
         background-color: #48CA7D;
         color: white;
     }
@@ -312,7 +311,7 @@
         width: 100px;
         height: 50px;
         border: none;
-        border-radius: 10px;
+        border-radius: 50px;
         color: white;
         background-color: #48CA7D;
         margin-left: 30px;
@@ -395,10 +394,10 @@
         height: auto;
     }
     #creator-info{
-        border: 1px solid rgba(214, 196, 196, 0.651);
-        border-radius: 10px 10px 10px 10px;
+        background-color: white;
+        border-radius: 10px;
         padding: 30px;
-        margin: 30px 0px 30px 0px;
+        margin: 30px 30px 30px 0px;
         height: 300px;
         display: flex;
         flex-wrap: wrap;
@@ -532,12 +531,12 @@
                     </table>
                 </div>
                 <div class="btns" id="btn-div1">
-                    <a>
+                    <a id="like-btn">
                         <img id="heart-btn" width="20px" src="<%=contextPath%>/resources/img/project_like.png" alt="??">
                     </a>
-                    <a href="#reward-option">이 프로젝트 후원하기</a>
+                    <a id="support-btn" href="#reward-option">이 프로젝트 후원하기</a>
                 </div>
-            </div>
+            </div>`
         </div>
         <div class="desc-section" id="desc-main">
             <div id="main-nav">
@@ -710,9 +709,9 @@
                             <div><span class="option-attribute" id="option-price">25,000</span><span class="option-attribute" id="option-price"> 원</span></div>
                             <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
                             <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
-                            <form action="">
+                            <form action="<%=contextPath%>/project/support">
                                 <div id="option-select-area">
-                                    수량선택 <input type="number">
+                                    수량선택 <input type="number" id="reward-quantity">
                                     <input type="submit" value="후원하기">
                                 </div>
                             </form>
@@ -765,12 +764,21 @@
     <script>
         $(function(){
             
-            $('#btn-div1>a').on({
+            $('#btn-div1>#like-btn').on({
                 'click': function() {
                     var src = ($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png')
                         ? '<%=contextPath%>/resources/img/project_liked.png'
                         : '<%=contextPath%>/resources/img/project_like.png';
                     $('#btn-div1 img').attr('src', src);    
+
+                    if($(this).children().attr('src') === '<%=contextPath%>/resources/img/project_like.png'){
+                        location.href='<%=contextPath%>/project/like?flag=1'
+                        console.log('좋아요');
+                    }else if($(this).children().attr('src') === '<%=contextPath%>/resources/img/project_liked.png'){
+                        location.href='<%=contextPath%>/project/like?flag=2'
+                       	console.log('좋아요취소');
+                    }
+
                 }
             });
 
