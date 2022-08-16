@@ -3,11 +3,16 @@ package com.kh.project.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@MultipartConfig(
+		maxFileSize = 1024*1024*50,
+		maxRequestSize = 1024*1024*50*5
+)
 
 //프로젝트 오픈 신청
 @WebServlet(urlPatterns = "/project/open")
@@ -27,17 +32,17 @@ public class PrjOpenController extends HttpServlet{
 		//데이터 꺼내기
 		
 		//1page 프로젝트 기본정보
-		String category = req.getParameter("prjCategory"); //카테고리
-		String title = req.getParameter("prjTitle"); //프로젝트 제목
-		String startDate = req.getParameter("startDate");//시작일(날짜)////
-		String endDate = req.getParameter("endDate");//마감일(날짜)////
-		String goal = req.getParameter("prjAmount"); //목표금액
+		String category = (String)req.getParameter("prjCategory"); //카테고리
+		String title = (String)req.getParameter("prjTitle"); //프로젝트 제목
+		String startDate = (String)req.getParameter("startDate");//시작일(날짜)////
+		String endDate = (String)req.getParameter("endDate");//마감일(날짜)////
+		String goal = (String)req.getParameter("prjAmount"); //목표금액
 		//대표이미지
 		//상세이미지
-		String text = req.getParameter("prjText"); //상세설명
+		String text = (String)req.getParameter("prjText"); //상세설명
 		String etc = "";
 		if(req.getParameter("etc") != null) {
-			etc = req.getParameter("etc"); //예상 어려움 ////
+			etc = (String)req.getParameter("etc"); //예상 어려움 ////
 		} 
 		//확인용
 		System.out.println(category);
