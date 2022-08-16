@@ -27,7 +27,7 @@
         align-self: center;
         width: 85%;
         border: 1px solid #C3B091;
-        border-radius: 16px;
+        border-radius: 10px;
     }
     
     #noticeHeader {
@@ -49,7 +49,7 @@
         text-align: center;
         background-color: #F9F5EA;
         border-bottom: 1px solid #C3B091;
-        border-radius: 16px 16px 0px 0px;
+        border-radius: 10px 10px 0px 0px;
     }
 
     #noticeInfo {
@@ -95,7 +95,7 @@
     }
 
     #infoSecondDiv button {
-        border-radius: 16px;
+        border-radius: 50px;
         width: 80px;
     }
 

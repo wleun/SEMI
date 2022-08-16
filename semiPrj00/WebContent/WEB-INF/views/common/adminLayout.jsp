@@ -54,15 +54,20 @@
         button {
             background-color: #48CA7D;
             border: 1px solid #C3B091;
-            border-radius: 16px;
+            border-radius: 50px;
             color: white;
         }
 
         .button {
             background-color: #48CA7D;
             border: 1px solid #C3B091;
-            border-radius: 16px;
+            border-radius: 50px;
             color: white;
+        }
+
+        input:checked{
+        background-color: #48CA7D !important;
+        border: 0;
         }
 
         #pageWrap {

@@ -51,7 +51,7 @@
             margin: 5px;
             align-self: center;
             text-align: center;
-            border-radius: 16px;
+            border-radius: 50px;
         }
 
         
@@ -72,12 +72,12 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #C3B091;
-            border-radius: 16px;
+            border-radius: 10px;
         }
         
         #memberManageFirstColumn {
             background-color: #F9F5EA;
-            border-radius: 16px 16px 0px 0px;
+            border-radius: 10px 10px 0px 0px;
             border-bottom: 1px solid #C3B091;
             width: 100%;
             height: 9%;
@@ -234,7 +234,7 @@
                                 </div>
                             
                                     <div class="memberManageColumn">
-                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="memberNo">1</div>
                                         <div class="memberType">사업자회원</div>
                                         <div class="memberLevel">브론즈</div>
@@ -250,7 +250,7 @@
 
 
                                     <div class="memberManageColumn">
-                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="memberNo">1</div>
                                         <div class="memberType">일반회원</div>
                                         <div class="memberLevel">일반</div>

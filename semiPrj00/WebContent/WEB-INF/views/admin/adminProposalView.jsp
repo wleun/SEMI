@@ -51,7 +51,7 @@
             margin: 3px;
             align-self: center;
             text-align: center;
-            border-radius: 16px;
+            border-radius: 50px;
         }
         
         #proposalManageDiv1_search select {
@@ -71,7 +71,7 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #C3B091;
-            border-radius: 16px;
+            border-radius: 10px;
         }
 
         .proposalManageWrap>a {
@@ -81,7 +81,7 @@
 
         #proposalManageFirstColumn {
             background-color: #F9F5EA;
-            border-radius: 16px 16px 0px 0px;
+            border-radius: 10px 10px 0px 0px;
             border-bottom: 1px solid #C3B091;
             width: 100%;
             height: 9%;

@@ -51,7 +51,7 @@
             margin: 5px;
             align-self: center;
             text-align: center;
-            border-radius: 16px;
+            border-radius: 50px;
         }
         
 
@@ -72,7 +72,7 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #C3B091;
-            border-radius: 16px;
+            border-radius: 10px;
         }
 
         .boardWrap>a {
@@ -84,7 +84,7 @@
 
         #boardFirstColumn {
             background-color: #F9F5EA;
-            border-radius: 16px 16px 0px 0px;
+            border-radius: 10px 10px 0px 0px;
             border-bottom: 1px solid #C3B091;
             width: 100%;
             height: 9%;
@@ -239,7 +239,7 @@
                             
                                 <a href="">
                                     <div class="boardColumn">
-                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="status">진행중</div>
                                         <div class="prjNo">1</div>
                                         <div class="category">테크</div>
@@ -253,7 +253,7 @@
                                 </a>
                                 <a href="">
                                     <div class="boardColumn">
-                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="status">성사됨</div>
                                         <div class="prjNo">2</div>
                                         <div class="category">레저/스포츠</div>
@@ -267,7 +267,7 @@
                                 </a>
                                 <a href="">
                                     <div class="boardColumn">
-                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="status">펀딩예정</div>
                                         <div class="prjNo">3</div>
                                         <div class="category">뷰티</div>
@@ -281,7 +281,7 @@
                                 </a>
                                 <a href="">
                                     <div class="boardColumn">
-                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="status">진행중</div>
                                         <div class="prjNo">1</div>
                                         <div class="category">테크</div>
@@ -295,7 +295,7 @@
                                 </a>
                                 <a href="">
                                     <div class="boardColumn">
-                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="status">성사됨</div>
                                         <div class="prjNo">2</div>
                                         <div class="category">레저/스포츠</div>
@@ -309,7 +309,7 @@
                                 </a>
                                 <a href="">
                                     <div class="boardColumn">
-                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="status">펀딩예정</div>
                                         <div class="prjNo">3</div>
                                         <div class="category">뷰티</div>
@@ -323,7 +323,7 @@
                                 </a>
                                 <a href="">
                                     <div class="boardColumn">
-                                        <div class="check"><input type="checkbox"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="status">진행중</div>
                                         <div class="prjNo">1</div>
                                         <div class="category">테크</div>
