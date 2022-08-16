@@ -47,7 +47,7 @@
 
         section button {
             color: white;
-            border-radius: 100px;
+            border-radius: 50px;
             background-color: #48CA7D;
             border: 0px
         }
@@ -55,7 +55,7 @@
         button {
             color: white;
             margin-top: 10px;
-            border-radius: 100px;
+            border-radius: 50px;
             background-color: #48CA7D;
             border: 0px
         }
@@ -65,7 +65,7 @@
             height: 40px;
             color: white;
             margin-top: 10px;
-            border-radius: 100px;
+            border-radius: 50px;
             background-color: #48CA7D;
             border: 0px
         }
@@ -80,7 +80,7 @@
             height: 150px;
             margin-top: 30px;
             border: 5px solid #48CA7D;
-            border-radius: 16px;
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -94,7 +94,7 @@
             height: 150px;
             margin-top: 30px;
             border: 5px solid #48CA7D;
-            border-radius: 16px;
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -108,7 +108,7 @@
             height: 150px;
             margin-top: 30px;
             border: 5px solid #48CA7D;
-            border-radius: 16px;
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -131,13 +131,6 @@
             font-size: 1rem;
             width: 300px;
             height: 500px;
-        }
-
-        #content-1 button{
-            width: 100px;
-            height: 30px;
-            font-size: large;
-            text-align: right;
         }
 
         #follow{

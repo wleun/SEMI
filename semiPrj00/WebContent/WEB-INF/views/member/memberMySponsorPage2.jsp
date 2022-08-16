@@ -47,7 +47,7 @@
 
         section button {
             color: white;
-            border-radius: 100px;
+            border-radius: 50px;
             background-color: #48CA7D;
             border: 0px
         }
@@ -73,7 +73,7 @@
             width: 800px;
             height: 250px;
             border: 5px solid #48CA7D;
-            border-radius: 16px;
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -86,7 +86,7 @@
             width: 800px;
             height: 200px;
             border: 5px solid #48CA7D;
-            border-radius: 16px;
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -99,7 +99,7 @@
             width: 800px;
             height: 300px;
             border: 5px solid #48CA7D;
-            border-radius: 16px;
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -112,7 +112,7 @@
             width: 800px;
             height: 250px;
             border: 5px solid #48CA7D;
-            border-radius: 16px;
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -135,13 +135,6 @@
             font-size: 1rem;
             width: 300px;
             height: 500px;
-        }
-
-        #content-1 button{
-            width: 100px;
-            height: 30px;
-            font-size: large;
-            text-align: right;
         }
 
         #follow{
@@ -263,7 +256,7 @@
                     <table>
                         <tr>
                             <td>이름</td>
-                            <td>김누구</td>
+                            <td>테스트</td>
                         </tr>
                         <tr>
                             <td>주소</td>

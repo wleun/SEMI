@@ -47,7 +47,7 @@
 
         section button {
             color: white;
-            border-radius: 100px;
+            border-radius: 50px;
             background-color: #48CA7D;
             border: 0px
         }
@@ -61,7 +61,7 @@
             width: 800px;
             height: 500px;
             border: 5px solid #48CA7D;
-            border-radius: 16px;
+            border-radius: 10px;
             text-align: center;
             margin-top: 50px;
         }
@@ -97,13 +97,6 @@
             font-size: 1rem;
             width: 300px;
             height: 500px;
-        }
-
-        #content-1 button{
-            width: 100px;
-            height: 30px;
-            font-size: large;
-            text-align: right;
         }
 
         #follow{
