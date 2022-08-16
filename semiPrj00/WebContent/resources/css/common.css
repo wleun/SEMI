@@ -11,3 +11,7 @@ body{
 div{
     box-sizing: border-box;
 }
+input:checked{
+    background-color: #48CA7D !important;
+    border: 0;
+}
