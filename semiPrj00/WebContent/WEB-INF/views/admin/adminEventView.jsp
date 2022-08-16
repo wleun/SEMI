@@ -82,12 +82,8 @@
             flex-direction: column;
         }
 
-        .eventArea>a {
-            width: 100%;
-            height: 50%;
-            display: flex;
-            flex-direction: row;
-            border-radius: 16px;
+        .eventArea>a:hover {
+            background-color: ;
         }
 
 
@@ -148,7 +144,7 @@
             width: 288px;
             height: 164px;
             margin: 0 auto;
-            border-radius: 16px;
+            border-radius: 10px;
             border: 1px solid #C3B091;;
         }
         
@@ -229,7 +225,7 @@
                                                 <div class="eventStatus">진행예정</div>
                                             </div>
                                             <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                                             </div>
                                         </div>
                                     </a>
@@ -241,7 +237,7 @@
                                                 <div class="eventStatus">진행중</div>
                                             </div>
                                             <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                                             </div>
                                         </div>
                                     </a>
@@ -253,7 +249,7 @@
                                                 <div class="eventStatus">진행중</div>
                                             </div>
                                             <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                                             </div>
                                         </div>
                                     </a>
@@ -267,7 +263,7 @@
                                                 <div class="eventStatus">종료됨</div>
                                             </div>
                                             <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                                             </div>
                                         </div>
                                     </a>
@@ -279,7 +275,7 @@
                                                 <div class="eventStatus">종료됨</div>
                                             </div>
                                             <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                                         </div>
                                     </div></a>
                                     <a href="<%=contextPath%>/admin/eventDetail">
@@ -290,7 +286,7 @@
                                                 <div class="eventStatus">종료됨</div>
                                             </div>
                                             <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                                             </div>
                                         </div>
                                     </a>
@@ -311,7 +307,7 @@
                                 <div>▶</div>
                             </div>
                             <div id="eventDiv3_edit">
-                            	<div><input type="button" value="작성하기" class="button"></div>
+                            	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/eventInstall';"></div>
                                 <div><input type="button" value="삭제하기" class="button"></div>
                </div>
     

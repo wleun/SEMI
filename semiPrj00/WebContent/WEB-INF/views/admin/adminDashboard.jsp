@@ -16,7 +16,7 @@
         .dashBoard>div {
             background-color: white;
             border: 1px solid #C3B091;;
-            border-radius: 16px;
+            border-radius: 10px;
             /* filter: drop-shadow(0px 1px 2px #C3B091); */
         }
 
@@ -105,13 +105,13 @@
 
         #eventThumbnail {
             height: 51%;
-            border-radius: 16px 16px 0px 0px;
+            border-radius: 10px 10px 0px 0px;
             border: 0px;
         }
 
         #eventOngoing {
             height: 49%;
-            border-radius: 0px 0px 16px 16px;
+            border-radius: 0px 0px 10px 10px;
             border: 0px;
         }
 
@@ -242,7 +242,7 @@
                 </div>
                 <div id="dashBoardDiv2" class="dashBoard">
                     <div id="eventDashBoard">
-                        <div id="eventThumbnail"><img style="border-radius: 16px 16px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+                        <div id="eventThumbnail"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                         <div id="eventOngoing">
                             <div id="eventOngoingText"><a>진행중인 이벤트</a></div>
                             <div id="eventOngoingTable">

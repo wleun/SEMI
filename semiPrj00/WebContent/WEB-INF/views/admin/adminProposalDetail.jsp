@@ -15,28 +15,35 @@
         justify-content: center;
         align-items: center;
         width: 1500px;
-        height: 2000px;
+        height: 3000px;
         margin-left: 50px;
     }
 
     #proposalDetail {
-        height: 1600px;
+        height: 2750px;
         display: flex;
         flex-direction: column;
         width: 50%;
-        border-radius: 16px;
+        border-radius: 10px;
     }
 
     #proposalInfo {
         width: 100%;
-        height: 20%;
+        height: 17%;
         display: flex;
         flex-direction: column;
     }
 
     #projectInfo {
         width: 100%;
-        height: 20%;
+        height: 33%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #projectMedia {
+        width: 100%;
+        height: 50%;
         display: flex;
         flex-direction: column;
     }
@@ -45,7 +52,7 @@
         width: 100%;
         height: 50px;
         border: 1px solid #C3B091;
-        border-radius: 16px;
+        border-radius: 50px;
         background-color: #F9F5EA;
         font-weight: 700;
         color: black;
@@ -57,14 +64,14 @@
 
     #proposalInfoBox {
         width: 100%;
-        height: 270px;
+        height: 320px;
         display: flex;
         flex-direction: row;
         justify-content: center;
     }
 
     .proposalInfoBox {
-        width: 30%;
+        width: 50%;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -72,7 +79,7 @@
 
     #projectInfoBox {
         width: 100%;
-        height: 270px;
+        height: 500px;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -81,7 +88,7 @@
 
     .proposalInfo {
         width: 100%;
-        height: 16.66%;
+        height: 20%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -89,10 +96,16 @@
 
     .projectInfo {
         width: 100%;
-        height: 16.66%;
+        height: 12%;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .projectExplain {
+        width: 100%;
+        height: auto;
+        display: flex;
     }
 
     .justify-right {
@@ -113,6 +126,10 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+    }
+
+    .mediaText {
+        height: 30px;
     }
 
 
@@ -152,30 +169,28 @@
                 <div class="proposalInfoBar">2.프로젝트 정보</div>
                 <div id="projectInfoBox">
                     <div class="proposalInfoBox">
-                        <div class="projectInfo justify-right">프로젝트 시작일자 </div>
-                        <div class="projectInfo justify-right">프로젝트 마감일자</div>
+                        <div class="projectInfo justify-right">프로젝트 일자 </div>
                         <div class="projectInfo justify-right">프로젝트 목표금액</div>
-                        <div class="projectInfo justify-right">상세 설명</div>
-                        <div class="projectInfo justify-right">예상되는 어려움</div>
-                        <div class="projectInfo justify-right">예상 전달일</div>
+                        <div class="projectExplain justify-right">상세 설명
+                            
+                        </div>
+                        <div class="projectInfo justify-right">배송일</div>
                     </div>
                     <div class="proposalInfoBox">
-                        <div class="projectInfo justify-left">프로젝트 시작일자 </div>
-                        <div class="projectInfo justify-left">프로젝트 마감일자</div>
-                        <div class="projectInfo justify-left">프로젝트 목표금액</div>
-                        <div class="projectInfo justify-left">상세 설명</div>
-                        <div class="projectInfo justify-left">예상되는 어려움</div>
-                        <div class="projectInfo justify-left">예상 전달일</div>
+                        <div class="projectInfo justify-left">2022-09-01 ~ 2022-09-10 </div>
+                        <div class="projectInfo justify-left">10,000,000원</div>
+                        <div class="projectExplain justify-left">설명</div>
+                        <div class="projectInfo justify-left">배송일</div>
                     </div>
                 </div>
 
             </div>
             <div id="projectMedia">
                 <div class="proposalInfoBar">3.프로젝트 자료</div>
-                <div class="mediaText">대표 이미지</div>
-                <div class="mediaBox"></div>
+                <div class="mediaText">썸네일</div>
+                <div class="mediaBox"><img src="" alt=""></div>
                 <div class="mediaText">상세 이미지/영상</div>
-                <div class="mediaBox"></div>
+                <div class="mediaBox"><img src="" alt=""></div>
             </div>
         </div>
     </div>

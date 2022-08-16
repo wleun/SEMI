@@ -52,7 +52,7 @@
             margin: 5px;
             align-self: center;
             text-align: center;
-            border-radius: 16px;
+            border-radius: 50px;
         }
 
         #noticeDiv1_search select {
@@ -73,7 +73,7 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #C3B091;
-            border-radius: 16px;
+            border-radius: 10px;
         }
 
         .noticeWrap>a {
@@ -85,7 +85,7 @@
 
         #noticeFirstColumn {
             background-color: #F9F5EA;
-            border-radius: 16px 16px 0px 0px;
+            border-radius: 10px 10px 0px 0px;
             border-bottom: 1px solid #C3B091;
             width: 100%;
             height: 9%;
@@ -217,7 +217,7 @@
                             
                                 <a href="<%=contextPath%>/admin/noticeDetail">
                                     <div class="noticeColumn">
-                                        <div class="check">선택</div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="important">중요</div>
                                         <div class="noticeNo">번호</div>
                                         <div class="noticeName">공지사항 이름</div>
@@ -227,7 +227,7 @@
                                 </a>
                                 <a href="<%=contextPath%>/admin/noticeDetail">
                                     <div class="noticeColumn">
-                                        <div class="check">선택</div>
+                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
                                         <div class="important">중요</div>
                                         <div class="noticeNo">번호</div>
                                         <div class="noticeName">공지사항 이름</div>
@@ -251,7 +251,7 @@
                                 <div>▶</div>
                             </div>
                             <div id="noticeDiv3_edit">
-                            	<div><input type="button" value="작성하기" class="button"></div>
+                            	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/noticeInstall';"></div>
                                 <div><input type="button" value="삭제하기" class="button"></div>
                </div>
     
