@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.category.vo.CategoryVo;
+import com.kh.project.service.PrjCategoryService;
 
 @WebServlet(urlPatterns = "/project/category")
 public class PrjCategoryController extends HttpServlet{
@@ -27,4 +28,4 @@ public class PrjCategoryController extends HttpServlet{
 		
 	}
 
-}
+}//class

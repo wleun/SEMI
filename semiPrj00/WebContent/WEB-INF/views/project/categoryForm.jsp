@@ -1,13 +1,8 @@
-<%@page import="com.kh.category.vo.CategoryVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
     //ArrayList<PrjVo> prjList = (ArrayList<PrjVo>)request.getAttribute("prjList");
-
-	CategoryVo categoryVo = (CategoryVo)request.getAttribute("categoryVo");
-	String categoryName = categoryVo.getCategoryName();
-	String categoryNo = categoryVo.getCategoryNo();
 
     int currentPage = 5;
 	int startPage = 1;
@@ -124,17 +119,17 @@
 
     <div id="category-body">
         <div id="category-name">
-            <%=categoryName%>
+            ${categoryName}
         </div>
         <div id="category-sort" class="dropdown">
             <button type="button" id="sort-btn" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
                 상태
             </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=categoryNo%>&sort=all">전체 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=categoryNo%>&sort=ongoing">진행중인 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=categoryNo%>&sort=complete">성사된 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=categoryNo%>&sort=intended">공개예정 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=${categoryNo}&sort=all">전체 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=${categoryNo}&sort=ongoing">진행중인 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=${categoryNo}&sort=complete">성사된 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=${categoryNo}&sort=intended">공개예정 프로젝트</a></li>
                 </ul>
         </div>
         <div id="quantity">
