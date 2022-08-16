@@ -77,7 +77,7 @@
     .btn-td button{
         background-color: #48CA7D;
         border: 0;
-        border-radius: 100px;
+        border-radius: 50px;
     }
     .btn-td button:hover{
     	background-color: #48CA7D;
@@ -144,6 +144,7 @@
         background-color: #48CA7D;
         border: 0;
         width: 670px;
+        border-radius: 50px;
     }
     .margin-left-30{
         margin-left: 30px;
@@ -235,8 +236,8 @@
                     <table>
                         <tr>
                             <td class="title">쿠폰 선택</td>
-                            <td class="content">사용 가능 0개/보유 0개</td>
-                            <td class="btn-td"><button class="btn btn-success">사용</button></td>
+                            <td class="content">사용 <span id="using-coupon">0</span>개/보유 <span id="having-coupon">0</span>개</td>
+                            <td class="btn-td"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#coupon-select">사용</button></td>
                         </tr>
                     </table>
                 </div>
@@ -320,6 +321,7 @@
             </div>
        </div>
        <%@ include file="/WEB-INF/views/project/paymentSelectForm.jsp" %>
+       <%@ include file="/WEB-INF/views/project/couponSelectForm.jsp" %>
        <%@ include file="/WEB-INF/views/project/deliveryAddrSelectForm.jsp" %>
     </div>
 
@@ -354,6 +356,15 @@
             }else{
                 $("#addr-default").removeClass("opacity-0");
             }
+        });
+
+        $("#change-reward").click(function(){
+            location.href='<%=contextPath%>/project/view#reward-option';
+        });
+
+        $("#having-coupon").text($("input:checkbox[name='coupon']").length);
+        $("#coupon-modal-submit-btn").click(function(){
+            $("#using-coupon").text($("input:checkbox[name='coupon']:checked").length);	
         });
         
     </script>

@@ -25,7 +25,7 @@
     #payment-body{
         width: 600px;
         height: 100%;
-        padding-top: 120px;
+        padding-top: 60px;
         margin: auto;
     }
     #payment-body div{
