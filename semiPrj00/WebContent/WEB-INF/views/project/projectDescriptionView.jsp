@@ -8,24 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>플젝명</title>
     <!-- 부트스트랩 소스 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
 <style>
 /* 공통 css */
 	#header-div{
         width: 1920px;
         height: 120px;
     }
-    @font-face{font-family: 'twayair'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');}
+    /* @font-face{font-family: 'twayair'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');} */
     a{text-decoration: none; color: black;}
-    body, body button, body input{font-family: twayair; background-color: #F9F5EA;}
-    div{box-sizing: border-box;}
+    /* body, body button, body input{font-family: twayair; background-color: #F9F5EA;}
+    div{box-sizing: border-box;} */
     #outer{
         width: 1344px;
         height: auto;
         margin: 0 auto;
         display: flex;
         flex-wrap: wrap;
+    }
+    #category-dropdown[type='data-bs-toggle']{
+    	data
     }
 
     /* 버튼부분 */
