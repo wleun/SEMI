@@ -58,6 +58,12 @@
             color: white;
         }
 
+        input {
+            border: 1px solid #C3B091;
+            border-radius: 50px;
+        }
+
+
         .button {
             background-color: #48CA7D;
             border: 1px solid #C3B091;
@@ -222,7 +228,6 @@
             left: 288px;
             top: 108px;
             border-right: 1px solid black;
-
         }
 </style>
 </head>

@@ -186,7 +186,7 @@
     
                            <select name="what" id="searchWhat">
                               <option value="receipt">접수</option>
-                              <option value="processing">처리중</option>
+                              <option value="processing">검토중</option>
                               <option value="return">반려</option>
                               <option value="approve">승인</option>
                            </select>

@@ -114,14 +114,19 @@
 
     #contentImage {
         width: 100%;
-        height: 80%;
+        height: 60%;
         display: flex;
         flex-direction: column;
     }
 
+    #contentImage>img {
+        width: 100%;
+        height: 100%;
+    }
+
     #contentText {
         width: 100%;
-        height: 20%;
+        height: 40%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -141,7 +146,7 @@
             <div id="eventDetail">
                 <div id="eventHeader">
                     <div id="eventTitle">
-                        <h1> 이벤트1 </h1>
+                        <h2> 이벤트 </h2>
                     </div>
                     <div id="eventInfo">
                         <div id="infoEventNo">[글번호 : 1]</div>

@@ -22,7 +22,6 @@
         height: 1500px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         align-self: center;
         width: 85%;
@@ -114,14 +113,20 @@
 
     #contentImage {
         width: 100%;
-        height: 80%;
+        height: 60%;
         display: flex;
         flex-direction: column;
     }
 
+    #contentImage>img {
+        width: 100%;
+        height: 100%;
+    }
+
+
     #contentText {
         width: 100%;
-        height: 20%;
+        height: 40%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -140,7 +145,7 @@
             <div id="noticeDetail">
                 <div id="noticeHeader">
                     <div id="noticeTitle">
-                        <h1> 공지사항 </h1>
+                        <h2>공지사항</h2>
                     </div>
                     <div id="noticeInfo">
                         <div id="infonoticeNo">[글번호 : 1]</div>
@@ -159,7 +164,6 @@
                 <div id="noticeContent">
                     <div id="contentImage">
                         <img src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 내용">
-                        <!-- <img src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 내용2"> -->
                     </div>
                     <div id="contentText">그러한 공지사항입니다.</div>
                 </div>
