@@ -1,5 +1,10 @@
+<%@page import="com.kh.category.vo.CategoryVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%
+		List<CategoryVo> list = (List<CategoryVo>)request.getAttribute("list");
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,18 +131,11 @@
 						<td>프로젝트 카테고리*</td>
 						<td><select class="form-select form-control"
 							name="prjCategory" required>
-								<option>푸드</option>
-								<option>홈, 리빙</option>
-								<option>모빌리티</option>
-								<option>테크, 가전</option>
-								<option>패션, 잡화</option>
-								<option>반려동물</option>
-								<option>도서, 출판</option>
-								<option>여행, 레저</option>
-								<option>클래스</option>
-								<option>뷰티</option>
-								<option>스포츠</option>
-								<option>식테크</option>
+							 <!-- CATEGORY 테이블로부터 조회해오기 -->
+                            <%for(CategoryVo c : list){ %>
+								<option value="<%=c.getCategoryNo()%>"><%=c.getCategoryName()%></option>
+								
+								<%} %>
 						</select></td>
 					</tr>
 					<tr>
