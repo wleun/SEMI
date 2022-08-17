@@ -1,4 +1,4 @@
-package com.kh.admin.cotroller;
+package com.kh.admin.main.controller;
 
 import java.io.IOException;
 
@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/admin/eventDetail")
-public class adminEventDetailController extends HttpServlet{
+@WebServlet(urlPatterns = "/admin/main")
+public class adminMainController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.setAttribute("functionName", "이벤트 상세조회");
-		req.getRequestDispatcher("/WEB-INF/views/admin/adminEventDetailView.jsp").forward(req, resp);
+		req.setAttribute("functionName", "대시보드");
+		req.getRequestDispatcher("/WEB-INF/views/admin/main/adminDashboard.jsp").forward(req, resp);
 	}
 }

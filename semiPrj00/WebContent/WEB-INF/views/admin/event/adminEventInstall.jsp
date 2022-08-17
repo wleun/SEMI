@@ -90,14 +90,32 @@
     height: 15%;
     display: flex;
     flex-direction: row;
+    align-items: center;
+  }
+
+  #titleNotUsedArea {
+    width: 20%;
+    height: 100%;
+  }
+
+  #title input[type=text] {
+    width: 700px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  #datebox {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  #title input {
-    width: 700px;
-    height: 40px;
-    border-radius: 10px;
+  .datebox {
+    color : #C3B091;
+    font-size: small;
   }
 
   #content textarea {
@@ -106,6 +124,7 @@
     border-radius: 10px;
     border: 1px solid #C3B091;
   }
+
 
   .padding-right {
     padding-right: 20px;
@@ -226,8 +245,13 @@
             <form action="">
                 <div id="eventWriteArea">
                     <div id="title">
+                        <div id="titleNotUsedArea"></div>
                         <div id="titleText" class="padding-right">제목 : </div>
                         <div id="titleInput"><input type="text"></div>
+                        <div id="datebox">
+                          <div class="datebox">시작일 : <input type="date"></div>
+                          <div class="datebox">마감일 : <input type="date"></div>
+                        </div>
                     </div>
                     <div id="content">
                         <div id="contentText" class="padding-right">내용 : </div>
@@ -260,15 +284,19 @@
 </content>
 
 <script>
+
+  //파일 input하면 file의 name 출력 (섬네일 이미지 파일)
   $("#fileInsert1").on('change',function(){
     var fileName = $("#fileInsert1").val();
     $("#upload-name1").val(fileName);
   });
 
+  //파일 input하면 file의 name 출력 (이미지 파일)
   $("#fileInsert2").on('change',function(){
     var fileName = $("#fileInsert2").val();
     $("#upload-name2").val(fileName);
   });
+
 </script>
 
 </body>
