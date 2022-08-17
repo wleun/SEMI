@@ -1,4 +1,4 @@
-package com.kh.admin.cotroller;
+package com.kh.admin.event.controller;
 
 import java.io.IOException;
 
@@ -13,6 +13,6 @@ public class adminEventController extends HttpServlet {
 @Override
 protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	req.setAttribute("functionName", "이벤트 관리");
-	req.getRequestDispatcher("/WEB-INF/views/admin/adminEventView.jsp").forward(req, resp);
+	req.getRequestDispatcher("/WEB-INF/views/admin/event/adminEventView.jsp").forward(req, resp);
 }
 }

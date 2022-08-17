@@ -57,7 +57,7 @@
             border-radius: 50px;
             color: white;
             width: 80px;
-            height: 30px;
+            height: 40px;
         }
 
         input[type=submit] {
