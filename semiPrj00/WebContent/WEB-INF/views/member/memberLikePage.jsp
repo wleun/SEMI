@@ -278,6 +278,8 @@
         
 
     </div>
+    
+    <%@ include file="/WEB-INF/views/common/userFooter.jsp" %>
 
 </body>
 

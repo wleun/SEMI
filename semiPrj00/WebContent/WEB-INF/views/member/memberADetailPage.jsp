@@ -185,7 +185,7 @@
                 <div id="content-3">
                     <table>
                         <tr>
-                            <td><input type="text" placeholder="내요을 입력해주세요." style="width:90%;height:90%;"></td>
+                            <td><textarea name="" id="" cols="30" rows="10"></textarea></td>
                         </tr>
                         <tr>
                             <td><button>등록</button></td>
@@ -199,6 +199,8 @@
         </section>
            
     </div>
+    
+    <%@ include file="/WEB-INF/views/common/userFooter.jsp" %>
 
 </body>
 </html>
