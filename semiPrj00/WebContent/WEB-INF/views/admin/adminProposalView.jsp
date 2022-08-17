@@ -186,7 +186,7 @@
     
                            <select name="what" id="searchWhat">
                               <option value="receipt">접수</option>
-                              <option value="processing">검토중</option>
+                              <option value="assessing">검토중</option>
                               <option value="return">반려</option>
                               <option value="approve">승인</option>
                            </select>
@@ -246,9 +246,7 @@
                                 <div>5</div>
                                 <div>▶</div>
                             </div>
-                            <div id="proposalManageDiv3_delete">
-                                <div><input type="button" value="삭제하기" class="button"></div>
-               </div>
+                           
     
             </div>
          </div>

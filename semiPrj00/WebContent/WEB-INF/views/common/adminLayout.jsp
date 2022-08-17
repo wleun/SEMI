@@ -56,11 +56,31 @@
             border: 1px solid #C3B091;
             border-radius: 50px;
             color: white;
+            width: 80px;
+            height: 30px;
         }
 
-        input {
-            border: 1px solid #C3B091;
+        input[type=submit] {
             border-radius: 50px;
+            background-color: #48CA7D;
+            color: white;
+        }
+
+        input[type=search] {
+            border-radius: 50px;
+            border : 1px solid #C3B091;
+            color: white;
+        }
+
+        input[type=text] {
+            border-radius: 50px;
+            border : 1px solid #C3B091;
+            color: white;
+        }
+
+        select {
+            border-radius: 50px;
+            border: 1px solid #C3B091;
         }
 
 
@@ -69,6 +89,10 @@
             border: 1px solid #C3B091;
             border-radius: 50px;
             color: white;
+        }
+
+        textarea {
+            resize: none;
         }
 
         input:checked{
@@ -91,8 +115,8 @@
             position: fixed;
             display: flex;
             flex-direction: row;
-            border-top:  1px solid black;
-            border-right:  1px solid black;
+            border-top:  1px solid #C3B091;
+            border-right:  1px solid #C3B091;
             background-color: white;
             z-index: 90;
         }
@@ -130,7 +154,7 @@
         nav {
             width : 288px;
             height : 1073px;
-            border : 1px solid black;
+            border : 1px solid #C3B091;
             position: fixed;
             background-color: #F9F5EA;
             display: flex;

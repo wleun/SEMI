@@ -64,8 +64,9 @@
         display: flex;
         flex-direction:column;
         justify-content: center;
-        align-items:flex-end;
+        align-items:center;
         padding-bottom: 30px;
+        font-size: 18px;
     }
 
     #infoFirstDiv {
@@ -75,7 +76,7 @@
         flex-direction: column;
         justify-content: center;
         text-align: center;
-        padding-bottom: 15px;
+        padding-bottom: 40px;
     }
 
     #infoSecondDiv {
@@ -145,10 +146,13 @@
             <div id="noticeDetail">
                 <div id="noticeHeader">
                     <div id="noticeTitle">
-                        <h2>공지사항</h2>
+                        <h2>공지사항 이름</h2>
                     </div>
                     <div id="noticeInfo">
-                        <div id="infonoticeNo">[글번호 : 1]</div>
+                        <div id="infonoticeNo">
+                            [공지사항 번호 : 1]
+                            <div id="important">[중요도 : 중요]</div>
+                        </div>
                         <div id="infoFirstDiv">
                             <div id="writeDate">작성시간 : 2022-08-16</div>
                             <div id="editDate">수정시간 : 2022-08-19</div>
