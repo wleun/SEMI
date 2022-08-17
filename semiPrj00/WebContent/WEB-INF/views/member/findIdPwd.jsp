@@ -22,7 +22,7 @@
         margin-top: 20px;
         padding-top: 60px;
         background-color: rgba(255, 255, 255, 0.675);
-        border-radius: 8px;
+        border-radius: 10px;
     }
    
     #find-id-form{
@@ -30,7 +30,7 @@
         height: 250px;
         /* border: 1px solid gray; */
         background-color: rgba(255, 255, 255, 0.675);
-        border-radius: 8px;
+        border-radius: 10px;
         margin: 0 auto;
         margin-top: 45px;
     }
@@ -60,6 +60,8 @@
         border: 0px;
         border-radius: 8px;
         height: 35px;
+        color: white;
+        font-weight: 50px;
     }
     #submit_pwd{
         position: relative;
@@ -69,6 +71,8 @@
         border-radius: 8px;
         height: 35px;
         width: 60px;
+        color: white;
+        font-weight: 50px;
     }
     #check_pwd{
         position: relative;
@@ -85,15 +89,16 @@
         color: red;
     }
     #modal_btn{
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
         font-size: 23px;
         margin-right: -40px; 
         color: white;
+
     }
     #modal_btn_pwd{
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
         font-size: 23px;
         margin-left: -40px;
         color: white;
@@ -135,6 +140,7 @@
         position: absolute;
         bottom: 30px;
         right: 50px;
+        color: white;
     }
     .back_pwd {
         display: none;
@@ -202,7 +208,7 @@
         <h1>아이디 / 비밀번호 찾기</h1>
         <div id="find-id-pwd-div">
             <div id="btn-div">
-                <button id="modal_btn">아이디 <br> 찾기</button>
+                <button id="modal_btn" style="border-radius:50%;">아이디 <br> 찾기</button>
                 <div class="back"></div>
                 <div class="modal_wrap">
                     <div>
@@ -218,13 +224,13 @@
                         </form>   
                         <div id="find"><br> abcd123@naver.com</div>
                     </div>
-                    <div class="modal_close"><button>close</button></div>
+                    <div class="modal_close"><button style="color:white;">close</button></div>
                 </div>
 
-                <button id="modal_btn_pwd">비밀번호 <br> 찾기</button>
+                <button id="modal_btn_pwd"style="border-radius:50%;">비밀번호 <br> 찾기</button>
                 <div class="back_pwd"></div>
                 <div class="modal_wrap_pwd">
-                    <div class="modal_close_pwd"><button>close</button></div>
+                    <div class="modal_close_pwd"><button style="color:white;">close</button></div>
                     <div>
                         <br> <h1>비밀번호 찾기/변경</h1>
                         <form action="" method="post" id="find-pwd-form">
