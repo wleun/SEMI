@@ -18,6 +18,18 @@ public class MemberLoginController extends HttpServlet{
 		
 		req.getRequestDispatcher("/WEB-INF/views/member/memberLogin.jsp").forward(req, resp);
 
+	}
 	
+	/*
+	 * 로그인하기
+	 */
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String email = req.getParameter("memberEmail");
+		String pwd = req.getParameter("memberPwd");
+		
+		
+		
 	}
 }
