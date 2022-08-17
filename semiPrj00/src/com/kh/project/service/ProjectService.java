@@ -15,6 +15,7 @@ public class ProjectService {
 		
 		Connection conn = getConnection();
 		
+		
 		int result = dao.projectLike(conn);
 		
 		if(result == 1) {
@@ -23,12 +24,13 @@ public class ProjectService {
 			rollback(conn);
 		}
 		
+		System.out.println("서비스 result 값: "+result);
 		return result;
 	}
 
 	//프로젝트 좋아요 취소
-	public void projectLikeCancel() {
-		
+	public int projectLikeCancel() {
+		return 0;
 	}
 
 }

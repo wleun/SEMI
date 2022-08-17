@@ -711,8 +711,8 @@
                             <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
                             <form action="<%=contextPath%>/project/support">
                                 <div id="option-select-area">
-                                    수량선택 <input type="number" id="reward-quantity">
-                                    <input type="submit" value="후원하기">
+                                    수량선택 <input type="number" id="reward-quantity" value="0" min='0' max= '10'>
+                                    <input type="submit" value= 'priceCal();' +"원 후원하기">
                                 </div>
                             </form>
                         </button>
@@ -799,6 +799,12 @@
                 // $('#reward-btn button').off('click');
             });
         });
+    </script>
+    
+    <script>
+    	$(function(){
+    		$('#option-price')
+    	});
     </script>
 
 </body>
