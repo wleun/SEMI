@@ -175,7 +175,7 @@
       <!--메뉴-->
       <div id="submenu-div">
         <ul id="menu">
-            <li style="font-size: 20px;">
+            <li style="font-size: 20px;" id="top-menu">
                 <ul class="submenu" style="left:20px ;">
                     <li><a href="">마이페이지</a></li>
                     <li><a href="">좋아요</a></li>
@@ -188,7 +188,7 @@
       </div>
 
 <script>
-$("li").click(function () {
+$('#top-menu').click(function () {
     if ($(this).hasClass("active")) {
       $(this).children().css("display", "none");
       $(this).removeClass();

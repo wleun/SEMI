@@ -116,7 +116,8 @@
                     <li class="join-li">*비밀번호 <br><input type="password" name="memberPwd" required placeholder="4글자 이상으로 입력하세요"></li>
                     <li class="join-li">*비밀번호 확인<br><input type="password" name="memberPwd2" required></li>
                     <li class="join-li">*이름 (법인 : 대표명)<br><input type="text" name="memberName"></li>
-                    <li class="join-li">*닉네임<br><input type="text" name="memberName"></li>
+                    <li class="join-li">*닉네임<br><input type="text" name="memberNick"></li>
+                    <li class="join-li">추천코드<br><input type="text" name="code"></li>
                     
                    
                    
