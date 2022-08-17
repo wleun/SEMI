@@ -66,8 +66,9 @@
         display: flex;
         flex-direction:column;
         justify-content: center;
-        align-items:flex-end;
+        align-items:center;
         padding-bottom: 30px;
+        font-size: 18px;
     }
 
     #infoFirstDiv {
@@ -77,6 +78,7 @@
         flex-direction: column;
         justify-content: center;
         text-align: center;
+        padding-bottom: 20px;
     }
 
     #infoSecondDiv {
@@ -146,10 +148,13 @@
             <div id="eventDetail">
                 <div id="eventHeader">
                     <div id="eventTitle">
-                        <h2> 이벤트 </h2>
+                        <h2> 이벤트 이름 </h2>
                     </div>
                     <div id="eventInfo">
-                        <div id="infoEventNo">[글번호 : 1]</div>
+                        <div id="infoEventNo">
+                            [이벤트 번호 : 1]
+                            <div id="important">[중요도 : 중요]</div>
+                        </div>
                         <div id="infoFirstDiv">
                             <div id="eventPeriod">[진행예정] 2022-08-15 ~ 2022-09.01</div>
                             <div id="writeDate">작성시간 : 2022-08-16</div>

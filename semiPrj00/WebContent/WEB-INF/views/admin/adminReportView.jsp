@@ -174,6 +174,29 @@
         	border-radius: 50px; 
         	background-color: white
         }
+
+        .modalBodyFlex {
+            font-size: 17px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            text-align: justify;
+        }
+
+        .modalBodyFlex>* {
+            padding : 3px;
+        }
+
+        .modalTextarea {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            border: 1px solid #C3B091;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
 </style>
 </head>
 <body>
@@ -213,7 +236,7 @@
                                     <div class="reportAction">조치내용</div>
                                 </div>
                             
-                                <a href="">
+                                <a data-bs-toggle="modal" href="#myModal">
                                     <div class="reportManageColumn">
 
                                         <div class="reportNo">1</div>
@@ -263,6 +286,40 @@
 	</content>
 
     
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header ">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="modalBodyFlex">
+            <div class="modalNo">신고번호 :</div>
+            <div class="modalName">신고자 : </div>
+            <div class="modalPrj">신고 프로젝트 : </div>
+            <div class="modalStatus">상태 : </div>
+            <div class="modaldate">접수날짜 : </div>
+            <div class="modalText">
+                내용
+            </div>
+            <div class="modalTextarea">
+            </div>
+          </div>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button>처리완료</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
 
 
 </body>

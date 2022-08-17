@@ -27,6 +27,25 @@
         border-radius: 10px;
     }
 
+    #proposalBtns {
+        width: 100%;
+        height: 5%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    #proposalBtns form * {
+        width: 80px;
+        height: 30px;
+        border-radius: 50px;
+        border: 1px solid #C3B091;
+        flex-wrap: wrap;
+        text-align: center;
+        margin: 5px;
+    }
+
     #proposalInfo {
         width: 100%;
         height: 17%;
@@ -43,7 +62,7 @@
 
     #projectMedia {
         width: 100%;
-        height: 50%;
+        height: 40%;
         display: flex;
         flex-direction: column;
     }
@@ -144,6 +163,16 @@
 <content>
     <div id="proposalDetailOuter">
         <div id="proposalDetail">
+            <div id="proposalBtns">
+                <form action="" method="post">
+                    <select name="" id="" style="border-radius:50px ;">
+                        <option value="assessing">검토중</option>
+                        <option value="return">반려</option>
+                        <option value="approve">승인</option>
+                    </select>
+                    <input type="submit" value="수정완료">
+                </form>
+            </div>
             <div id="proposalInfo">
                 <div class="proposalInfoBar">1.제안서 정보</div>
                 <div id="proposalInfoBox">
