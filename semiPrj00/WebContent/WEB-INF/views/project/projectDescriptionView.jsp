@@ -90,6 +90,9 @@
     #reward-btn>button:hover{
         border: 1px solid #48CA7D;
     }
+    #reward-btn>button:focus{
+        border: 2px solid #48CA7D;
+    }
     #option-select-area>input[type='number']{
         width: 20%;
         border: 1px solid #48CA7D;
@@ -697,43 +700,47 @@
                         글로벌 시장을 대상으로 다양한 만화를 제작, 출판, 유통하고 있습니다.</div>
                     <div class="btns" id="btn-div2">
                         <button>+ 팔로우</button>
-                        <button>1:1 문의하기</button>
+                        <button onclick="location.href='/semiPrj00/member/qdetail'">1:1 문의하기</button>
                     </div>
                 </div>
 
                 <div id="reward-option">
                     <div id="reward-option-title"><span>리워드 선택하기</span></div>
                     <div class="btns" id="reward-btn">
+
                         <button>
                             <div><span class="option-attribute" id="option-name">옵션1</span></div>
-                            <div><span class="option-attribute" id="option-price">25,000</span><span class="option-attribute" id="option-price"> 원</span></div>
+                            <div><span class="option-attribute" id="option-price">25000</span><span class="option-attribute" id="option-price"> 원</span></div>
                             <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
                             <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
                             <form action="<%=contextPath%>/project/support">
                                 <div id="option-select-area">
-                                    수량선택 <input type="number" id="reward-quantity" value="0" min='0' max= '10'>
-                                    <input type="submit" value= 'priceCal();' +"원 후원하기">
+                                    수량선택 <input type="number" id="reward-quantity" value="1" min='1' max= '10'>
+                                    <input type="submit" value= "">
                                 </div>
                             </form>
                         </button>
+
                         <button>
-                            <div><span class="option-attribute" id="option-name">옵션2</span></div>
-                            <div><span class="option-attribute" id="option-price">25,000</span><span class="option-attribute" id="option-price"> 원</span></div>
+                            <div><span class="option-attribute" id="option-name">옵션1</span></div>
+                            <div><span class="option-attribute" id="option-price">25000</span><span class="option-attribute" id="option-price"> 원</span></div>
                             <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
                             <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
-                            <form action="">
+                            <form action="<%=contextPath%>/project/support">
                                 <div id="option-select-area">
-                                    sss
-                                    <input type="submit">
+                                    수량선택 <input type="number" id="reward-quantity" value="1" min='1' max= '10'>
+                                    <input type="submit" value= "">
                                 </div>
                             </form>
                         </button>
+
                         <button>
                             <div><span class="option-attribute" id="option-name">옵션1</span></div>
                             <div><span class="option-attribute" id="option-price">25,000</span><span class="option-attribute" id="option-price"> 원</span></div>
                             <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
                             <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
                         </button>
+
                         <button>
                             <div><span class="option-attribute" id="option-name">옵션1</span></div>
                             <div><span class="option-attribute" id="option-price">25,000</span><span class="option-attribute" id="option-price"> 원</span></div>
@@ -771,10 +778,10 @@
                         : '<%=contextPath%>/resources/img/project_like.png';
                     $('#btn-div1 img').attr('src', src);    
 
-                    if($(this).children().attr('src') === '<%=contextPath%>/resources/img/project_like.png'){
+                    if($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png'){
                         location.href='<%=contextPath%>/project/like?flag=1'
                         console.log('좋아요');
-                    }else if($(this).children().attr('src') === '<%=contextPath%>/resources/img/project_liked.png'){
+                    }else if($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_liked.png'){
                         location.href='<%=contextPath%>/project/like?flag=2'
                        	console.log('좋아요취소');
                     }
@@ -787,23 +794,29 @@
 
     <script>
         $(function(){
-            $('#reward-btn button').click(function(){
-                console.log(this);
+            $('#reward-btn button').focus(function(){
                 const div = $(this).find('#option-select-area');
                 
                 if(div.css('display') == 'none')  {
                     $(div).show();    
-                // }else {
-                //     $(div).hide();
                 }
-                // $('#reward-btn button').off('click');
+                
+                const totalPrice = $('#option-price').text() * $('#reward-quantity').val();
+                const x = $('#option-select-area').children().last().val();
+                // x = totalPrice;
+                totalPrice = x;
+                console.log($('#option-select-area').children().last().val());
+            });
+
+            $('#reward-btn button').blur(function(){
+                const div = $(this).find('#option-select-area');
+                $(div).hide();
             });
         });
     </script>
     
     <script>
     	$(function(){
-    		$('#option-price')
     	});
     </script>
 
