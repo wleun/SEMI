@@ -1,13 +1,25 @@
 package com.kh.project.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
+@MultipartConfig(
+		maxFileSize = 1024*1024*50,
+		maxRequestSize = 1024*1024*50*5
+)
 
 //프로젝트 오픈 신청
 @WebServlet(urlPatterns = "/project/open")
@@ -32,20 +44,49 @@ public class PrjOpenController extends HttpServlet{
 		String startDate = req.getParameter("startDate");//시작일(날짜)////
 		String endDate = req.getParameter("endDate");//마감일(날짜)////
 		String goal = req.getParameter("prjAmount"); //목표금액
-		//대표이미지
-		//상세이미지
+		
+		Part thumbnail = req.getPart("thumbnail");//대표이미지
+		
+		String savePath = null;
+		
+		if(thumbnail.getSubmittedFileName().length() > 0) {
+			String originName = thumbnail.getSubmittedFileName(); //원본 파일명 얻기
+			//String changeName = new ProjectService().createChangeName(originName);
+			
+			InputStream is = thumbnail.getInputStream();//인풋스트림 준비
+			BufferedInputStream bis = new BufferedInputStream(is);
+			
+			String realPath = req.getServletContext().getRealPath("/resources/upload");
+			//savePath = realPath +File.separator+ changeName;
+			
+			FileOutputStream os = new FileOutputStream(savePath);
+			BufferedOutputStream bos = new BufferedOutputStream(os);
+		}
+		
+		
+		
+		
+		
+		Collection<Part> prjFile = req.getParts();//상세이미지
+		
+		for(Part file : prjFile) {
+			if(!file.getName().equals("prjFile")) continue; //prjFile인 경우만 진행
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
 		String text = req.getParameter("prjText"); //상세설명
 		String etc = "";
 		if(req.getParameter("etc") != null) {
-			etc = req.getParameter("etc"); //예상 어려움 ////
+			etc = req.getParameter("etc"); //예상 어려움 (내용이 없으면 빈 문자열로)
 		} 
-		//확인용
-		System.out.println(category);
-		System.out.println(title);
-		System.out.println(startDate);
-		System.out.println(endDate);
-		System.out.println(goal);
-		System.out.println(etc);
+		
 		
 		
 		
