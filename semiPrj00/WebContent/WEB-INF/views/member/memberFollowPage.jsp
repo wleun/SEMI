@@ -214,7 +214,7 @@
                         </tr>
                         <tr>
                             <td>올린 프로젝트 1개</td>
-                            <td rowspan="2"><button>팔로잉</button></td>
+                            <td rowspan="2"><button type="button" data-bs-toggle="modal" data-bs-target="#myModal">팔로잉</button></td>
                         </tr>
 
                     </table>
@@ -231,7 +231,7 @@
                         </tr>
                         <tr>
                             <td>올린 프로젝트 1개</td>
-                            <td rowspan="2"><button>팔로잉</button></td>
+                            <td rowspan="2"><button type="button" data-bs-toggle="modal" data-bs-target="#myModal">팔로잉</button></td>
                         </tr>
 
                     </table>
@@ -249,7 +249,7 @@
                         </tr>
                         <tr>
                             <td>올린 프로젝트 1개</td>
-                            <td rowspan="2"><button>팔로잉</button></td>
+                            <td rowspan="2"><button type="button" data-bs-toggle="modal" data-bs-target="#myModal">팔로잉</button></td>
                         </tr>
 
                     </table>
@@ -259,10 +259,34 @@
 
             </div>
 
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+            정말 팔로우를 취소 하시겠습니까?
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" data-bs-dismiss="modal">취소</button>
+            <button type="button" data-bs-dismiss="modal">확인</button>
+            </div>
+    
+                </div>
+                </div>
+            </div>
+
         </section>
+
+        
         
 
     </div>
+    
+    <%@ include file="/WEB-INF/views/common/userFooter.jsp" %>
 
 </body>
 
