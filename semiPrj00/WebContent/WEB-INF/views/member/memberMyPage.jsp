@@ -117,199 +117,197 @@
 
         </div>
 
-        <section>
+        <form action="/semiPrj00/member/mypage" method="post">
+
+            <section>
             
-            <div class="member-info">
-                <div id="content-1">
-
-                    <div id="member-name">
-                     <span>테스트 님</span>
+                <div class="member-info">
+                    <div id="content-1">
+    
+                        <div id="member-name">
+                         <span>테스트 님</span>
+                        </div>
+                        <div id="mall">
+                         <span>친환경몰</span>
+                        </div>
+                        <div id="follow">
+                         <span>팔로우 200명</span>
+                         <span>팔로워 200명</span>
+                         <span>추천인 등록 수 200명</span>
+                        </div>
+                        <div>
+                         <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
+                         <span>회원등급 GOLD</span>
+                         <span>개인사업자 회원</span>
+                        </div>
+                        <button>로그아웃</button>
+             
                     </div>
-                    <div id="mall">
-                     <span>친환경몰</span>
-                    </div>
-                    <div id="follow">
-                     <span>팔로우 200명</span>
-                     <span>팔로워 200명</span>
-                     <span>추천인 등록 수 200명</span>
-                    </div>
-                    <div>
-                     <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
-                     <span>회원등급 GOLD</span>
-                     <span>개인사업자 회원</span>
-                    </div>
-                    <button>로그아웃</button>
-         
                 </div>
-            </div>
+        
+                <div id="content-wrap">
+        
+                    <div id="content-2">
+        
+                        <table>
+             
+                            <tr>
+                                <th>* 이메일</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="memberEmail" value="" required readonly></td>
+                            </tr>
+                            <tr>
+                                <th>비밀번호 수정</th>
+                            </tr>
+                            <tr>
+                                <td><input type="password" name="memberPwdNew" placeholder="비밀번호를 입력하세요."></td>
+                            </tr>
+                            <tr>
+                                <td><input type="password" name="memberPwdNew2" placeholder="비밀번호를 확인합니다."></td>
+                            </tr>
+                            <tr>
+                                <th>* 이름</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="memberName" value="" required></td>
+                            </tr>
+                            <tr>
+                                <th>* 닉네임</th>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="memberNick" value="" required></td>
+                            </tr>
+                            <tr>
+                                <th>* 전화번호</th>
+                            </tr>
+                            <tr>
+                                <td><input type="tel" name="memberPhone"></td>
+                            </tr>
+             
+                        </table>
+             
+                     </div>
     
-            <div id="content-wrap">
+                     <hr>
+             
+                     <div id="content-3">
+             
+                         <table>
+             
+                             
+                             <tr>
+                                 <th>배송지</th>
+                                 <td></td>
+                                 <td></td>
+                             </tr>
+                             <tr>
+                                 <td>주소1</td>
+                                 <td></td>
+                                 <td></td>
+                             </tr>
+                             <tr>
+                                 <td>12345</td>
+                                 <td></td>
+                                 <td></td>
+                             </tr>
+                             <tr>
+                                 <td colspan="2">대한민국 어딘가1</td>
+                                 <td><button>삭제</button></td>
+                             </tr>
+                             <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td onclick="location.href='/semiPrj00/member/addrRegister'"><button>배송지 등록</button></td>
+                             </tr>
+                             <tr>
+                                 <th>결제정보 등록</th>
+                                 <td></td>
+                                 <td></td>
+                             </tr>
+                             <tr>
+                                 <td>BC카드 (기본)</td>
+                                 <td></td>
+                                 <td></td>
+                             </tr>
+                             <tr>
+                                 <td>****-****-****-1234</td>
+                                 <td></td>
+                                 <td><button>삭제</button></td>
+                             </tr>
+                             <tr>
+                                 <td></td>
+                                 <td></td>
+                                 <td><button onclick="location.href='/semiPrj00/member/paymentRegister'">카드 등록</button></td>
+                             </tr>
+             
+                         </table>
+             
+                     </div>
     
-                <div id="content-2">
+                     <hr>
+             
+                     <div id="content-4">
+             
+                         <table>
+             
+                             <tr>
+                                 <th>사업자/법인 정보</th>
+                             </tr>
+                             <tr>
+                                 <td><input type="text" name="memberRegistration"></td>
+                             </tr>
+                             
+                         </table>
+             
+                     </div>
     
-                    <table>
-         
-                        <tr>
-                            <th>이메일</th>
-                        </tr>
-                        <tr>
-                            <td>KH12234@kh.com</td>
-                        </tr>
-                        <tr>
-                            <th>비밀번호 수정</th>
-                        </tr>
-                        <tr>
-                            <td><input type="password" placeholder="비밀번호를 입력하세요."></td>
-                        </tr>
-                        <tr>
-                            <td><input type="password" placeholder="비밀번호를 확인합니다."></td>
-                        </tr>
-                        <tr>
-                            <th>이름</th>
-                        </tr>
-                        <tr>
-                            <td>테스트</td>
-                        </tr>
-                        <tr>
-                            <th>전화번호</th>
-                        </tr>
-                        <tr>
-                            <td>010-1234-1234</td>
-                        </tr>
-                        <tr>
-                            <td><input type="tel" placeholder="변경하시려면, 전화번호를 입력하세요.('-'제외)"></td>
-                        </tr>
-         
-                    </table>
-         
-                 </div>
-
-                 <hr>
-         
-                 <div id="content-3">
-         
-                     <table>
-         
-                         
-                         <tr>
-                             <th>배송지</th>
-                             <td></td>
-                             <td></td>
-                         </tr>
-                         <tr>
-                             <td>주소1</td>
-                             <td></td>
-                             <td></td>
-                         </tr>
-                         <tr>
-                             <td>12345</td>
-                             <td></td>
-                             <td></td>
-                         </tr>
-                         <tr>
-                             <td colspan="2">대한민국 어딘가1</td>
-                             <td><button>삭제</button></td>
-                         </tr>
-                         <tr>
-                             <td></td>
-                             <td></td>
-                             <td onclick="location.href='/semiPrj00/member/addrRegister'"><button>배송지 등록</button></td>
-                         </tr>
-                         <tr>
-                             <th>결제정보 등록</th>
-                             <td></td>
-                             <td></td>
-                         </tr>
-                         <tr>
-                             <td>BC카드 (기본)</td>
-                             <td></td>
-                             <td></td>
-                         </tr>
-                         <tr>
-                             <td>****-****-****-1234</td>
-                             <td></td>
-                             <td><button>삭제</button></td>
-                         </tr>
-                         <tr>
-                             <td></td>
-                             <td></td>
-                             <td><button onclick="location.href='/semiPrj00/member/paymentRegister'">카드 등록</button></td>
-                         </tr>
-         
-                     </table>
-         
-                 </div>
-
-                 <hr>
-         
-                 <div id="content-4">
-         
-                     <table>
-         
-                         <tr>
-                             <th>사업자/법인 정보</th>
-                         </tr>
-                         <tr>
-                             <td>012-34-56789</td>
-                         </tr>
-                         <tr>
-                             <td><input type="text" placeholder="변경하시려면, 사업자번호 / 법인번호를 입력하세요."></td>
-                         </tr>
-                         <tr>
-                             <td>친환경몰</td>
-                         </tr>
-                         <tr>
-                             <td><input type="text" placeholder="변경하시려면, 상호/법인명을 입력해주세요."></td>
-                         </tr>
-         
-                     </table>
-         
-                 </div>
-
-                 <hr>
-         
-                 <div id="content-5">
-         
-                     <table>
-         
-                         <tr>
-                             <th colspan="2">등록한 추천인</th>
-                         </tr>
-                         <tr>
-                             <td>테스트2님</td>
-                             <td>ABCde6</td>
-                         </tr>
-                         <tr>
-                             <th colspan="2">나의 추천코드</th>
-                         </tr>
-                         <tr>
-                             <td>ABCde1</td>
-                             <td>친구가 회원가입을 하면 추천인으로 등록할 수 있어요!</td>
-                         </tr>
-         
-                     </table>
-         
-                 </div>
-
-                 <hr>
-         
-                 <div id="content-6">
-         
-                     <table>
-         
-                         <tr>
-                             <td><button>수정하기</button></td>
-                         </tr>
-                         <tr>
-                             <td><button>회원탈퇴</button></td>
-                         </tr>
-         
-                     </table>
-         
-                 </div>
+                     <hr>
+             
+                     <div id="content-5">
+             
+                         <table>
+             
+                             <tr>
+                                 <th colspan="2">등록한 추천인</th>
+                             </tr>
+                             <tr>
+                                 <td>테스트2님</td>
+                                 <td>ABCde6</td>
+                             </tr>
+                             <tr>
+                                 <th colspan="2">나의 추천코드</th>
+                             </tr>
+                             <tr>
+                                 <td>ABCde1</td>
+                                 <td>친구가 회원가입을 하면 추천인으로 등록할 수 있어요!</td>
+                             </tr>
+             
+                         </table>
+             
+                     </div>
     
-            </div>
-        </section>
+                     <hr>
+             
+                     <div id="content-6">
+             
+                         <table>
+             
+                             <tr>
+                                 <td><button>수정하기</button></td>
+                             </tr>
+                             <tr>
+                                 <td><button>회원탈퇴</button></td>
+                             </tr>
+             
+                         </table>
+             
+                     </div>
+        
+                </div>
+            </section>
+
+        </form>
         
 
     </div>
