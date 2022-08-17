@@ -70,8 +70,8 @@
 				<div class="footer-sitemaplink">
 					<div class="sitemap-link">
 						<h6>200%</h6>
-						<a href="">공지사항</a> 
-						<a href="">이벤트</a>
+						<a href="<%=request.getContextPath()%>/member/noticeList">공지사항</a> 
+						<a href="<%=request.getContextPath()%>/member/eventList">이벤트</a>
 					</div>
 					<div class="sitemap-link">
 						<h6>이용안내</h6>

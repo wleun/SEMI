@@ -33,11 +33,9 @@
         /* background-color: rgba(255, 255, 255, 0.675); */
         border-radius: 10px;
     }
-
-    #category-content-wrap::-webkit-scrollbar{
-        background-color: #48CA7D;
-        height: 6px;
-    }
+    #category-content-wrap::-webkit-scrollbar{height: 6px;}
+    #category-content-wrap::-webkit-scrollbar-thumb{background-color: #48CA7D;}
+    #category-content-wrap::-webkit-scrollbar-track{background-color: lightgray;}
     /* 프로젝트 한개 당 래퍼 */
     .prj-wrap{
         height: 350px;
@@ -104,8 +102,11 @@
     /* border: 1px solid black; */
     width: 150px;
     text-align: center;
-    margin-top: 150px;
+    margin-top: 50px;
+    margin-left: 1750px;
     position: fixed;
+    margin-bottom: 100px;
+    
     }
     #submenu-div a{
         color: black;
@@ -124,7 +125,15 @@
         font-size: 20px;
         margin-top: 10px;
     }
-   
+    .slidebtn{
+        background-color: #48CA7D;
+        border-radius: 50px;
+        border: 0px;
+        color:white
+    }
+   .btndiv{
+    float: right;
+   }
 </style>
 
 <!--로드했을 때 submenu가 안보이게 하기 위함 -->
@@ -132,6 +141,7 @@
 <body>
 
 	<%@ include file="/WEB-INF/views/common/userHeader.jsp" %>
+	
  <div id="header-div"></div>
 	
     <!--배너-->
@@ -146,7 +156,7 @@
             <img src="resources/img/banner2.png" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="resources/img/banner1.png" class="d-block w-100" alt="...">
+            <img src="resources/img/banner3.png" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
             <img src="resources/img/banner1.png" class="d-block w-100" alt="...">
@@ -165,15 +175,15 @@
       <!--메뉴-->
       <div id="submenu-div">
         <ul id="menu">
-        <li><a href=""><div id="subtop">TOP</div></a></li>
-        <li>
-            펼쳐보기
-            <ul class="submenu">
-                <li><a href="">마이페이지</a></li>
-                <li><a href="">좋아요</a></li>
-                <li><a href="">로그아웃</a></li>
-            </ul>
-        </li>
+            <li style="font-size: 20px;">
+                <ul class="submenu" style="left:20px ;">
+                    <li><a href="">마이페이지</a></li>
+                    <li><a href="">좋아요</a></li>
+                    <li><a href="">로그아웃</a></li>
+                </ul>
+                click!
+            </li>
+            <li><a href=""><div id="subtop">TOP</div></a></li>
         </ul>
       </div>
 
@@ -252,6 +262,32 @@ $("li").click(function () {
                 </div>
             </div>
            
+
+            <div class="prj-wrap">
+                <div class="prj-content prj-img">
+                    <img src="" alt="프로젝트 메인 사진">
+                </div>
+                <div class="prj-content prj-category">
+                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
+                </div>
+                <div class="prj-content prj-title">
+                    프로젝트 타이틀
+                </div>
+                <!-- 프로젝트 달성도 부분 -->
+                <div class="prj-content gage-div">
+                    <div class="prj-content">
+                        <span class="percentage">달성률</span>
+                        <span class="amount">모인 금액</span>
+                    </div>
+                    <div class="prj-content d-day">
+                        남은 날짜
+                    </div>
+                    <div class="prj-content gage-bar progress" style="height: 5px;">
+                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
+                    </div>
+                </div>
+            </div>
+
             <div class="prj-wrap">
                 <div class="prj-content prj-img">
                     <img src="" alt="프로젝트 메인 사진">
@@ -336,7 +372,22 @@ $("li").click(function () {
                 </div>
             </div>
         </div>
+        <!--첫번째 추천 스크롤버튼-->
+        <div class="btndiv"><button class="rightbtn slidebtn" onclick="moveScrollLeft()"><<<</button><button class="leftbtn slidebtn" onclick="moveScrollRight()">>>></button></div>
 
+        <script>
+            moveScrollLeft=function(){
+                var scrollLeft = $('#category-content-wrap').scrollLeft();
+                $('#category-content-wrap').scrollLeft(scrollLeft - 800);
+                
+
+            };
+            moveScrollRight=function(){
+                var scrollRight = $('#category-content-wrap').scrollLeft();
+                $('#category-content-wrap').scrollLeft(scrollRight + 800);
+            };
+
+        </script>
 
         <!-- 2번째 추천 -->
 
@@ -654,6 +705,6 @@ $("li").click(function () {
     </div>
 
 	
-
+<%@ include file="/WEB-INF/views/common/userFooter.jsp" %>
 </body>
 </html>
