@@ -25,6 +25,7 @@ import com.kh.category.vo.CategoryVo;
 import com.kh.project.attachment.vo.ProjectAttachmentVo;
 import com.kh.project.service.PrjOpenService;
 import com.kh.project.vo.ProjectVo;
+import com.kh.reward.vo.ProjectRewardVo;
 
 @MultipartConfig(
 		maxFileSize = 1024*1024*50,
@@ -51,6 +52,7 @@ public class PrjOpenController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		ProjectVo prjVo = new ProjectVo();
+		
 		ProjectAttachmentVo attVo = null;
 		
 		
@@ -60,9 +62,9 @@ public class PrjOpenController extends HttpServlet{
 		String category = req.getParameter("prjCategory"); //카테고리
 		String title = req.getParameter("prjTitle"); //프로젝트 제목
 		
-		Timestamp startDate = Timestamp.valueOf(req.getParameter("startDate"));//시작일(날짜)
-		
-		Timestamp endDate = Timestamp.valueOf(req.getParameter("endDate"));//마감일(날짜)
+//		Timestamp startDate = Timestamp.valueOf(req.getParameter("startDate"));//시작일(날짜)
+//		
+//		Timestamp endDate = Timestamp.valueOf(req.getParameter("endDate"));//마감일(날짜)
 		
 		int goal = Integer.parseInt(req.getParameter("prjAmount")); //목표금액
 		
@@ -129,7 +131,7 @@ public class PrjOpenController extends HttpServlet{
 			bis.close();
 			bos.close();
 
-			//파일 Vo로 뭉치기
+			//상세페이지 첨부파일 데이터 뭉치기
 			attVo.setOriginName(originName);
 			attVo.setChangeName(changeName);
 			attVo.setFileSrc(realPath);
@@ -144,8 +146,8 @@ public class PrjOpenController extends HttpServlet{
 		} 
 		
 		
-		int shippingDate = Integer.parseInt(req.getParameter("shippingDate")); //결제 마감일로부터 n일 
-		Date shippingDateResult = new PrjOpenService().shippingDateCalc(endDate, shippingDate); //배송일(날짜) 마감일 + 결제 7일 + 지정한 날짜 n일 ////
+		//int shippingDate = Integer.parseInt(req.getParameter("shippingDate")); //결제 마감일로부터 n일 
+		//Date shippingDateResult = new PrjOpenService().shippingDateCalc(endDate, shippingDate); //배송일(날짜) 마감일 + 결제 7일 + 지정한 날짜 n일 ////
 		
 		
 		//2page 창작자 정보
@@ -173,7 +175,7 @@ public class PrjOpenController extends HttpServlet{
 		prjVo.setGoal(goal);
 		prjVo.setText(text);
 		prjVo.setEtc(etc);
-		prjVo.setShippingDate(shippingDateResult);
+	//	prjVo.setShippingDate(shippingDateResult);
 		prjVo.setMakerInfo(makerInfo);
 		prjVo.setAccountNo(accountNo);
 		prjVo.setAccountBank(accountBank);
@@ -181,12 +183,22 @@ public class PrjOpenController extends HttpServlet{
 		
 		
 
-		
-		
-		
-		//데이터 뭉치기
-		
-		
+		LinkedList<ProjectRewardVo> list = new LinkedList<ProjectRewardVo>();
+	
+		//리워드 정보 데이터 뭉치기
+		for(int i = 0; i<price.length; i++)
+		{
+			ProjectRewardVo rewardVo = new ProjectRewardVo();
+			rewardVo.setPrice(price[i]);
+			rewardVo.setQuantity(quantity[i]);
+			rewardVo.setOption(option[i]);
+			rewardVo.setDetail(detail[i]);
+			
+			list.add(rewardVo);
+			
+			System.out.println(rewardVo);
+			
+		}
 		
 	}
 
