@@ -1,9 +1,11 @@
 package com.kh.project.service;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import com.kh.category.vo.CategoryVo;
@@ -33,15 +35,23 @@ public class PrjOpenService {
 
 	
 	//배송일 구하는 메소드
-	public Date shippingDateCalc(Timestamp endDate, int day) {
+	public String shippingDateCalc(String endDate, int day) {
 		
 		Calendar cal = Calendar.getInstance();
-
-		cal.setTime(endDate);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date end = null;
+		try {
+			end = dateFormat.parse(endDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		cal.setTime(end);
 		cal.add(Calendar.DATE, 7); //결제 기간 +7 지정한날짜 +n
 		cal.add(Calendar.DATE, day);
 		
-		Date shippingDate = (Date)cal.getTime(); //sql Date로 변환
+		String shippingDate = dateFormat.format(cal.getTime()); //Date > String으로 변환
 		
 		return shippingDate;
 	}

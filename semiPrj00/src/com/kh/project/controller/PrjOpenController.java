@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.sql.Date;
@@ -62,9 +63,8 @@ public class PrjOpenController extends HttpServlet{
 		String category = req.getParameter("prjCategory"); //카테고리
 		String title = req.getParameter("prjTitle"); //프로젝트 제목
 		
-//		Timestamp startDate = Timestamp.valueOf(req.getParameter("startDate"));//시작일(날짜)
-//		
-//		Timestamp endDate = Timestamp.valueOf(req.getParameter("endDate"));//마감일(날짜)
+		String startDate = req.getParameter("startDate");//시작일(날짜)
+		String endDate = req.getParameter("endDate");//마감일(날짜)
 		
 		int goal = Integer.parseInt(req.getParameter("prjAmount")); //목표금액
 		
@@ -132,6 +132,7 @@ public class PrjOpenController extends HttpServlet{
 			bos.close();
 
 			//상세페이지 첨부파일 데이터 뭉치기
+			attVo = new ProjectAttachmentVo();
 			attVo.setOriginName(originName);
 			attVo.setChangeName(changeName);
 			attVo.setFileSrc(realPath);
@@ -146,9 +147,9 @@ public class PrjOpenController extends HttpServlet{
 		} 
 		
 		
-		//int shippingDate = Integer.parseInt(req.getParameter("shippingDate")); //결제 마감일로부터 n일 
-		//Date shippingDateResult = new PrjOpenService().shippingDateCalc(endDate, shippingDate); //배송일(날짜) 마감일 + 결제 7일 + 지정한 날짜 n일 ////
-		
+		int shippingDate = Integer.parseInt(req.getParameter("shippingDate")); //결제 마감일로부터 n일 
+		String shippingDateResult = new PrjOpenService().shippingDateCalc(endDate, shippingDate); //배송일(날짜) 마감일 + 결제 7일 + 지정한 날짜 n일 ////
+		System.out.println(shippingDateResult);
 		
 		//2page 창작자 정보
 		String makerInfo = ""; //창작자 소개 (내용이 없으면 빈 문자열로)
@@ -170,12 +171,12 @@ public class PrjOpenController extends HttpServlet{
 		//프로젝트 정보 데이터 뭉치기
 		prjVo.setCategoryNo(category);
 		prjVo.setName(title);
-//		prjVo.setStartDate(startDate);
-//		prjVo.setEndDate(endDate);
+		prjVo.setStartDate(startDate);
+		prjVo.setEndDate(endDate);
 		prjVo.setGoal(goal);
 		prjVo.setText(text);
 		prjVo.setEtc(etc);
-	//	prjVo.setShippingDate(shippingDateResult);
+		prjVo.setShippingDate(shippingDateResult);
 		prjVo.setMakerInfo(makerInfo);
 		prjVo.setAccountNo(accountNo);
 		prjVo.setAccountBank(accountBank);
