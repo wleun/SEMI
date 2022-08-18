@@ -128,38 +128,38 @@
                         <ul class="dropdown-menu">
                             <table>
                                 <tr>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=1&sort=all">푸드</a></td>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=2&sort=all">홈, 리빙</a></td>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=3&sort=all">테크, 가전</a></td>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=4&sort=all">도서, 출판</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=1">푸드</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=2">홈, 리빙</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=3">테크, 가전</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=4">도서, 출판</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=5&sort=all">뷰티</a></td>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=6&sort=all">패션, 잡화</a></td>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=7&sort=all">여행, 레져</a></td>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=8&sort=all">스포츠</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=5">뷰티</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=6">패션, 잡화</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=7">여행, 레져</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=8">스포츠</a></td>
                                 </tr>
                                 <tr>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=9&sort=all">모빌리티</a></td>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=10&sort=all">반려동물</a></td>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=11&sort=all">클래스</a></td>
-                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=12&sort=all">식테크</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=9">모빌리티</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=10">반려동물</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=11">클래스</a></td>
+                                    <td><a class="dropdown-item" href="<%=contextPath%>/project/category?category=12">식테크</a></td>
                                 </tr>
                             </table>
                         </ul>
                     </li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=21&sort=all">인기</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=21">인기</a></li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=0&sort=intended">오픈예정</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category?sort=intended">오픈예정</a></li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=22&sort=all">신규</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=22">신규</a></li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=24&sort=all">마감임박</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=24">마감임박</a></li>
                 </ul>
             </div>
             <div id="etc">

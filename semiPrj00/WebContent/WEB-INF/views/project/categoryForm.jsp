@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
     
 <%
-    //ArrayList<PrjVo> prjList = (ArrayList<PrjVo>)request.getAttribute("prjList");
 
     int currentPage = 5;
 	int startPage = 1;

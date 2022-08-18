@@ -1,45 +1,97 @@
 package com.kh.project.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.kh.category.vo.CategoryVo;
 import static com.kh.common.JDBCTemplate.*;
+
 import com.kh.project.repository.PrjCategoryDao;
+import com.kh.project.vo.ProjectVo;
 
 public class PrjCategoryService {
 	
 	private PrjCategoryDao dao = new PrjCategoryDao();
 
-	/*
-	 * 카테고리별로 select
-	 */
-	public CategoryVo selectCategory(String category, String sort) {
+	public ArrayList<ProjectVo> selectProject(String category, String sort) {
 		
-		CategoryVo vo = new CategoryVo();
+		ArrayList<ProjectVo> projectList = new ArrayList<ProjectVo>();
+		CategoryVo categoryVo = new CategoryVo();
 		Connection conn = null;
 		
-		conn = getConnection();
+		try {
+			
+			conn = getConnection();
+			
+			if("ongoing".equals(sort)) {sort="I";}
+			if("complete".equals(sort)) {sort="S";}
+			if("intended".equals(sort)) {sort="B";}
+			
+			int categoryNum = Integer.parseInt(category);
+			if(categoryNum<1 || categoryNum>12) {
+				category = null;
+			}
+			
+			if(sort==null && category==null) {
+				projectList = dao.selectProjectAll(conn);
+			}else if(sort==null) {
+				projectList = dao.selectProject(conn, category);
+			}else if(category==null) {
+				projectList = dao.selectProject(conn, sort);
+			}else {
+				projectList = dao.selectProject(conn, category, sort);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		try {
+			conn = getConnection();
 			if(sort != null) {
 				if("ongoing".equals(sort)) {sort="I";}
 				if("complete".equals(sort)) {sort="S";}
 				if("intended".equals(sort)) {sort="B";}
+			}else {
+				
 			}
 			
 			if(category != null) {
 				int categoryNum = Integer.parseInt(category);
 				if(categoryNum<1 || categoryNum>12) {
-					vo.setCategoryNo("0");
-					vo.setCategoryName("전체");
-					vo = dao.selectCategory(conn, sort);
+					categoryVo.setCategoryNo("0");
+					categoryVo.setCategoryName("전체");
+					projectList = dao.selectProject(conn, sort);
 				}else {
-					vo = dao.selectCategory(conn, category, sort);
+					categoryVo.setCategoryNo("0");
+					categoryVo.setCategoryName("전체");
+					projectList = dao.selectProject(conn, category, sort);
 				}
 			}else {
-				vo.setCategoryNo("0");
-				vo.setCategoryName("전체");
-				vo = dao.selectCategory(conn, sort);
+				projectList = dao.selectProject(conn, sort);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -47,8 +99,27 @@ public class PrjCategoryService {
 			close(conn);
 		}
 		
-		return vo;
+		return projectList;
+	}//selectProject
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public CategoryVo selectCategory(String category) {
 		
+		
+		
+		return null;
 	}//selectCategory
+
 
 }//class
