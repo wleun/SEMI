@@ -1,21 +1,19 @@
 package com.kh.project.vo;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 
 public class ProjectVo {
 	
 	private String prjectNo;
 	private String categoryNo;
 	private String name;
-	private Timestamp registerDate;
-	private Timestamp startDate;
-	private Timestamp endDate;
+	private String registerDate;
+	private String startDate;
+	private String endDate;
 	private int goal;
 	private String makerNo;
 	private String text;
 	private String accountNo;
-	private Date shippingDate;
+	private String shippingDate;
 	private String thumbnailName;
 	private String thumbnailPath;
 	private String etc;
@@ -28,8 +26,8 @@ public class ProjectVo {
 		
 	}
 
-	public ProjectVo(String prjectNo, String categoryNo, String name, Timestamp registerDate, Timestamp startDate,
-			Timestamp endDate, int goal, String makerNo, String text, String accountNo, Date shippingDate,
+	public ProjectVo(String prjectNo, String categoryNo, String name, String registerDate, String startDate,
+			String endDate, int goal, String makerNo, String text, String accountNo, String shippingDate,
 			String thumbnailName, String thumbnailPath, String etc, String accountBank, String accountName,
 			String makerInfo, String status) {
 		super();
@@ -77,27 +75,27 @@ public class ProjectVo {
 		this.name = name;
 	}
 
-	public Timestamp getRegisterDate() {
+	public String getRegisterDate() {
 		return registerDate;
 	}
 
-	public void setRegisterDate(Timestamp registerDate) {
+	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate;
 	}
 
-	public Timestamp getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Timestamp startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Timestamp getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Timestamp endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 
@@ -133,11 +131,11 @@ public class ProjectVo {
 		this.accountNo = accountNo;
 	}
 
-	public Date getShippingDate() {
+	public String getShippingDate() {
 		return shippingDate;
 	}
 
-	public void setShippingDate(Date shippingDate) {
+	public void setShippingDate(String shippingDate) {
 		this.shippingDate = shippingDate;
 	}
 
