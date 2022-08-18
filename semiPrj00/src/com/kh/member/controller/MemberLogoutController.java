@@ -17,7 +17,7 @@ public class MemberLogoutController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getSession().invalidate();
 		req.getSession().setAttribute("alertMsg", "로그아웃 되었습니다");
-		resp.sendRedirect("/semi");
+		resp.sendRedirect(req.getContextPath());
 	}
 	
 }

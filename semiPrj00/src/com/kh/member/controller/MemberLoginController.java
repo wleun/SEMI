@@ -40,10 +40,10 @@ public class MemberLoginController extends HttpServlet{
 			//세션에 loginMember 담아서 홈화면으로
 			req.getSession().setAttribute("loginMember", loginMember);
 			req.getSession().setAttribute("alertMsg", "로그인 성공!");
-			resp.sendRedirect("/semi");
+			resp.sendRedirect(req.getContextPath());
 		}else {
 			req.getSession().setAttribute("errorMsg", "회원정보가 일치하지않습니다.");
-			resp.sendRedirect("/semi/member/login");
+			resp.sendRedirect(req.getContextPath()+"/member/login");
 		}
 		
 		
