@@ -100,6 +100,12 @@
         border: 0;
         }
 
+        input[type=date] {
+            border : 1px solid #C3B091 !important;
+            border-radius: 50px !important; 
+            text-align: center !important;
+        }
+
         #pageWrap {
             width: 1920px;
             height: 1080px;
