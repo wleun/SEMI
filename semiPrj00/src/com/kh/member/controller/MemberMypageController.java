@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.memberMypage.vo.MemberMypageVo;
+import com.kh.member.service.MemberMypageService;
+import com.kh.member.vo.MemberVo;
 
 @WebServlet(urlPatterns = "/member/mypage")
 public class MemberMypageController extends HttpServlet {
@@ -16,7 +17,7 @@ public class MemberMypageController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		MemberMypageVo loginMember = (MemberMypageVo)req.getSession().getAttribute("loginMember");
+		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
 		
 //		if(loginMember != null) {
 			req.getRequestDispatcher("/WEB-INF/views/member/memberMyPage.jsp").forward(req, resp);
@@ -33,16 +34,29 @@ public class MemberMypageController extends HttpServlet {
 		
 		req.setCharacterEncoding("UTF-8");
 		
-		String email = req.getParameter("email");
-		String name = 
-		String nick
-		String phone
-		String type
-		String mLevel
-		String code
+		String email = req.getParameter("memberEmail");
+		String name = req.getParameter("memberName");
+		String nick = req.getParameter("memberNick");
+		String phone = req.getParameter("memberPhone");
 		
+		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
 		
+		MemberVo vo = new MemberVo();
+		vo.setNo(no);
+		vo.setEmail(email);
+		vo.setName(name);
+		vo.setNick(nick);
+		vo.setPhone(phone);
 		
+		MemberVo updateVo = new MemberMypageService().edit(vo);
+		
+		if(updateVo != null) {
+			req.getSession().setAttribute("loginMember", updateVo);
+			req.getSession().setAttribute("alertMsg", "회원정보 수정 성공!");
+			resp.sendRedirect("/semiPrj00/member/mypage");
+		}else {
+			req.getRequestDispatcher("").forward(req, resp);
+		}
 		
 	}
 	
