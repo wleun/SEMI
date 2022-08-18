@@ -19,6 +19,8 @@ public class JDBCTemplate {
 		try {
 			Properties prop = new Properties();
 			String filePath = JDBCTemplate.class.getResource("/db/setup/data.properties").getPath();
+			
+			filePath = filePath.replaceAll("25", "");
 			prop.load(new FileInputStream(filePath));
 			
 			String driver = prop.getProperty("driver");
