@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.category.vo.CategoryVo;
+import com.kh.project.service.PrjCategoryService;
 
 @WebServlet(urlPatterns = "/project/search")
 public class PrjSearchController extends HttpServlet{
