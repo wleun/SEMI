@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -771,29 +772,68 @@
     <script>
         $(function(){
             
-            $('#btn-div1>#like-btn').on({
-                'click': function() {
-                    var src = ($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png')
-                        ? '<%=contextPath%>/resources/img/project_liked.png'
-                        : '<%=contextPath%>/resources/img/project_like.png';
-                    $('#btn-div1 img').attr('src', src);    
+            // $('#btn-div1>#like-btn').on({
+            //     'click': function() {
+            //         var src = ($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png')
+            //             ? '<%=contextPath%>/resources/img/project_liked.png'
+            //             : '<%=contextPath%>/resources/img/project_like.png';
+            //         $('#btn-div1 img').attr('src', src);    
 
-                    if($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png'){
-                        location.href='<%=contextPath%>/project/like?flag=1'
-                        console.log('좋아요');
-                    }else if($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_liked.png'){
-                        location.href='<%=contextPath%>/project/like?flag=2'
-                       	console.log('좋아요취소');
-                    }
+            //         if($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png'){
+            //             location.href='<%=contextPath%>/project/like?flag=1'
+            //             console.log('좋아요');
+            //         }else if($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_liked.png'){
+            //             location.href='<%=contextPath%>/project/like?flag=2'
+            //            	console.log('좋아요취소');
+            //         }
 
+            //     }
+            // });
+
+            $('#like-btn').click(function(){
+                var src = ($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png')
+                    ? '<%=contextPath%>/resources/img/project_liked.png'
+                    : '<%=contextPath%>/resources/img/project_like.png';
+                $('#btn-div1 img').attr('src', src); 
+
+                if($('#like-btn>img').attr('src') === '<%=contextPath%>/resources/img/project_liked.png'){
+                    console.log("좋아요");
+                    $.ajax({
+                        url : "<%=contextPath%>/project/like",
+                        method : "get",
+                        data : {
+                            flag : 1
+                            },
+                        success : function(like){
+                            if(like == 1){
+                                alert('좋아요 됨');
+                            }
+                        },
+                        error : function(){
+
+                        }
+                    });
+                }
+                else if($('#like-btn>img').attr('src') === '<%=contextPath%>/resources/img/project_like.png'){
+                    console.log("좋아요취소");
+                    $.ajax({
+                        url : "<%=contextPath%>/project/like",
+                        method : "get",
+                        data : {
+                            flag : 2
+                            },
+                        success : function(likeCancel){
+                            if(likeCancel == 1){
+                                alert('좋아요 취소됨');
+        					}
+                        },
+                        error : function(){
+
+                        }
+                    });
                 }
             });
 
-        });
-    </script>
-
-    <script>
-        $(function(){
             $('#reward-btn button').focus(function(){
                 const div = $(this).find('#option-select-area');
                 
@@ -811,13 +851,11 @@
                 const div = $(this).find('#option-select-area');
                 $(div).hide();
             });
+
         });
     </script>
+
     
-    <script>
-    	$(function(){
-    	});
-    </script>
 
 </body>
 </html>

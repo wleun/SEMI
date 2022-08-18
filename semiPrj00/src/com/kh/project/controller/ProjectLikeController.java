@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.project.service.ProjectService;
+import com.kh.project.service.ProjectLikeService;
 
 @WebServlet(urlPatterns = "/project/like")
 public class ProjectLikeController extends HttpServlet{
@@ -17,21 +17,21 @@ public class ProjectLikeController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String flag = req.getParameter("flag");
-		ProjectService service = new ProjectService();
+		ProjectLikeService service = new ProjectLikeService();
 		
 		int likeCancel = 0;
 		int like = 0;
 		
 		switch(flag) {
-		case "1" : likeCancel = service.projectLikeCancel(); System.out.println("좋아요취소");
-		case "2" : like = service.projectLike(); System.out.println("좋아요");
+		case "1" : like = service.projectLike(); 
+			resp.getWriter().write(like); 
+			System.out.println("좋아요");
+		case "2" : likeCancel = service.projectLikeCancel(); 
+			resp.getWriter().write(likeCancel); 
+			System.out.println("좋아요 취소");
 		}
 			
-		if((likeCancel == 1) || (like == 1)) {
-			req.getRequestDispatcher("/project/view").forward(req, resp); System.out.println("성공");
-		}else {
-			req.getRequestDispatcher("/project/view").forward(req, resp);  System.out.println("뭔가 실패,,");
-		}
+		
 		
 	}//servlet
 	
