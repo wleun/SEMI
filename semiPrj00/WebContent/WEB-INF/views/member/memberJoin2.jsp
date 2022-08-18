@@ -94,6 +94,11 @@
       .modal-div{
         display: none;
       }
+
+      @import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css" );
+    input[type=password]{
+	font-family:"Nanum Gothic", sans-serif !important;
+        }
     </style>
 </head>
 <body>
@@ -113,8 +118,14 @@
                    <ul id="form-ul">
                     <br>
                     <li class="join-li">*E-mail <br><input type="email" name="memberEmail" placeholder="이메일 형식으로 입력하세요."> <button id="check-btn">중복확인</button></li>
-                    <li class="join-li">*비밀번호 <br><input type="password" name="memberPwd" required placeholder="4글자 이상으로 입력하세요"></li>
-                    <li class="join-li">*비밀번호 확인<br><input type="password" name="memberPwd2" required></li>
+                    <li class="join-li">
+                        *비밀번호 <br><input type="password" name="memberPwd" id="pwd" required>
+                        <div id="pwd-size" style="color: red; font-size:15px; position: absolute;">4자리 이상 입력하세요.</div>
+                    </li>
+                    <li class="join-li" >
+                        *비밀번호 확인<br><input type="password" name="memberPwd2" id="pwd2" required>
+                        <div id="danger" style="color: red; font-size:15px; position: absolute;">비밀번호와 일치하지않습니다.</div><div id="success" style="color: #48CA7D; font-size:15px; position: absolute;">비밀번호와 일치합니다!</div>
+                    </li>
                     <li class="join-li">*이름 (법인 : 대표명)<br><input type="text" name="memberName"></li>
                     <li class="join-li">*닉네임<br><input type="text" name="memberNick"></li>
                     <li class="join-li">추천코드<br><input type="text" name="code"></li>
@@ -131,5 +142,34 @@
 
     </main>
    
+    <script>
+        $(function(){
+            $("#success").hide();
+            $("#danger").hide();
+            $("input").keyup(function(){
+                var pwd=$('#pwd').val();
+                var pwd2=$('#pwd2').val();
+                if(pwd != "" && pwd2 != ""){
+                    if(pwd != pwd2){
+                        $("#success").hide();
+                        $('#danger').show();
+                        $('#next').attr("disabled","disabled");
+                    }else{
+                        $('#danger').hide();
+                        $("#success").show();
+                        $('#next').removeAttr("disabled");
+                    }
+                }
+                if(pwd.length < 4){
+                    $("#pwd-size").show();
+                }else{
+                    $("#pwd-size").hide();
+                }
+            })
+
+        })
+
+    </script>
+
 </body>
 </html>

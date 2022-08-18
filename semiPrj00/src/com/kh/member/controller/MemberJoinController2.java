@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.service.MemberService;
 import com.kh.member.vo.MemberVo;
 
 @WebServlet(urlPatterns = "/member/join2")
@@ -46,7 +47,7 @@ public class MemberJoinController2 extends HttpServlet{
 		}
 		
 		//객체전달하며 회원가입 진행
-		int result = new MemberService().join(memberVo);
+//		int result = new MemberService().join(memberVo);
 		
 		
 		//		req.getRequestDispatcher("/WEB-INF/views/member/memberJoin3.jsp").forward(req, resp);

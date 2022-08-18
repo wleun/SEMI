@@ -179,7 +179,7 @@
                 <ul class="submenu" style="left:20px ;">
                     <li><a href="">마이페이지</a></li>
                     <li><a href="">좋아요</a></li>
-                    <li><a href="">로그아웃</a></li>
+                    <li><a href="/semi/member/logout">로그아웃</a></li>
                 </ul>
                 click!
             </li>
