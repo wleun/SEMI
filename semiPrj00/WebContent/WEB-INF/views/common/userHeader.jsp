@@ -1,3 +1,4 @@
+<%@page import="com.kh.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -9,6 +10,7 @@
     session.removeAttribute("errorMsg");
 	
 	String contextPath = request.getContextPath();
+	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 	
 %>
     
@@ -163,7 +165,14 @@
             <div id="etc">
                 <div id="btn-div">
                     <div id="upload-prj-div"><button class="btn btn-success" id="prj" onclick="location.href='<%=contextPath%>/project/open'">프로젝트 오픈 신청</button></div>
-                    <div id="member-div"><button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/member/login'">로그인/회원가입</button></div>
+                    <div id="member-div">
+                    <%if(loginMember == null){ %>
+                    <button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/member/login'">로그인/회원가입</button>
+                	<%}else{%>
+                	<button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/member/myPage'">마이페이지</button>
+                	<button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/member/logout'">로그아웃</button>
+                	<% }%>
+                	</div>
                 </div>
                 <form action="<%=contextPath %>/project/search" method="get">
                     <div id="search-div" class="input-group">

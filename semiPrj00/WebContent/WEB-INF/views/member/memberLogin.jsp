@@ -47,21 +47,21 @@
         width: 230px;
         border-bottom: 2px solid darkgray;
         background-color: rgba(255, 255, 255, 0.675);
-        border-radius: 10px;
+        /* border-radius: 10px; */
     }
     #submit input{
         background-color: #48ca7d;
         color: white;
-        width: 70px;
-        height: 45px;
+        width: 90px;
+        height: 90px;
         border: 0;
-        border-radius: 50px;
+        border-radius: 50%;
         font-size: 19px;
     }
     #submit{
         position:relative;
         left: 510px;
-        bottom: -10px;
+        bottom: 15px;
         box-sizing: border-box;
     }
     #login-h1{
@@ -73,13 +73,17 @@
         text-decoration: none;
         color: black;
         text-align: center;
-       
     }
     .join-find-a:hover{
         color: #48ca7d;
     }
-    .join-find{float: right; font-size: 18px;}
+    .join-find{float: right; font-size: 18px; display: inline-block; margin-top: -20px; }
     ::placeholder{font-size: 15px;}
+
+    @import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css" );
+    input[type=password]{
+	font-family:"Nanum Gothic", sans-serif !important;
+        }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -98,8 +102,8 @@
             <form action="" method="post" id="login-form">
                
                 <ul id="form-ul">
-                    <li class="login-li">E - mail&nbsp; <input type="email" name="memberEmail" required placeholder="이메일을 입력하세요."></li>
-                    <li class="login-li">비밀번호&nbsp;&nbsp;<input type="password" name="memberPwd" required placeholder="비밀번호를 입력하세요." id="inputPwd"></li>
+                    <li class="login-li">E - mail&nbsp; <input type="email" name="memberEmail" required placeholder="ex)abc@abc.com"></li>
+                    <li class="login-li">비밀번호&nbsp;&nbsp;<input type="password" name="memberPwd" required id="inputPwd"></li>
                 </ul>
                 <div id="submit"><input type="submit" value="로그인"></div>
                 <br><br><br><br>

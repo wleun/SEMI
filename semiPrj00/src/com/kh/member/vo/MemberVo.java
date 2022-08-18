@@ -1,10 +1,10 @@
 package com.kh.member.vo;
 
-import java.security.Timestamp;
+import java.sql.*;
 
 public class MemberVo {
 	
-	private String no;
+	private int no;
 	private String name;
 	private String email;
 	private String nick;
@@ -13,7 +13,7 @@ public class MemberVo {
 	private String phone;
 	private String type;
 	private String registration;
-	private Timestamp enrolldate;
+	private java.sql.Timestamp enrolldate;
 	private String status;
 	private Timestamp quitDate;
 	private String mLevel;
@@ -24,7 +24,7 @@ public class MemberVo {
 		
 	}
 	//매개변수 있는 생성자
-	public MemberVo(String no, String name, String email, String nick, String pwd, String pwd2, String phone, String type,
+	public MemberVo(int no, String name, String email, String nick, String pwd, String pwd2, String phone, String type,
 			String registration, Timestamp enrolldate, String status, Timestamp quitDate, String mLevel,
 			Timestamp suspendDate, String code) {
 		super();
@@ -45,10 +45,10 @@ public class MemberVo {
 		this.code = code;
 	}
 	//게터세터
-	public String getNo() {
+	public int getNo() {
 		return no;
 	}
-	public void setNo(String no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 	public String getName() {
@@ -102,7 +102,7 @@ public class MemberVo {
 	public Timestamp getEnrolldate() {
 		return enrolldate;
 	}
-	public void setEnrolldate(Timestamp enrolldate) {
+	public void setEnrolldate(java.sql.Timestamp enrolldate) {
 		this.enrolldate = enrolldate;
 	}
 	public String getStatus() {
