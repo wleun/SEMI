@@ -36,7 +36,7 @@ public class MemberMypageService {
 		
 	}
 
-	private MemberVo selectOneByNo(String no) {
+	private MemberVo selectOneByNo(int no) {
 		
 		Connection conn = null;
 		MemberVo vo = null;
