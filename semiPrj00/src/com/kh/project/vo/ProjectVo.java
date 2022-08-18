@@ -1,7 +1,7 @@
 package com.kh.project.vo;
 
-import java.security.Timestamp;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ProjectVo {
 	
