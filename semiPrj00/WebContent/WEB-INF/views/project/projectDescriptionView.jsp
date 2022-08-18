@@ -716,7 +716,7 @@
                             <form action="<%=contextPath%>/project/support">
                                 <div id="option-select-area">
                                     수량선택 <input type="number" id="reward-quantity" value="1" min='1' max= '10'>
-                                    <input type="submit" value= "">
+                                    <input type="submit" value= "후원하기">
                                 </div>
                             </form>
                         </button>
@@ -802,9 +802,8 @@
                 }
                 
                 const totalPrice = $('#option-price').text() * $('#reward-quantity').val();
-                const x = $('#option-select-area').children().last().val();
-                // x = totalPrice;
-                totalPrice = x;
+                $('#option-select-area').children().last().val(totalPrice+"원 후원하기");
+               
                 console.log($('#option-select-area').children().last().val());
             });
 
