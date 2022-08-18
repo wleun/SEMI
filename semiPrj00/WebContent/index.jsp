@@ -177,9 +177,9 @@
         <ul id="menu">
             <li style="font-size: 20px;" id="top-menu">
                 <ul class="submenu" style="left:20px ;">
-                    <li><a href="">마이페이지</a></li>
-                    <li><a href="">좋아요</a></li>
-                    <li><a href="/semi/member/logout">로그아웃</a></li>
+                    <li><a href="<%=contextPath %>/member/myPage">마이페이지</a></li>
+                    <li><a href="<%=contextPath %>/member/myLike">좋아요</a></li>
+                    <li><a href="<%=contextPath %>/member/logout">로그아웃</a></li>
                 </ul>
                 click!
             </li>
