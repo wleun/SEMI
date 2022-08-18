@@ -1,6 +1,7 @@
 package com.kh.project.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.category.vo.CategoryVo;
 import com.kh.project.service.PrjCategoryService;
+import com.kh.project.vo.ProjectVo;
 
 @WebServlet(urlPatterns = "/project/category")
 public class PrjCategoryController extends HttpServlet{
@@ -21,9 +23,11 @@ public class PrjCategoryController extends HttpServlet{
 		String category = req.getParameter("category");
 		String sort = req.getParameter("sort");
 		
-		CategoryVo selectedCategory = new PrjCategoryService().selectCategory(category,sort);
+		ArrayList<ProjectVo> selectedProject = new PrjCategoryService().selectProject(category,sort);
+		CategoryVo selectedCategory = new PrjCategoryService().selectCategory(category);
 		
 		req.setAttribute("categoryVo", selectedCategory);
+		req.setAttribute("projectVo", selectedProject);
 		req.getRequestDispatcher("/WEB-INF/views/project/categoryForm.jsp").forward(req, resp);
 		
 	}
