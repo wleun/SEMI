@@ -164,7 +164,7 @@
 						<td>프로젝트 목표금액*</td>
 						<td><input type="number" class="form-control"
 							name="prjAmount" id="prjAmount" value="0"
-							style="display: inline;" onchange=amountCalc() required>
+							min="100000" max="9999999999" style="display: inline;" onchange=amountCalc() required>
 							원</td>
 					</tr>
 					<tr>
@@ -223,6 +223,7 @@
 
 			<div id="maker">
 				<div id="title">2. 창작자 정보</div>
+					<input type="hidden" name="makerNo" value="<%=loginMember.getNo()%>">
 				<table>
 					<tr>
 						<td>메이커 정보</td>
