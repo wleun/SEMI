@@ -169,7 +169,7 @@
                     <%if(loginMember == null){ %>
                     <button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/member/login'">로그인/회원가입</button>
                 	<%}else{%>
-                	<button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/member/myPage'">마이페이지</button>
+                	<button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/member/mypage'">마이페이지</button>
                 	<button class="btn btn-success" id="member" onclick="location.href='<%=contextPath%>/member/logout'">로그아웃</button>
                 	<% }%>
                 	</div>

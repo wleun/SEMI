@@ -128,6 +128,7 @@
                     </li>
                     <li class="join-li">*이름 (법인 : 대표명)<br><input type="text" name="memberName"></li>
                     <li class="join-li">*닉네임<br><input type="text" name="memberNick"></li>
+                    <li class="join-li">*연락처<br><input type="text" name="memberPhone"></li>
                     <li class="join-li">추천코드<br><input type="text" name="code"></li>
                     
                    

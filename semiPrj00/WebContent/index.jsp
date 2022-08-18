@@ -177,9 +177,13 @@
         <ul id="menu">
             <li style="font-size: 20px;" id="top-menu">
                 <ul class="submenu" style="left:20px ;">
-                    <li><a href="<%=contextPath %>/member/myPage">마이페이지</a></li>
+                    <li><a href="<%=contextPath %>/member/mypage">마이페이지</a></li>
                     <li><a href="<%=contextPath %>/member/myLike">좋아요</a></li>
+                    <%if(loginMember != null){ %>
                     <li><a href="<%=contextPath %>/member/logout">로그아웃</a></li>
+                    <%}else{ %>
+                    <li><a href="<%=contextPath %>/member/login">로그인</a></li>
+                    <%} %>
                 </ul>
                 click!
             </li>

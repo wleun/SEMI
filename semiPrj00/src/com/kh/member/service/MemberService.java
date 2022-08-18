@@ -32,10 +32,30 @@ public class MemberService {
 	/*
 	 * 회원가입
 	 */
-//	public int join(MemberVo memberVo) {
-//		//이메일 중복검사**나중에
-//		//닉네임 중복검사**나중에
-//		//dao호출
-//	}
+	public int join(MemberVo memberVo) {
+		
+		Connection conn = null;
+		int result = 0;
+		//dao 호출
+		try {
+			conn = getConnection();
+			
+			result = new MemberDao().join(conn, memberVo);	
+			if(result == 1) {
+				//회원가입 성공
+				commit(conn);
+			}else {
+				//회원가입 실패
+				rollback(conn);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return result;
+		
+	}
 
 }

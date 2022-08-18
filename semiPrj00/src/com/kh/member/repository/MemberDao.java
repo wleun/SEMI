@@ -74,5 +74,35 @@ public class MemberDao {
 		return loginMember;
 	
 	}
+	/*
+	 * 회원가입
+	 */
+	public int join(Connection conn, MemberVo memberVo) {
+		//conn준비
+		
+		//sql 준비
+		String sql = "INSERT INTO MEMBER (NO ,NAME ,EMAIL ,NICK ,PWD ,PHONE ,CODE ) VALUES (SEQ_MEMBER_NO.NEXTVAL,?,?,?,?,?,?)";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			//sql 객체 담기 및 실행
+			pstmt.setString(1, memberVo.getName());
+			pstmt.setString(2, memberVo.getEmail());
+			pstmt.setString(3, memberVo.getNick());
+			pstmt.setString(4, memberVo.getPwd());
+			pstmt.setString(5, memberVo.getPhone());
+			pstmt.setString(6, memberVo.getCode());
+			
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 
 }
