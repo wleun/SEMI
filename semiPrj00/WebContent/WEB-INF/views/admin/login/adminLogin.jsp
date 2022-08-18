@@ -10,6 +10,12 @@
 
 <style>
 
+    
+    * {
+        color: white;
+    }
+
+
     #pageWrap {
         width: 1920px;
         height: 1080px;
@@ -51,12 +57,11 @@
 
     #adminLoginLogo {
         width: 100%;
-        height: 30%;
+        height: 31%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border-bottom: 1px solid white;
     }
 
     #adminLoginLogo>img {
@@ -66,19 +71,60 @@
 
     #adminLoginId {
         width: 100%;
-        height: 25%;
-        border-bottom: 1px solid white;
+        height: 22%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     #adminLoginPwd{
         width: 100%;
-        height: 25%;
-        border-bottom: 1px solid white;
+        height: 22%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     #adminLoginBtn{
         width: 100%;
-        height: 20%;
+        height: 25%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 20px;
+    }
+
+    .idPwd {
+        width: 70%;
+        height: 35%;
+        border-radius: 50px;
+        background-color: darkgray;
+        color: black;
+        font-size: 16px;
+        font-weight: 900;
+        text-align: center;
+    }
+
+    .idPwdText {
+        width: 68%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        font-size: 16px;
+        padding-bottom: 10px;
+    }
+
+    input[type=submit] {
+        width: 100px;
+        height: 40px;
+        border-radius: 50px;
+        background-color: #48CA7D;
+        color: white;
+        font-size: 16px;
+        font-weight: 900;
     }
 
 
@@ -89,20 +135,23 @@
 	<div id="pageWrap">
 
         <div id="adminLoginDiv">
-            <form action="">
+            <form action="<%=contextPath %>/admin/login" method="post">
                 <div id="adminLoginForm">
-                    <div id="adminLoginLogo">
+                    <div id="adminLoginLogo" >
                         <img src="<%=contextPath%>/resources/img/200perlogo_pse.png" alt="">
+                        
                     </div>
                     <div id="adminLoginId">
-
+                        <div class="idPwdText">아이디 * </div>
+                        <input type="text" class="idPwd">
                     </div>
                     <div id="adminLoginPwd">
-
+                        <div class="idPwdText">비밀번호 * </div>
+                        <input type="password" class="idPwd">
                     </div>
 
                     <div id="adminLoginBtn">
-
+                        <input type="submit" value="로그인">
                     </div>
                 </div>
             </form>

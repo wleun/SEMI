@@ -90,6 +90,11 @@
             border-radius: 50px;
             color: white;
         }
+        
+        .animationHover:hover {
+        	transform:scale(1.2);
+        	transition:1s;
+        }
 
         textarea {
             resize: none;

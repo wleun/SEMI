@@ -15,4 +15,10 @@ public class adminLoginController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("/WEB-INF/views/admin/login/adminLogin.jsp").forward(req, resp);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setAttribute("FunctionName", "대시보드");
+		req.getRequestDispatcher("/WEB-INF/views/admin/main/adminDashboard.jsp").forward(req, resp);
+	}
 }
