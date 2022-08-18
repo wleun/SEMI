@@ -35,12 +35,12 @@
         margin-top: 45px;
     }
 
-    ul{
+    .find-ul{
         position: relative;
         bottom: -26px;
         right:-60px;
     }
-    li{
+    .find-li{
         list-style: none;
         line-height: 27px;
         font-size: 20px;
@@ -214,12 +214,12 @@
                     <div>
                         <br> <h1>아이디 찾기</h1>
                         <form action="" method="post" id="find-id-form">
-                            <ul>
-                                <li>이름</li>
-                                <li><input type="text" name="memberName" required></li>
-                                <li>전화번호</li>
-                                <li><input type="phone" name="memberPhone" required></li>
-                                <br><li><input type="submit" value="아이디찾기" id="submit"></li>
+                            <ul class="find-ul">
+                                <li class="find-li">이름</li>
+                                <li class="find-li"><input type="text" name="memberName" required></li>
+                                <li class="find-li">전화번호</li>
+                                <li class="find-li"><input type="phone" name="memberPhone" required></li>
+                                <br><li class="find-li"><input type="submit" value="아이디찾기" id="submit"></li>
                             </ul>
                         </form>   
                         <div id="find"><br> abcd123@naver.com</div>
@@ -234,17 +234,17 @@
                     <div>
                         <br> <h1>비밀번호 찾기/변경</h1>
                         <form action="" method="post" id="find-pwd-form">
-                            <ul>
-                                <li>E-mail</li>
-                                <li><input type="text" name="memberName" required></li>
-                                <li>전화번호</li>
-                                <li><input type="phone" name="memberPhone" required></li>
+                            <ul class="find-ul">
+                                <li class="find-li">E-mail</li>
+                                <li class="find-li"><input type="text" name="memberName" required></li>
+                                <li class="find-li">전화번호</li>
+                                <li class="find-li"><input type="phone" name="memberPhone" required></li>
                 
-                                <li>새 비밀번호</li>
-                                <li><input type="password" name="memberNewPwd" required></li>
-                                <li>비밀번호 재확인</li>
-                                <li><input type="password" name="memberNewPwd2" required></li>
-                                <br><li><input type="submit" value="완료" id="submit_pwd"></li>
+                                <li class="find-li">새 비밀번호</li>
+                                <li class="find-li"><input type="password" name="memberNewPwd" required></li>
+                                <li class="find-li">비밀번호 재확인</li>
+                                <li class="find-li"><input type="password" name="memberNewPwd2" required></li>
+                                <br><li class="find-li"><input type="submit" value="완료" id="submit_pwd"></li>
                                 </div>
                             </ul>
                         </form>
