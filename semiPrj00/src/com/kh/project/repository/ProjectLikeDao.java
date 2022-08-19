@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import static com.kh.common.JDBCTemplate.*;
+
 public class ProjectLikeDao {
 
 	//플젝 좋아요
@@ -25,7 +27,7 @@ public class ProjectLikeDao {
 			e.printStackTrace();
 		}
 		
-		
+		close(pstmt);
 		return result;
 	}
 
@@ -45,8 +47,8 @@ public class ProjectLikeDao {
 			
 			e.printStackTrace();
 		}
-		
-		
+		close(pstmt);
+		System.out.println("좋아요 취소한 dao result 값: "+result);
 		return result;
 	}
 

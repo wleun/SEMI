@@ -24,12 +24,14 @@ public class ProjectLikeService {
 			rollback(conn);
 		}
 		
+		close(conn);
 		System.out.println("좋아요 한 서비스 result 값: "+result);
 		return result;
 	}
 
 	//프로젝트 좋아요 취소
 	public int projectLikeCancel() {
+		
 		Connection conn = getConnection();
 		
 		int result = dao.projectLikeCancel(conn);
@@ -40,6 +42,7 @@ public class ProjectLikeService {
 			rollback(conn);
 		}
 		
+		close(conn);
 		System.out.println("좋아요 취소한 서비스 result 값: "+result);
 		return result;
 	}

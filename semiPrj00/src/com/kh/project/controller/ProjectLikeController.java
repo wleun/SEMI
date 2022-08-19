@@ -22,13 +22,17 @@ public class ProjectLikeController extends HttpServlet{
 		int likeCancel = 0;
 		int like = 0;
 		
+		System.out.println(flag);
+		
 		switch(flag) {
 		case "1" : like = service.projectLike(); 
 			resp.getWriter().write(like); 
 			System.out.println("좋아요");
+			break;
 		case "2" : likeCancel = service.projectLikeCancel(); 
 			resp.getWriter().write(likeCancel); 
 			System.out.println("좋아요 취소");
+			break;
 		}
 			
 		
