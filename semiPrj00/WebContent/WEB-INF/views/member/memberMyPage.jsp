@@ -155,7 +155,7 @@
                                 <th>* 이메일</th>
                             </tr>
                             <tr>
-                                <td><input type="text" name="memberEmail" value="${loginMember.getEmail}" required readonly></td>
+                                <td><input type="text" name="memberEmail" value="${memberEmail}" required readonly></td>
                             </tr>
                             <tr>
                                 <th>비밀번호 수정</th>

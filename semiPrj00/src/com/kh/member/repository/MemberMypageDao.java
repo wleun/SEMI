@@ -56,10 +56,13 @@ public class MemberMypageDao {
 				String phone = rs.getString("PHONE");
 				String registration = rs.getString("REGINSTRATION");
 				
-				
-				ENROLLDATE
-				STATUS
-				QUIT_DATE
+				vo = new MemberVo();
+				vo.setNo(no);
+				vo.setEmail(email);
+				vo.setName(name);
+				vo.setNick(nick);
+				vo.setPhone(phone);
+				vo.setRegistration(registration);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
