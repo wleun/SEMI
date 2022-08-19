@@ -6,10 +6,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 import com.kh.category.vo.CategoryVo;
+import com.kh.project.attachment.vo.ProjectAttachmentVo;
 import com.kh.project.repository.PrjOpenDao;
+import com.kh.project.vo.ProjectVo;
+import com.kh.reward.vo.ProjectRewardVo;
 
 import static com.kh.common.JDBCTemplate.*;
 
@@ -33,7 +37,6 @@ public class PrjOpenService {
 	}
 	
 
-	
 	//배송일 구하는 메소드
 	public String shippingDateCalc(String endDate, int day) {
 		
@@ -67,5 +70,36 @@ public class PrjOpenService {
 		
 		return list;
 	}
+
+
+	//프로젝트 정보 insert
+	public int prjInsert(ProjectVo prjVo, LinkedList<ProjectAttachmentVo> attList, LinkedList<ProjectRewardVo> rewardList) {
+		
+		Connection conn = null;
+		
+		conn = getConnection();
+		
+		int result1 = 0;
+		int result2 = 0;
+		int result3 = 0;
+		
+		//DAO 호출
+		try {
+			result1 = new PrjOpenDao().insertProject(conn, prjVo);
+			result2 = new PrjOpenDao().insertProjectFile(conn, attList);
+			result3 = new PrjOpenDao().insertProjectReward(conn, rewardList);
+		} catch (Exception e) {
+			System.out.println("인서트 중 문제 발생");
+			e.printStackTrace();
+		}
+		
+		
+		return result1;
+
+
+	}
+	
+	
+	
 
 }

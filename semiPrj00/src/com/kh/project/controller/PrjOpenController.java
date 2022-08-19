@@ -6,14 +6,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.Collection;
-import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -53,8 +49,8 @@ public class PrjOpenController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		ProjectVo prjVo = new ProjectVo();
-		
 		ProjectAttachmentVo attVo = null;
+		ProjectRewardVo rewardVo = null;
 		
 		
 		//데이터 꺼내기 
@@ -102,7 +98,7 @@ public class PrjOpenController extends HttpServlet{
 			prjVo.setThumbnailPath(realPath);
 		}
 		
-
+		LinkedList<ProjectAttachmentVo> attList = new LinkedList<ProjectAttachmentVo>(); //첨부파일 객체 담을 리스트
 		Collection<Part> prjFile = req.getParts();//상세이미지
 		
 		for(Part file : prjFile) {
@@ -136,6 +132,7 @@ public class PrjOpenController extends HttpServlet{
 			attVo.setOriginName(originName);
 			attVo.setChangeName(changeName);
 			attVo.setFileSrc(realPath);
+			attList.add(attVo);
 			
 		}
 		
@@ -148,10 +145,10 @@ public class PrjOpenController extends HttpServlet{
 		
 		
 		int shippingDate = Integer.parseInt(req.getParameter("shippingDate")); //결제 마감일로부터 n일 
-		String shippingDateResult = new PrjOpenService().shippingDateCalc(endDate, shippingDate); //배송일(날짜) 마감일 + 결제 7일 + 지정한 날짜 n일 ////
-		System.out.println(shippingDateResult);
-		
+		String shippingDateResult = new PrjOpenService().shippingDateCalc(endDate, shippingDate); //배송일(날짜) 마감일 + 결제 7일 + 지정한 날짜 n일 
+
 		//2page 창작자 정보
+		String makerNo = req.getParameter("makerNo");
 		String makerInfo = ""; //창작자 소개 (내용이 없으면 빈 문자열로)
 		if(req.getParameter("makerInfo") != null) 
 			makerInfo = req.getParameter("makerInfo");
@@ -177,30 +174,34 @@ public class PrjOpenController extends HttpServlet{
 		prjVo.setText(text);
 		prjVo.setEtc(etc);
 		prjVo.setShippingDate(shippingDateResult);
+		
+		prjVo.setMakerNo(makerNo);
 		prjVo.setMakerInfo(makerInfo);
 		prjVo.setAccountNo(accountNo);
 		prjVo.setAccountBank(accountBank);
 		prjVo.setAccountName(accountName);
 		
 		
-
-		LinkedList<ProjectRewardVo> list = new LinkedList<ProjectRewardVo>();
+		//리워드 정보 담을 리스트
+		LinkedList<ProjectRewardVo> rewardList = new LinkedList<ProjectRewardVo>();
 	
 		//리워드 정보 데이터 뭉치기
 		for(int i = 0; i<price.length; i++)
 		{
-			ProjectRewardVo rewardVo = new ProjectRewardVo();
+			rewardVo = new ProjectRewardVo();
 			rewardVo.setPrice(price[i]);
 			rewardVo.setQuantity(quantity[i]);
 			rewardVo.setOption(option[i]);
 			rewardVo.setDetail(detail[i]);
 			
-			list.add(rewardVo);
+			rewardList.add(rewardVo);
 			
 			System.out.println(rewardVo);
 			
 		}
 		
+		int result = new PrjOpenService().prjInsert(prjVo, attList, rewardList);
+		System.out.println(result);
 	}
 
 }
