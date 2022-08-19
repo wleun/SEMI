@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.kh.category.vo.CategoryVo;
+import com.kh.member.vo.MemberVo;
 import com.kh.project.attachment.vo.ProjectAttachmentVo;
 import com.kh.project.service.PrjOpenService;
 import com.kh.project.vo.ProjectVo;
@@ -35,11 +36,19 @@ public class PrjOpenController extends HttpServlet{
 	//프로젝트 오픈 신청 페이지
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//카테고리 정보 가져오기
-		List<CategoryVo> list = new PrjOpenService().selectCategoryList();
-		req.setAttribute("list", list);
 		
-		req.getRequestDispatcher("/WEB-INF/views/project/openForm.jsp").forward(req, resp);
+		//로그인 정보 없으면 메시지 표시 및 로그인 페이지로 보냄
+		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
+		
+		if(loginMember != null) {
+			//카테고리 정보 가져오기
+			List<CategoryVo> list = new PrjOpenService().selectCategoryList();
+			req.setAttribute("list", list);
+			req.getRequestDispatcher("/WEB-INF/views/project/openForm.jsp").forward(req, resp);
+		}else {
+			req.getSession().setAttribute("alertMsg", "로그인 후 이용 가능한 서비스입니다.");
+			resp.sendRedirect(req.getContextPath()+"/member/login"); //이렇게 하는게 맞나..?
+		}
 		
 	}
 	
@@ -64,10 +73,11 @@ public class PrjOpenController extends HttpServlet{
 		
 		int goal = Integer.parseInt(req.getParameter("prjAmount")); //목표금액
 		
+		
+		
+		
 		Part thumbnail = req.getPart("thumbnail");//대표이미지
-		
 		String savePath = null;
-		
 		if(thumbnail.getSubmittedFileName().length() > 0) {
 			String originName = thumbnail.getSubmittedFileName(); //원본 파일명 얻기
 			String changeName = new PrjOpenService().createChangeName(originName);
@@ -97,6 +107,8 @@ public class PrjOpenController extends HttpServlet{
 			prjVo.setThumbnailName(changeName);
 			prjVo.setThumbnailPath(realPath);
 		}
+		
+		
 		
 		LinkedList<ProjectAttachmentVo> attList = new LinkedList<ProjectAttachmentVo>(); //첨부파일 객체 담을 리스트
 		Collection<Part> prjFile = req.getParts();//상세이미지
@@ -136,6 +148,8 @@ public class PrjOpenController extends HttpServlet{
 			
 		}
 		
+		
+		
 
 		String text = req.getParameter("prjText"); //상세설명
 		String etc = "";
@@ -165,6 +179,8 @@ public class PrjOpenController extends HttpServlet{
 		
 		
 		//////////////////////////////////////////////////////////
+		
+		
 		//프로젝트 정보 데이터 뭉치기
 		prjVo.setCategoryNo(category);
 		prjVo.setName(title);
@@ -196,12 +212,16 @@ public class PrjOpenController extends HttpServlet{
 			
 			rewardList.add(rewardVo);
 			
-			System.out.println(rewardVo);
-			
 		}
 		
 		int result = new PrjOpenService().prjInsert(prjVo, attList, rewardList);
-		System.out.println(result);
+		
+		
+		if(result == 1) {
+			
+		}
+		
+		
 	}
 
 }
