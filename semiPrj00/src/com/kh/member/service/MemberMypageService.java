@@ -9,6 +9,7 @@ import com.kh.member.vo.MemberVo;
 
 public class MemberMypageService {
 
+	//회원 정보 수정
 	public MemberVo edit(MemberVo vo) {
 		
 		Connection conn = null;
@@ -36,6 +37,7 @@ public class MemberMypageService {
 		
 	}
 
+	//회원 정보 조회
 	private MemberVo selectOneByNo(int no) {
 		
 		Connection conn = null;

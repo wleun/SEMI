@@ -9,6 +9,7 @@ import com.kh.member.vo.MemberVo;
 
 public class MemberMypageDao {
 
+	//회원 정보 수정
 	public int edit(Connection conn, MemberVo vo) {
 		
 		String sql = "UPDATE MEMBER SET NAME =  ?, NICK =  ?, PHONE =  ?, REGISTRATION = ? WHERE NO = ?";
@@ -34,6 +35,7 @@ public class MemberMypageDao {
 		
 	}
 	
+	//회원 정보 조회
 	public MemberVo selectOneByNo(Connection conn, int num) {
 		
 		String sql = "SELECT * FROM MEMBER WHERE NO = ? AND STATUS = 'A'";
