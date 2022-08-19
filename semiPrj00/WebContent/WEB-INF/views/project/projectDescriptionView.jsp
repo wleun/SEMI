@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -762,42 +769,31 @@
     </div>
     
 
-    <script>
+
+<script>
+    $(function(){
+        
         $("#file").on('change',function(){
             var fileName = $("#file").val();
             $(".upload-name").val(fileName);
         });
-    </script>
 
-    <script>
-        $(function(){
-            
-            // $('#btn-div1>#like-btn').on({
-            //     'click': function() {
-            //         var src = ($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png')
-            //             ? '<%=contextPath%>/resources/img/project_liked.png'
-            //             : '<%=contextPath%>/resources/img/project_like.png';
-            //         $('#btn-div1 img').attr('src', src);    
+        $('#like-btn').click(function(){
 
-            //         if($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png'){
-            //             location.href='<%=contextPath%>/project/like?flag=1'
-            //             console.log('좋아요');
-            //         }else if($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_liked.png'){
-            //             location.href='<%=contextPath%>/project/like?flag=2'
-            //            	console.log('좋아요취소');
-            //         }
+        	<% if(loginMember == null){ %>
+    			alert('로그인이 필요한 기능입니다.');
+    			location.href='<%=contextPath%>/member/login';
+    		<% }else{ %>
 
-            //     }
-            // });
-
-            $('#like-btn').click(function(){
+                //버튼 토글 기능
                 var src = ($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png')
                     ? '<%=contextPath%>/resources/img/project_liked.png'
                     : '<%=contextPath%>/resources/img/project_like.png';
                 $('#btn-div1 img').attr('src', src); 
 
-                if($('#like-btn>img').attr('src') === '<%=contextPath%>/resources/img/project_liked.png'){
-                    console.log("좋아요");
+                //누를 때마다 이미지 src 변경하며 flag값 전달 
+                if($('#like-btn>img').attr('src') === '<%=contextPath%>/resources/img/project_liked.png'){   //하트 채워진 이미지
+                    console.log("좋아요"); //확인용
                     $.ajax({
                         url : "<%=contextPath%>/project/like",
                         method : "get",
@@ -814,8 +810,8 @@
                         }
                     });
                 }
-                else if($('#like-btn>img').attr('src') === '<%=contextPath%>/resources/img/project_like.png'){
-                    console.log("좋아요취소");
+                else if($('#like-btn>img').attr('src') === '<%=contextPath%>/resources/img/project_like.png'){   //빈 하트 (기존)이미지
+                    console.log("좋아요취소");  //확인용
                     $.ajax({
                         url : "<%=contextPath%>/project/like",
                         method : "get",
@@ -825,34 +821,36 @@
                         success : function(likeCancel){
                             if(likeCancel == 1){
                                 alert('좋아요 취소됨');
-        					}
+                            }
                         },
                         error : function(){
 
                         }
                     });
                 }
-            });
+             <% } %>
+          });
+        
 
-            $('#reward-btn button').focus(function(){
-                const div = $(this).find('#option-select-area');
-                
-                if(div.css('display') == 'none')  {
-                    $(div).show();    
-                }
-                
-                const totalPrice = $('#option-price').text() * $('#reward-quantity').val();
-                $('#option-select-area').children().last().val(totalPrice+"원 후원하기");
-               
-                console.log($('#option-select-area').children().last().val());
-            });
-
-            $('#reward-btn button').blur(function(){
-                const div = $(this).find('#option-select-area');
-                $(div).hide();
-            });
-
+        $('#reward-btn button').focus(function(){
+            const div = $(this).find('#option-select-area');
+            
+            if(div.css('display') == 'none')  {
+                $(div).show();    
+            }
+            
+            const totalPrice = $('#option-price').text() * $('#reward-quantity').val();
+            $('#option-select-area').children().last().val(totalPrice+"원 후원하기");
+            
+            console.log($('#option-select-area').children().last().val());
         });
+
+        $('#reward-btn button').blur(function(){
+            const div = $(this).find('#option-select-area');
+            $(div).hide();
+        });
+
+    });
     </script>
 
     
