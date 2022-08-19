@@ -253,7 +253,7 @@
                                         <div class="memberEmail">${item.email}</div>
                                         <div class="memberPhone">${item.phone}</div>
                                         <div class="memberStatus">${item.status}</div>
-                                        <div class="memberEnrollDate">${item.enrolldate}</div>
+                                        <div class="memberEnrollDate">${item.enrollDate}</div>
                                         <div class="memberSuspendedDate">${item.suspendDate}</div>
                                         <div class="memberQuitDate">${item.quitDate}</div>
                                     </div>
@@ -286,7 +286,7 @@
 								
 								<% if (currentPage != maxPage) { %>
 									<% if (maxPage>10) { %>
-								<div> <a href="<%=contextPath %>/admin/notice?p=<%=maxPage%> "> ▶▶ </a></div>
+								<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=maxPage%> "> ▶▶ </a></div>
 									<%} %>
 								<%} %>
                             </div>

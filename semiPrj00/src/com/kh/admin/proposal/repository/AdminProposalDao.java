@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.admin.proposal.vo.AdminProposalVo;
 import com.kh.common.vo.PageVo;
 import com.kh.member.vo.MemberVo;
 import com.kh.project.vo.ProjectVo;
@@ -19,7 +20,7 @@ public class AdminProposalDao {
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT COUNT(NO) AS COUNT FROM PROJECT";
+		String sql = "SELECT COUNT(PROJECT_NO) AS COUNT FROM PROJECT";
 		
 		try {
 			
@@ -39,14 +40,14 @@ public class AdminProposalDao {
 		return count;
 	}
 
-	public List<ProjectVo> selectList(Connection conn, PageVo pageVo) {
+	public List<AdminProposalVo> selectList(Connection conn, PageVo pageVo) {
 		
 		
-		List<ProjectVo> list = null;
+		List<AdminProposalVo> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT NO , TYPE , M_LEVEL , NICK , EMAIL , PHONE , STATUS , ENROLL_DATE , SUSPEND_DATE , QUIT_DATE FROM MEMBER ORDER BY NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
+		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT P.PROJECT_NO , P.NAME , M.NICK , C.NAME AS CATEGORY_NAME , P.REGISTER_DATE , P.STATUS , P.START_DATE , P.END_DATE , P.GOAL , P.SHIPPING_DATE , P.TEXT , P.THUMBNAIL_NAME , P.THUMBNAIL_PATH FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C USING (CATEGORY_NO) ORDER BY P.PROJECT_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		
 		try {
 				int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
@@ -59,39 +60,42 @@ public class AdminProposalDao {
 				
 				rs = pstmt.executeQuery();
 				
-				list = new ArrayList<ProjectVo>();
+				list = new ArrayList<AdminProposalVo>();
 			
 				while(rs.next()) {
 					
-					ProjectVo vo = new ProjectVo();
-//					
-//					String no = rs.getString("PROJECT_NO");
-//					String nick = rs.getString("NICK");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
-//					String no = rs.getString("PROJECT_NO");
+					AdminProposalVo vo = new AdminProposalVo();
 					
-//					
-//				    이름 NAME 
-//			            회원 이름(닉) ( 회원 테이블 조인)
-//				    프로젝트 카테고리 CATEGORY_NO (카테고리 조인)
-//			            접수 날짜 REGISTER_DATE
-//				    상태 STATUS R=접수, N=반려, A=검토중 B,I,S,F = 승인, D = 삭제
-//			            프로젝트 시작일 START_DATE
-//			            프로젝트 마감일 END_DATE
-//			            프로젝트 목표금액 GOAL NUMBER
-//			            배송일 SHIPPING_DATE
-//			            설명 TEXT
-//				    썸네일 이름 THUMBNAIL_NAME
-//			            썸네일 주소 THUMBNAIL_PATH
+					String no = rs.getString("PROJECT_NO");
+					String nick = rs.getString("NICK");
+					String name = rs.getString("NAME");
+					String categoryName = rs.getString("CATEGORY_NAME");
+					String registerDate = rs.getString("REGISTER_DATE");
+					String status = rs.getString("STATUS");
+					String startDate = rs.getString("START_DATE");
+					String endDate = rs.getString("END_DATE");
+					int goal = rs.getInt("GOAL");
+					String shippingDate = rs.getString("SHIPPING_DATE");
+					String text = rs.getString("TEXT");
+				    String thumbnailName = rs.getString("THUMBNAIL_NAME");
+				    String thumbnailPath = rs.getString("THUMBNAIL_PATH");
+					
+					vo.setNo(no);
+					vo.setNick(nick);
+					vo.setName(thumbnailName);
+					vo.setCategoryName(categoryName);
+					vo.setRegisterDate(registerDate);
+					vo.setStatus(status);
+					vo.setStartDate(startDate);
+					vo.setEndDate(endDate);
+					vo.setGoal(goal);
+					vo.setShippingDate(shippingDate);
+					vo.setText(text);
+					vo.setThumbnailName(thumbnailName);
+					vo.setThumbnailPath(thumbnailPath);
+					
+					list.add(vo);
+				    
 				
 				}
 			
