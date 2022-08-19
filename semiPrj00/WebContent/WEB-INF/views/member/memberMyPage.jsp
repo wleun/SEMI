@@ -119,6 +119,8 @@
 
         <form action="/semiPrj00/member/mypage" method="post">
 
+			<input type="hidden" name="memberNo" value="<%= loginMember.getNo() %>">
+
             <section>
             
                 <div class="member-info">
@@ -155,7 +157,7 @@
                                 <th>* 이메일</th>
                             </tr>
                             <tr>
-                                <td><input type="text" name="memberEmail" value="${memberEmail}" required readonly></td>
+                                <td><input type="text" name="memberEmail" value="<%= loginMember.getEmail() %>" required readonly></td>
                             </tr>
                             <tr>
                                 <th>비밀번호 수정</th>
@@ -170,19 +172,19 @@
                                 <th>* 이름</th>
                             </tr>
                             <tr>
-                                <td><input type="text" name="memberName" value="" required></td>
+                                <td><input type="text" name="memberName" value="<%= loginMember.getName() %>" required></td>
                             </tr>
                             <tr>
                                 <th>* 닉네임</th>
                             </tr>
                             <tr>
-                                <td><input type="text" name="memberNick" value="" required></td>
+                                <td><input type="text" name="memberNick" value="<%= loginMember.getNick() %>" required></td>
                             </tr>
                             <tr>
                                 <th>* 전화번호</th>
                             </tr>
                             <tr>
-                                <td><input type="tel" name="memberPhone"></td>
+                                <td><input type="tel" name="memberPhone" value="<%= loginMember.getPhone() %>"></td>
                             </tr>
              
                         </table>
@@ -294,10 +296,10 @@
                          <table>
              
                              <tr>
-                                 <td><button>수정하기</button></td>
+                                 <td><button type="submit">수정하기</button></td>
                              </tr>
                              <tr>
-                                 <td><button>회원탈퇴</button></td>
+                                 <td><button type="button">회원탈퇴</button></td>
                              </tr>
              
                          </table>
