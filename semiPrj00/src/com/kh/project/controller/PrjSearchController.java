@@ -1,6 +1,7 @@
 package com.kh.project.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.category.vo.CategoryVo;
 import com.kh.project.service.PrjCategoryService;
+import com.kh.project.vo.ProjectVo;
 
 @WebServlet(urlPatterns = "/project/search")
 public class PrjSearchController extends HttpServlet{
@@ -21,7 +23,7 @@ public class PrjSearchController extends HttpServlet{
 		String searching = req.getParameter("searching");
 		String sort = req.getParameter("sort");
 		
-		CategoryVo selectedCategory = new PrjCategoryService().selectCategory(searching, sort);
+		//ArrayList<ProjectVo> projectVo = new PrjSearchService().selectProject(searching, sort);
 		
 		req.getRequestDispatcher("/WEB-INF/views/project/searchForm.jsp").forward(req, resp);
 		
