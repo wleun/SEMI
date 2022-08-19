@@ -30,7 +30,8 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	
 	if(endPage > maxPage) {
 		endPage = maxPage;
-		
+	}
+	
 	PageVo pageVo = new PageVo();
 	
 	pageVo.setListCount(listCount);
@@ -48,6 +49,5 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	req.setAttribute("list", adminEventVoList);
 	req.setAttribute("functionName", "이벤트 관리");
 	req.getRequestDispatcher("/WEB-INF/views/admin/event/adminEventView.jsp").forward(req, resp);
-}
-}
+	}
 }

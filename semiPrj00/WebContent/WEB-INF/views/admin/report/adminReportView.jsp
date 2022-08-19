@@ -103,11 +103,11 @@
 
 
         .reportNo {
-            width: 9%;
+            width: 8%;
         }
 
         .reportMember {
-            width: 13%;
+            width: 15%;
         }
 
         .reportPrj {
@@ -115,19 +115,15 @@
         }
 
         .reportContent {
-            width : 20%;
+            width : 30%;
         }
 
         .reportDate {
-            width: 13%;
+            width: 15%;
         }
         
         .reportStatus {
-        	width : 10%;
-        }
-
-        .reportAction {
-        	width : 15%;
+        	width : 12%;
         }
 
         #reportManageDiv3 {
@@ -215,7 +211,7 @@
     
                            <select name="what" id="searchWhat">
                               <option value="receipt">접수</option>
-                              <option value="processing">처리중</option>
+                              <option value="processing">조치중</option>
                                <option value="completion">조치완료</option>
                            </select>
     
@@ -232,8 +228,7 @@
                                     <div class="reportPrj">신고 프로젝트</div>
                                     <div class="reportContent">신고내용</div>
                                     <div class="reportDate">접수날짜</div>
-                                    <div class="reportStatus">처리상태</div>
-                                    <div class="reportAction">조치내용</div>
+                                    <div class="reportStatus">상태</div>
                                 </div>
                             
                                 <a data-bs-toggle="modal" href="#myModal">
@@ -245,7 +240,6 @@
                                         <div class="reportContent">신고내용1111111</div>
                                         <div class="reportDate">2022-08-09</div>
                                         <div class="reportStatus">접수</div>
-                                        <div class="reportAction"></div>
                                         
                                     </div>
                                 </a>
@@ -258,7 +252,6 @@
                                         <div class="reportContent">신고내용2222222</div>
                                         <div class="reportDate">2022-08-09</div>
                                         <div class="reportStatus">조치완료</div>
-                                        <div class="reportAction">신고 프로젝트 삭제</div>
                                     </div>
                                 </a>
                                
@@ -314,7 +307,7 @@
   
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button>처리완료</button>
+          <button>조치완료</button>
         </div>
   
       </div>
