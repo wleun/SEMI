@@ -38,7 +38,7 @@ public class MemberDao {
 				String phone = rs.getString("PHONE");
 				String type = rs.getString("TYPE");
 				String registration = rs.getString("REGISTRATION");
-				Timestamp enrollDate = rs.getTimestamp("ENROLLDATE");
+				Timestamp enrollDate = rs.getTimestamp("ENROLL_DATE");
 				String status = rs.getString("STATUS");
 				Timestamp quitDate = rs.getTimestamp("QUIT_DATE");
 				String mLevel = rs.getString("M_LEVEL");
@@ -77,7 +77,7 @@ public class MemberDao {
 	/*
 	 * 회원가입
 	 */
-	public int join(Connection conn, MemberVo memberVo) {
+	public int join(Connection conn, MemberVo addMakerVo) {
 		//conn준비
 		
 		//sql 준비
@@ -88,12 +88,12 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			//sql 객체 담기 및 실행
-			pstmt.setString(1, memberVo.getName());
-			pstmt.setString(2, memberVo.getEmail());
-			pstmt.setString(3, memberVo.getNick());
-			pstmt.setString(4, memberVo.getPwd());
-			pstmt.setString(5, memberVo.getPhone());
-			pstmt.setString(6, memberVo.getCode());
+			pstmt.setString(1, addMakerVo.getName());
+			pstmt.setString(2, addMakerVo.getEmail());
+			pstmt.setString(3, addMakerVo.getNick());
+			pstmt.setString(4, addMakerVo.getPwd());
+			pstmt.setString(5, addMakerVo.getPhone());
+			pstmt.setString(6, addMakerVo.getCode());
 			
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
@@ -103,6 +103,34 @@ public class MemberDao {
 		}
 		return result;
 		
+	}
+	public int makerJoin(Connection conn, MemberVo addMakerVo) {
+		//conn준비
+		
+				//sql 준비
+				String sql = "INSERT INTO MEMBER (NO ,NAME ,EMAIL ,NICK ,PWD ,PHONE ,CODE ,TYPE ,REGISTRATION ,M_LEVEL ) VALUES (SEQ_MEMBER_NO.NEXTVAL ,?,?,?,?,?,?,?,?,'브론즈')";
+				
+				PreparedStatement pstmt = null;
+				int result = 0;
+				try {
+					pstmt = conn.prepareStatement(sql);
+					//sql 객체 담기 및 실행
+					pstmt.setString(1, addMakerVo.getName());
+					pstmt.setString(2, addMakerVo.getEmail());
+					pstmt.setString(3, addMakerVo.getNick());
+					pstmt.setString(4, addMakerVo.getPwd());
+					pstmt.setString(5, addMakerVo.getPhone());
+					pstmt.setString(6, addMakerVo.getCode());
+					pstmt.setString(7, addMakerVo.getType());
+					pstmt.setString(8, addMakerVo.getRegistration());
+					
+					result = pstmt.executeUpdate();
+				}catch(Exception e) {
+					e.printStackTrace();
+				}finally {
+					close(pstmt);
+				}
+				return result;
 	}
 
 }
