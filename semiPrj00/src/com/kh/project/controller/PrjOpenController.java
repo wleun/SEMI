@@ -218,7 +218,11 @@ public class PrjOpenController extends HttpServlet{
 		
 		
 		if(result == 1) {
-			
+			req.getSession().setAttribute("alertMsg", "정상적으로 오픈 신청 처리되었습니다.");
+			resp.sendRedirect(req.getContextPath()); //이렇게 하는게 맞나..?
+		}else {
+			req.getSession().setAttribute("errorMsg", "죄송합니다. 처리 중 문제가 발생되었습니다.");
+			resp.sendRedirect(req.getContextPath()); //이렇게 하는게 맞나..?
 		}
 		
 		
