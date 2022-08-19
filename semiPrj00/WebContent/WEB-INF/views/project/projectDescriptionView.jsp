@@ -1,10 +1,11 @@
+<%@page import="com.kh.project.vo.ProjectVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-	
+	/* ProjectVo pvo = (ProjectVo)request.getAttribute("projectVo"); */
 %>
 
 <!DOCTYPE html>
@@ -67,39 +68,31 @@
         color: burlywood;
     }
     
-    #reward-btn{
-        height: 700px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+    #reward-btn-area{
+        height: 690px;
         overflow: scroll;
         overflow-x: auto;
     }
-    #reward-btn>button{
-        width: 100%;
+    #reward-btn{
+        background-color: white;
+        display: flex;
+        flex-wrap: wrap;
         padding: 10px;
         margin: 10px 10px 10px 0px;
-        text-align: start;
-        background-color: white;
         border: 1px solid rgba(214, 196, 196, 0.651);
         border-radius: 10px 10px 10px 10px;
     }
-    #reward-btn>button>div{ 
-        margin: 10px;
+    #reward-btn:hover{
+        border: 1px solid #48CA7D;
+    }
+    #reward-btn:focus{
+        border: 2px solid #48CA7D;
     }
     #option-select-area{
         width: 100%;
-    }
-
-    /* 버튼효과 */
-    #btn-div1>a, #btn-div2>button,#reward-btn>button:hover{
-        cursor: pointer;
-    }
-    #reward-btn>button:hover{
-        border: 1px solid #48CA7D;
-    }
-    #reward-btn>button:focus{
-        border: 2px solid #48CA7D;
+        display: none;
+        padding: 20px 10px 10px 10px;
+        border-top: 1px solid #48CA7D;
     }
     #option-select-area>input[type='number']{
         width: 20%;
@@ -118,12 +111,13 @@
         height: 2em;
         
     }
-    
-    #option-select-area{
-        display: none;
-        padding: 20px 10px 10px 10px;
-        border-top: 1px solid #48CA7D;
+    /* 버튼효과 */
+    #btn-div1>a, #btn-div2>button,#reward-btn>button:hover{
+        cursor: pointer;
     }
+    
+    
+    
 
 /* 헤드와 메인으로 2분할 */
     #desc-head{
@@ -493,7 +487,7 @@
                     <a href="/project/category">푸드</a>
                 </div>
                 <div id="project-title">
-                    <a>찐크림치즈에 옥수수를 더하다 글루텐프리, 옥수수치크케이크 찐크림치즈에 옥수수를 더하다 글루텐프리, 옥수수치크케이크</a>
+                    <a>${pvo.name}</a>
                 </div>
             </div>
             <div id="head-img">
@@ -714,49 +708,37 @@
 
                 <div id="reward-option">
                     <div id="reward-option-title"><span>리워드 선택하기</span></div>
-                    <div class="btns" id="reward-btn">
+                    <div class="btns" id="reward-btn-area">
 
-                        <button>
-                            <div><span class="option-attribute" id="option-name">옵션1</span></div>
-                            <div><span class="option-attribute" id="option-price">25000</span><span class="option-attribute" id="option-price"> 원</span></div>
-                            <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
-                            <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
-                            <form action="<%=contextPath%>/project/support">
-                                <div id="option-select-area">
+                        <div id="reward-btn">
+
+                            <div id="reward-btn-on-display">
+                                <div><span class="option-attribute" id="option-name">옵션1</span></div>
+                                <div><span class="option-attribute" id="option-price">25000</span><span class="option-attribute" id="option-price"> 원</span></div>
+                                <div>
+                                    <span class="option-attribute" id="option-detail">
+                                        일반 슬리브 3팩 추가
+                                    미드가르드의 챔피언 - 컴플리트 에디션 ( x 1 )
+                                    일반 슬리브 63 * 88 사이즈 2팩 ( x 1 )
+                                    일반 슬리브 41 * 63 사이즈 1팩 ( x 1 )
+                                    </span>
+                                </div>
+                                <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
+                            </div>
+
+                            <div id="option-select-area">
+                                <form action="<%=contextPath%>/project/support">
                                     수량선택 <input type="number" id="reward-quantity" value="1" min='1' max= '10'>
                                     <input type="submit" value= "후원하기">
-                                </div>
-                            </form>
-                        </button>
+                                </form>
+                            </div>
 
-                        <button>
-                            <div><span class="option-attribute" id="option-name">옵션1</span></div>
-                            <div><span class="option-attribute" id="option-price">25000</span><span class="option-attribute" id="option-price"> 원</span></div>
-                            <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
-                            <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
-                            <form action="<%=contextPath%>/project/support">
-                                <div id="option-select-area">
-                                    수량선택 <input type="number" id="reward-quantity" value="1" min='1' max= '10'>
-                                    <input type="submit" value= "">
-                                </div>
-                            </form>
-                        </button>
+                        </div>
 
-                        <button>
-                            <div><span class="option-attribute" id="option-name">옵션1</span></div>
-                            <div><span class="option-attribute" id="option-price">25,000</span><span class="option-attribute" id="option-price"> 원</span></div>
-                            <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
-                            <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
-                        </button>
-
-                        <button>
-                            <div><span class="option-attribute" id="option-name">옵션1</span></div>
-                            <div><span class="option-attribute" id="option-price">25,000</span><span class="option-attribute" id="option-price"> 원</span></div>
-                            <div><span class="option-attribute" id="option-detail">옵션설명</span></div>
-                            <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
-                        </button>
                         
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -780,11 +762,12 @@
 
         $('#like-btn').click(function(){
 
-        	<% if(loginMember == null){ %>
+            <c:if test="${ empty loginMember}">
     			alert('로그인이 필요한 기능입니다.');
     			location.href='<%=contextPath%>/member/login';
-    		<% }else{ %>
-
+   			</c:if>
+    		
+			<c:if test="${ not empty loginMember}">
                 //버튼 토글 기능
                 var src = ($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png')
                     ? '<%=contextPath%>/resources/img/project_liked.png'
@@ -828,11 +811,11 @@
                         }
                     });
                 }
-             <% } %>
+            </c:if>
           });
         
 
-        $('#reward-btn button').focus(function(){
+        $('#reward-btn button').click(function(){
             const div = $(this).find('#option-select-area');
             
             if(div.css('display') == 'none')  {
