@@ -46,6 +46,7 @@ public class PrjOpenDao {
 				
 	}
 
+	//프로젝트 정보 insert
 	public int insertProject(Connection conn, ProjectVo prjVo) throws Exception{
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -83,21 +84,72 @@ public class PrjOpenDao {
 		
 		return result;
 		
-		
-		
-		
+
 	}
 
-	public int insertProjectFile(Connection conn, LinkedList<ProjectAttachmentVo> attList) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	//첨부파일 insert
+	public int insertProjectFile(Connection conn, LinkedList<ProjectAttachmentVo> attList) throws Exception {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "INSERT INTO DESCRIPTION_FILE(NO, PROJECT_NO, FILE_SRC, ORIGIN_NAME, CHANGE_NAME) "
+				+ "VALUES(SEQ_DESCRIPTION_NO.NEXTVAL, SEQ_PROJECT_NO.CURRVAL, ?, ?, ?)";
+		
+		try {
+			
+			for(int i = 0; i < attList.size(); i++) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, attList.get(i).getFileSrc());
+				pstmt.setString(2, attList.get(i).getOriginName());
+				pstmt.setString(3, attList.get(i).getChangeName());
+				
+				result = pstmt.executeUpdate();
 
-	public int insertProjectReward(Connection conn, LinkedList<ProjectRewardVo> rewardList) {
-		// TODO Auto-generated method stub
-		return 0;
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+			
 	}
 
 	
+	//리워드 insert
+	public int insertProjectReward(Connection conn, LinkedList<ProjectRewardVo> rewardList) throws Exception {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "INSERT INTO REWARD(NO, PROJECT_NO, \"OPTION\", DETAIL, PRICE, QUANTITY) "
+				+ "VALUES(SEQ_REWARD_NO.NEXTVAL, SEQ_PROJECT_NO.CURRVAL, ?, ?, ?, ?)";
+		
+		try {
+			
+			for(int i = 0; i < rewardList.size(); i++) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, rewardList.get(i).getOption());
+				pstmt.setString(2, rewardList.get(i).getDetail());
+				pstmt.setString(3, rewardList.get(i).getPrice());
+				pstmt.setString(4, rewardList.get(i).getQuantity());
+				
+				result = pstmt.executeUpdate();
+
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+			
+	}
 	
+
 }

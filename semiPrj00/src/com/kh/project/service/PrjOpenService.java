@@ -88,13 +88,24 @@ public class PrjOpenService {
 			result1 = new PrjOpenDao().insertProject(conn, prjVo);
 			result2 = new PrjOpenDao().insertProjectFile(conn, attList);
 			result3 = new PrjOpenDao().insertProjectReward(conn, rewardList);
+			
+			//트랜잭션 처리
+			if(result1 * result2 * result3 == 1) {
+				commit(conn);
+				
+			}else {
+				rollback(conn);
+			}
+			
 		} catch (Exception e) {
-			System.out.println("인서트 중 문제 발생");
+			System.out.println("프로젝트 신청 처리 중 문제 발생");
 			e.printStackTrace();
+		} finally {
+			close(conn);
 		}
 		
 		
-		return result1;
+		return result1 * result2 * result3;
 
 
 	}
