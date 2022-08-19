@@ -65,6 +65,7 @@
         height: 40%;
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
     }
 
     .proposalInfoBar {
@@ -100,8 +101,9 @@
         width: 100%;
         height: 500px;
         display: flex;
-        flex-direction: row;
-        justify-content: center;
+        flex-direction: column;
+        justify-content:flex-start;
+        align-items: center;
     }
 
 
@@ -115,7 +117,7 @@
 
     .projectInfo {
         width: 100%;
-        height: 12%;
+        height: 14%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -125,6 +127,9 @@
         width: 100%;
         height: auto;
         display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
 
     .justify-right {
@@ -148,7 +153,12 @@
     }
 
     .mediaText {
+        margin-top: 40px;
         height: 30px;
+    }
+
+    .padding_bottom {
+        padding-bottom: 10px;
     }
 
 
@@ -198,19 +208,15 @@
                 <div class="proposalInfoBar">2.프로젝트 정보</div>
                 <div id="projectInfoBox">
                     <div class="proposalInfoBox">
-                        <div class="projectInfo justify-right">프로젝트 일자 </div>
-                        <div class="projectInfo justify-right">프로젝트 목표금액</div>
-                        <div class="projectExplain justify-right">상세 설명
-                            
-                        </div>
-                        <div class="projectInfo justify-right">배송일</div>
+                        <div class="projectInfo ">프로젝트 일자 </div>
+                        <div class="projectInfo padding_bottom">2022-09-01 ~ 2022-09-10 </div>
+                        <div class="projectInfo ">프로젝트 목표금액</div>
+                        <div class="projectInfo padding_bottom">10,000,000원</div>
+                        <div class="projectInfo ">배송일</div>
+                        <div class="projectInfo padding_bottom">2022-12-01</div>
+                        <div class="projectInfo padding_bottom">설명</div>
                     </div>
-                    <div class="proposalInfoBox">
-                        <div class="projectInfo justify-left">2022-09-01 ~ 2022-09-10 </div>
-                        <div class="projectInfo justify-left">10,000,000원</div>
-                        <div class="projectExplain justify-left">설명</div>
-                        <div class="projectInfo justify-left">배송일</div>
-                    </div>
+                    <div class="projectExplain"> 내용 </div>
                 </div>
 
             </div>

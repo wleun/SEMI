@@ -1,5 +1,15 @@
+<%@page import="com.kh.common.vo.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	PageVo pv = (PageVo) request.getAttribute("pv");
+	
+	int currentPage = pv.getCurrentPage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -233,36 +243,22 @@
                                     <div class="memberQuitDate">탈퇴일</div>
                                 </div>
                             
+                                  <c:forEach items="${list}" var="item"> 
                                     <div class="memberManageColumn">
                                         <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="memberNo">1</div>
-                                        <div class="memberType">사업자회원</div>
-                                        <div class="memberLevel">브론즈</div>
-                                        <div class="memberName">와디즈</div>
-                                        <div class="memberEmail">Wadiz@wadiz.com</div>
-                                        <div class="memberPhone">010-000-0000</div>
-                                        <div class="memberStatus">탈퇴</div>
-                                        <div class="memberEnrollDate">2022-08-01</div>
-                                        <div class="memberSuspendedDate">2022-08-05</div>
-                                        <div class="memberQuitDate">2022-08-13</div>
-                                        
+                                        <div class="memberNo">${item.no}</div>
+                                        <div class="memberType">${item.type}</div>
+                                        <div class="memberLevel">${item.mLevel}</div>
+                                        <div class="memberName">${item.nick}</div>
+                                        <div class="memberEmail">${item.email}</div>
+                                        <div class="memberPhone">${item.phone}</div>
+                                        <div class="memberStatus">${item.status}</div>
+                                        <div class="memberEnrollDate">${item.enrolldate}</div>
+                                        <div class="memberSuspendedDate">${item.suspendDate}</div>
+                                        <div class="memberQuitDate">${item.quitDate}</div>
                                     </div>
+                                  </c:forEach> 
 
-
-                                    <div class="memberManageColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="memberNo">1</div>
-                                        <div class="memberType">일반회원</div>
-                                        <div class="memberLevel">일반</div>
-                                        <div class="memberName">와디즈</div>
-                                        <div class="memberEmail">Wadiz@wadiz.com</div>
-                                        <div class="memberPhone">010-000-0000</div>
-                                        <div class="memberStatus">정지</div>
-                                        <div class="memberEnrollDate">2022-08-01</div>
-                                        <div class="memberSuspendedDate">2022-08-10</div>
-                                        <div class="memberQuitDate">X</div>
-                                        
-                                    </div>
 
                                
                             </div>
@@ -271,13 +267,28 @@
     
                             <div id="memberManageDiv3_not_used"></div>
                             <div id="memberManageDiv3_paging">
-                                <div>◀</div>
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>▶</div>
+                                <% if (currentPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=startPage-10 %>"> ◀ </a> </div>
+								<%} %>
+								<% for(int i = startPage; i <= endPage; ++i) { %>
+									<% if(i == currentPage) {%>
+										<div> <a><%=i%></a></div>
+									<%} else { %>
+									<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=i%>"><%=i%></a></div>
+									<%} %>
+								<%} %>
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage< currentPage+10) { %>
+										<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=maxPage%>"> ▶ </a></div>
+									<%} else if (maxPage>10) { %>
+											<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=startPage+10%> "> ▶ </a></div>									<%} %>
+									<%} %>
+								
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/notice?p=<%=maxPage%> "> ▶▶ </a></div>
+									<%} %>
+								<%} %>
                             </div>
                             <div id="memberManageDiv3_edit">
                             	<div><input type="button" value="회원정지" class="button"></div>
