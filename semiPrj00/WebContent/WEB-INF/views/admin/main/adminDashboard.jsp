@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#dashBoard {
+		#dashBoard {
             display: flex;
             flex-direction: row;
             width: 1632px;
@@ -195,7 +195,7 @@
             <div id="dashBoard">
 
                 <div id="dashBoardDiv1" class="dashBoard">
-                    <div id="summary">
+                    <div id="summary" class="animationHover">
                         <div id="summaryText">요약</div>
                         <div id="summaryTable">
                             <table>
@@ -226,14 +226,14 @@
                             </table>
                         </div>
                     </div>
-                    <div id="proposal">
+                    <div id="proposal" class="animationHover">
                         <div id="proposalText"><a>제안서</a></div>
                         <div id="proposalTable">
                             <table></table>
                             
                         </div>
                     </div>
-                    <div id="message">
+                    <div id="message" class="animationHover">
                         <div id="messageText"><a>접수된 신고</a></div>
                         <div id="messageTable">
                             <table></table>
@@ -241,7 +241,7 @@
                     </div>
                 </div>
                 <div id="dashBoardDiv2" class="dashBoard">
-                    <div id="eventDashBoard">
+                    <div id="eventDashBoard" class="animationHover">
                         <div id="eventThumbnail"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
                         <div id="eventOngoing">
                             <div id="eventOngoingText"><a>진행중인 이벤트</a></div>
@@ -250,7 +250,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="noticeDashBoard">
+                    <div id="noticeDashBoard" class="animationHover">
                         <div id="noticeDashBoardText">
                             <a>공지사항 관리</a>
                         </div>
@@ -262,7 +262,7 @@
                     </div>
                 </div>
                 <div id="dashBoardDiv3" class="dashBoard">
-                    <div id="todaySuccessPrj">
+                    <div id="todaySuccessPrj" class="animationHover">
                         <div id="todaySuccessPrjText">
                             <a>오늘 성사된 프로젝트</a>
                         </div>
@@ -270,13 +270,13 @@
 
                         </div>
                     </div>
-                    <div id="todayStartPrj">
+                    <div id="todayStartPrj" class="animationHover">
                         <div id="todayStartPrjText"><a>오늘 시작하는 프로젝트</a></div>
                         <div id="todayStartPrjTable">
                             <table></table>
                         </div>
                     </div>
-                    <div id="todayReport">
+                    <div id="todayReport" class="animationHover">
                         <div id="todayReportText">
                             <a>마감임박 이벤트</a>
                         </div>

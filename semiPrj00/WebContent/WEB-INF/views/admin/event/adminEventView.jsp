@@ -1,5 +1,17 @@
+<%@page import="com.kh.admin.event.repository.AdminEventDao"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kh.common.vo.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	PageVo pv = (PageVo) request.getAttribute("pv");
+	
+	int currentPage = pv.getCurrentPage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,6 +66,11 @@
             align-self: center;
             text-align: center;
             border-radius: 16px;
+        }
+        
+        #eventArea>a {
+        width:100%
+        height:100%
         }
 
         
@@ -225,79 +242,36 @@
                             <div class="eventWrap">
 
                                 <div class="eventArea">
-                                    <a href="<%=contextPath%>/admin/eventDetail">
-                                        <div class="eventBox">
-                                            <div class="half textBox">
-                                                <div class="eventTitle"><h2>이벤트6</h2></div>
-                                                <div class="eventPeriod">2022-10-11~2022-11-10</div>
-                                                <div class="eventStatus">진행예정</div>
-                                            </div>
-                                            <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="<%=contextPath%>/admin/eventDetail">
-                                        <div class="eventBox">
-                                            <div class="half">
-                                                <div class="eventTitle"><h2>이벤트5</h2></div>
-                                                <div class="eventPeriod">2022-08-11~2022-09-10</div>
-                                                <div class="eventStatus">진행중</div>
-                                            </div>
-                                            <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="<%=contextPath%>/admin/eventDetail">
-                                        <div class="eventBox">
-                                            <div class="half">
-                                                <div class="eventTitle"><h2>이벤트5</h2></div>
-                                                <div class="eventPeriod">2022-08-11~2022-09-10</div>
-                                                <div class="eventStatus">진행중</div>
-                                            </div>
-                                            <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                    <c:forEach items="${list}" var="item" begin="0" end="2" step="1">
+                                    	<a href="<%=contextPath%>/admin/eventDetail?no=${item.no}">
+	                                        <div class="eventBox">
+	                                            <div class="half textBox">
+	                                                <div class="eventTitle"><h2>${item.title}</h2></div>
+	                                                <div class="eventPeriod">${item.startDate} ~ ${item.endDate}</div>
+	                                                <div class="eventStatus">진행예정</div>
+	                                            </div>
+	                                            <div class="half">
+	                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+	                                            </div>
+	                                        </div>
+                                    	</a>
+                                    </c:forEach>
+                                </div>   
                                 <div class="eventArea">
-                                    <a href="<%=contextPath%>/admin/eventDetail">
-                                        <div class="eventBox">
-                                            <div class="half">
-                                                <div class="eventTitle"><h2>이벤트3</h2></div>
-                                                <div class="eventPeriod">2022-03-11~2022-04-10</div>
-                                                <div class="eventStatus">종료됨</div>
-                                            </div>
-                                            <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="<%=contextPath%>/admin/eventDetail">
-                                        <div class="eventBox">
-                                            <div class="half">
-                                                <div class="eventTitle"><h2>이벤트3</h2></div>
-                                                <div class="eventPeriod">2022-03-11~2022-04-10</div>
-                                                <div class="eventStatus">종료됨</div>
-                                            </div>
-                                            <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                        </div>
-                                    </div></a>
-                                    <a href="<%=contextPath%>/admin/eventDetail">
-                                        <div class="eventBox">
-                                            <div class="half">
-                                                <div class="eventTitle"><h2>이벤트1</h2></div>
-                                                <div class="eventPeriod">2022-01-11~2022-02-10</div>
-                                                <div class="eventStatus">종료됨</div>
-                                            </div>
-                                            <div class="half">
-                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <c:forEach items="${list}" var="item" begin="3" end="5" step="1">
+                                    	<a href="<%=contextPath%>/admin/eventDetail?no=${item.no}">
+	                                        <div class="eventBox">
+	                                            <div class="half textBox">
+	                                                <div class="eventTitle"><h2>${item.title}</h2></div>
+	                                                <div class="eventPeriod">${item.startDate} ~ ${item.endDate}</div>
+	                                                <div class="eventStatus">진행예정</div>
+	                                            </div>
+	                                            <div class="half">
+	                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+	                                            </div>
+	                                        </div>
+                                    	</a>
+                                    </c:forEach>
                                 </div>
                                 
                             </div>
@@ -306,17 +280,32 @@
     
                             <div id="eventDiv3_not_used"></div>
                             <div id="eventDiv3_paging">
-                                <div>◀</div>
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>▶</div>
+                                
+                                <% if (currentPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/event?p=<%=startPage-10 %>"> ◀ </a> </div>
+								<%} %>
+								<% for(int i = startPage; i <= endPage; ++i) { %>
+									<% if(i == currentPage) {%>
+										<div> <a><%=i%></a></div>
+									<%} else { %>
+									<div> <a href="<%=contextPath %>/admin/event?p=<%=i%>"><%=i%></a></div>
+									<%} %>
+								<%} %>
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage< currentPage+10) { %>
+										<div> <a href="<%=contextPath %>/admin/event?p=<%=maxPage%>"> ▶ </a></div>
+									<%} else if (maxPage>10) { %>
+											<div> <a href="<%=contextPath %>/admin/event?p=<%=startPage+10%> "> ▶ </a></div>									<%} %>
+									<%} %>
+								
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/event?p=<%=maxPage%> "> ▶▶ </a></div>
+									<%} %>
+								<%} %>
                             </div>
                             <div id="eventDiv3_edit">
                             	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/eventInstall';"></div>
-                                <div><input type="button" value="삭제하기" class="button"></div>
                </div>
     
             </div>

@@ -1,5 +1,16 @@
+<%@page import="com.kh.common.vo.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	PageVo pv = (PageVo) request.getAttribute("pv");
+	
+	int currentPage = pv.getCurrentPage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -214,27 +225,22 @@
                                     <div class="writeDate">작성일자</div>
                                     <div class="deleteYN">삭제여부</div>
                                </div>
-                            
-                                <a href="<%=contextPath%>/admin/noticeDetail">
-                                    <div class="noticeColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="important">중요</div>
-                                        <div class="noticeNo">번호</div>
-                                        <div class="noticeName">공지사항 이름</div>
-                                        <div class="writeDate">작성일자</div>
-                                        <div class="deleteYN">삭제여부</div>
-                                    </div>
-                                </a>
-                                <a href="<%=contextPath%>/admin/noticeDetail">
-                                    <div class="noticeColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="important">중요</div>
-                                        <div class="noticeNo">번호</div>
-                                        <div class="noticeName">공지사항 이름</div>
-                                        <div class="writeDate">작성일자</div>
-                                        <div class="deleteYN">삭제여부</div>
-                                    </div>
-                                </a>
+                               
+                            	<c:forEach items="${list}" var="item">
+                                    	<a href="<%=contextPath%>/admin/noticeDetail?no=${item.no}">
+	                                        <div class="noticeColumn">
+	                                           <div class="check"><input type="checkbox" class="form-check-input"></div>
+			                                   <div class="important">${item.importantYn }</div>
+			                                   <div class="noticeNo">${item.no}</div>
+			                                   <div class="noticeName">${item.title}</div>
+			                                   <div class="writeDate">${item.writeDate}</div>
+			                                   <div class="deleteYN">${item.deleteYn}</div>
+	                                           
+	                                        </div>
+                                    	</a>
+                                    </c:forEach>
+                                    
+                                
                                
                             </div>
                         </div>
@@ -242,13 +248,28 @@
     
                             <div id="noticeDiv3_not_used"></div>
                             <div id="noticeDiv3_paging">
-                                <div>◀</div>
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>▶</div>
+                                <% if (currentPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/notice?p=<%=startPage-10 %>"> ◀ </a> </div>
+								<%} %>
+								<% for(int i = startPage; i <= endPage; ++i) { %>
+									<% if(i == currentPage) {%>
+										<div> <a><%=i%></a></div>
+									<%} else { %>
+									<div> <a href="<%=contextPath %>/admin/notice?p=<%=i%>"><%=i%></a></div>
+									<%} %>
+								<%} %>
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage< currentPage+10) { %>
+										<div> <a href="<%=contextPath %>/admin/notice?p=<%=maxPage%>"> ▶ </a></div>
+									<%} else if (maxPage>10) { %>
+											<div> <a href="<%=contextPath %>/admin/notice?p=<%=startPage+10%> "> ▶ </a></div>									<%} %>
+									<%} %>
+								
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/notice?p=<%=maxPage%> "> ▶▶ </a></div>
+									<%} %>
+								<%} %>
                             </div>
                             <div id="noticeDiv3_edit">
                             	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/noticeInstall';"></div>

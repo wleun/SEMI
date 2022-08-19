@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
 <%
 	String contextPath = request.getContextPath();
-	String functionName = (String) request.getAttribute("functionName");
 
-    String errorMsg = (String)session.getAttribute("errorMsg");
-    session.removeAttribute("errorMsg");
 
-    String alertMsg = (String)session.getAttribute("alertMsg");
-    session.removeAttribute("alertMsg");
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,6 +92,11 @@
             border-radius: 50px;
             color: white;
         }
+        
+        .animationHover:hover {
+        	transform:scale(1.2);
+        	transition:1s;
+        }
 
         textarea {
             resize: none;
@@ -141,7 +148,7 @@
         }
 
         #headerFirst {
-            width: 81.7%;
+            width: 92%;
             align-self: center;
             font-weight:700;
             font-size: 33px;
@@ -149,10 +156,10 @@
         }
 
         #headerSecond {
-            width: 18.3%;
+            width: 8%;
             display: flex;
             align-items: center;
-            justify-content:space-evenly;
+            justify-content:center;
             flex-wrap: wrap;
         }
         
@@ -257,7 +264,7 @@
             width: 1630px;
             left: 288px;
             top: 108px;
-            border-right: 1px solid black;
+            border-right: 1px solid #C3B091;
         }
 </style>
 </head>
@@ -270,13 +277,10 @@
             <div id="headerUsed">
 
                 <div id="headerFirst">
-                	<%=functionName %>
+                	${functionName}
                 </div>
                 <div id="headerSecond">
-                    <a href=""><img width="40px" height="40px" src="<%=contextPath %>/resources/img/search_icon_pse.png" alt="검색 아이콘"></a>
-                    <a href=""><img width="35px" height="35px" src="<%=contextPath %>/resources/img/message_icon.png" alt="대화 아이콘"></a>
-                    <a href=""><img width="36px" heigh="36px" src="<%=contextPath %>/resources/img/bell_icon.png" alt="알림 아이콘"></a>
-                    <a href=""><img width="41px" heigh="41px" src="<%=contextPath %>/resources/img/adminMypage_icon.png" alt="마이페이지 아이콘"></a>
+                    <a href=""><img width="60px" heigh="60px" src="<%=contextPath %>/resources/img/adminMypageIcon.png" alt="마이페이지 아이콘"></a>
                 </div>
 
             </div>
@@ -310,8 +314,8 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td><a href="<%=contextPath%>/admin/main"><img src="<%=contextPath %>/resources/img/adminDashboard.png" alt="대시보드 아이콘" width="40px" height="40px"></a></td>
-                            <td><a href="<%=contextPath%>/admin/main">대시보드</a></td>
+                            <td><a href="<%=contextPath%>/admin/main?p=1"><img src="<%=contextPath %>/resources/img/adminDashboard.png" alt="대시보드 아이콘" width="40px" height="40px"></a></td>
+                            <td><a href="<%=contextPath%>/admin/main?p=1">대시보드</a></td>
                             <td></td>
                         </tr>
                     </table>
@@ -334,8 +338,8 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><a href="<%=contextPath%>/admin/prj"><img src="<%=contextPath %>/resources/img/adminPrj_icon.png" alt="프로젝트 아이콘" width="35px" height="34px"></a></td>
-                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/prj">프로젝트</a></td>
+                                <td><a href="<%=contextPath%>/admin/prj?p=1"><img src="<%=contextPath %>/resources/img/adminPrj_icon.png" alt="프로젝트 아이콘" width="35px" height="34px"></a></td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/prj?p=1">프로젝트</a></td>
                                 <td></td>
                             </tr>
 
@@ -347,8 +351,8 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><a href="<%=contextPath%>/admin/proposal"><img src="<%=contextPath %>/resources/img/adminProposal_icon.png" alt="제안서 아이콘" width="33px" height="36px"></a></td>
-                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/proposal">제안서</a></td>
+                                <td><a href="<%=contextPath%>/admin/proposal?p=1"><img src="<%=contextPath %>/resources/img/adminProposal_icon.png" alt="제안서 아이콘" width="33px" height="36px"></a></td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/proposal?p=1">제안서</a></td>
                                 <td></td>
                             </tr>
     
@@ -360,8 +364,8 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><a href="<%=contextPath%>/admin/event"><img src="<%=contextPath %>/resources/img/adminEvent_icon.png" alt="이벤트 아이콘" width="33px" height="33px"></a></td>
-                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/event">이벤트</a></td>
+                                <td><a href="<%=contextPath%>/admin/event?p=1"><img src="<%=contextPath %>/resources/img/adminEvent_icon.png" alt="이벤트 아이콘" width="33px" height="33px"></a></td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/event?p=1">이벤트</a></td>
                                 <td></td>
                             </tr>
     
@@ -373,8 +377,8 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><a href="<%=contextPath%>/admin/notice"><img src="<%=contextPath %>/resources/img/adminNotice_icon.png" alt="공지사항 아이콘" width="32px" height="32px"></a></td>
-                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/notice">공지사항</a></td>
+                                <td><a href="<%=contextPath%>/admin/notice?p=1"><img src="<%=contextPath %>/resources/img/adminNotice_icon.png" alt="공지사항 아이콘" width="32px" height="32px"></a></td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/notice?p=1">공지사항</a></td>
                                 <td></td>
                             </tr>
     
@@ -386,8 +390,8 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><a href="<%=contextPath%>/admin/memberManage"><img src="<%=contextPath %>/resources/img/adminMember_icon.png" alt="회원 아이콘" width="35px" height="35px"></a></td>
-                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/memberManage">회원관리</a></td>
+                                <td><a href="<%=contextPath%>/admin/memberManage?p=1"><img src="<%=contextPath %>/resources/img/adminMember_icon.png" alt="회원 아이콘" width="35px" height="35px"></a></td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/memberManage?p=1">회원관리</a></td>
                                 <td></td>
                             </tr>
     
@@ -399,8 +403,8 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><a href="<%=contextPath%>/admin/report"><img src="<%=contextPath %>/resources/img/adminReport_icon.png" alt="신고 아이콘" width="35px" height="30px"></a></td>
-                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/report">신고관리</a></td>
+                                <td><a href="<%=contextPath%>/admin/report?p=1"><img src="<%=contextPath %>/resources/img/adminReport_icon.png" alt="신고 아이콘" width="35px" height="30px"></a></td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/report?p=1">신고관리</a></td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -414,8 +418,7 @@
         </nav>
     </div>
 
-<script>
-</script>   
+
 
 </body>
 </html>

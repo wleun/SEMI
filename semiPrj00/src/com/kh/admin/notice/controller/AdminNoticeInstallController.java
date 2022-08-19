@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet (urlPatterns = "/admin/noticeInstall")
-public class adminNoticeInstallController extends HttpServlet{
+public class AdminNoticeInstallController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
