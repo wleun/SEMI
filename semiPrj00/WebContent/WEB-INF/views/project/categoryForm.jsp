@@ -1,12 +1,20 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kh.category.vo.CategoryVo"%>
+<%@page import="com.kh.project.vo.ProjectVo"%>
+<%@page import="com.kh.common.vo.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
 
-    int currentPage = 5;
-	int startPage = 1;
-	int endPage = 10;
-	int maxPage = 10;
+	List<ProjectVo> prjList = (List<ProjectVo>)request.getAttribute("prjList");
+	CategoryVo categoryVo = (CategoryVo)request.getAttribute("categoryVo");
+	PageVo pageVo = (PageVo)request.getAttribute("pageVo");
+	
+	int currentPage = pageVo.getCurrentPage();
+	int startPage = pageVo.getStartPage();
+	int endPage = pageVo.getEndPage();
+	int maxPage = pageVo.getMaxPage();
 
 %>
     
@@ -45,8 +53,11 @@
     #sort-btn:hover{
         color: #48CA7D;
     }
-    #quantity{
+    #quantity-div{
         clear: both;
+        font-size: 18px;
+    }
+    #quantity{
         font-size: 18px;
     }
     #category-content-wrap{
@@ -131,55 +142,58 @@
                     <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=${categoryNo}&sort=intended">공개예정 프로젝트</a></li>
                 </ul>
         </div>
-        <div id="quantity">
-            00개의 프로젝트가 있습니다
+        <div id="quantity-div">
+            <span id="quantity"><%=pageVo.getListCount()%></span>개의 프로젝트가 있습니다
         </div>
         <div id="category-content-wrap">
-            <%//for(int i=0;i<prjVo;i++){%>
-            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view'">
-                <div class="prj-content prj-img">
-                    <img src="" alt="프로젝트 메인 사진">
-                </div>
-                <div class="prj-content prj-category">
-                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                </div>
-                <div class="prj-content prj-title">
-                    프로젝트 타이틀
-                </div>
-                <div class="prj-content prj-subscribe">
-                    프로젝트 설명
-                </div>
-                <div class="prj-content gage-div">
-                    <div class="prj-content">
-                        <span class="percentage">달성률</span>
-                        <span class="amount">모인 금액</span>
-                    </div>
-                    <div class="prj-content d-day">
-                        남은 날짜
-                    </div>
-                    <div class="prj-content gage-bar progress" style="height: 5px;">
-                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                    </div>
-                </div>
-            </div>
-            <%//}%>
+        	<%if(prjList!=null){ %>
+        		<%for(int i=0;i<prjList.size();i++){%>
+	            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view'">
+	                <div class="prj-content prj-img">
+	                    <img src="" alt="프로젝트 메인 사진">
+	                </div>
+	                <div class="prj-content prj-category">
+	                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
+	                </div>
+	                <div class="prj-content prj-title">
+	                    프로젝트 타이틀
+	                </div>
+	                <div class="prj-content prj-subscribe">
+	                    프로젝트 설명
+	                </div>
+	                <div class="prj-content gage-div">
+	                    <div class="prj-content">
+	                        <span class="percentage">달성률</span>
+	                        <span class="amount">모인 금액</span>
+	                    </div>
+	                    <div class="prj-content d-day">
+	                        남은 날짜
+	                    </div>
+	                    <div class="prj-content gage-bar progress" style="height: 5px;">
+	                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
+	                    </div>
+	                </div>
+	            </div>
+	            <%}%>
+        	<%} %>
+            
         </div>
         <div id="page-area">
             <%if(currentPage!=1){ %>
-				<a class="btn btn-sm btn-success" href="#"> &lt; </a>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/category?p=<%=currentPage-1%>"> &lt; </a>
 			<%} %>
 			
 			<% for(int i=startPage; i<=endPage;i++){ %>
 				<%if(i==currentPage){%>
 					<a class="btn btn-sm btn-success"><%=i%></a>
 				<%}else{%>
-					<a class="btn btn-sm" href="#"><%=i%></a>				
+					<a class="btn btn-sm" href="<%=contextPath%>/project/category?p=<%=i%>"><%=i%></a>				
 				<%}%>
 			<% } %>
 			
-			<%if(currentPage!=maxPage){ %>
-				<a class="btn btn-sm btn-success" href="#"> &gt; </a>
-			<%} %>
+			<% if(currentPage!=maxPage){ %>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/category?p=<%=currentPage+1%>"> &gt; </a>
+			<% }%>
         </div>
     </div>
 

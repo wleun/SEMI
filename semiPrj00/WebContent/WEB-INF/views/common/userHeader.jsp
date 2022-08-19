@@ -159,7 +159,7 @@
                     <li><a class="nav-link" href="<%=contextPath%>/project/category?category=22">신규</a></li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=24">마감임박</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=23">마감임박</a></li>
                 </ul>
             </div>
             <div id="etc">
