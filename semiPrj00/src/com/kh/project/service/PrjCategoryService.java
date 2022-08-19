@@ -16,7 +16,6 @@ public class PrjCategoryService {
 	public ArrayList<ProjectVo> selectProject(String category, String sort) {
 		
 		ArrayList<ProjectVo> projectList = new ArrayList<ProjectVo>();
-		CategoryVo categoryVo = new CategoryVo();
 		Connection conn = null;
 		
 		try {
@@ -49,56 +48,6 @@ public class PrjCategoryService {
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		try {
-			conn = getConnection();
-			if(sort != null) {
-				if("ongoing".equals(sort)) {sort="I";}
-				if("complete".equals(sort)) {sort="S";}
-				if("intended".equals(sort)) {sort="B";}
-			}else {
-				
-			}
-			
-			if(category != null) {
-				int categoryNum = Integer.parseInt(category);
-				if(categoryNum<1 || categoryNum>12) {
-					categoryVo.setCategoryNo("0");
-					categoryVo.setCategoryName("전체");
-					projectList = dao.selectProject(conn, sort);
-				}else {
-					categoryVo.setCategoryNo("0");
-					categoryVo.setCategoryName("전체");
-					projectList = dao.selectProject(conn, category, sort);
-				}
-			}else {
-				projectList = dao.selectProject(conn, sort);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(conn);
-		}
-		
 		return projectList;
 	}//selectProject
 	
@@ -116,9 +65,26 @@ public class PrjCategoryService {
 
 	public CategoryVo selectCategory(String category) {
 		
+		CategoryVo categoryVo = new CategoryVo();
+		Connection conn = null;
 		
+		try {
+			
+			conn = getConnection();
+			if(category == null) {
+				categoryVo.setCategoryNo("0");
+				categoryVo.setCategoryName("전체");
+			}else {
+				categoryVo = new PrjCategoryDao().selectCategory(conn, category);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
 		
-		return null;
+		return categoryVo;
 	}//selectCategory
 
 
