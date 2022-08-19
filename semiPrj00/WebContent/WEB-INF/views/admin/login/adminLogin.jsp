@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    <% String contextPath = request.getContextPath(); %>
+<% 
+	String contextPath = request.getContextPath();
+	
+	String errorMsg = (String) session.getAttribute("errorMsg");
+	session.removeAttribute("errorMsg");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,11 +148,11 @@
                     </div>
                     <div id="adminLoginId">
                         <div class="idPwdText">아이디 * </div>
-                        <input type="text" class="idPwd">
+                        <input type="text" class="idPwd" name="adminId">
                     </div>
                     <div id="adminLoginPwd">
                         <div class="idPwdText">비밀번호 * </div>
-                        <input type="password" class="idPwd">
+                        <input type="password" class="idPwd" name="adminPwd">
                     </div>
 
                     <div id="adminLoginBtn">
@@ -158,6 +163,14 @@
         </div>
         
     </div>
+    
+    <script>
+	    <%if (errorMsg != null) {%>
+			alert('<%=errorMsg%>');
+		<%}%>
+		
+		
+    </script>
 
 	
 

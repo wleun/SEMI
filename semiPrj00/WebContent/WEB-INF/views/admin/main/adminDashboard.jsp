@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	#dashBoard {
+		#dashBoard {
             display: flex;
             flex-direction: row;
             width: 1632px;
