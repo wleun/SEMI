@@ -25,6 +25,8 @@ public class MemberJoinController2 extends HttpServlet{
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
 		//정보 얻기
 		String memberEmail = req.getParameter("memberEmail");
 		String memberPwd = req.getParameter("memberPwd");
@@ -48,18 +50,10 @@ public class MemberJoinController2 extends HttpServlet{
 			code = "";
 		}
 		
-		//서비스에 객체 전달하며 호출
-		int result = new MemberService().join(memberVo);
+		//다음타자(메이커 추가정보등록)에 데이터 보내기
+		req.setAttribute("memberVo", memberVo);
+		req.getRequestDispatcher("/WEB-INF/views/member/memberJoin3.jsp").forward(req, resp);
 		
-		//결과에 따라 페이지 보여주기
-		if(result == 1) {
-			//성공
-			req.getRequestDispatcher("/WEB-INF/views/member/joinFinish.jsp").forward(req, resp);
-		}else {
-			//실패(알람 + 회원가입2페이지 보여주기)
-			req.getSession().setAttribute("alertMsg", "회원가입 다시 실행해주세요");
-			resp.sendRedirect("/member/join2");
-		}
 	
 	
 	}
