@@ -23,5 +23,10 @@ public class MemberJoinController3 extends HttpServlet {
 	/*
 	 * 정보 받아오기
 	 */
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//정보받기
+		MemberVo memberVo = (MemberVo)req.getParameter(memberVo);
 	
+	}
 }

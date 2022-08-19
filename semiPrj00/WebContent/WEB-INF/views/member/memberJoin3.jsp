@@ -115,17 +115,18 @@
                 <div class="img-join">
                     <img src="<%=contextPath%>/resources/img/join3.png" alt="" class="img-join">
                 </div>
-                <h1>메이커 추가정보 등록</h1><span>200%로 펀딩에 도전해보세요!</span></div>
+                <h1>메이커 추가정보 등록</h1><span>[일반회원]은 다음버튼을 눌러 가입을 완료해주세요!</span></div>
            
             <div id="form">
-                <form action="" method="post">
+                <form action="<%=contextPath%>/member/join3" method="post">
                    <ul id="form-ul">
-                   <input type="hidden" value=<%=(MemberVo)request.getAttribute("memberVo")%> name="member-vo">
+                   <input type="hidden" value=<%=(MemberVo)request.getAttribute("memberVo")%> name="memberVo">
                     <li class="join-li">사업자번호<br><input type="text" name="busi-no" placeholder="-제외 입력"> <button id="check-btn">중복확인</button></li>
                     <li class="join-li">메이커 타입<br>
-                            <select name="busi-type" id="busi-type" >
-                            <option value="개인사업자">개인사업자</option>
-                            <option value="법인">법인</option>
+                            <select name="busiType" id="busi-type" >
+                            <option value="P">일반회원</option>
+                            <option value="I">개인사업자</option>
+                            <option value="B">법인</option>
                         </select>
                     </li>
                     <li class="join-li">법인명 <br><input type="text" name="company" placeholder="법인일 경우 필수항목입니다."></li>

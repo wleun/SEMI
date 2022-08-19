@@ -15,3 +15,4 @@ public class EventDetail extends HttpServlet{
 		req.getRequestDispatcher("/WEB-INF/views/noticeEvent/eventDetail.jsp").forward(req, resp);
 	}
 }
+

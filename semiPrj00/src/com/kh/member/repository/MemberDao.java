@@ -30,7 +30,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			//결과 가져오기
 			if(rs.next()) {
-				int no = rs.getInt("NO");
+				String no = rs.getString("NO");
 				String name = rs.getString("NAME");
 				String memEmail = rs.getString("EMAIL");
 				String nick = rs.getString("NICK");

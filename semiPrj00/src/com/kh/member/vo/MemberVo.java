@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class MemberVo {
 	
-	private int no;
+	private String no;
 	private String name;
 	private String email;
 	private String nick;
@@ -13,7 +13,7 @@ public class MemberVo {
 	private String phone;
 	private String type;
 	private String registration;
-	private java.sql.Timestamp enrolldate;
+	private java.sql.Timestamp enrollDate;
 	private String status;
 	private Timestamp quitDate;
 	private String mLevel;
@@ -24,8 +24,8 @@ public class MemberVo {
 		
 	}
 	//매개변수 있는 생성자
-	public MemberVo(int no, String name, String email, String nick, String pwd, String pwd2, String phone, String type,
-			String registration, Timestamp enrolldate, String status, Timestamp quitDate, String mLevel,
+	public MemberVo(String no, String name, String email, String nick, String pwd, String pwd2, String phone, String type,
+			String registration, Timestamp enrollDate, String status, Timestamp quitDate, String mLevel,
 			Timestamp suspendDate, String code) {
 		super();
 		this.no = no;
@@ -37,7 +37,7 @@ public class MemberVo {
 		this.phone = phone;
 		this.type = type;
 		this.registration = registration;
-		this.enrolldate = enrolldate;
+		this.enrollDate = enrollDate;
 		this.status = status;
 		this.quitDate = quitDate;
 		this.mLevel = mLevel;
@@ -45,10 +45,10 @@ public class MemberVo {
 		this.code = code;
 	}
 	//게터세터
-	public int getNo() {
+	public String getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	public void setNo(String no) {
 		this.no = no;
 	}
 	public String getName() {
@@ -99,11 +99,11 @@ public class MemberVo {
 	public void setRegistration(String registration) {
 		this.registration = registration;
 	}
-	public Timestamp getEnrolldate() {
-		return enrolldate;
+	public Timestamp getEnrollDate() {
+		return enrollDate;
 	}
-	public void setEnrolldate(java.sql.Timestamp enrolldate) {
-		this.enrolldate = enrolldate;
+	public void setEnrolldate(java.sql.Timestamp enrollDate) {
+		this.enrollDate = enrollDate;
 	}
 	public String getStatus() {
 		return status;
@@ -140,7 +140,7 @@ public class MemberVo {
 	public String toString() {
 		return "MemberVo [no=" + no + ", name=" + name + ", email=" + email + ", nick=" + nick + ", pwd=" + pwd
 				+ ", pwd2=" + pwd2 + ", phone=" + phone + ", type=" + type + ", registration=" + registration
-				+ ", enrolldate=" + enrolldate + ", status=" + status + ", quitDate=" + quitDate + ", mLevel=" + mLevel
+				+ ", enrollDate=" + enrollDate + ", status=" + status + ", quitDate=" + quitDate + ", mLevel=" + mLevel
 				+ ", suspendDate=" + suspendDate + ", code=" + code + "]";
 	}
 	
