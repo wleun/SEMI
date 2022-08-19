@@ -19,12 +19,12 @@ public class MemberMypageController extends HttpServlet {
 		
 		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
 		
-//		if(loginMember != null) {
+		if(loginMember != null) {
 			req.getRequestDispatcher("/WEB-INF/views/member/memberMyPage.jsp").forward(req, resp);
-//		}else {
-//			req.getSession().setAttribute("alertMsg", "로그인 후 접속이 가능합니다!");
-//			resp.sendRedirect(req.getContextPath());
-//		}
+		}else {
+			req.getSession().setAttribute("alertMsg", "로그인 후 접속이 가능합니다!");
+			resp.sendRedirect(req.getContextPath());
+		}
 		
 		
 	}
@@ -39,7 +39,7 @@ public class MemberMypageController extends HttpServlet {
 		String nick = req.getParameter("memberNick");
 		String phone = req.getParameter("memberPhone");
 		
-		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
+		int no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
 		
 		MemberVo vo = new MemberVo();
 		vo.setNo(no);
