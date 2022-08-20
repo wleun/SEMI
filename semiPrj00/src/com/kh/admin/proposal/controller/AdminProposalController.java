@@ -50,8 +50,6 @@ public class AdminProposalController extends HttpServlet {
 		req.setAttribute("pv", pageVo);
 		req.setAttribute("list", adminProposalVoList);
 		
-		System.out.println(pageVo);
-		System.out.println(adminProposalVoList.toString());
 		
 		
 		req.setAttribute("functionName", "제안서 관리");

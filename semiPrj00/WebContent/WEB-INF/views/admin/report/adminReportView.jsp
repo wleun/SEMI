@@ -1,5 +1,16 @@
+<%@page import="com.kh.common.vo.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	PageVo pv = (PageVo) request.getAttribute("pv");
+	
+	int currentPage = pv.getCurrentPage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -230,7 +241,7 @@
                                     <div class="reportDate">접수날짜</div>
                                     <div class="reportStatus">상태</div>
                                 </div>
-                            
+                            <c:forEach items="${list}" var="item"> 
                                 <a data-bs-toggle="modal" href="#myModal">
                                     <div class="reportManageColumn">
 
@@ -243,38 +254,41 @@
                                         
                                     </div>
                                 </a>
+                             </c:forEach>    
                                 
-                                <a href="">
-                                    <div class="reportManageColumn" >
-                                        <div class="reportNo">2</div>
-                                        <div class="reportMember">신고자2</div>
-                                        <div class="reportPrj">신고 프로젝트22</div>
-                                        <div class="reportContent">신고내용2222222</div>
-                                        <div class="reportDate">2022-08-09</div>
-                                        <div class="reportStatus">조치완료</div>
-                                    </div>
-                                </a>
-                               
                             </div>
                         </div>
                         <div id="reportManageDiv3">
     
                             <div id="reportManageDiv3_not_used"></div>
                             <div id="reportManageDiv3_paging">
-                                <div>◀</div>
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>▶</div>
+                                <% if (currentPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=startPage-10 %>"> ◀ </a> </div>
+								<%} %>
+								<% for(int i = startPage; i <= endPage; ++i) { %>
+									<% if(i == currentPage) {%>
+										<div> <a><%=i%></a></div>
+									<%} else { %>
+									<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=i%>"><%=i%></a></div>
+									<%} %>
+								<%} %>
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage< currentPage+10) { %>
+										<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=maxPage%>"> ▶ </a></div>
+									<%} else if (maxPage>10) { %>
+											<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=startPage+10%> "> ▶ </a></div>									<%} %>
+									<%} %>
+								
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=maxPage%> "> ▶▶ </a></div>
+									<%} %>
+								<%} %>
                             </div>
                  
-    
+    				</div>
             </div>
          </div>
-    
-      </div>
 
 	</content>
 

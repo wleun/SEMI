@@ -48,7 +48,7 @@ public class AdminMemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT NO , TYPE , M_LEVEL , NICK , EMAIL , PHONE , STATUS , ENROLL_DATE , SUSPEND_DATE , QUIT_DATE FROM MEMBER ORDER BY NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
+		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT NO , TYPE , M_LEVEL , NICK , EMAIL , PHONE , STATUS , ENROLL_DATE , SUSPEND_DATE , QUIT_DATE FROM MEMBER WHERE STATUS = 'A' OR STATUS= 'S' ORDER BY NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
 		
 		try {
 			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
