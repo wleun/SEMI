@@ -365,11 +365,17 @@
 			}
 
 		}
+		
 		//수수료(5%)를 뺀 정산값 표시 (실제 목표금액은 설정한 그대로 넣기)
 		function amountCalc() {
 			let amount = document.getElementById("prjAmount").value;
-			let priceCalc = amount - (amount / 100 * 5);
-			document.getElementById("priceCalcResult").innerHTML = priceCalc;
+			//목표금액이 허용범위가 아니면 알림
+			if(amount < 100000 || amount > 9999999999){
+				alert("목표금액은 100,000 ~ 9,999,999,999원 사이로 설정해주세요.")
+			}else{
+				let priceCalc = amount - (amount / 100 * 5);
+				document.getElementById("priceCalcResult").innerHTML = priceCalc;
+			}
 		}
 
 		//선물 전달일 (배송일)계산
@@ -395,22 +401,6 @@
 					});
 		});
 
-		//제한 있음 선택 시 리워드 수 입력칸 활성화
-		$(function() {
-			$('input[type="radio"][id="quantity"]').on(
-					'click',
-					function() {
-						let checkVal = $(
-								'input[type=radio][id="quantity"]:checked')
-								.val();
-						if (checkVal == "rewardY") {
-							$('#rewardNum').attr("disabled", false); //활성화
-						} else {
-							$('#rewardNum').attr("disabled", true); //비활성화
-							$('#rewardNum').val("0"); //비활성화 시 값 초기화
-						}
-					});
-		});
 
 		//리워드 옵션 추가하기
 		let rewardCnt = 0;

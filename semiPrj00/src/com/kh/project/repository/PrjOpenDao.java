@@ -18,7 +18,7 @@ import static com.kh.common.JDBCTemplate.*;
 public class PrjOpenDao {
 
 
-	//카테고리 조회
+	//카테고리 select
 	public List<CategoryVo> selectCategoryList(Connection conn){
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
