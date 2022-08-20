@@ -47,7 +47,7 @@ public class PrjOpenController extends HttpServlet{
 			req.getRequestDispatcher("/WEB-INF/views/project/openForm.jsp").forward(req, resp);
 		}else {
 			req.getSession().setAttribute("alertMsg", "로그인 후 이용 가능한 서비스입니다.");
-			resp.sendRedirect(req.getContextPath()+"/member/login"); //이렇게 하는게 맞나..?
+			resp.sendRedirect(req.getContextPath()+"/member/login"); /////
 		}
 		
 	}
@@ -75,8 +75,8 @@ public class PrjOpenController extends HttpServlet{
 		
 		
 		
-		
-		Part thumbnail = req.getPart("thumbnail");//대표이미지
+		//대표이미지
+		Part thumbnail = req.getPart("thumbnail");
 		String savePath = null;
 		if(thumbnail.getSubmittedFileName().length() > 0) {
 			String originName = thumbnail.getSubmittedFileName(); //원본 파일명 얻기
@@ -109,9 +109,9 @@ public class PrjOpenController extends HttpServlet{
 		}
 		
 		
-		
+		//상세이미지
 		LinkedList<ProjectAttachmentVo> attList = new LinkedList<ProjectAttachmentVo>(); //첨부파일 객체 담을 리스트
-		Collection<Part> prjFile = req.getParts();//상세이미지
+		Collection<Part> prjFile = req.getParts();
 		
 		for(Part file : prjFile) {
 			if(!file.getName().equals("prjFile")) continue; //prjFile인 경우만 진행
@@ -161,6 +161,7 @@ public class PrjOpenController extends HttpServlet{
 		int shippingDate = Integer.parseInt(req.getParameter("shippingDate")); //결제 마감일로부터 n일 
 		String shippingDateResult = new PrjOpenService().shippingDateCalc(endDate, shippingDate); //배송일(날짜) 마감일 + 결제 7일 + 지정한 날짜 n일 
 
+		
 		//2page 창작자 정보
 		String makerNo = req.getParameter("makerNo");
 		String makerInfo = ""; //창작자 소개 (내용이 없으면 빈 문자열로)
@@ -214,15 +215,16 @@ public class PrjOpenController extends HttpServlet{
 			
 		}
 		
+		
 		int result = new PrjOpenService().prjInsert(prjVo, attList, rewardList);
 		
 		
 		if(result == 1) {
 			req.getSession().setAttribute("alertMsg", "정상적으로 오픈 신청 처리되었습니다.");
-			resp.sendRedirect(req.getContextPath()); //이렇게 하는게 맞나..?
+			resp.sendRedirect(req.getContextPath());
 		}else {
 			req.getSession().setAttribute("errorMsg", "죄송합니다. 처리 중 문제가 발생되었습니다.");
-			resp.sendRedirect(req.getContextPath()); //이렇게 하는게 맞나..?
+			resp.sendRedirect(req.getContextPath()); 
 		}
 		
 		
