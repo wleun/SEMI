@@ -77,13 +77,17 @@
         background-color: white;
         display: flex;
         flex-wrap: wrap;
-        padding: 10px;
+        padding: 20px;
         margin: 10px 10px 10px 0px;
         border: 1px solid rgba(214, 196, 196, 0.651);
         border-radius: 10px 10px 10px 10px;
     }
+    #reward-btn>div>div:last-child{
+        margin: 10px 0px 10px 0px;
+    }
     #reward-btn:hover{
         border: 1px solid #48CA7D;
+        cursor: pointer;
     }
     #reward-btn:focus{
         border: 2px solid #48CA7D;
@@ -94,14 +98,14 @@
         padding: 20px 10px 10px 10px;
         border-top: 1px solid #48CA7D;
     }
-    #option-select-area>input[type='number']{
+    #option-select-area input[type='number']{
         width: 20%;
         border: 1px solid #48CA7D;
         border-radius: 10px;
         padding-left: 10px;
         margin-left: 20px;
     }
-    #option-select-area>input[type='submit']{
+    #option-select-area input[type='submit']{
         border: none;
         background-color: #48CA7D;
         color: white;
@@ -112,7 +116,7 @@
         
     }
     /* 버튼효과 */
-    #btn-div1>a, #btn-div2>button,#reward-btn>button:hover{
+    #btn-div1>a, #btn-div2>button{
         cursor: pointer;
     }
     
@@ -710,30 +714,80 @@
                     <div id="reward-option-title"><span>리워드 선택하기</span></div>
                     <div class="btns" id="reward-btn-area">
 
-                        <div id="reward-btn">
+                        <div class="rwd-btn" id="reward-btn">
 
                             <div id="reward-btn-on-display">
                                 <div><span class="option-attribute" id="option-name">옵션1</span></div>
-                                <div><span class="option-attribute" id="option-price">25000</span><span class="option-attribute" id="option-price"> 원</span></div>
+                                <div><span class="option-attribute option-prc" id="option-price">25000</span><span class="option-attribute" id="option-price"> 원</span></div>
                                 <div>
                                     <span class="option-attribute" id="option-detail">
-                                        일반 슬리브 3팩 추가
-                                    미드가르드의 챔피언 - 컴플리트 에디션 ( x 1 )
-                                    일반 슬리브 63 * 88 사이즈 2팩 ( x 1 )
+                                        일반 슬리브 3팩 추가<br>
+                                    미드가르드의 챔피언 - 컴플리트 에디션 ( x 1 )<br>
+                                    일반 슬리브 63 * 88 사이즈 2팩 ( x 1 )<br>
                                     일반 슬리브 41 * 63 사이즈 1팩 ( x 1 )
                                     </span>
                                 </div>
-                                <div><span class="option-attribute" id="option-quantity">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
+                                <div><span class="option-attribute">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
                             </div>
 
-                            <div id="option-select-area">
+                            <div class="hide-div" id="option-select-area">
                                 <form action="<%=contextPath%>/project/support">
-                                    수량선택 <input type="number" id="reward-quantity" value="1" min='1' max= '10'>
-                                    <input type="submit" value= "후원하기">
+                                    수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
+                                    <input type="submit">
                                 </form>
                             </div>
 
                         </div>
+
+                        <div class="rwd-btn" id="reward-btn">
+
+                            <div id="reward-btn-on-display">
+                                <div><span class="option-attribute" id="option-name">옵션2</span></div>
+                                <div><span class="option-attribute option-prc" id="option-price">30000</span><span class="option-attribute" id="option-price"> 원</span></div>
+                                <div>
+                                    <span class="option-attribute" id="option-detail">
+                                        일반 슬리브 5팩 추가<br>
+                                    미드가르드의 챔피언 - 컴플리트 에디션 ( x 1 )<br>
+                                    일반 슬리브 63 * 88 사이즈 2팩 ( x 1 )<br>
+                                    일반 슬리브 41 * 63 사이즈 1팩 ( x 1 )
+                                    </span>
+                                </div>
+                                <div><span class="option-attribute">선택가능수량: </span><span class="option-attribute" id="option-quantity">5</span></div>
+                            </div>
+
+                            <div class="hide-div" id="option-select-area">
+                                <form action="<%=contextPath%>/project/support">
+                                    수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
+                                    <input type="submit">
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div class="rwd-btn" id="reward-btn">
+
+                            <div id="reward-btn-on-display">
+                                <div><span class="option-attribute" id="option-name">옵션3</span></div>
+                                <div><span class="option-attribute option-prc" id="option-price">35000</span><span class="option-attribute" id="option-price"> 원</span></div>
+                                <div>
+                                    <span class="option-attribute" id="option-detail">
+                                        일반 슬리브 5팩 추가<br>
+                                    미드가르드의 챔피언 - 컴플리트 에디션 ( x 1 )<br>
+                                    일반 슬리브 63 * 88 사이즈 2팩 ( x 1 )<br>
+                                    일반 슬리브 41 * 63 사이즈 1팩 ( x 1 )
+                                    </span>
+                                </div>
+                                <div><span class="option-attribute">선택가능수량: </span><span class="option-attribute" id="option-quantity">7</span></div>
+                            </div>
+
+                            <div class="hide-div" id="option-select-area">
+                                <form action="<%=contextPath%>/project/support">
+                                    수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
+                                    <input type="submit">
+                                </form>
+                            </div>
+
+                        </div>                
 
                         
                     </div>
@@ -759,15 +813,17 @@
             var fileName = $("#file").val();
             $(".upload-name").val(fileName);
         });
+        
 
         $('#like-btn').click(function(){
-
+        	
             <c:if test="${ empty loginMember}">
     			alert('로그인이 필요한 기능입니다.');
     			location.href='<%=contextPath%>/member/login';
    			</c:if>
     		
 			<c:if test="${ not empty loginMember}">
+				
                 //버튼 토글 기능
                 var src = ($('#btn-div1 img').attr('src') === '<%=contextPath%>/resources/img/project_like.png')
                     ? '<%=contextPath%>/resources/img/project_liked.png'
@@ -781,11 +837,13 @@
                         url : "<%=contextPath%>/project/like",
                         method : "get",
                         data : {
-                            flag : 1
+                            flag : 1, 
+                            memberNo : <%=loginMember.getNo()%>,
+                            projectNo : 1
                             },
-                        success : function(like){
-                            if(like == 1){
-                                alert('좋아요 됨');
+                        success : function(likeResult){
+                            if(likeResult == 1){
+                                console.log("좋아요 됨");
                             }
                         },
                         error : function(){
@@ -799,11 +857,13 @@
                         url : "<%=contextPath%>/project/like",
                         method : "get",
                         data : {
-                            flag : 2
+                            flag : 2,
+                            memberNo : <%=loginMember.getNo()%>,
+                            projectNo : 1
                             },
                         success : function(likeCancel){
                             if(likeCancel == 1){
-                                alert('좋아요 취소됨');
+                                alert("좋아요 취소됨");
                             }
                         },
                         error : function(){
@@ -815,24 +875,19 @@
           });
         
 
-        $('#reward-btn button').click(function(){
-            const div = $(this).find('#option-select-area');
+        $('.rwd-btn').click(function(){
+            const div = $('.hide-div');
+            $(div).hide(); 
             
-            if(div.css('display') == 'none')  {
-                $(div).show();    
-            }
+            $(this).children().last().show(); 
             
-            const totalPrice = $('#option-price').text() * $('#reward-quantity').val();
-            $('#option-select-area').children().last().val(totalPrice+"원 후원하기");
-            
-            console.log($('#option-select-area').children().last().val());
+            $(this).find($('.hide-div input')).first().attr("max", $(this).find($('.option-attribute')).last().text() );
+
+            const totalPrice = $(this).find($('.option-prc')).text() * $(this).find($('.reward-qty')).val();
+            $(this).find($('.hide-div input')).last().val(totalPrice+"원 후원하기");
         });
 
-        $('#reward-btn button').blur(function(){
-            const div = $(this).find('#option-select-area');
-            $(div).hide();
-        });
-
+    
     });
     </script>
 
