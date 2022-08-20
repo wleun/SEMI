@@ -109,19 +109,19 @@
         }
 
         .check {
-            width: 7%;
+            width: 6%;
         }
 
         .memberNo {
-            width: 7%;
+            width: 6%;
         }
 
         .memberType {
-            width: 8%;
+            width: 7%;
         }
 
         .memberLevel {
-            width: 11%;
+            width: 10%;
         }
 
         .memberName {
@@ -146,11 +146,15 @@
         }
 
         .memberEnrollDate {
-            width: 8%;
+            width: 7%;
         }
 
         .memberQuitDate {
-            width: 8%;
+            width: 7%;
+        }
+        
+        .memberReport {
+        	width : 7%
         }
 
         #memberManageDiv3 {
@@ -241,6 +245,7 @@
                                     <div class="memberEnrollDate">가입일</div>
                                     <div class="memberSuspendedDate">정지일</div>
                                     <div class="memberQuitDate">탈퇴일</div>
+                                    <div class="memberReport">신고횟수</div>
                                 </div>
                             
                                   <c:forEach items="${list}" var="item"> 
@@ -256,6 +261,7 @@
                                         <div class="memberEnrollDate">${item.enrollDate}</div>
                                         <div class="memberSuspendedDate">${item.suspendDate}</div>
                                         <div class="memberQuitDate">${item.quitDate}</div>
+                                        <div class="memberReport">${item.reportCnt}</div>
                                     </div>
                                   </c:forEach> 
 

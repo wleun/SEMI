@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.admin.event.service.AdminEventService;
 import com.kh.admin.event.vo.AdminEventVo;
 import com.kh.admin.member.service.AdminMemberService;
+import com.kh.admin.member.vo.AdminMemberVo;
 import com.kh.common.vo.PageVo;
 import com.kh.member.vo.MemberVo;
 
@@ -44,7 +45,7 @@ public class AdminMemberManageController extends HttpServlet {
 		pageVo.setEndPage(endPage);
 		
 		
-		List<MemberVo> memberVoList = new AdminMemberService().selectList(pageVo);
+		List<AdminMemberVo> memberVoList = new AdminMemberService().selectList(pageVo);
 		
 		req.setAttribute("pv", pageVo);
 		req.setAttribute("list", memberVoList);

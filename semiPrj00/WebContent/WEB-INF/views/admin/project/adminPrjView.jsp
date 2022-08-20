@@ -1,5 +1,17 @@
+<%@page import="com.kh.common.vo.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	PageVo pv = (PageVo) request.getAttribute("pv");
+	
+	int currentPage = pv.getCurrentPage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,23 +117,23 @@
         }
 
         .check {
-            width: 5%;
+            width: 6%;
         }
 
         .status {
-            width: 7%;
+            width: 8%;
         }
 
         .prjNo {
-            width: 5%;
+            width: 6%;
         }
 
         .category {
-            width: 12%;
+            width: 13%;
         }
 
         .percent {
-            width: 7%;
+            width: 8%;
         }
 
         .prjName {
@@ -138,12 +150,9 @@
         }
 
         .reportCnt {
-            width: 6%;
+            width: 7%;
         }
 
-        .deleteYN {
-            width: 6%;
-        }
 
         #boardDiv3 {
             width: 100%;
@@ -226,116 +235,32 @@
                             <div class="boardWrap">
                                 <div id="boardFirstColumn" class="boardColumn">
                                     <div class="check">선택</div>
-                                    <div class="status">상태</div>
                                     <div class="prjNo">번호</div>
+                                    <div class="status">상태</div>
                                     <div class="category">카테고리</div>
                                     <div class="percent">달성률</div>
                                     <div class="prjName">프로젝트 이름</div>
                                     <div class="makerName">메이커 이름</div>
                                     <div class="period">기간</div>
                                     <div class="reportCnt">신고횟수</div>
-                                    <div class="deleteYN">삭제여부</div>
                                 </div>
                             
-                                <a href="">
+                            <c:forEach items="${list}" var="item">
+                                <a href="<%=contextPath%>/admin/projectDetail?no=${item.no}">
                                     <div class="boardColumn">
                                         <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="status">진행중</div>
-                                        <div class="prjNo">1</div>
-                                        <div class="category">테크</div>
-                                        <div class="percent">67.7%</div>
-                                        <div class="prjName">우리의 삶을 바꿀 그 것!</div>
-                                        <div class="makerName">그냥 메이커</div>
-                                        <div class="period">2022.08.08~2022.08.09</div>
-                                        <div class="reportCnt">0</div>
-                                        <div class="deleteYN">N</div>
+                                        <div class="prjNo">${item.no}</div>
+                                        <div class="status">${item.status}</div>
+                                        <div class="category">${item.categoryName}</div>
+                                        <div class="percent">X</div>
+                                        <div class="prjName">${item.projectName}</div>
+                                        <div class="makerName">${item.makerName}</div>
+                                        <div class="period">${item.startDate} ~ ${item.endDate}</div>
+                                        <div class="reportCnt">${item.reportCnt}</div>
                                     </div>
                                 </a>
-                                <a href="">
-                                    <div class="boardColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="status">성사됨</div>
-                                        <div class="prjNo">2</div>
-                                        <div class="category">레저/스포츠</div>
-                                        <div class="percent">655%</div>
-                                        <div class="prjName">이 텐트 보고가세용</div>
-                                        <div class="makerName">텐트 메이커</div>
-                                        <div class="period">2022.06.08~2022.07.15</div>
-                                        <div class="reportCnt">4</div>
-                                        <div class="deleteYN">N</div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="boardColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="status">펀딩예정</div>
-                                        <div class="prjNo">3</div>
-                                        <div class="category">뷰티</div>
-                                        <div class="percent">0.0%</div>
-                                        <div class="prjName">스네일 크림!</div>
-                                        <div class="makerName">비오는날엔 스네일</div>
-                                        <div class="period">2022.09.03~2022.09.22</div>
-                                        <div class="reportCnt">0</div>
-                                        <div class="deleteYN">Y</div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="boardColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="status">진행중</div>
-                                        <div class="prjNo">1</div>
-                                        <div class="category">테크</div>
-                                        <div class="percent">67.7%</div>
-                                        <div class="prjName">우리의 삶을 바꿀 그 것!</div>
-                                        <div class="makerName">그냥 메이커</div>
-                                        <div class="period">2022.08.08~2022.08.09</div>
-                                        <div class="reportCnt">0</div>
-                                        <div class="deleteYN">N</div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="boardColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="status">성사됨</div>
-                                        <div class="prjNo">2</div>
-                                        <div class="category">레저/스포츠</div>
-                                        <div class="percent">655%</div>
-                                        <div class="prjName">이 텐트 보고가세용</div>
-                                        <div class="makerName">텐트 메이커</div>
-                                        <div class="period">2022.06.08~2022.07.15</div>
-                                        <div class="reportCnt">4</div>
-                                        <div class="deleteYN">N</div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="boardColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="status">펀딩예정</div>
-                                        <div class="prjNo">3</div>
-                                        <div class="category">뷰티</div>
-                                        <div class="percent">0.0%</div>
-                                        <div class="prjName">스네일 크림!</div>
-                                        <div class="makerName">비오는날엔 스네일</div>
-                                        <div class="period">2022.09.03~2022.09.22</div>
-                                        <div class="reportCnt">0</div>
-                                        <div class="deleteYN">Y</div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class="boardColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
-                                        <div class="status">진행중</div>
-                                        <div class="prjNo">1</div>
-                                        <div class="category">테크</div>
-                                        <div class="percent">67.7%</div>
-                                        <div class="prjName">우리의 삶을 바꿀 그 것!</div>
-                                        <div class="makerName">그냥 메이커</div>
-                                        <div class="period">2022.08.08~2022.08.09</div>
-                                        <div class="reportCnt">0</div>
-                                        <div class="deleteYN">N</div>
-                                    </div>
-                                </a>
-                                
+                            </c:forEach>
+                            
                                 
                             </div>
                         </div>
@@ -343,13 +268,28 @@
     
                             <div id="boardDiv3_not_used"></div>
                             <div id="boardDiv3_paging">
-                                <div>◀</div>
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>▶</div>
+                                <% if (currentPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/project?p=<%=startPage-10 %>"> ◀ </a> </div>
+								<%} %>
+								<% for(int i = startPage; i <= endPage; ++i) { %>
+									<% if(i == currentPage) {%>
+										<div> <a><%=i%></a></div>
+									<%} else { %>
+									<div> <a href="<%=contextPath %>/admin/project?p=<%=i%>"><%=i%></a></div>
+									<%} %>
+								<%} %>
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage< currentPage+10) { %>
+										<div> <a href="<%=contextPath %>/admin/project?p=<%=maxPage%>"> ▶ </a></div>
+									<%} else if (maxPage>10) { %>
+											<div> <a href="<%=contextPath %>/admin/project?p=<%=startPage+10%> "> ▶ </a></div>									<%} %>
+									<%} %>
+								
+								<% if (currentPage != maxPage) { %>
+									<% if (maxPage>10) { %>
+								<div> <a href="<%=contextPath %>/admin/project?p=<%=maxPage%> "> ▶▶ </a></div>
+									<%} %>
+								<%} %>
                             </div>
                             <div id="boardDiv3_delete">
                                 <div><input type="submit" value="삭제하기" class="button" style="width: 80px; height:30px;"></div>

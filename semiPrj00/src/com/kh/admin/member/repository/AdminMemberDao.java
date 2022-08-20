@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.admin.event.vo.AdminEventVo;
+import com.kh.admin.member.vo.AdminMemberVo;
 import com.kh.common.vo.PageVo;
 import com.kh.member.vo.MemberVo;
 
@@ -42,13 +43,14 @@ public class AdminMemberDao {
 	}
 	
 
-	public List<MemberVo> selectList(Connection conn, PageVo pageVo) {
+	public List<AdminMemberVo> selectList(Connection conn,Connection conn2, PageVo pageVo) {
 		
-		List<MemberVo> list = null;
+		List<AdminMemberVo> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT NO , TYPE , M_LEVEL , NICK , EMAIL , PHONE , STATUS , ENROLL_DATE , SUSPEND_DATE , QUIT_DATE FROM MEMBER WHERE STATUS = 'A' OR STATUS= 'S' ORDER BY NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
+	
 		
 		try {
 			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
@@ -61,11 +63,12 @@ public class AdminMemberDao {
 			
 			rs = pstmt.executeQuery();
 			
-			list = new ArrayList<MemberVo>();
+			list = new ArrayList<AdminMemberVo>();
 			
 			while(rs.next()) {
 				
-				MemberVo vo = new MemberVo();
+				
+				AdminMemberVo vo = new AdminMemberVo();
 				
 				String no = rs.getString("NO");
 				String type = rs.getString("TYPE");
@@ -74,9 +77,11 @@ public class AdminMemberDao {
 				String email = rs.getString("EMAIL");
 				String phone = rs.getString("PHONE");
 				String status = rs.getString("STATUS");
-				Timestamp enrollDate = rs.getTimestamp("ENROLL_DATE");
-				Timestamp suspendDate = rs.getTimestamp("SUSPEND_DATE");
-				Timestamp quitDate = rs.getTimestamp("QUIT_DATE");
+				String enrollDate = rs.getString("ENROLL_DATE");
+				String suspendDate = rs.getString("SUSPEND_DATE");
+				String quitDate = rs.getString("QUIT_DATE");
+				String reportCnt = getMemberReportCnt(conn2,no);
+				
 				
 				
 				vo.setNo(no);
@@ -89,6 +94,7 @@ public class AdminMemberDao {
 				vo.setEnrollDate(enrollDate);
 				vo.setSuspendDate(suspendDate);
 				vo.setQuitDate(quitDate);
+				vo.setReportCnt(reportCnt);
 				
 				list.add(vo);
 			}
@@ -101,6 +107,38 @@ public class AdminMemberDao {
 		}
 		
 		return list;
+	}
+	
+	public String getMemberReportCnt(Connection conn2, String no) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String count = "";
+		
+		
+		String sql = "SELECT COUNT(R.NO) AS COUNT FROM REPORT R JOIN MEMBER M ON (M.NO = R.MEMBER_NO) WHERE M.NO= ?";
+		
+		try {
+			
+			pstmt= conn2.prepareStatement(sql);
+			
+			pstmt.setString(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getString("COUNT");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return count;
+		
 	}
 
 }

@@ -338,8 +338,8 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td><a href="<%=contextPath%>/admin/prj?p=1"><img src="<%=contextPath %>/resources/img/adminPrj_icon.png" alt="프로젝트 아이콘" width="35px" height="34px"></a></td>
-                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/prj?p=1">프로젝트</a></td>
+                                <td><a href="<%=contextPath%>/admin/project?p=1"><img src="<%=contextPath %>/resources/img/adminPrj_icon.png" alt="프로젝트 아이콘" width="35px" height="34px"></a></td>
+                                <td class="menegeAlign"><a href="<%=contextPath%>/admin/project?p=1">프로젝트</a></td>
                                 <td></td>
                             </tr>
 

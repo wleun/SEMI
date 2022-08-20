@@ -9,6 +9,7 @@ import java.util.List;
 import com.kh.admin.event.repository.AdminEventDao;
 import com.kh.admin.event.vo.AdminEventVo;
 import com.kh.admin.member.repository.AdminMemberDao;
+import com.kh.admin.member.vo.AdminMemberVo;
 import com.kh.common.vo.PageVo;
 import com.kh.member.vo.MemberVo;
 
@@ -23,11 +24,13 @@ public class AdminMemberService {
 		return result;
 	}
 
-	public List<MemberVo> selectList(PageVo pageVo) {
+	public List<AdminMemberVo> selectList(PageVo pageVo) {
 		Connection conn = getConnection();
-		List<MemberVo> memberVoList = new AdminMemberDao().selectList(conn,pageVo);
+		Connection conn2 = getConnection();
+		List<AdminMemberVo> memberVoList = new AdminMemberDao().selectList(conn,conn2,pageVo);
 		
 		close(conn);
+		close(conn2);
 		return memberVoList;
 	}
 
