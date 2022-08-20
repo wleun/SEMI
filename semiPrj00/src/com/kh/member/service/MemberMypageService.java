@@ -38,14 +38,14 @@ public class MemberMypageService {
 	}
 
 	//회원 정보 조회
-	private MemberVo selectOneByNo(int no) {
+	private MemberVo selectOneByNo(String string) {
 		
 		Connection conn = null;
 		MemberVo vo = null;
 		
 		try {
 			conn = getConnection();
-			vo = new MemberMypageDao().selectOneByNo(conn, no);
+			vo = new MemberMypageDao().selectOneByNo(conn, string);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

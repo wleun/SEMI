@@ -39,7 +39,7 @@ public class MemberMypageController extends HttpServlet {
 		String nick = req.getParameter("memberNick");
 		String phone = req.getParameter("memberPhone");
 		
-		int no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
+		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
 		
 		MemberVo vo = new MemberVo();
 		vo.setNo(no);

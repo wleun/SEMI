@@ -36,7 +36,7 @@ public class MemberMypageDao {
 	}
 	
 	//회원 정보 조회
-	public MemberVo selectOneByNo(Connection conn, int num) {
+	public MemberVo selectOneByNo(Connection conn, String num) {
 		
 		String sql = "SELECT * FROM MEMBER WHERE NO = ? AND STATUS = 'A'";
 		
@@ -46,12 +46,12 @@ public class MemberMypageDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, num);
 			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				int no = rs.getInt("NO");
+				String no = rs.getString("NO");
 				String email = rs.getString("EMAIL");
 				String name = rs.getString("NAME");
 				String nick = rs.getString("NICK");
