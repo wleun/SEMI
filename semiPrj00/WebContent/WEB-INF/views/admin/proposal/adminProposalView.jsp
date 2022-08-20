@@ -1,5 +1,14 @@
+<%@page import="com.kh.common.vo.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	PageVo pv = (PageVo) request.getAttribute("pv");
+	
+	int currentPage = pv.getCurrentPage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -207,28 +216,23 @@
                                     <div class="proposalDate">접수날짜</div>
                                     <div class="proposalStatus">처리상태</div>
                                 </div>
+                                
+                                <c:forEach items="${list}" var="item">
+                                    <a href="<%=contextPath%>/admin/proposalDetail?no=${item.no}">
+	                                    <div class="proposalManageColumn">
+	                                        <div class="proposalNo">${item.no}</div>
+	                                        <div class="proposalMember">${item.nick}</div>
+	                                        <div class="proposalPrjCategory">${item.categoryName}</div>
+	                                        <div class="proposalPrjName">${item.name }</div>
+	                                        <div class="proposalDate">${item.registerDate}</div>
+	                                        <div class="proposalStatus">${item.status}</div>
+	                                    </div>
+                                	</a>
+                                </c:forEach>
 
-                                <a href="<%=contextPath%>/admin/proposalDetail">
-                                    <div class="proposalManageColumn">
-                                        <div class="proposalNo">1</div>
-                                        <div class="proposalMember">텀블벅</div>
-                                        <div class="proposalPrjCategory">IT테크</div>
-                                        <div class="proposalPrjName">프로젝트1111</div>
-                                        <div class="proposalDate">2022-08-10</div>
-                                        <div class="proposalStatus">처리중</div>
-                                    </div>
-                                </a>
+                           
 
-                                <a href="<%=contextPath%>/admin/proposalDetail">
-                                    <div class="proposalManageColumn">
-                                        <div class="proposalNo">2</div>
-                                        <div class="proposalMember">와디즈</div>
-                                        <div class="proposalPrjCategory">웰빙</div>
-                                        <div class="proposalPrjName">프로젝트2222</div>
-                                        <div class="proposalDate">2022-08-11</div>
-                                        <div class="proposalStatus">반려</div>
-                                    </div>
-                                </a>
+                                
                             
                                 
                                
@@ -238,13 +242,28 @@
     
                             <div id="proposalManageDiv3_not_used"></div>
                             <div id="proposalManageDiv3_paging">
-                                <div>◀</div>
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>▶</div>
+                                <% if (currentPage>10) { %>
+                                    <div> <a href="<%=contextPath %>/admin/proposal?p=<%=startPage-10 %>"> ◀ </a> </div>
+                                    <%} %>
+                                    <% for(int i = startPage; i <= endPage; ++i) { %>
+                                        <% if(i == currentPage) {%>
+                                            <div> <a><%=i%></a></div>
+                                        <%} else { %>
+                                        <div> <a href="<%=contextPath %>/admin/proposal?p=<%=i%>"><%=i%></a></div>
+                                        <%} %>
+                                    <%} %>
+                                    <% if (currentPage != maxPage) { %>
+                                        <% if (maxPage< currentPage+10) { %>
+                                            <div> <a href="<%=contextPath %>/admin/proposal?p=<%=maxPage%>"> ▶ </a></div>
+                                        <%} else if (maxPage>10) { %>
+                                                <div> <a href="<%=contextPath %>/admin/proposal?p=<%=startPage+10%> "> ▶ </a></div>									<%} %>
+                                        <%} %>
+                                    
+                                    <% if (currentPage != maxPage) { %>
+                                        <% if (maxPage>10) { %>
+                                    <div> <a href="<%=contextPath %>/admin/proposal?p=<%=maxPage%> "> ▶▶ </a></div>
+                                        <%} %>
+                                    <%} %>
                             </div>
                            
     

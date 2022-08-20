@@ -21,7 +21,7 @@ public class AdminMemberDao {
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT COUNT(NO) AS COUNT FROM EVENT";
+		String sql = "SELECT COUNT(NO) AS COUNT FROM MEMBER";
 		
 		try {
 			
@@ -48,7 +48,7 @@ public class AdminMemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT NO , TYPE , M_LEVEL , NICK , EMAIL , PHONE , STATUS , ENROLL_DATE , SUSPEND_DATE , QUIT_DATE FROM MEMBER ORDER BY NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
+		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT NO , TYPE , M_LEVEL , NICK , EMAIL , PHONE , STATUS , ENROLL_DATE , SUSPEND_DATE , QUIT_DATE FROM MEMBER WHERE STATUS = 'A' OR STATUS= 'S' ORDER BY NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
 		
 		try {
 			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
@@ -67,14 +67,14 @@ public class AdminMemberDao {
 				
 				MemberVo vo = new MemberVo();
 				
-				int no = rs.getInt("NO");
+				String no = rs.getString("NO");
 				String type = rs.getString("TYPE");
 				String mLevel = rs.getString("M_LEVEL");
 				String nick = rs.getString("NICK");
 				String email = rs.getString("EMAIL");
 				String phone = rs.getString("PHONE");
 				String status = rs.getString("STATUS");
-				String enrollDate = rs.getString("ENROLL_DATE");
+				Timestamp enrollDate = rs.getTimestamp("ENROLL_DATE");
 				Timestamp suspendDate = rs.getTimestamp("SUSPEND_DATE");
 				Timestamp quitDate = rs.getTimestamp("QUIT_DATE");
 				
@@ -86,7 +86,7 @@ public class AdminMemberDao {
 				vo.setEmail(email);
 				vo.setPhone(phone);
 				vo.setStatus(status);
-				vo.setEnrolldate(quitDate);
+				vo.setEnrollDate(enrollDate);
 				vo.setSuspendDate(suspendDate);
 				vo.setQuitDate(quitDate);
 				

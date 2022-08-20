@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.admin.member.service.AdminMemberService;
 import com.kh.admin.proposal.service.AdminProposalService;
+import com.kh.admin.proposal.vo.AdminProposalVo;
 import com.kh.common.vo.PageVo;
 import com.kh.member.vo.MemberVo;
 import com.kh.project.vo.ProjectVo;
@@ -44,10 +45,11 @@ public class AdminProposalController extends HttpServlet {
 		pageVo.setEndPage(endPage);
 		
 		
-		List<ProjectVo> memberVoList = new AdminProposalService().selectList(pageVo);
+		List<AdminProposalVo> adminProposalVoList = new AdminProposalService().selectList(pageVo);
 		
 		req.setAttribute("pv", pageVo);
-		req.setAttribute("list", memberVoList);
+		req.setAttribute("list", adminProposalVoList);
+		
 		
 		
 		req.setAttribute("functionName", "제안서 관리");

@@ -238,7 +238,7 @@
 	                                           
 	                                        </div>
                                     	</a>
-                                    </c:forEach>
+                                </c:forEach>
                                     
                                 
                                
