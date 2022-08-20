@@ -215,14 +215,26 @@ public class PrjOpenController extends HttpServlet{
 			
 		}
 		
-		
+	
 		int result = new PrjOpenService().prjInsert(prjVo, attList, rewardList);
 		
 		
 		if(result == 1) {
 			req.getSession().setAttribute("alertMsg", "정상적으로 오픈 신청 처리되었습니다.");
 			resp.sendRedirect(req.getContextPath());
+		
 		}else {
+			//이상 발생 시 이미 올라간 첨부파일 삭제하고 메인페이지로
+			if(prjVo.getThumbnailName() != null) {
+				String savepath = prjVo.getThumbnailPath()+ File.separator+ prjVo.getThumbnailName();
+				new File(savepath).delete();
+			}
+			if(!attList.isEmpty()) {
+				for(int i = 0; i < attList.size(); i++) {
+					String savepath = attList.get(i).getFileSrc()+ File.separator+ attList.get(i).getChangeName();
+					new File(savepath).delete();
+				}
+			}
 			req.getSession().setAttribute("errorMsg", "죄송합니다. 처리 중 문제가 발생되었습니다.");
 			resp.sendRedirect(req.getContextPath()); 
 		}

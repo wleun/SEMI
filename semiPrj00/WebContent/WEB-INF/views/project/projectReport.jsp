@@ -83,11 +83,12 @@
 								alt="프로젝트 썸네일" id="prjImage">
 						</div>
 						<div style="padding-left: 20px;" id="prjName">
-							프로젝트 이름<br>우리, Less Waste부터 함께 해보아요!
+							프로젝트 이름<br>프로젝트 이름 가져오기
 						</div>
 					</div>
 					<form action="<%=contextPath%>/project/report" method="post" id="reportForm">
-						<input type="hidden" name="prjNo">
+						<input type="hidden" name="memberNo" value="">
+						<input type="hidden" name="prjNo" value="">
 						<div>신고 내용</div>
 						<textarea style="resize: none;" name="reportContent"
 							id="reportContent" cols="45" rows="10"

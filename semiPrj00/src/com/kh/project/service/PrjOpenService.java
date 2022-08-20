@@ -30,7 +30,7 @@ public class PrjOpenService {
 				String random = UUID.randomUUID().toString();
 				random = random.substring(0, 8);
 				
-				String changeName = "200_"+now+"_"+random+ext;
+				String changeName = "200_" + now + "_" + random + ext;
 				
 				return changeName;
 		
@@ -93,7 +93,7 @@ public class PrjOpenService {
 			if(result1 * result2 * result3 == 1) {
 				commit(conn);
 				
-			}else {
+			} else {
 				rollback(conn);
 			}
 			
