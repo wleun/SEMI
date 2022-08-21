@@ -36,7 +36,7 @@ public class PrjCategoryController extends HttpServlet{
 		int startPage;			//페이징바의 시작
 		int endPage;			//페이징바의 끝
 		
-		listCount = new PrjCategoryService().listCount();
+		listCount = new PrjCategoryService().listCount(category, sort);
 		
 		if(req.getParameter("p")==null) {
 			currentPage = 1;
@@ -71,6 +71,7 @@ public class PrjCategoryController extends HttpServlet{
 		List<ProjectVo> selectedProject = new PrjCategoryService().selectProject(category,sort, pageVo);
 		CategoryVo selectedCategory = new PrjCategoryService().selectCategory(category);
 		
+		req.setAttribute("sort", sort);
 		req.setAttribute("pageVo", pageVo);
 		req.setAttribute("categoryVo", selectedCategory);
 		req.setAttribute("prjList", selectedProject);

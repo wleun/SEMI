@@ -10,12 +10,13 @@
 	List<ProjectVo> prjList = (List<ProjectVo>)request.getAttribute("prjList");
 	CategoryVo categoryVo = (CategoryVo)request.getAttribute("categoryVo");
 	PageVo pageVo = (PageVo)request.getAttribute("pageVo");
+	String sort = (String)request.getAttribute("sort");
 	
 	int currentPage = pageVo.getCurrentPage();
 	int startPage = pageVo.getStartPage();
 	int endPage = pageVo.getEndPage();
 	int maxPage = pageVo.getMaxPage();
-
+	
 %>
     
 <!DOCTYPE html>
@@ -72,6 +73,9 @@
         width: 300px;
         margin: 42px;
     }
+    .prj-wrap:hover{
+        cursor: pointer;
+    }
     .prj-img{
     	background-color: gray;
         height: 200px;
@@ -79,6 +83,15 @@
     }
     .prj-content{
         margin: 5px 0px;
+    }
+    .prj-category{
+    	color : #48CA7D;
+    }
+    .prj-title{
+    	font-size : 18px;
+    }
+    .prj-subscribe{
+    	color : gray;
     }
     .gage-div{
         height: 10%;
@@ -129,17 +142,17 @@
 
     <div id="category-body">
         <div id="category-name">
-            ${categoryName}
+            <%=categoryVo.getCategoryName()%>
         </div>
         <div id="category-sort" class="dropdown">
             <button type="button" id="sort-btn" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
                 상태
             </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=${categoryNo}&sort=all">전체 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=${categoryNo}&sort=ongoing">진행중인 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=${categoryNo}&sort=complete">성사된 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=${categoryNo}&sort=intended">공개예정 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=categoryVo.getCategoryNo()%>&sort=all">전체 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=categoryVo.getCategoryNo()%>&sort=ongoing">진행중인 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=categoryVo.getCategoryNo()%>&sort=complete">성사된 프로젝트</a></li>
+                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=categoryVo.getCategoryNo()%>&sort=intended">공개예정 프로젝트</a></li>
                 </ul>
         </div>
         <div id="quantity-div">
@@ -147,19 +160,19 @@
         </div>
         <div id="category-content-wrap">
         	<%if(prjList!=null){ %>
-        		<%for(int i=0;i<prjList.size();i++){%>
+        		<%for(ProjectVo vo : prjList){%>
 	            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view'">
 	                <div class="prj-content prj-img">
-	                    <img src="" alt="프로젝트 메인 사진">
+	                    <img src="<%=vo.getThumbnailPath()%>" alt="<%=vo.getThumbnailName()%>">
 	                </div>
 	                <div class="prj-content prj-category">
 	                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
 	                </div>
 	                <div class="prj-content prj-title">
-	                    프로젝트 타이틀
+	                    <%=vo.getName()%>
 	                </div>
 	                <div class="prj-content prj-subscribe">
-	                    프로젝트 설명
+	                    <%=vo.getText()%>
 	                </div>
 	                <div class="prj-content gage-div">
 	                    <div class="prj-content">
@@ -180,19 +193,19 @@
         </div>
         <div id="page-area">
             <%if(currentPage!=1){ %>
-				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/category?p=<%=currentPage-1%>"> &lt; </a>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/category?category=<%=categoryVo.getCategoryNo()%>&sort=<%=sort%>&p=<%=currentPage-1%>"> &lt; </a>
 			<%} %>
 			
 			<% for(int i=startPage; i<=endPage;i++){ %>
 				<%if(i==currentPage){%>
 					<a class="btn btn-sm btn-success"><%=i%></a>
 				<%}else{%>
-					<a class="btn btn-sm" href="<%=contextPath%>/project/category?p=<%=i%>"><%=i%></a>				
+					<a class="btn btn-sm" href="<%=contextPath%>/project/category?category=<%=categoryVo.getCategoryNo()%>&sort=<%=sort%>&p=<%=i%>"><%=i%></a>				
 				<%}%>
 			<% } %>
 			
 			<% if(currentPage!=maxPage){ %>
-				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/category?p=<%=currentPage+1%>"> &gt; </a>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/category?category=<%=categoryVo.getCategoryNo()%>&sort=<%=sort%>&p=<%=currentPage+1%>"> &gt; </a>
 			<% }%>
         </div>
     </div>
