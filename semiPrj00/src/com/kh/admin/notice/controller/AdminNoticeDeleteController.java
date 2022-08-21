@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.admin.notice.service.AdminNoticeService;
-import com.kh.admin.project.service.AdminPrjService;
 
 @WebServlet (urlPatterns = "/admin/notice/delete")
-public class AdminPrjDeleteController extends HttpServlet {
+public class AdminNoticeDeleteController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

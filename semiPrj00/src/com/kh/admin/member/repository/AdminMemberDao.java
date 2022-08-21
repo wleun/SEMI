@@ -16,6 +16,7 @@ import com.kh.member.vo.MemberVo;
 
 public class AdminMemberDao {
 
+	//페이징 관련 카운트
 	public int getCount(Connection conn) {
 		
 		PreparedStatement pstmt = null;
@@ -42,7 +43,7 @@ public class AdminMemberDao {
 		return count;
 	}
 	
-
+	//페이징 관련 리스트
 	public List<AdminMemberVo> selectList(Connection conn,Connection conn2, PageVo pageVo) {
 		
 		List<AdminMemberVo> list = null;
@@ -109,6 +110,7 @@ public class AdminMemberDao {
 		return list;
 	}
 	
+	//회원 신고횟수
 	public String getMemberReportCnt(Connection conn2, String no) {
 		
 		PreparedStatement pstmt = null;
@@ -140,5 +142,56 @@ public class AdminMemberDao {
 		return count;
 		
 	}
+
+
+	//회원 정지
+	public int suspendMember(Connection conn, String memberNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE MEMBER SET STATUS = 'S' , SUSPEND_DATE = SYSDATE WHERE NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberNo);
+			
+			result = pstmt.executeUpdate();
+		
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		
+			return result;
+		
+	}
+
+
+	//회원 정지 해제
+	public int suspendCancelMember(Connection conn, String memberNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE MEMBER SET STATUS = 'A' , SUSPEND_DATE = NULL WHERE NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberNo);
+			
+			result = pstmt.executeUpdate();
+		
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		
+			return result;
+		}
 
 }

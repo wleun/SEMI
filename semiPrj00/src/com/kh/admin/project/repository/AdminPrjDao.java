@@ -14,6 +14,7 @@ import com.kh.common.vo.PageVo;
 
 public class AdminPrjDao {
 
+	//프로젝트 관련 카운트
 	public int getCount(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -39,6 +40,7 @@ public class AdminPrjDao {
 		return count;
 	}
 
+	//프로젝트 페이징 리스트
 	public List<AdminPrjVo> selectList(Connection conn, Connection conn2, PageVo pageVo) {
 		
 		List<AdminPrjVo> list = null;
@@ -101,6 +103,7 @@ public class AdminPrjDao {
 	
 	}
 
+	//프로젝트 신고 횟수
 	private String getPrjReportCnt(Connection conn2, String no) {
 		
 		
@@ -110,7 +113,7 @@ public class AdminPrjDao {
 		
 		String sql ="SELECT COUNT(R.NO) AS COUNT FROM REPORT R JOIN PROJECT P ON (R.PROJECT_NO = P.PROJECT_NO) WHERE P.PROJECT_NO=?";
 		
-try {
+		try {
 			
 			pstmt= conn2.prepareStatement(sql);
 			
@@ -134,6 +137,7 @@ try {
 		
 	}
 
+	//프로젝트 삭제
 	public int deleteProject(Connection conn, String projectNo) {
 		
 		

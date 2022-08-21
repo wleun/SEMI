@@ -141,6 +141,10 @@
             width : 7%;
         }
         
+        .memberStatusVal {
+            width : 7%;
+        }
+        
         .memberSuspendedDate {
             width: 7%;
         }
@@ -250,14 +254,14 @@
                             
                                   <c:forEach items="${list}" var="item"> 
                                     <div class="memberManageColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input" name="boardCheck" value=${item.no}></div>
                                         <div class="memberNo">${item.no}</div>
                                         <div class="memberType">${item.type}</div>
                                         <div class="memberLevel">${item.mLevel}</div>
                                         <div class="memberName">${item.nick}</div>
                                         <div class="memberEmail">${item.email}</div>
                                         <div class="memberPhone">${item.phone}</div>
-                                        <div class="memberStatus">${item.status}</div>
+                                        <div class="memberStatusVal">${item.status}</div>
                                         <div class="memberEnrollDate">${item.enrollDate}</div>
                                         <div class="memberSuspendedDate">${item.suspendDate}</div>
                                         <div class="memberQuitDate">${item.quitDate}</div>
@@ -297,8 +301,8 @@
 								<%} %>
                             </div>
                             <div id="memberManageDiv3_edit">
-                            	<div><input type="button" value="회원정지" class="button"></div>
-                            	<div><input type="button" value="정지해제" class="button"></div>
+                            	<div><input type="button" id="suspendBtn" value="회원정지" class="button"></div>
+                            	<div><input type="button" id="cancelBtn" value="정지해제" class="button"></div>
                </div>
     
             </div>
@@ -307,6 +311,59 @@
       </div>
 
 	</content>
+	
+	
+	<script>
+	$('#suspendBtn').click(function() {
+        const checkBoxArr = [];
+        $("input:checkbox[name='boardCheck']:checked").each(function() {
+        	checkBoxArr.push($(this).val());
+        	
+        })
+       	
+        console.log(checkBoxArr);
+        $.ajax({
+        	url : "<%=contextPath%>/admin/member/suspend" ,
+        	type:"POST",
+        	traditional : true,
+        	data : {
+        		key : checkBoxArr
+        	},
+        	success:function(result) {
+        		console.log(result); //새로고침으로 인해서 출력이 안됨...
+        		document.location.reload();
+        	},
+        	error:function(error) {
+        		alert("삭제에 실패하였습니다.");
+        	}
+        });
+    });
+	
+	$('#cancelBtn').click(function() {
+        const checkBoxArr = [];
+        $("input:checkbox[name='boardCheck']:checked").each(function() {
+        	checkBoxArr.push($(this).val());
+        	
+        })
+       	
+        console.log(checkBoxArr);
+        $.ajax({
+        	url : "<%=contextPath%>/admin/member/suspend/cancellation" ,
+        	type:"POST",
+        	traditional : true,
+        	data : {
+        		key : checkBoxArr
+        	},
+        	success:function(result) {
+        		console.log(result); //새로고침으로 인해서 출력이 안됨...
+        		document.location.reload();
+        	},
+        	error:function(error) {
+        		alert("삭제에 실패하였습니다.");
+        	}
+        });
+    });
+	</script>
 
 </body>
 </html>
