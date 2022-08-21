@@ -29,7 +29,7 @@ public class AdminMainFilter implements Filter{
 				((HttpServletRequest)request).getRequestDispatcher("/admin/login").forward(request, response);
 			} else {
 			((HttpServletRequest)request).getSession().setAttribute("errorMsg","잘못된 접근입니다. 해당 사이트는 로그인 후 이용해주시길 바랍니다.");
-			((HttpServletResponse)response).sendRedirect("/semiPrj00");
+			((HttpServletResponse)response).sendRedirect("/semiPrj00/admin/login");
 		
 			}
 		}

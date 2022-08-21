@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminNoticeDetailView extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 		req.setAttribute("functionName", "공지사항 상세조회");
 		req.getRequestDispatcher("/WEB-INF/views/admin/notice/adminNoticeDetailView.jsp").forward(req, resp);
 	}

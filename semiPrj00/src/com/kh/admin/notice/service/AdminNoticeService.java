@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.kh.admin.notice.repository.AdminNoticeDao;
 import com.kh.admin.notice.vo.AdminNoticeVo;
+import com.kh.admin.project.repository.AdminPrjDao;
 import com.kh.common.vo.PageVo;
 import static com.kh.common.JDBCTemplate.*;
 
@@ -28,4 +29,35 @@ public class AdminNoticeService {
 		close(conn);
 		return adminNoticeVoList;
 	}
+	
+
+	public int deleteNotice(List<String> noticeNoList) {
+		int successCnt = 0;
+		int result = 0;
+		Connection conn = getConnection();
+		
+		try {
+			for (String noticeNo : noticeNoList) {
+				
+				result = new AdminNoticeDao().deleteNotice(conn,noticeNo);
+				
+				if(result==1) {successCnt = successCnt + 1;}
+				else {System.out.println("프로젝트 번호" + noticeNo + "번 삭제 중 오류 발생");}
+			}
+			
+			if(result==1) {commit(conn);}
+			else {rollback(conn);}
+			
+		} catch(Exception e) {
+			rollback(conn);
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		
+		System.out.println(successCnt);
+		
+		return successCnt;
+	}
+
 }

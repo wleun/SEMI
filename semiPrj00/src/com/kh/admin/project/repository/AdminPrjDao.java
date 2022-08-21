@@ -121,7 +121,6 @@ try {
 			if(rs.next()) {
 				count = rs.getString("COUNT");
 				
-				System.out.println(count);
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -134,5 +133,31 @@ try {
 		return count;
 		
 	}
+
+	public int deleteProject(Connection conn, String projectNo) {
+		
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE PROJECT SET STATUS = 'D' WHERE PROJECT_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, projectNo);
+			
+			result = pstmt.executeUpdate();
+		
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		
+			return result;
+		}
+		
+		
 
 }

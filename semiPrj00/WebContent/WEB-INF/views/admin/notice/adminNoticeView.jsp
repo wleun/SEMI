@@ -139,6 +139,10 @@
         .deleteYN {
             width: 10%;
         }
+        
+        .deleteYNVal {
+            width: 10%;
+        }
 
         #noticeDiv3 {
             width: 100%;
@@ -229,12 +233,12 @@
                             	<c:forEach items="${list}" var="item">
                                     	<a href="<%=contextPath%>/admin/noticeDetail?no=${item.no}">
 	                                        <div class="noticeColumn">
-	                                           <div class="check"><input type="checkbox" class="form-check-input"></div>
+	                                           <div class="check"><input type="checkbox" class="form-check-input" name="boardCheck" value=${item.no}></div>
 			                                   <div class="important">${item.importantYn }</div>
 			                                   <div class="noticeNo">${item.no}</div>
 			                                   <div class="noticeName">${item.title}</div>
 			                                   <div class="writeDate">${item.writeDate}</div>
-			                                   <div class="deleteYN">${item.deleteYn}</div>
+			                                   <div class="deleteYNVal">${item.deleteYn}</div>
 	                                           
 	                                        </div>
                                     	</a>
@@ -273,7 +277,7 @@
                             </div>
                             <div id="noticeDiv3_edit">
                             	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/noticeInstall';"></div>
-                                <div><input type="button" value="삭제하기" class="button"></div>
+                                <div><input id="deleteBtn" type="button" value="삭제하기" class="button"></div>
                </div>
     
             </div>
@@ -282,6 +286,37 @@
       </div>
 
 	</content>
+	
+	 <script>
+                
+                
+                    $('#deleteBtn').click(function() {
+                        const checkBoxArr = [];
+                        $("input:checkbox[name='boardCheck']:checked").each(function() {
+                        	checkBoxArr.push($(this).val());
+                        	
+                        })
+                       	
+                        console.log(checkBoxArr);
+                        $.ajax({
+                        	url : "<%=contextPath%>/admin/notice/delete" ,
+                        	type:"POST",
+                        	traditional : true,
+                        	data : {
+                        		key : checkBoxArr
+                        	},
+                        	success:function(result) {
+                        		console.log(result);
+                        		document.location.reload();
+                        	},
+                        	error:function(error) {
+                        		alert("삭제에 실패하였습니다.");
+                        	}
+                        });
+                    });
+                
+                
+                </script>
 
 </body>
 </html>

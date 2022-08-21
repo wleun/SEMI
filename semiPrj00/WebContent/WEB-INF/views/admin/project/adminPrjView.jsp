@@ -123,6 +123,10 @@
         .status {
             width: 8%;
         }
+        
+        .statusVal {
+            width: 8%;
+        }
 
         .prjNo {
             width: 6%;
@@ -248,9 +252,9 @@
                             <c:forEach items="${list}" var="item">
                                 <a href="<%=contextPath%>/admin/projectDetail?no=${item.no}">
                                     <div class="boardColumn">
-                                        <div class="check"><input type="checkbox" class="form-check-input"></div>
+                                        <div class="check"><input type="checkbox" class="form-check-input" name="boardCheck" value=${item.no} ></div>
                                         <div class="prjNo">${item.no}</div>
-                                        <div class="status">${item.status}</div>
+                                        <div class="statusVal">${item.status}</div>
                                         <div class="category">${item.categoryName}</div>
                                         <div class="percent">X</div>
                                         <div class="prjName">${item.projectName}</div>
@@ -292,13 +296,47 @@
 								<%} %>
                             </div>
                             <div id="boardDiv3_delete">
-                                <div><input type="submit" value="삭제하기" class="button" style="width: 80px; height:30px;"></div>
+                                <div><input id="submit" type="submit" value="삭제하기" class="button"></div>
                             </div>
     
                         </div>
                     </div>
     
                 </div>
+                
+                
+                <script>
+                
+                
+                    $('#submit').click(function() {
+                        const checkBoxArr = [];
+                        $("input:checkbox[name='boardCheck']:checked").each(function() {
+                        	checkBoxArr.push($(this).val());
+                        	
+                        })
+                       	
+                        console.log(checkBoxArr);
+                        $.ajax({
+                        	url : "<%=contextPath%>/admin/project/delete" ,
+                        	type:"POST",
+                        	traditional : true,
+                        	data : {
+                        		key : checkBoxArr
+                        	},
+                        	success:function(result) {
+                        		console.log(result); //새로고침으로 인해서 출력이 안됨...
+                        	//	$(".statusVal").empty();
+                        	//	$(".statusVal").load(location.href + "  .statusVal");
+                        		document.location.reload();
+                        	},
+                        	error:function(error) {
+                        		alert("삭제에 실패하였습니다.");
+                        	}
+                        });
+                    });
+                
+                
+                </script>
 
             
 	</content>

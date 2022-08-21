@@ -19,7 +19,7 @@ public class AdminNoticeDao {
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT COUNT(NO) AS COUNT FROM NOTICE";
+		String sql = "SELECT COUNT(NO) AS COUNT FROM NOTICE WHERE DELETE_YN = 'N'";
 		
 		try {
 			
@@ -103,4 +103,27 @@ public class AdminNoticeDao {
 		return list;
 	}
 
-}
+	public int deleteNotice(Connection conn, String noticeNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE NOTICE SET DELETE_YN = 'Y' WHERE NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, noticeNo);
+			
+			result = pstmt.executeUpdate();
+		
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		
+			return result;
+		}
+		
+	}
+

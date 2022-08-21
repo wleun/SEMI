@@ -22,7 +22,7 @@ public class AdminMemberDao {
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT COUNT(NO) AS COUNT FROM MEMBER";
+		String sql = "SELECT COUNT(NO) AS COUNT FROM MEMBER WHERE STATUS = 'A' OR STATUS= 'S'";
 		
 		try {
 			

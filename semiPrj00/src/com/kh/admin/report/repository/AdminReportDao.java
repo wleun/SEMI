@@ -19,7 +19,7 @@ public class AdminReportDao {
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT COUNT(NO) AS COUNT FROM REPORT";
+		String sql = "SELECT COUNT(NO) AS COUNT FROM REPORT WHERE REPORT_AC = 'A'";
 		
 		try {
 			

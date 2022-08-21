@@ -18,7 +18,7 @@ public class AdminEventDao {
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT COUNT(NO) AS COUNT FROM EVENT";
+		String sql = "SELECT COUNT(NO) AS COUNT FROM EVENT WHERE DELETE_YN = 'N'";
 		
 		try {
 			
