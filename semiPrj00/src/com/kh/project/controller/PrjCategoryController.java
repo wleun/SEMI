@@ -68,7 +68,7 @@ public class PrjCategoryController extends HttpServlet{
 		/*
 		 * 프로젝트 내용과 카테고리 내용 받기
 		 */
-		List<ProjectVo> selectedProject = new PrjCategoryService().selectProject(category,sort, pageVo);
+		List<ProjectVo> selectedProject = new PrjCategoryService().selectProject(category, sort, pageVo);
 		CategoryVo selectedCategory = new PrjCategoryService().selectCategory(category);
 		
 		req.setAttribute("sort", sort);

@@ -16,7 +16,7 @@ public class PrjCategoryDao {
 
 	public List<ProjectVo> selectProject(Connection conn, String category, String sort, PageVo pageVo) {
 		
-		String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.* FROM PROJECT P WHERE CATEGORY_NO = ? AND STATUS = ? ) T WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM ( SELECT * FROM PROJECT ORDER BY END_DATE DESC )P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.CATEGORY_NO = ? AND P.STATUS = ?) T WHERE RNUM BETWEEN ? AND ?";
 		
 		List<ProjectVo> projectList = new ArrayList<ProjectVo>();
 		PreparedStatement pstmt = null;
@@ -41,8 +41,10 @@ public class PrjCategoryDao {
 			while(rs.next()) {
 			ProjectVo vo = new ProjectVo();
 			vo.setPrjectNo(rs.getString("PROJECT_NO"));
-			vo.setCategoryNo(rs.getString("CATEGORY_NO"));
+			vo.setCategoryNo(rs.getString("CATEGORY_NAME"));
 			vo.setName(rs.getString("NAME"));
+			vo.setMakerNo(rs.getString("NICK"));
+			vo.setStartDate(rs.getString("START_DATE"));
 			vo.setEndDate(rs.getString("END_DATE"));
 			vo.setGoal(rs.getInt("GOAL"));
 			vo.setText(rs.getString("TEXT"));
@@ -64,7 +66,7 @@ public class PrjCategoryDao {
 	}
 
 	public List<ProjectVo> selectProjectAll(Connection conn, PageVo pageVo) {
-		String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.* FROM PROJECT P WHERE STATUS = 'I' OR STATUS = 'S' OR STATUS = 'B' ) T WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM ( SELECT * FROM PROJECT ORDER BY END_DATE DESC )P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.STATUS = 'I' OR P.STATUS = 'S' OR P.STATUS = 'B') T WHERE RNUM BETWEEN ? AND ?";
 		
 		List<ProjectVo> projectList = new ArrayList<ProjectVo>();
 		PreparedStatement pstmt = null;
@@ -85,8 +87,10 @@ public class PrjCategoryDao {
 			while(rs.next()) {
 				ProjectVo vo = new ProjectVo();
 				vo.setPrjectNo(rs.getString("PROJECT_NO"));
-				vo.setCategoryNo(rs.getString("CATEGORY_NO"));
+				vo.setCategoryNo(rs.getString("CATEGORY_NAME"));
 				vo.setName(rs.getString("NAME"));
+				vo.setMakerNo(rs.getString("NICK"));
+				vo.setStartDate(rs.getString("START_DATE"));
 				vo.setEndDate(rs.getString("END_DATE"));
 				vo.setGoal(rs.getInt("GOAL"));
 				vo.setText(rs.getString("TEXT"));
@@ -110,7 +114,7 @@ public class PrjCategoryDao {
 
 	public List<ProjectVo> selectProject(Connection conn, String category, PageVo pageVo) {
 		
-String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.* FROM PROJECT P WHERE CATEGORY_NO = ? AND (STATUS = 'I' OR STATUS = 'S' OR STATUS = 'B') ) T WHERE RNUM BETWEEN ? AND ?";
+String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM ( SELECT * FROM PROJECT ORDER BY END_DATE DESC )P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.CATEGORY_NO = ? AND (P.STATUS = 'I' OR P.STATUS = 'S' OR P.STATUS = 'B')) T WHERE RNUM BETWEEN ? AND ?";
 		
 		List<ProjectVo> projectList = new ArrayList<ProjectVo>();
 		PreparedStatement pstmt = null;
@@ -132,8 +136,10 @@ String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.* FROM PROJECT P WHERE CAT
 			while(rs.next()) {
 				ProjectVo vo = new ProjectVo();
 				vo.setPrjectNo(rs.getString("PROJECT_NO"));
-				vo.setCategoryNo(rs.getString("CATEGORY_NO"));
+				vo.setCategoryNo(rs.getString("CATEGORY_NAME"));
 				vo.setName(rs.getString("NAME"));
+				vo.setMakerNo(rs.getString("NICK"));
+				vo.setStartDate(rs.getString("START_DATE"));
 				vo.setEndDate(rs.getString("END_DATE"));
 				vo.setGoal(rs.getInt("GOAL"));
 				vo.setText(rs.getString("TEXT"));

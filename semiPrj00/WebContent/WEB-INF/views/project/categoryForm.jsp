@@ -166,7 +166,7 @@
 	                    <img src="<%=vo.getThumbnailPath()%>" alt="<%=vo.getThumbnailName()%>">
 	                </div>
 	                <div class="prj-content prj-category">
-	                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
+	                    <span><%=vo.getCategoryNo()%></span> | <span><%=vo.getMakerNo()%></span>
 	                </div>
 	                <div class="prj-content prj-title">
 	                    <%=vo.getName()%>
@@ -179,14 +179,32 @@
 	                        <span class="percentage">달성률</span>
 	                        <span class="amount">모인 금액</span>
 	                    </div>
-	                    <div class="prj-content d-day">
-	                        남은 날짜
+	                    <div class="prj-content d-day" id="<%=vo.getPrjectNo()%>">
+	                    <!-- 남은 날짜 계산 -->
+	                    <script>
+	                    	var startDateStr = "<%=vo.getStartDate()%>";
+					    	var endDateStr = "<%=vo.getEndDate()%>";
+					    	var date = new Date();
+					    	var startDate = new Date(startDateStr);
+					    	var endDate = new Date(endDateStr);
+					    	var differenceMsec = endDate.getTime() - date.getTime();
+					    	var differenceDay = differenceMsec/1000/60/60/24;
+					    	$("#<%=vo.getPrjectNo()%>").text(Math.floor(differenceDay) + "일 남음");
+					    	if(Math.floor(differenceDay)<0){
+					    		$("#<%=vo.getPrjectNo()%>").text("마감");
+					    	}
+					    	if(date<startDate){
+					    		$("#<%=vo.getPrjectNo()%>").text("공개 예정");
+					    	}
+					    </script>
 	                    </div>
 	                    <div class="prj-content gage-bar progress" style="height: 5px;">
 	                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
 	                    </div>
 	                </div>
 	            </div>
+	            
+                
 	            <%}%>
         	<%} %>
             
