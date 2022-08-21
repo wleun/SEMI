@@ -56,18 +56,27 @@
         <div id="addr-title">배송지 등록하기</div>
 
         <div id="addr-body">
-            <form action="" id="addr-register-form" method="post">
-                <div id="post-num">
+            <form action="<%=contextPath%>/member/addrRegister" id="addr-register-form" method="post">
+            	<input type="hidden" name="memberNo" value="<%=loginMember.getNo()%>">
+            	<div id="name-div">
+                    수취인명
+                    <input type="text" name="name" id="name" class="form-control" maxlength="7">
+                </div>
+                <div id="name-div">
+                    전화번호
+                    <input type="text" name="phone" id="phone" class="form-control" maxlength="15">
+                </div>
+                <div id="post-num-div">
                     우편번호
-                    <input type="text" name="" id="" class="form-control" maxlength="6">
+                    <input type="text" name="postNum" id="post-num" class="form-control" maxlength="5">
                 </div>
                 <div id="addr1-div">
                     주소
-                    <input type="text" id="addr1" class="form-control" maxlength="25">
+                    <input type="text" name="addr1" id="addr1" class="form-control" maxlength="25">
                 </div>
                 <div id="addr2-div">
                     상세 주소
-                    <input type="text" name="" id="addr2" class="form-control" maxlength="50">
+                    <input type="text" name="addr2" id="addr2" class="form-control" maxlength="50">
                 </div>
                 <div id="default-btn">
                     <input type="checkbox" name="default" id="set-default" class="form-check-input">
