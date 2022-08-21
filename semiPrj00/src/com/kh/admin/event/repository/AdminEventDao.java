@@ -18,7 +18,7 @@ public class AdminEventDao {
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT COUNT(NO) AS COUNT FROM EVENT WHERE DELETE_YN = 'N'";
+		String sql = "SELECT COUNT(NO) AS COUNT FROM EVENT WHERE STATUS = 'B' OR STATUS= 'I' OR STATUS = 'E'";
 		
 		try {
 			
@@ -44,7 +44,7 @@ public class AdminEventDao {
 		List<AdminEventVo> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT E.NO , A.NAME , E.TITLE , E.CONTENT , E.THUMBNAIL_PATH , E.THUMBNAIL_NAME , E.WRITE_DATE , E.START_DATE , E.END_DATE , E.IMPORTANT_YN , E.EDIT_DATE , E.EDIT_ADMIN_NO , E.DELETE_YN FROM EVENT E JOIN ADMIN A ON E.ADMIN_NO = A.NO WHERE E.DELETE_YN = 'N' ORDER BY E.NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
+		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT E.NO , A.NAME , E.TITLE , E.CONTENT , E.THUMBNAIL_PATH , E.THUMBNAIL_NAME , E.WRITE_DATE , E.START_DATE , E.END_DATE , E.IMPORTANT_YN , E.EDIT_DATE , E.EDIT_ADMIN_NO , E.STATUS FROM EVENT E JOIN ADMIN A ON E.ADMIN_NO = A.NO WHERE E.STATUS = 'B' OR E.STATUS = 'I' OR E.STATUS = 'E' ORDER BY E.NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		
 		try {
 			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
@@ -75,7 +75,7 @@ public class AdminEventDao {
 				String importantYn = rs.getString("IMPORTANT_YN"); 
 				String eidtDate = rs.getString("EDIT_DATE"); 
 				String editAdminNo = rs.getString("EDIT_ADMIN_NO"); 
-				String deleteYn = rs.getString("DELETE_YN"); 
+				String status = rs.getString("STATUS"); 
 				
 				vo.setNo(no);
 				vo.setName(name);
@@ -89,7 +89,7 @@ public class AdminEventDao {
 				vo.setImportantYN(importantYn);
 				vo.setEditDate(eidtDate);
 				vo.setEditAdminNo(editAdminNo);
-				vo.setDeleteYn(deleteYn);
+				vo.setStatus(status);
 				
 				
 				list.add(vo);

@@ -222,7 +222,7 @@
                          <form action="">
 
 
-                            <select name="deleteYN" id="searchWhat">
+                            <select name="status" id="searchWhat">
                                 <option value="N">일반</option>
                                 <option value="Y">삭제된</option>
                                 </select>
