@@ -1,5 +1,12 @@
+<%@page import="com.kh.reward.vo.ProjectRewardVo"%>
+<%@page import="com.kh.project.vo.ProjectVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	ProjectVo prjVo = (ProjectVo)request.getAttribute("prjVo");
+	ProjectRewardVo rewardVo = (ProjectRewardVo)request.getAttribute("rewardVo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -160,13 +167,22 @@
     <div id="support-body">
         <div id="prj-wrap">
             <div id="prj-img-div">
-                <img src="" alt="프로젝트 메인 사진" id="prj-img">
+                <img src="<%=prjVo.getThumbnailPath()%>" alt="<%=prjVo.getThumbnailName()%>" id="prj-img">
             </div>
             <div id="prj-description">
-                <div id="prj-category">카테고리</div>
-                <div id="prj-name">프로젝트 이름</div>
+                <div id="prj-category"><%=prjVo.getCategoryNo()%></div>
+                <div id="prj-name"><%=prjVo.getName()%></div>
                 <div id="prj-detail">
-                    <span>달성률</span> | <span>모인 금액</span> | <span>남은 날짜</span>
+                    <span>달성률</span> | <span>모인 금액</span> | <span id="d-day">남은 날짜</span>
+                    <script>
+                    	//남은 날짜
+				    	var endDateStr = "<%=prjVo.getEndDate()%>";
+				    	var date = new Date();
+				    	var endDate = new Date(endDateStr);
+				    	var differenceMsec = endDate.getTime() - date.getTime();
+				    	var differenceDay = differenceMsec/1000/60/60/24;
+				    	$("#d-day").text(Math.floor(differenceDay) + "일 남음");
+                    </script>
                 </div>
             </div>
         </div>
@@ -177,16 +193,16 @@
                     <table>
                         <tr>
                             <td class="title">선물 구성</td>
-                            <td class="content">시원한 얼음물</td>
+                            <td class="content"><%=rewardVo.getOption()%> <%=rewardVo.getDetail()%></td>
                             <td rowspan="3" class="btn-td"><button class="btn btn-success" id="change-reward">변경</button></td>
                         </tr>
                         <tr>
                             <td class="title">선물 금액</td>
-                            <td class="content">50,000원</td>
+                            <td class="content"><%=rewardVo.getPrice()%>원</td>
                         </tr>
                         <tr>
                             <td class="title">예상 전달일</td>
-                            <td class="content">2022-08-09</td>
+                            <td class="content"><%=prjVo.getShippingDate().substring(0, 11)%></td>
                         </tr>
                     </table>
                 </div>
@@ -197,11 +213,11 @@
                     <table>
                         <tr>
                             <td class="title">연락처</td>
-                            <td class="content">010-1234-1234</td>
+                            <td class="content"><%=loginMember.getPhone()%></td>
                         </tr>
                         <tr>
                             <td class="title">이메일</td>
-                            <td class="content">hello@naver.com</td>
+                            <td class="content"><%=loginMember.getEmail()%></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="content notice">
@@ -276,7 +292,16 @@
             <div id="check-div" class="final-div">
                 프로젝트 성공시, 결제는
                 <span class="green-theme" id="pay-date">
-                    2022.09.01
+                	<script>
+                    	var today = new Date();
+                    	var payDate = new Date(today.setDate(today.getDate() + 7));
+                    	var month = payDate.getMonth() + 1
+                        if(month < 10){
+                            month = "0" + month;
+                        }
+                    	var payDateStr = payDate.getFullYear() + "-" + month + "-" + payDate.getDate();
+                    	$("#pay-date").text(payDateStr);
+                    </script>
                 </span>
                 에 진행됩니다. 프로젝트가 무산되거나 중단된 경우, 예약된 결제는 자동으로 취소됩니다.
             </div>

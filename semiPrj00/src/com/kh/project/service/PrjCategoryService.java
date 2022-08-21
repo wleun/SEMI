@@ -14,7 +14,7 @@ import com.kh.project.vo.ProjectVo;
 
 public class PrjCategoryService {
 	
-	private PrjCategoryDao dao = new PrjCategoryDao();
+	private final PrjCategoryDao dao = new PrjCategoryDao();
 	
 	/*
 	 * 총 프로젝트 수 조회

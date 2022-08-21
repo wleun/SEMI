@@ -14,6 +14,9 @@ import com.kh.project.vo.ProjectVo;
 
 public class PrjCategoryDao {
 
+	/*
+	 * 카테고리, 정렬 방식으로 프로젝트 셀렉트 해오기
+	 */
 	public List<ProjectVo> selectProject(Connection conn, String category, String sort, PageVo pageVo) {
 		
 		String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM ( SELECT * FROM PROJECT ORDER BY END_DATE DESC )P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.CATEGORY_NO = ? AND P.STATUS = ?) T WHERE RNUM BETWEEN ? AND ?";
@@ -65,6 +68,9 @@ public class PrjCategoryDao {
 		return projectList;
 	}
 
+	/*
+	 * 모든 프로젝트 셀렉트
+	 */
 	public List<ProjectVo> selectProjectAll(Connection conn, PageVo pageVo) {
 		String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM ( SELECT * FROM PROJECT ORDER BY END_DATE DESC )P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.STATUS = 'I' OR P.STATUS = 'S' OR P.STATUS = 'B') T WHERE RNUM BETWEEN ? AND ?";
 		
@@ -112,9 +118,12 @@ public class PrjCategoryDao {
 		return projectList;
 	}
 
+	/*
+	 * 카테고리 별로 프로젝트 셀렉트
+	 */
 	public List<ProjectVo> selectProject(Connection conn, String category, PageVo pageVo) {
 		
-String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM ( SELECT * FROM PROJECT ORDER BY END_DATE DESC )P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.CATEGORY_NO = ? AND (P.STATUS = 'I' OR P.STATUS = 'S' OR P.STATUS = 'B')) T WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM ( SELECT * FROM PROJECT ORDER BY END_DATE DESC )P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.CATEGORY_NO = ? AND (P.STATUS = 'I' OR P.STATUS = 'S' OR P.STATUS = 'B')) T WHERE RNUM BETWEEN ? AND ?";
 		
 		List<ProjectVo> projectList = new ArrayList<ProjectVo>();
 		PreparedStatement pstmt = null;
@@ -161,6 +170,9 @@ String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M
 		return projectList;
 	}
 
+	/*
+	 * 카테고리 번호 통해 카테고리 셀렉트
+	 */
 	public CategoryVo selectCategory(Connection conn, String category) {
 		
 		String sql = "SELECT * FROM CATEGORY WHERE CATEGORY_NO = ?";
@@ -189,6 +201,9 @@ String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M
 		return vo;
 	}
 
+	/*
+	 * 모든 프로젝트 수 카운트
+	 */
 	public int listCountAll(Connection conn) {
 		
 		String sql = "SELECT COUNT(PROJECT_NO) COUNT FROM PROJECT WHERE STATUS = 'I' OR STATUS = 'S' OR STATUS = 'B'";
@@ -220,6 +235,9 @@ String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M
 		return count;
 	}
 
+	/*
+	 * 카테고리, 정렬방식으로 프로젝트 수 조회
+	 */
 	public int listCount(Connection conn, String category, String sort) {
 		
 		String sql = "SELECT COUNT(PROJECT_NO) COUNT FROM PROJECT WHERE CATEGORY_NO = ? AND STATUS = ?";
@@ -254,6 +272,9 @@ String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M
 		return count;
 	}
 
+	/*
+	 * 카테고리 별로 프로젝트 수 조회
+	 */
 	public int listCount(Connection conn, String category) {
 		
 		String sql = "SELECT COUNT(PROJECT_NO) COUNT FROM PROJECT WHERE CATEGORY_NO = ? AND (STATUS = 'I' OR STATUS = 'S' OR STATUS = 'B')";
