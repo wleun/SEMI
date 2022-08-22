@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/admin/eventDetail")
+@WebServlet(urlPatterns = "/admin/event/detail")
 public class AdminEventDetailController extends HttpServlet{
 
 	@Override

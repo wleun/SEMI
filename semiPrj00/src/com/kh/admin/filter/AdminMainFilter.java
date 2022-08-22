@@ -19,11 +19,16 @@ public class AdminMainFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		
 		String path = ((HttpServletRequest)request).getRequestURI();
 		AdminVo loginAdmin = (AdminVo) ((HttpServletRequest)request).getSession().getAttribute("loginAdmin");
 		
 		if(loginAdmin != null) {
 			chain.doFilter(request, response);
+			
 		} else {
 			if(path.contains("/login")) {
 				((HttpServletRequest)request).getRequestDispatcher("/admin/login").forward(request, response);

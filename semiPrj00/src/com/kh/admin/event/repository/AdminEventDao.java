@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.admin.attachment.vo.AdminEventAttachmentVo;
 import com.kh.admin.event.vo.AdminEventVo;
 import com.kh.common.vo.PageVo;
 
@@ -78,7 +79,7 @@ public class AdminEventDao {
 				String status = rs.getString("STATUS"); 
 				
 				vo.setNo(no);
-				vo.setName(name);
+				vo.setAdminName(name);
 				vo.setTitle(title);
 				vo.setContent(content);
 				vo.setThumbnailPath(thumbnailPath);
@@ -111,6 +112,61 @@ public class AdminEventDao {
 	
 	
 	
+	}
+	
+	//게시글 작성 (이벤트 테이블만 채워줌)
+
+	public static int insertEvent(Connection conn, AdminEventVo adminEventVo) {
+		
+		String sql = "INSERT INTO EVENT (NO, ADMIN_NO, TITLE, CONTENT, THUMBNAIL_PATH, THUMBNAIL_NAME, START_DATE, END_DATE) VALUES (SEQ_EVENT_NO.NEXTVAL , ? , ? , ? , ? , ? , ? , ? )";
+		int result =0;
+		PreparedStatement pstmt = null;
+		
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, adminEventVo.getAdminName());
+			pstmt.setString(2, adminEventVo.getTitle());
+			pstmt.setString(3, adminEventVo.getContent());
+			pstmt.setString(4, adminEventVo.getThumbnailPath());
+			pstmt.setString(5, adminEventVo.getThumbnailName());
+			pstmt.setString(6, adminEventVo.getStartDate());
+			pstmt.setString(7, adminEventVo.getEndDate());
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	//게시글 작성 (이벤트_파일 테이블만 채워줌)
+	
+	public static int insertAttachment(Connection conn, AdminEventAttachmentVo adminEventAttachmentVo) {
+		String sql = "INSERT INTO EVENT_FILE (NO, EVENT_NO, PATH, NAME) VALUES (SEQ_EVENT_FILE_NO.NEXTVAL, SEQ_EVENT_NO.CURRVAL, ?, ?)";
+		int result =0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, adminEventAttachmentVo.getPath());
+			pstmt.setString(2, adminEventAttachmentVo.getName());
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

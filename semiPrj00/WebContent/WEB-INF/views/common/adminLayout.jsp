@@ -1,3 +1,4 @@
+<%@page import="com.kh.admin.login.vo.AdminVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -6,8 +7,13 @@
 <%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <%
+    AdminVo loginAdmin = (AdminVo)session.getAttribute("loginAdmin");
 	String contextPath = request.getContextPath();
 
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	session.removeAttribute("alertMsg");
+    String errorMsg = (String)session.getAttribute("errorMsg");
+    session.removeAttribute("errorMsg");
 
 %>
 
@@ -71,13 +77,11 @@
         input[type=search] {
             border-radius: 50px;
             border : 1px solid #C3B091;
-            color: white;
         }
 
         input[type=text] {
             border-radius: 50px;
             border : 1px solid #C3B091;
-            color: white;
         }
 
         select {
@@ -418,7 +422,19 @@
         </nav>
     </div>
 
+	<script>
+	    $(function(){ 
+	        <%if(alertMsg!=null){%>
+    			alert('<%=alertMsg%>');
+    		<%}%>
+	       
+            <%if(errorMsg!=null){%>
+                alert('<%=errorMsg%>');
+            <%}%>
+	    });
+    </script>
 
+    
 
 </body>
 </html>

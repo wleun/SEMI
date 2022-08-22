@@ -102,6 +102,7 @@
     width: 700px;
     height: 40px;
     border-radius: 10px;
+    color : black;
   }
 
   #datebox {
@@ -234,7 +235,7 @@
             <div id="eventHeader"> 
               <div id="headerNotUsedArea"></div>
               <div id="eventHeaderText">이벤트 작성 *</div>
-         <form id="install_form" action="<%=contextPath %>/admin/eventInstall" method="post" enctype="multipart/form-data"> 
+         <form id="install_form" action="<%=contextPath %>/admin/event/install" method="post" enctype="multipart/form-data"> 
               <div id="eventImportant">
                 중요도 : 
                 <select name="important">
@@ -250,12 +251,12 @@
                         <div id="titleInput"><input type="text" name="title"></div>
                         <div id="datebox">
                           <div class="datebox">시작일 : <input type="date" name="startDate"></div>
-                          <div class="datebox">마감일 : <input type="date" namd="endDate"></div>
+                          <div class="datebox">마감일 : <input type="date" name="endDate"></div>
                         </div>
                     </div>
                     <div id="content">
                         <div id="contentText" class="padding-right">내용 : </div>
-                        <div id="contentInput"><textarea name="" id="" cols="30" rows="10" name="content"></textarea></div>
+                        <div id="contentInput"><textarea name="content" id="" cols="30" rows="10"></textarea></div>
                     </div>
                     <div id="file">
                       <div class="filebox">

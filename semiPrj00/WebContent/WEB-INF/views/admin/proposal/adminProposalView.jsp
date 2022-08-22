@@ -218,7 +218,7 @@
                                 </div>
                                 
                                 <c:forEach items="${list}" var="item">
-                                    <a href="<%=contextPath%>/admin/proposalDetail?no=${item.no}">
+                                    <a href="<%=contextPath%>/admin/proposal/detail?no=${item.no}">
 	                                    <div class="proposalManageColumn">
 	                                        <div class="proposalNo">${item.no}</div>
 	                                        <div class="proposalMember">${item.nick}</div>

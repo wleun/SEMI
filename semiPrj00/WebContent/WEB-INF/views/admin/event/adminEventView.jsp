@@ -243,7 +243,7 @@
 
                                 <div class="eventArea">
                                     <c:forEach items="${list}" var="item" begin="0" end="2" step="1">
-                                    	<a href="<%=contextPath%>/admin/eventDetail?no=${item.no}">
+                                    	<a href="<%=contextPath%>/admin/event/detail?no=${item.no}">
 	                                        <div class="eventBox">
 	                                            <div class="half textBox">
 	                                                <div class="eventTitle"><h2>${item.title}</h2></div>
@@ -259,7 +259,7 @@
                                 </div>   
                                 <div class="eventArea">
                                     <c:forEach items="${list}" var="item" begin="3" end="5" step="1">
-                                    	<a href="<%=contextPath%>/admin/eventDetail?no=${item.no}">
+                                    	<a href="<%=contextPath%>/admin/event/detail?no=${item.no}">
 	                                        <div class="eventBox">
 	                                            <div class="half textBox">
 	                                                <div class="eventTitle"><h2>${item.title}</h2></div>
@@ -305,7 +305,7 @@
 								<%} %>
                             </div>
                             <div id="eventDiv3_edit">
-                            	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/eventInstall';"></div>
+                            	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/event/install';"></div>
                </div>
     
             </div>
