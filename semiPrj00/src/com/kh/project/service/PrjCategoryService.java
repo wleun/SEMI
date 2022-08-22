@@ -14,12 +14,12 @@ import com.kh.project.vo.ProjectVo;
 
 public class PrjCategoryService {
 	
-	private PrjCategoryDao dao = new PrjCategoryDao();
+	private final PrjCategoryDao dao = new PrjCategoryDao();
 	
 	/*
 	 * 총 프로젝트 수 조회
 	 */
-	public int listCount() {
+	public int listCount(String category, String sort) {
 		
 		Connection conn = null;
 		int result =0;
@@ -27,7 +27,18 @@ public class PrjCategoryService {
 		try {
 			conn = getConnection();
 			
-			result = new PrjCategoryDao().listCount(conn);
+			//sort 를 sql에 맞춤
+			if("ongoing".equals(sort)) {sort="I";}
+			if("complete".equals(sort)) {sort="S";}
+			if("intended".equals(sort)) {sort="B";}
+			
+			if(sort=="I" || sort=="S" || sort=="B") {
+				result = dao.listCount(conn, category, sort);
+			}else if("all".equals(sort)) {
+				result = dao.listCount(conn, category);
+			}else {
+				result = dao.listCountAll(conn);
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -78,6 +89,8 @@ public class PrjCategoryService {
 					default:
 						projectList = dao.selectProjectAll(conn, pageVo);
 				}
+			}else if("all".equals(sort)) {
+				projectList = dao.selectProject(conn, category, pageVo);
 			}else {
 				projectList = dao.selectProjectAll(conn, pageVo);
 			}
@@ -101,15 +114,26 @@ public class PrjCategoryService {
 		Connection conn = null;
 		
 		try {
-			
 			conn = getConnection();
-			if(category == null) {
+			switch(category) {
+			case "1":
+			case "2":
+			case "3":
+			case "4":
+			case "5":
+			case "6":
+			case "7":
+			case "8":
+			case "9":
+			case "10":
+			case "11":
+			case "12":
+				categoryVo = new PrjCategoryDao().selectCategory(conn, category);
+				break;
+			default:
 				categoryVo.setCategoryNo("0");
 				categoryVo.setCategoryName("전체");
-			}else {
-				categoryVo = new PrjCategoryDao().selectCategory(conn, category);
 			}
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

@@ -176,7 +176,7 @@
             if(month < 10){
                 month = "0" + month;
             }
-            let today = date.getFullYear() + "-" + month;
+            let today = date.getFullYear() + "-" + month + "-" + date.getDate();
             if(today<birthDate){
                 alert("생일은 오늘 이전으로 입력해주세요.");
                 $("#brith-date").val("");
