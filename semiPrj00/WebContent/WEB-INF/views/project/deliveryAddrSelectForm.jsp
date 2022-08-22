@@ -1,5 +1,11 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.addr.vo.AddrVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	ArrayList<AddrVo> addrList = (ArrayList<AddrVo>)request.getAttribute("addrList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,30 +59,16 @@
 			<!-- Modal body -->
 			<div class="modal-body">
 				<table>
-					<tr>
-						<td class="modal-addr-name"></td>
-						<td><div class="btn btn-sm btn-danger disabled modal-default opacity-0">기본</div></td>
-						<td class="modal-addr-num"><label for="radio-btn1">주소1+주소2</label></td>
-						<td>
-							<input type="radio" id="radio-btn1" class="form-check-input addr-modal-radio" value="주소1+주소2" checked>
-						</td>
-					</tr>
+					<%for(AddrVo vo : addrList){%>
 					<tr>
 						<td class="modal-addr-name"></td>
 						<td><div class="modal-default btn btn-sm btn-danger disabled opacity-0">기본</div></td>
-						<td class="modal-addr-num"><label for="radio-btn2">주소3+주소4</label></td>
+						<td class="modal-addr-num"><label for="radio-btn2"><%=vo.getAddr1()%> <%=vo.getAddr2()%></label></td>
 						<td>
-							<input type="radio" id="radio-btn2" class="form-check-input addr-modal-radio" value="주소3+주소4">
+							<input type="radio" id="radio-btn2" class="form-check-input addr-modal-radio" value="<%=vo.getAddr1()%> <%=vo.getAddr2()%>" <%=vo.getDefaultYN()%>>
 						</td>
 					</tr>
-					<tr>
-						<td class="modal-addr-name"></td>
-						<td><div class="modal-default btn btn-sm btn-danger disabled opacity-0">기본</div></td>
-						<td class="modal-addr-num"><label for="radio-btn3">주소5+주소6</label></td>
-						<td>
-							<input type="radio" id="radio-btn3" class="form-check-input addr-modal-radio" value="주소5+주소6">
-						</td>
-					</tr>
+					<%}%>
 				</table>
 			</div>
 	

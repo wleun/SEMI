@@ -3,8 +3,12 @@ package com.kh.project.repository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.addr.vo.AddrVo;
 import com.kh.project.vo.ProjectVo;
 import com.kh.reward.vo.ProjectRewardVo;
 
@@ -78,6 +82,51 @@ public class PrjSupportDao {
 		}
 				
 		return rewardVo;
+	}
+
+	public List<AddrVo> selectAddr(Connection conn, String memberNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AddrVo> addrList = new ArrayList<AddrVo>();
+		
+		String sql = "SELECT * FROM DELIVERY_ADDRESS WHERE MEMBER_NO = ? ORDER BY DEFAULT_YN DESC";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				AddrVo vo = new AddrVo();
+				vo.setNo(rs.getString("NO"));
+				vo.setPostNum(rs.getString("POST_NUM"));
+				vo.setAddr1(rs.getString("ADDR1"));
+				vo.setAddr2(rs.getString("ADDR2"));
+				vo.setName(rs.getString("NAME"));
+				vo.setPhone(rs.getString("PHONE"));
+				
+				String defaultAddr = rs.getString("DEFAULT_YN");
+				if("N".equals(defaultAddr)) {
+					vo.setDefaultYN(null);
+				}else {
+					vo.setDefaultYN("checked");
+				}
+				System.out.println(vo.getDefaultYN());
+				addrList.add(vo);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return addrList;
 	}
 
 }
