@@ -245,12 +245,12 @@
                                 <a data-bs-toggle="modal" href="#myModal">
                                     <div class="reportManageColumn">
 
-                                        <div class="reportNo">1</div>
-                                        <div class="reportMember">신고자1</div>
-                                        <div class="reportPrj">신고 프로젝트11</div>
-                                        <div class="reportContent">신고내용1111111</div>
-                                        <div class="reportDate">2022-08-09</div>
-                                        <div class="reportStatus">접수</div>
+                                        <div class="reportNo">${item.no}</div>
+                                        <div class="reportMember">${item.memberNick}</div>
+                                        <div class="reportPrj">${item.projectName}</div>
+                                        <div class="reportContent">${item.content}</div>
+                                        <div class="reportDate">${item.submitDate}</div>
+                                        <div class="reportStatus">${item.reportAc}</div>
                                         
                                     </div>
                                 </a>
@@ -263,25 +263,25 @@
                             <div id="reportManageDiv3_not_used"></div>
                             <div id="reportManageDiv3_paging">
                                 <% if (currentPage>10) { %>
-								<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=startPage-10 %>"> ◀ </a> </div>
+								<div> <a href="<%=contextPath %>/admin/report?p=<%=startPage-10 %>"> ◀ </a> </div>
 								<%} %>
 								<% for(int i = startPage; i <= endPage; ++i) { %>
 									<% if(i == currentPage) {%>
 										<div> <a><%=i%></a></div>
 									<%} else { %>
-									<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=i%>"><%=i%></a></div>
+									<div> <a href="<%=contextPath %>/admin/report?p=<%=i%>"><%=i%></a></div>
 									<%} %>
 								<%} %>
 								<% if (currentPage != maxPage) { %>
 									<% if (maxPage< currentPage+10) { %>
-										<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=maxPage%>"> ▶ </a></div>
+										<div> <a href="<%=contextPath %>/admin/report?p=<%=maxPage%>"> ▶ </a></div>
 									<%} else if (maxPage>10) { %>
-											<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=startPage+10%> "> ▶ </a></div>									<%} %>
+											<div> <a href="<%=contextPath %>/admin/report?p=<%=startPage+10%> "> ▶ </a></div>									<%} %>
 									<%} %>
 								
 								<% if (currentPage != maxPage) { %>
 									<% if (maxPage>10) { %>
-								<div> <a href="<%=contextPath %>/admin/memberManage?p=<%=maxPage%> "> ▶▶ </a></div>
+								<div> <a href="<%=contextPath %>/admin/report?p=<%=maxPage%> "> ▶▶ </a></div>
 									<%} %>
 								<%} %>
                             </div>

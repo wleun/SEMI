@@ -158,7 +158,7 @@
                             <div id="editDate">수정시간 : 2022-08-19</div>
                         </div>
                         <div id="infoSecondDiv">
-                            <div id="backBtn"><button>뒤로가기</button></div>
+                            <div id="backBtn"><button onclick="history.back()">뒤로가기</button></div>
                             <div id="editBtn"><button>수정하기</button></div>
                             <div id="deletebtn"><button>삭제하기</button></div>
                         </div>

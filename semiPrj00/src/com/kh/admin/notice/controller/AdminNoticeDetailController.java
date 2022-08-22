@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/admin/noticeDetail")
-public class AdminNoticeDetailView extends HttpServlet {
+@WebServlet(urlPatterns = "/admin/notice/detail")
+public class AdminNoticeDetailController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 		req.setAttribute("functionName", "공지사항 상세조회");
 		req.getRequestDispatcher("/WEB-INF/views/admin/notice/adminNoticeDetailView.jsp").forward(req, resp);
 	}

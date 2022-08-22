@@ -9,12 +9,12 @@ public class AdminEventVo {
 	}
 	
 	
-	public AdminEventVo(String no, String name, String title, String content, String thumbnailPath,
+	public AdminEventVo(String no, String adminName, String title, String content, String thumbnailPath,
 			String thumbnailName, String writeDate, String startDate, String endDate, String importantYN,
-			String editDate, String editAdminNo, String deleteYn) {
+			String editDate, String editAdminNo, String status) {
 		super();
 		this.no = no;
-		this.name = name;
+		this.adminName = adminName;
 		this.title = title;
 		this.content = content;
 		this.thumbnailPath = thumbnailPath;
@@ -25,12 +25,12 @@ public class AdminEventVo {
 		this.importantYN = importantYN;
 		this.editDate = editDate;
 		this.editAdminNo = editAdminNo;
-		this.deleteYn = deleteYn;
+		this.status = status;
 	}
 	
 	
 	private String no;
-	private String name;
+	private String adminName;
 	private String title;
 	private String content;
 	private String thumbnailPath;
@@ -41,7 +41,8 @@ public class AdminEventVo {
 	private String importantYN;
 	private String editDate;
 	private String editAdminNo;
-	private String deleteYn;
+	private String status;
+	
 	public String getNo() {
 		return no;
 	}
@@ -52,13 +53,13 @@ public class AdminEventVo {
 	}
 
 
-	public String getName() {
-		return name;
+	public String getAdminName() {
+		return adminName;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
 	}
 
 
@@ -162,22 +163,22 @@ public class AdminEventVo {
 	}
 
 
-	public String getDeleteYn() {
-		return deleteYn;
+	public String getStatus() {
+		return status;
 	}
 
 
-	public void setDeleteYn(String deleteYn) {
-		this.deleteYn = deleteYn;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 
 	@Override
 	public String toString() {
-		return "adminEventVo [no=" + no + ", name=" + name + ", title=" + title + ", content=" + content
+		return "adminEventVo [no=" + no + ", adminName=" + adminName + ", title=" + title + ", content=" + content
 				+ ", thumbnailPath=" + thumbnailPath + ", thumbnailName=" + thumbnailName + ", writeDate=" + writeDate
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", importantYN=" + importantYN + ", editDate="
-				+ editDate + ", editAdminNo=" + editAdminNo + ", deleteYn=" + deleteYn + "]";
+				+ editDate + ", editAdminNo=" + editAdminNo + ", status=" + status + "]";
 	}
 
 	

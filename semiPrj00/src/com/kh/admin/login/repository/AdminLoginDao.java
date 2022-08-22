@@ -16,7 +16,7 @@ public class AdminLoginDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT NO,ID,PWD,NAME FROM ADMIN WHERE ID=? AND PWD=?";
+		String sql = "SELECT NO, ID, PWD, NAME FROM ADMIN WHERE ID=? AND PWD=?";
 		
 		try {
 			

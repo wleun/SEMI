@@ -19,7 +19,7 @@ public class AdminReportDao {
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT COUNT(NO) AS COUNT FROM REPORT";
+		String sql = "SELECT COUNT(NO) AS COUNT FROM REPORT WHERE REPORT_AC = 'A'";
 		
 		try {
 			
@@ -69,6 +69,9 @@ public class AdminReportDao {
 				String content = rs.getString("CONTENT");
 				String submitDate = rs.getString("SUBMIT_DATE");
 				String reportAc = rs.getString("REPORT_AC");
+				if("A".equals(reportAc)) {
+					reportAc = "접수";
+				}
 				
 				
 				vo.setNo(no);

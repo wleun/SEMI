@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.admin.attachment.vo.AdminNoticeAttachmentVo;
 import com.kh.admin.event.vo.AdminEventVo;
 import com.kh.admin.notice.vo.AdminNoticeVo;
 import com.kh.common.vo.PageVo;
@@ -19,7 +20,7 @@ public class AdminNoticeDao {
 		ResultSet rs = null;
 		int count = 0;
 		
-		String sql = "SELECT COUNT(NO) AS COUNT FROM NOTICE";
+		String sql = "SELECT COUNT(NO) AS COUNT FROM NOTICE WHERE DELETE_YN = 'N'";
 		
 		try {
 			
@@ -76,8 +77,14 @@ public class AdminNoticeDao {
 				String editAdminNo = rs.getString("EDIT_ADMIN_NO"); 
 				String deleteYn = rs.getString("DELETE_YN"); 
 				
+				if("N".equals(importantYn)) {
+					importantYn = "-";
+				} else if ("Y".equals(importantYn)) {
+					importantYn = "중요*";
+				}
+				
 				vo.setNo(no);
-				vo.setName(name);
+				vo.setAdminName(name);
 				vo.setTitle(title);
 				vo.setContent(content);
 				vo.setThumbnailPath(thumbnailPath);
@@ -103,4 +110,77 @@ public class AdminNoticeDao {
 		return list;
 	}
 
-}
+	public int deleteNotice(Connection conn, String noticeNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE NOTICE SET DELETE_YN = 'Y' WHERE NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, noticeNo);
+			
+			result = pstmt.executeUpdate();
+		
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		
+			return result;
+		}
+
+	public static int insertNotice(Connection conn, AdminNoticeVo adminNoticeVo) {
+		
+		String sql = " INSERT INTO NOTICE ( NO, ADMIN_NO, TITLE, CONTENT, THUMBNAIL_PATH, THUMBNAIL_NAME ) VALUES ( SEQ_NOTICE_NO.NEXTVAL , ? , ? , ? , ? , ? )";
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, adminNoticeVo.getAdminName());
+			pstmt.setString(2, adminNoticeVo.getTitle());
+			pstmt.setString(3, adminNoticeVo.getContent());
+			pstmt.setString(4, adminNoticeVo.getThumbnailPath());
+			pstmt.setString(5, adminNoticeVo.getThumbnailName());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public static int insertNotice(Connection conn, AdminNoticeAttachmentVo adminNoticeAttachmentVo) {
+		
+		String sql = "INSERT INTO NOTICE_FILE ( NO, NOTICE_NO, PATH, NAME ) VALUES ( SEQ_NOTICE_FILE_NO.NEXTVAL, SEQ_NOTICE_NO.CURRVAL, ? , ? )";
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, adminNoticeAttachmentVo.getPath());
+			pstmt.setString(2, adminNoticeAttachmentVo.getName());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+		
+	}
+

@@ -53,7 +53,7 @@
     }
 
     #eventImportant {
-      width: 15%;
+      width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
@@ -102,6 +102,7 @@
     width: 700px;
     height: 40px;
     border-radius: 10px;
+    color : black;
   }
 
   #datebox {
@@ -234,39 +235,39 @@
             <div id="eventHeader"> 
               <div id="headerNotUsedArea"></div>
               <div id="eventHeaderText">이벤트 작성 *</div>
+         <form id="install_form" action="<%=contextPath %>/admin/event/install" method="post" enctype="multipart/form-data"> 
               <div id="eventImportant">
                 중요도 : 
-                <select name="" id="">
-                  <option value="normal">일반</option>
-                  <option value="important">중요</option>
+                <select name="important">
+                  <option value="N">일반</option>
+                  <option value="Y">중요</option>
                 </select>
               </div>
             </div>
-            <form action="">
                 <div id="eventWriteArea">
                     <div id="title">
                         <div id="titleNotUsedArea"></div>
                         <div id="titleText" class="padding-right">제목 : </div>
-                        <div id="titleInput"><input type="text"></div>
+                        <div id="titleInput"><input type="text" name="title"></div>
                         <div id="datebox">
-                          <div class="datebox">시작일 : <input type="date"></div>
-                          <div class="datebox">마감일 : <input type="date"></div>
+                          <div class="datebox">시작일 : <input type="date" name="startDate"></div>
+                          <div class="datebox">마감일 : <input type="date" name="endDate"></div>
                         </div>
                     </div>
                     <div id="content">
                         <div id="contentText" class="padding-right">내용 : </div>
-                        <div id="contentInput"><textarea name="" id="" cols="30" rows="10"></textarea></div>
+                        <div id="contentInput"><textarea name="content" cols="30" rows="10"></textarea></div>
                     </div>
                     <div id="file">
                       <div class="filebox">
                         <input id="upload-name1" value="섬네일 이미지 첨부" placeholder="섬네일 이미지 첨부">
                         <label for="fileInsert1">파일찾기</label>
-                        <input type="file" id="fileInsert1">
+                        <input type="file" id="fileInsert1" name="thumbnailFile">
                       </div>
                       <div class="filebox">
                         <input id="upload-name2" value="이벤트 이미지 파일 첨부" placeholder="이벤트 이미지 파일 첨부">
                         <label for="fileInsert2">파일찾기</label> 
-                        <input type="file" id="fileInsert2">
+                        <input type="file" id="fileInsert2" name="imageFile">
                       </div>
                     </div>  
                     <div id="btns">

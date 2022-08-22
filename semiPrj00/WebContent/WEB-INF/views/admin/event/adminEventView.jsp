@@ -222,7 +222,7 @@
                          <form action="">
 
 
-                            <select name="deleteYN" id="searchWhat">
+                            <select name="status" id="searchWhat">
                                 <option value="N">일반</option>
                                 <option value="Y">삭제된</option>
                                 </select>
@@ -243,15 +243,15 @@
 
                                 <div class="eventArea">
                                     <c:forEach items="${list}" var="item" begin="0" end="2" step="1">
-                                    	<a href="<%=contextPath%>/admin/eventDetail?no=${item.no}">
+                                    	<a href="<%=contextPath%>/admin/event/detail?no=${item.no}">
 	                                        <div class="eventBox">
 	                                            <div class="half textBox">
 	                                                <div class="eventTitle"><h2>${item.title}</h2></div>
 	                                                <div class="eventPeriod">${item.startDate} ~ ${item.endDate}</div>
-	                                                <div class="eventStatus">진행예정</div>
+	                                                <div class="eventStatus">${item.status}</div>
 	                                            </div>
 	                                            <div class="half">
-	                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+	                                                <div class="imgArea"><img style="border-radius: 10px;" width="100%" height="100%" src="<%=contextPath %>/resources/admin/event/${item.thumbnailName}" alt="이벤트 섬네일"></div>
 	                                            </div>
 	                                        </div>
                                     	</a>
@@ -259,15 +259,15 @@
                                 </div>   
                                 <div class="eventArea">
                                     <c:forEach items="${list}" var="item" begin="3" end="5" step="1">
-                                    	<a href="<%=contextPath%>/admin/eventDetail?no=${item.no}">
+                                    	<a href="<%=contextPath%>/admin/event/detail?no=${item.no}">
 	                                        <div class="eventBox">
 	                                            <div class="half textBox">
 	                                                <div class="eventTitle"><h2>${item.title}</h2></div>
 	                                                <div class="eventPeriod">${item.startDate} ~ ${item.endDate}</div>
-	                                                <div class="eventStatus">진행예정</div>
+	                                                <div class="eventStatus">${item.status}</div>
 	                                            </div>
 	                                            <div class="half">
-	                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+	                                                <div class="imgArea"><img style="border-radius: 10px;" width="100%" height="100%" src="<%=contextPath %>/resources/admin/event/${item.thumbnailName}" alt="이벤트 섬네일"></div>
 	                                            </div>
 	                                        </div>
                                     	</a>
@@ -305,7 +305,7 @@
 								<%} %>
                             </div>
                             <div id="eventDiv3_edit">
-                            	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/eventInstall';"></div>
+                            	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/event/install';"></div>
                </div>
     
             </div>
