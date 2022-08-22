@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 import static com.kh.common.JDBCTemplate.*;
 
-public class ProjectLikeDao {
+public class PrjLikeDao {
 
-	//좋아요 체크
+	//좋아요 칼럼 존재하는지 체크
 	public int projectLikeCheck(Connection conn, String memberNo, String projectNo) {
 
 		String sql = "SELECT * FROM PROJECT_LIKE WHERE MEMBER_NO = ? AND PROJECT_NO = ?"; 
@@ -37,7 +37,7 @@ public class ProjectLikeDao {
 			close(pstmt);
 			close(rs);
 		}
-		System.out.println("서비스에 전달해줄 result 값 (1은 rs없음, 2는 rs 있음):"+result);
+		System.out.println("서비스에 전달해줄 result 값 (1은 rs있음, 2는 rs 없음):"+result);
 		return result;
 	}
 	
@@ -110,6 +110,32 @@ public class ProjectLikeDao {
 		}
 		close(pstmt);
 		System.out.println("좋아요 취소한 dao result 값: "+result);
+		return result;
+	}
+
+	//좋아요 눌렀나 안눌렀나 체크
+	public int LikeOrNotCheck(Connection conn, String memberNo, String prjNum) {
+		String sql = "SELECT STATUS FROM PROJECT_LIKE WHERE MEMBER_NO = ? AND PROJECT_NO = ? AND STATUS = 'L'"; 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			pstmt.setString(2, prjNum);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				result = 1;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
 		return result;
 	}
 

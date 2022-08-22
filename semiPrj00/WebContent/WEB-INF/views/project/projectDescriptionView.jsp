@@ -4,6 +4,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <%
 	/* ProjectVo pvo = (ProjectVo)request.getAttribute("projectVo"); */
 %>
@@ -491,7 +492,7 @@
                     <a href="/project/category">푸드</a>
                 </div>
                 <div id="project-title">
-                    <a>${pvo.name}</a>
+                    <a>${projectVo.name}</a>
                 </div>
             </div>
             <div id="head-img">
@@ -731,7 +732,7 @@
                             </div>
 
                             <div class="hide-div" id="option-select-area">
-                                <form action="<%=contextPath%>/project/support">
+                                <form action="<%=contextPath%>/project/support?pnum=${projectVo.no}&rnum=${rewardVo.no}">
                                     수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
                                     <input type="submit">
                                 </form>
@@ -813,6 +814,7 @@
             var fileName = $("#file").val();
             $(".upload-name").val(fileName);
         });
+        
         
 
         $('#like-btn').click(function(){
