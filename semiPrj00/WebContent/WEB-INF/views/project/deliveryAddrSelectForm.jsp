@@ -61,11 +61,12 @@
 				<table>
 					<%for(AddrVo vo : addrList){%>
 					<tr>
-						<td class="modal-addr-name"></td>
+						<td class="modal-addr-name"><%=vo.getName()%></td>
 						<td><div class="modal-default btn btn-sm btn-danger disabled opacity-0">기본</div></td>
 						<td class="modal-addr-num"><label for="radio-btn2"><%=vo.getAddr1()%> <%=vo.getAddr2()%></label></td>
 						<td>
 							<input type="radio" id="radio-btn2" class="form-check-input addr-modal-radio" value="<%=vo.getAddr1()%> <%=vo.getAddr2()%>" <%=vo.getDefaultYN()%>>
+							<input type="hidden" value="<%=vo.getPhone()%>">
 						</td>
 					</tr>
 					<%}%>
@@ -97,6 +98,7 @@
 			}
 		});
 		
+
 	</script>
 
 </body>

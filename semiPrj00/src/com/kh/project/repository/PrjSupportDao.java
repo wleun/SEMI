@@ -115,7 +115,6 @@ public class PrjSupportDao {
 				}else {
 					vo.setDefaultYN("checked");
 				}
-				System.out.println(vo.getDefaultYN());
 				addrList.add(vo);
 			}
 			
