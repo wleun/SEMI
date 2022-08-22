@@ -5,11 +5,11 @@ import static com.kh.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
-import com.kh.project.repository.ProjectLikeDao;
+import com.kh.project.repository.PrjLikeDao;
 
-public class ProjectLikeService {
+public class PrjLikeService {
 	
-	ProjectLikeDao dao = new ProjectLikeDao();
+	PrjLikeDao dao = new PrjLikeDao();
 	
 	//좋아요 했는지 체크
 	public int projectLikeCheck(String memberNo, String projectNo) {
@@ -76,6 +76,19 @@ public class ProjectLikeService {
 		close(conn);
 		System.out.println("좋아요 취소한 서비스 result 값: "+result);
 		return result;
+	}
+
+	public int LikeOrNotCheck(String memberNo, String prjNum) {
+		Connection conn = getConnection();
+		
+		int result = dao.LikeOrNotCheck(conn, memberNo, prjNum);
+		
+		if (result == 1) {
+			close(conn);
+		}
+		System.out.println("컨트롤러에 전달해줄 result 값 (1은 rs있음, 2는 rs 있음):"+result);
+		return result;
+		
 	}
 
 

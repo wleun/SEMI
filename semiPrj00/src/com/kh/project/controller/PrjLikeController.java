@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.vo.MemberVo;
-import com.kh.project.service.ProjectLikeService;
+import com.kh.project.service.PrjLikeService;
 
 @WebServlet(urlPatterns = "/project/like")
-public class ProjectLikeController extends HttpServlet{
+public class PrjLikeController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class ProjectLikeController extends HttpServlet{
 		String memberNo = req.getParameter("memberNo");
 		String projectNo = req.getParameter("projectNo");
 		
-		ProjectLikeService service = new ProjectLikeService();
+		PrjLikeService service = new PrjLikeService();
 		
 		int checkResult = 0;
 		int likeCancel = 0;
