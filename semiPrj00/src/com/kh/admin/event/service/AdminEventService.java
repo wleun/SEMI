@@ -103,4 +103,14 @@ public class AdminEventService {
 		
 	}
 
+	public AdminEventVo selectOne(String no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public AdminEventAttachmentVo selectFile(String no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
