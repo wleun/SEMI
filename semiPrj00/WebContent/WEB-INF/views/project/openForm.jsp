@@ -264,13 +264,14 @@
 					<tr>
 						<td>리워드 금액*</td>
 						<td><input type="number" class="form-control" name="price"
-							min="1000" value="1000" style="display: inline;" required>
+							min="1000" value="1000" placeholder="이 리워드의 금액을 입력해주세요."
+							style="display: inline;" required>
 							원</td>
 					</tr>
 					<tr>
 						<td>리워드 수*</td>
 						<td><input type="number" class="form-control" name="quantity"
-							id="rewardNum" min="1" value="0" placeholder="이 리워드의 수를 입력해주세요."
+							id="rewardNum" min="1" value="1" placeholder="이 리워드의 수를 입력해주세요."
 							style="display: inline;" required> 개</td>
 					</tr>
 
@@ -373,11 +374,13 @@
 			if(amount < 100000 || amount > 9999999999){
 				alert("목표금액은 100,000 ~ 9,999,999,999원 사이로 설정해주세요.")
 				document.getElementById("prjAmount").value = 100000;
+				amountCalc();
 			}else{
 				let priceCalc = amount - (amount / 100 * 5);
 				document.getElementById("priceCalcResult").innerHTML = priceCalc;
+				}
 			}
-		}
+		
 
 		//선물 전달일 (배송일)계산
 		$(function shippingDateCalc() {
@@ -475,6 +478,7 @@
 						}
 					});
 		});
+		
 	</script>
 
 </body>

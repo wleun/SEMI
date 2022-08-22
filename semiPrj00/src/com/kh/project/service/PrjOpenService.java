@@ -92,12 +92,11 @@ public class PrjOpenService {
 			//트랜잭션 처리
 			if(result1 * result2 * result3 == 1) {
 				commit(conn);
-				
 			} else {
 				rollback(conn);
 			}
-			
 		} catch (Exception e) {
+			rollback(conn);
 			System.out.println("프로젝트 신청 처리 중 문제 발생");
 			e.printStackTrace();
 		} finally {
