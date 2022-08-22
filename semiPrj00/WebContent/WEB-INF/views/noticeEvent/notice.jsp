@@ -1,5 +1,19 @@
+<%@page import="com.kh.admin.notice.vo.AdminNoticeVo"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kh.common.vo.PageVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	List<AdminNoticeVo> voList = (List<AdminNoticeVo>)request.getAttribute("list");
+	PageVo pv = (PageVo)request.getAttribute("pv");
+	
+	int currentPage = pv.getCurrentPage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,11 +96,12 @@
         <div id="notice">
             <div id="notice-h1"><h1>공지사항</h1></div>
             <ul>
-                <li >
+                <!--  <li >
                     <hr>
                     <a href="" class="noti-a">
                         <div class="noti-info">
-                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
+                            <div class="noti-img">
+                            </div>
                             <h3 class="noti-title">[중요]꼭 읽어보세요!</h3>
                             <span class="noti-date">2022-08-03 &nbsp; 조회수 : 0</span> 
                         </div>
@@ -102,17 +117,19 @@
                         </div>
                     </a>
                     <hr>
-                </li>
+                </li>  --> 
+                <%for(AdminNoticeVo b : voList) {%>
                 <li >
                     <a href="" class="noti-a">
                         <div class="noti-info">
                             <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
-                            <h3 class="noti-title">[중요]공지공지공지공지입니다</h3>
-                            <span class="noti-date">2022-08-03 &nbsp; 조회수 : 0</span> 
+                            <h3 class="noti-title"><%=b.getTitle() %></h3>
+                            <span class="noti-date"><%=b.WriteDate()%> &nbsp; 조회수 : <%=b.getCnt() %></span> 
                         </div>
                     </a>
                     <hr class="last-hr">
                 </li>
+                <%} %>
                 <li >
                     <a href="" class="noti-a">
                         <div class="noti-info">
@@ -125,12 +142,21 @@
                 </li>
             </ul>
 
-            <div class="page">
-                <a>1</a>
-                <a>2</a>
-                <a>3</a>
-                <a>4</a>
-                <a>5</a>
+            <div class="page-area">
+                <%if(currentPage != 1){ %>
+                <a href="<%=contextPath %>/member/noticeList?p=<%=currentPage-1%>"> &lt;</a>
+                <%} %>
+                
+                <%for(int i = startPage; i <=endPage; i++){ %>
+                	<%if(i==currentPage){ %>
+                		<a><%=i %></a>
+                	<%}else{ %>
+                		<a href="<%=contextPath %>/board/list?p=<%=i%>"><%=i %></a>
+                <%}%>
+                <%if(currentPage != maxPage){ %>
+                <a href="/semi/board/list?p=<%=currentPage+1%>"> &gt; </a>
+                <%} %>
+                
             </div>
         </div>
 
