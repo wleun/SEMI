@@ -127,7 +127,7 @@
                     <div id="content-1">
     
                         <div id="member-name">
-                         <span>테스트 님</span>
+                         <span><%= loginMember.getNick() %></span>
                         </div>
                         <div id="mall">
                          <span>친환경몰</span>
@@ -135,14 +135,12 @@
                         <div id="follow">
                          <span>팔로우 200명</span>
                          <span>팔로워 200명</span>
-                         <span>추천인 등록 수 200명</span>
                         </div>
                         <div>
                          <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
-                         <span>회원등급 GOLD</span>
-                         <span>개인사업자 회원</span>
+                         <span name="mLevel"><%= loginMember.getmLevel() %></span>
+                         <span name="memberType"><%= loginMember.getType() %></span>
                         </div>
-                        <button>로그아웃</button>
              
                     </div>
                 </div>
@@ -161,6 +159,9 @@
                             </tr>
                             <tr>
                                 <th>비밀번호 수정</th>
+                            </tr>
+                            <tr>
+                                <td><input type="password" name="memberPwd" placeholder="기존 비밀번호를 입력하세요."></td>
                             </tr>
                             <tr>
                                 <td><input type="password" name="memberPwdNew" placeholder="비밀번호를 입력하세요."></td>
@@ -270,13 +271,6 @@
              
                          <table>
              
-                             <tr>
-                                 <th colspan="2">등록한 추천인</th>
-                             </tr>
-                             <tr>
-                                 <td>테스트2님</td>
-                                 <td>ABCde6</td>
-                             </tr>
                              <tr>
                                  <th colspan="2">나의 추천코드</th>
                              </tr>

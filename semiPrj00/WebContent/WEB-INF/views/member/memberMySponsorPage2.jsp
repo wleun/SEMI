@@ -186,14 +186,12 @@
                     <div id="follow">
                      <span>팔로우 200명</span>
                      <span>팔로워 200명</span>
-                     <span>추천인 등록 수 200명</span>
                     </div>
                     <div>
                      <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
                      <span>회원등급 GOLD</span>
                      <span>개인사업자 회원</span>
                     </div>
-                    <button>로그아웃</button>
          
                 </div>
             </div>
