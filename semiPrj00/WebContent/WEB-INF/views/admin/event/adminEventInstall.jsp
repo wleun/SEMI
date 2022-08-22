@@ -256,7 +256,7 @@
                     </div>
                     <div id="content">
                         <div id="contentText" class="padding-right">내용 : </div>
-                        <div id="contentInput"><textarea name="content" id="" cols="30" rows="10"></textarea></div>
+                        <div id="contentInput"><textarea name="content" cols="30" rows="10"></textarea></div>
                     </div>
                     <div id="file">
                       <div class="filebox">

@@ -83,6 +83,21 @@ public class AdminMemberDao {
 				String quitDate = rs.getString("QUIT_DATE");
 				String reportCnt = getMemberReportCnt(conn2,no);
 				
+				if ("P".equals(type)) {
+					type = "개인";
+				} else if ("I".equals(type)) {
+					type = "사업자";
+				} else {
+					type = "기업";
+				}
+				
+				if ("A".equals(status)) {
+					status = "활동";
+				} else if ("S".equals(status)) {
+					status = "정지";
+				} else {
+					status = "탈퇴";
+				}
 				
 				
 				vo.setNo(no);

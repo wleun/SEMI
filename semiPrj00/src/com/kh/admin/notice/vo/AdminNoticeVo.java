@@ -6,12 +6,12 @@ public class AdminNoticeVo {
 		
 	}
 	
-	public AdminNoticeVo(String no, String name, String title, String content, String thumbnailPath,
+	public AdminNoticeVo(String no, String adminName, String title, String content, String thumbnailPath,
 			String thumbnailName, String writeDate, String importantYn, String editDate, String editAdminNo,
 			String deleteYn) {
 		super();
 		this.no = no;
-		this.name = name;
+		this.adminName = adminName;
 		this.title = title;
 		this.content = content;
 		this.thumbnailPath = thumbnailPath;
@@ -25,7 +25,7 @@ public class AdminNoticeVo {
 	
 	
 	private String no;
-	private String name;
+	private String adminName;
 	private String title;
 	private String content;
 	private String thumbnailPath;
@@ -43,12 +43,12 @@ public class AdminNoticeVo {
 		this.no = no;
 	}
 
-	public String getName() {
-		return name;
+	public String getAdminName() {
+		return adminName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
 	}
 
 	public String getTitle() {
@@ -125,7 +125,7 @@ public class AdminNoticeVo {
 
 	@Override
 	public String toString() {
-		return "AdminNoticeVo [no=" + no + ", name=" + name + ", title=" + title + ", content=" + content
+		return "AdminNoticeVo [no=" + no + ", adminName=" + adminName + ", title=" + title + ", content=" + content
 				+ ", thumbnailPath=" + thumbnailPath + ", thumbnailName=" + thumbnailName + ", writeDate=" + writeDate
 				+ ", importantYn=" + importantYn + ", editDate=" + editDate + ", editAdminNo=" + editAdminNo
 				+ ", deleteYn=" + deleteYn + "]";

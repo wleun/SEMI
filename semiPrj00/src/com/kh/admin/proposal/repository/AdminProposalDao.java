@@ -80,6 +80,30 @@ public class AdminProposalDao {
 				    String thumbnailName = rs.getString("THUMBNAIL_NAME");
 				    String thumbnailPath = rs.getString("THUMBNAIL_PATH");
 					
+				    
+				    if("R".equals(status)) {
+				    	status = "접수";
+				    } else if("N".equals(status)) {
+				    	status = "반려";
+				    } else if("A".equals(status)) {
+				    	status = "검토중";
+				    } else if("B".equals(status)) {
+				    	status = "프로젝트 진행전";
+				    } else if("I".equals(status)) {
+				    	status = "프로젝트 진행중";
+				    } else if("S".equals(status)) {
+				    	status = "프로젝트 성공";
+				    } else if("F".equals(status)) {
+				    	status = "프로젝트 실패";
+				    } else {
+				    	status = "삭제됨";
+				    }
+				    
+				    
+				    
+				    
+				    
+				    
 					vo.setNo(no);
 					vo.setNick(nick);
 					vo.setName(thumbnailName);

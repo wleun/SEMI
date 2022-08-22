@@ -78,6 +78,22 @@ public class AdminPrjDao {
 				String reportCnt = getPrjReportCnt(conn2,no);
 				
 				
+				
+				if("B".equals(status)) {
+					status = "진행전";
+				} else if("I".equals(status)) {
+					status = "진행중";
+				} else if("S".equals(status)) {
+					status = "성공";
+				} else if("F".equals(status)) {
+					status = "실패";
+				} else {
+					status = "삭제됨";
+				}
+				
+				
+				
+				
 				vo.setNo(no);
 				vo.setStatus(status);
 				vo.setCategoryName(categoryName);

@@ -276,7 +276,7 @@
 								<%} %>
                             </div>
                             <div id="noticeDiv3_edit">
-                            	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/noticeInstall';"></div>
+                            	<div><input type="button" value="작성하기" class="button" onclick="location.href='<%=contextPath%>/admin/notice/install';"></div>
                                 <div><input id="deleteBtn" type="button" value="삭제하기" class="button"></div>
                </div>
     

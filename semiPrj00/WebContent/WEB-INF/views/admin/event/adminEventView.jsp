@@ -248,10 +248,10 @@
 	                                            <div class="half textBox">
 	                                                <div class="eventTitle"><h2>${item.title}</h2></div>
 	                                                <div class="eventPeriod">${item.startDate} ~ ${item.endDate}</div>
-	                                                <div class="eventStatus">진행예정</div>
+	                                                <div class="eventStatus">${item.status}</div>
 	                                            </div>
 	                                            <div class="half">
-	                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+	                                                <div class="imgArea"><img style="border-radius: 10px;" width="100%" height="100%" src="<%=contextPath %>/resources/admin/event/${item.thumbnailName}" alt="이벤트 섬네일"></div>
 	                                            </div>
 	                                        </div>
                                     	</a>
@@ -264,10 +264,10 @@
 	                                            <div class="half textBox">
 	                                                <div class="eventTitle"><h2>${item.title}</h2></div>
 	                                                <div class="eventPeriod">${item.startDate} ~ ${item.endDate}</div>
-	                                                <div class="eventStatus">진행예정</div>
+	                                                <div class="eventStatus">${item.status}</div>
 	                                            </div>
 	                                            <div class="half">
-	                                                <div class="imgArea"><img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"></div>
+	                                                <div class="imgArea"><img style="border-radius: 10px;" width="100%" height="100%" src="<%=contextPath %>/resources/admin/event/${item.thumbnailName}" alt="이벤트 섬네일"></div>
 	                                            </div>
 	                                        </div>
                                     	</a>

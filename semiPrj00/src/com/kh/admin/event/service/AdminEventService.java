@@ -42,18 +42,12 @@ public class AdminEventService {
 		if(adminEventVo.getTitle().length() <1) {
 			//제목 글자수 1자 미만(0개)
 			return -1;
-		}
-		
-		if(adminEventVo.getContent().length() <1) {
+		} else if(adminEventVo.getContent().length() <1) {
 			//내용 글자수 1자 미만(0개)
 			return -2;
-		}
-		
-		if(adminEventVo.getStartDate().length()<1) {
+		} else if (adminEventVo.getStartDate().length()<1) {
 			return -3;
-		}
-		
-		if(adminEventVo.getEndDate().length()<1) {
+		} else if (adminEventVo.getEndDate().length()<1) {
 			return -4;
 		}
 		

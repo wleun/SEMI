@@ -22,10 +22,8 @@ import com.kh.admin.login.vo.AdminVo;
 import com.kh.admin.notice.vo.AdminNoticeVo;
 
 @MultipartConfig(
-//		fileSizeThreshold = 1024*1024
-//		location = "/swy/temp"
-		maxFileSize = 1024*1024*50,
-		maxRequestSize = 1024*1024*50*5
+	maxFileSize = 1024*1024*50,
+	maxRequestSize = 1024*1024*50*5
 )
 
 @WebServlet(urlPatterns = "/admin/event/install")
@@ -157,21 +155,21 @@ public class AdminEventInstallController extends HttpServlet {
 			} else if (result ==-4) {
 				System.out.println("[ERROR-CODE :" + result + "]");
 				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 마감일자를 입력하여 주세요.");
-			} else if (result ==-5) {
-				System.out.println("[ERROR-CODE :" + result + "]");
-				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 마감일자는 시작일자 다음으로 설정하여 주세요.");
-			} else if (result ==-6) {
-				System.out.println("[ERROR-CODE :" + result + "]");
-				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 시작일자와 마감일자를 다르게 입력하여주세요.");
+//			} else if (result ==-5) {
+//				System.out.println("[ERROR-CODE :" + result + "]");
+//				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 섬네일 파일이 비어있습니다. ");
+//			} else if (result ==-6) {
+//				System.out.println("[ERROR-CODE :" + result + "]");
+//				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지 파일이 비어있습니다.");
 			} else if (result ==-7) {
 				System.out.println("[ERROR-CODE :" + result + "]");
-				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지 파일이 비어있습니다.");
+				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 섬네일 파일이 비어있습니다.");
 			} else if (result ==-8) {
 				System.out.println("[ERROR-CODE :" + result + "]");
-				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 섬네일 파일이 비어있습니다.");
+				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지 파일이 비어있습니다.");
 			} else if (result ==-9) {
 				System.out.println("[ERROR-CODE :" + result + "]");
-				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지와 섬네일 파일이 비어있습니다.");
+				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지와 섬네일 파일 저장에 실패하였습니다. 다시 시도해주세요.");
 			} else {
 				System.out.println("[ERROR-CODE :" + result + "]");
 				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 알 수 없는 오류가 발생하였습니다.");

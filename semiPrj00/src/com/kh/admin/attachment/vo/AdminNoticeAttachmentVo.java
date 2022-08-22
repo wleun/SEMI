@@ -1,34 +1,39 @@
 package com.kh.admin.attachment.vo;
 
-public class AdminEventAttachmentVo {
+public class AdminNoticeAttachmentVo {
 	
 	
+	public AdminNoticeAttachmentVo() {
+		
+	}
 	
-	public AdminEventAttachmentVo(String no, String eventNo, String path, String name, String uploadDate,
+	
+	public AdminNoticeAttachmentVo(String no, String noticeNo, String path, String name, String uploadDate,
 			String deleteYn) {
 		this.no = no;
-		this.eventNo = eventNo;
+		this.noticeNo = noticeNo;
 		this.path = path;
 		this.name = name;
 		this.uploadDate = uploadDate;
 		this.deleteYn = deleteYn;
 	}
-	
-	
-	public AdminEventAttachmentVo() {
-		
-	}
-	
-	
+
+
+
+
 	private String no;
-	private String eventNo;
+	private String noticeNo;
 	private String path;
 	private String name;
 	private String uploadDate;
 	private String deleteYn;
+	
+	
 	public String getNo() {
 		return no;
 	}
+
+
 
 
 	public void setNo(String no) {
@@ -36,14 +41,20 @@ public class AdminEventAttachmentVo {
 	}
 
 
-	public String getEventNo() {
-		return eventNo;
+
+
+	public String getNoticeNo() {
+		return noticeNo;
 	}
 
 
-	public void setEventNo(String eventNo) {
-		this.eventNo = eventNo;
+
+
+	public void setNoticeNo(String noticeNo) {
+		this.noticeNo = noticeNo;
 	}
+
+
 
 
 	public String getPath() {
@@ -51,9 +62,13 @@ public class AdminEventAttachmentVo {
 	}
 
 
+
+
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+
 
 
 	public String getName() {
@@ -61,9 +76,13 @@ public class AdminEventAttachmentVo {
 	}
 
 
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
 
 
 	public String getUploadDate() {
@@ -71,9 +90,13 @@ public class AdminEventAttachmentVo {
 	}
 
 
+
+
 	public void setUploadDate(String uploadDate) {
 		this.uploadDate = uploadDate;
 	}
+
+
 
 
 	public String getDeleteYn() {
@@ -81,17 +104,20 @@ public class AdminEventAttachmentVo {
 	}
 
 
+
+
 	public void setDeleteYn(String deleteYn) {
 		this.deleteYn = deleteYn;
 	}
 
 
+
+
 	@Override
 	public String toString() {
-		return "AdminEventAttachmentVo [no=" + no + ", eventNo=" + eventNo + ", path=" + path + ", name=" + name
+		return "AdminNoticeAttachmentVo [no=" + no + ", noticeNo=" + noticeNo + ", path=" + path + ", name=" + name
 				+ ", uploadDate=" + uploadDate + ", deleteYn=" + deleteYn + "]";
 	}
-	
 	
 	
 	

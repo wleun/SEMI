@@ -78,6 +78,20 @@ public class AdminEventDao {
 				String editAdminNo = rs.getString("EDIT_ADMIN_NO"); 
 				String status = rs.getString("STATUS"); 
 				
+				if("B".equals(status)) {
+					status = "진행예정";
+				} else if ("I".equals(status)) {
+					status = "진행중";
+				} else {
+					status = "종료됨";
+				}
+				
+				if("N".equals(importantYn)) {
+					importantYn = "-";
+				} else if ("Y".equals(importantYn)) {
+					importantYn = "중요*";
+				}
+				
 				vo.setNo(no);
 				vo.setAdminName(name);
 				vo.setTitle(title);
@@ -126,6 +140,7 @@ public class AdminEventDao {
 		try {
 			
 			pstmt=conn.prepareStatement(sql);
+			
 			pstmt.setString(1, adminEventVo.getAdminName());
 			pstmt.setString(2, adminEventVo.getTitle());
 			pstmt.setString(3, adminEventVo.getContent());

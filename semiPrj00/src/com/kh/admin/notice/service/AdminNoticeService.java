@@ -3,6 +3,8 @@ package com.kh.admin.notice.service;
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.admin.attachment.vo.AdminEventAttachmentVo;
+import com.kh.admin.attachment.vo.AdminNoticeAttachmentVo;
 import com.kh.admin.notice.repository.AdminNoticeDao;
 import com.kh.admin.notice.vo.AdminNoticeVo;
 import com.kh.admin.project.repository.AdminPrjDao;
@@ -58,6 +60,42 @@ public class AdminNoticeService {
 		System.out.println(successCnt);
 		
 		return successCnt;
+	}
+
+	public int insertNotice(AdminNoticeVo adminNoticeVo, AdminNoticeAttachmentVo adminNoticeAttachmentVo) {
+		
+		if(adminNoticeVo.getTitle().length()<1) {
+			return -1;
+		} else if (adminNoticeVo.getContent().length()<1) {
+			return -2;
+		} 
+		
+		Connection conn = getConnection();
+		
+		int result1 = AdminNoticeDao.insertNotice(conn, adminNoticeVo);
+		int result2 = AdminNoticeDao.insertNotice(conn, adminNoticeAttachmentVo);
+
+		if (result1*result2 ==1) {
+			commit(conn);
+		} else {
+			if(result1==1) {
+				rollback(conn);
+				return -3;
+			} else if (result2==1) {
+				rollback(conn);
+				return -4;
+			} else {
+				rollback(conn);
+				return -5;
+			}
+	
+		}
+
+		close(conn);
+		
+		return result1 * result2;
+		
+		
 	}
 
 }
