@@ -372,6 +372,7 @@
 			//목표금액이 허용범위가 아니면 알림
 			if(amount < 100000 || amount > 9999999999){
 				alert("목표금액은 100,000 ~ 9,999,999,999원 사이로 설정해주세요.")
+				document.getElementById("prjAmount").value = 100000;
 			}else{
 				let priceCalc = amount - (amount / 100 * 5);
 				document.getElementById("priceCalcResult").innerHTML = priceCalc;

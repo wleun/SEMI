@@ -52,15 +52,15 @@ public class PrjOpenDao {
 		int result = 0;
 		
 		String sql = "INSERT INTO PROJECT(PROJECT_NO, CATEGORY_NO, NAME, START_DATE, END_DATE, GOAL, MAKER_NO, TEXT, ACCOUNT_NO, SHIPPING_DATE, THUMBNAIL_NAME, THUMBNAIL_PATH, ETC, ACCOUNT_BANK, ACCOUNT_NAME, MAKER_INFO) "
-				+ "VALUES(SEQ_PROJECT_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "VALUES(SEQ_PROJECT_NO.NEXTVAL, ?, ?, TO_DATE(? , 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(? , 'YYYY-MM-DD HH24:MI:SS'), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, prjVo.getCategoryNo());
 			pstmt.setString(2, prjVo.getName());
-			pstmt.setString(3, prjVo.getStartDate());
-			pstmt.setString(4, prjVo.getEndDate());
+			pstmt.setString(3, prjVo.getStartDate()+ " 00:00:00");
+			pstmt.setString(4, prjVo.getEndDate()+ " 23:59:59");
 			pstmt.setInt(5, prjVo.getGoal());
 			pstmt.setString(6, prjVo.getMakerNo());
 			pstmt.setString(7, prjVo.getText());
