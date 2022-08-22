@@ -32,30 +32,54 @@ public class MemberService {
 	/*
 	 * 회원가입
 	 */
-	public int join(MemberVo memberVo) {
+	public int join(MemberVo addMakerVo) {
 		
 		Connection conn = null;
 		int result = 0;
-		//dao 호출
-		try {
-			conn = getConnection();
-			
-			result = new MemberDao().join(conn, memberVo);	
-			if(result == 1) {
-				//회원가입 성공
-				commit(conn);
-			}else {
-				//회원가입 실패
+		//dao 호출(사업자정보 있는지, 없는지로 dao나눔)
+		if(addMakerVo.getRegistration() == null) {
+			try {
+				conn = getConnection();
+				
+				result = new MemberDao().join(conn, addMakerVo);	
+				if(result == 1) {
+					//회원가입 성공
+					commit(conn);
+				}else {
+					//회원가입 실패
+					rollback(conn);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
 				rollback(conn);
+			}finally {
+				close(conn);
 			}
-		}catch(Exception e) {
-			e.printStackTrace();
-			rollback(conn);
-		}finally {
-			close(conn);
+			return result;	
+		}else {
+			try {
+				conn = getConnection();
+				
+				result = new MemberDao().makerJoin(conn, addMakerVo);	
+				if(result == 1) {
+					//회원가입 성공
+					commit(conn);
+				}else {
+					//회원가입 실패
+					rollback(conn);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+				rollback(conn);
+			}finally {
+				close(conn);
+			}
+			return result;	
 		}
-		return result;
+		
+		
 		
 	}
+	
 
 }

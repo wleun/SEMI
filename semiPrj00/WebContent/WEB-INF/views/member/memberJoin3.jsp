@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%MemberVo memberVo = (MemberVo)request.getSession().getAttribute("memberVo");%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,15 +121,11 @@
             <div id="form">
                 <form action="<%=contextPath%>/member/join3" method="post">
                    <ul id="form-ul">
-                   <input type="hidden" value=<%=(MemberVo)request.getAttribute("memberVo")%> name="memberVo">
                     <li class="join-li">사업자번호<br><input type="text" name="busi-no" placeholder="-제외 입력"> <button id="check-btn">중복확인</button></li>
                     <li class="join-li">메이커 타입<br>
-                            <select name="busiType" id="busi-type" >
-                            <option value="P">일반회원</option>
-                            <option value="I">개인사업자</option>
-                            <option value="B">법인</option>
-                        </select>
                     </li>
+                    일반회원<input type="radio" name="busi-type" id="busi-type" value="I" style=""> 
+                     <input type="radio" name="busi-type" id="busi-type" value="B"> 개인회원
                     <li class="join-li">법인명 <br><input type="text" name="company" placeholder="법인일 경우 필수항목입니다."></li>
                     
                    </ul><br>
