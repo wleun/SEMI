@@ -56,4 +56,34 @@ public class MemberMypageService {
 		
 	}
 
+	//비밀번호 변경
+	public int changePwd(String pwd, String pwdNew, String pwdNew2) {
+		
+		if(pwdNew.equals(pwdNew2) == false) {
+			System.out.println("신규 비밀번호가 일치하지 않음");
+			return -1;
+		}
+		
+		if(pwdNew.length() < 4) {
+			System.out.println("비밀번호가 4자리 미만임");
+			return -2;
+		}
+		
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			
+			result = new MemberMypageDao().changePwd(conn, pwd, pwdNew, pwdNew2);
+		}catch(Exception e){
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+		
+	}
+
 }

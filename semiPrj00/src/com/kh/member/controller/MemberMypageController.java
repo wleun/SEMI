@@ -35,9 +35,15 @@ public class MemberMypageController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		String email = req.getParameter("memberEmail");
+		String pwd = req.getParameter("memberPwd");
+		String pwdNew = req.getParameter("memberPwdNew");
+		String pwdNew2 = req.getParameter("memberPwdNew2");
 		String name = req.getParameter("memberName");
 		String nick = req.getParameter("memberNick");
 		String phone = req.getParameter("memberPhone");
+		String type = req.getParameter("memberType");
+		String mLevel = req.getParameter("mLevel");
+		
 		
 		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
 		
@@ -47,6 +53,9 @@ public class MemberMypageController extends HttpServlet {
 		vo.setName(name);
 		vo.setNick(nick);
 		vo.setPhone(phone);
+		
+		//패스워드 변경 서비스 호출
+		int result = new MemberMypageService().changePwd(pwd, pwdNew, pwdNew2);
 		
 		MemberVo updateVo = new MemberMypageService().edit(vo);
 		
