@@ -248,7 +248,8 @@
                                         <div class="reportNo">${item.no}</div>
                                         <div class="reportMember">${item.memberNick}</div>
                                         <div class="reportPrj">${item.projectName}</div>
-                                        <div class="reportContent">${item.content}</div>
+                            			<c:set var="string1" value="${item.content}"/>
+                                        <div class="reportContent">${fn:substring(string1,0,30)}</div>
                                         <div class="reportDate">${item.submitDate}</div>
                                         <div class="reportStatus">${item.reportAc}</div>
                                         

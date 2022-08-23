@@ -223,7 +223,7 @@
 	                                        <div class="proposalNo">${item.no}</div>
 	                                        <div class="proposalMember">${item.nick}</div>
 	                                        <div class="proposalPrjCategory">${item.categoryName}</div>
-	                                        <div class="proposalPrjName">${item.name }</div>
+	                                        <div class="proposalPrjName">${item.name}</div>
 	                                        <div class="proposalDate">${item.registerDate}</div>
 	                                        <div class="proposalStatus">${item.status}</div>
 	                                    </div>

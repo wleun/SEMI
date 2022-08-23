@@ -326,7 +326,8 @@
                         	success:function(result) {
                         		console.log(result); //새로고침으로 인해서 출력이 안됨
                         		$(".statusVal").empty();
-                        		$(".statusVal").load(location.href + "  .statusVal");
+                        		//$(".statusVal").load(location.href + "  .statusVal");
+                        		$(".statusVal").val('안녕');
                         	//	document.location.reload();
                         	},
                         	error:function(error) {

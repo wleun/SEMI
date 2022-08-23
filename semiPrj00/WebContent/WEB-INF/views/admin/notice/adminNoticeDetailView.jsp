@@ -140,36 +140,35 @@
 <body>
 
     <%@ include file="/WEB-INF/views/common/adminLayout.jsp" %>
-
     <content>
         <div id="noticeDetailOuter">
             <div id="noticeDetail">
                 <div id="noticeHeader">
                     <div id="noticeTitle">
-                        <h2>공지사항 이름</h2>
+                        <h2>${adminNoticeVo.title}</h2>
                     </div>
                     <div id="noticeInfo">
                         <div id="infonoticeNo">
-                            [공지사항 번호 : 1]
-                            <div id="important">[중요도 : 중요]</div>
+                            [공지사항 번호 : ${adminNoticeVo.no}]
+                            <div id="important">[중요도 : ${adminNoticeVo.importantYn}]</div>
                         </div>
                         <div id="infoFirstDiv">
-                            <div id="writeDate">작성시간 : 2022-08-16</div>
-                            <div id="editDate">수정시간 : 2022-08-19</div>
+                            <div id="writeDate">작성시간 : ${adminNoticeVo.writeDate}</div>
+                            <div id="editDate">수정시간 : ${adminNoticeVo.editDate}</div>
                         </div>
                         <div id="infoSecondDiv">
                             <div id="backBtn"><button onclick="history.back()">뒤로가기</button></div>
                             <div id="editBtn"><button>수정하기</button></div>
-                            <div id="deletebtn"><button>삭제하기</button></div>
+                            <div id="deletebtn"><button onclick="location.href='<%=contextPath%>/admin/notice/delete?no=${adminNoticeVo.no}';">삭제하기</button></div>
                         </div>
                         
                     </div>
                 </div>
                 <div id="noticeContent">
                     <div id="contentImage">
-                        <img src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 내용">
+                        <img src="<%=contextPath %>/resources/admin/notice/${adminNoticeAttachmentVo.name}" alt="이벤트 내용">
                     </div>
-                    <div id="contentText">그러한 공지사항입니다.</div>
+                    <div id="contentText">${adminNoticeVo.content}</div>
                 </div>
             </div>
         </div>

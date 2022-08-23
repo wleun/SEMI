@@ -14,6 +14,30 @@ import com.kh.admin.notice.service.AdminNoticeService;
 
 @WebServlet (urlPatterns = "/admin/notice/delete")
 public class AdminNoticeDeleteController extends HttpServlet {
+	
+	//상세페이지에서 삭제 선택 시 호출
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("잘 넘어옴");
+		String no = req.getParameter("no");
+		
+		int result = new AdminNoticeService().deleteNotice(no);
+		
+		if(result==1) {
+			req.getSession().setAttribute("alertMsg", "공지사항 삭제에 성공하였습니다.");
+			
+			resp.sendRedirect("/semiPrj00/admin/notice?p=1");
+		} else {
+			req.setAttribute("errorMsg", "공지사항 삭제에 실패하였습니다.");
+			
+			resp.sendRedirect("/semiPrj00/admin/notice?p=1");
+		}
+		
+	}
+	
+	//리스트 페이지에서 삭제 선택 시 호출
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
