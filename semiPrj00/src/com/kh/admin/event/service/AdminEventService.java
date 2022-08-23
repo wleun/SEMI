@@ -85,14 +85,17 @@ public class AdminEventService {
 			if(result1 == 1) {
 				//섬네일은 첨부되었으나, 이미지 파일 X
 				rollback(conn);
+				close(conn);
 				return -7;
 			} else if (result2 == 1) {
 				//이미지 첨부되었으나, 섬네일 X
 				rollback(conn);
+				close(conn);
 				return -8;
 			} else {
 				//둘 다 실패 혹은 기타
 				rollback(conn);
+				close(conn);
 				return -9;
 			}
 		}
@@ -133,6 +136,57 @@ public class AdminEventService {
 		close(conn);
 		
 		return result;
+	}
+	
+	//이벤트 수정
+
+	public int editEvent(AdminEventVo adminEventVo, AdminEventAttachmentVo adminEventAttachmentVo) {
+		
+		if(adminEventVo.getTitle().length() <1) {
+			//제목 글자수 1자 미만(0개)
+			return -1;
+		} else if(adminEventVo.getContent().length() <1) {
+			//내용 글자수 1자 미만(0개)
+			return -2;
+		} else if (adminEventVo.getStartDate().length()<1) {
+			return -3;
+		} else if (adminEventVo.getEndDate().length()<1) {
+			return -4;
+		}
+		
+		Connection conn = getConnection();
+		
+		int result1 = AdminEventDao.EditEvent(conn,adminEventVo);
+		int result2 = AdminEventDao.EditFile(conn,adminEventAttachmentVo);
+		
+		//트랜잭션 처리
+		
+		System.out.println("결과값(서비스) : " + result1 * result2);
+		
+		if(result1*result2 ==1) {
+			commit(conn);
+		} else {
+			if(result1 == 1) {
+				//섬네일은 첨부되었으나, 이미지 파일 X
+				rollback(conn);
+				close(conn);
+				return -7;
+			} else if (result2 == 1) {
+				//이미지 첨부되었으나, 섬네일 X
+				rollback(conn);
+				close(conn);
+				return -8;
+			} else {
+				//둘 다 실패 혹은 기타
+				rollback(conn);
+				close(conn);
+				return -9;
+			}
+		}
+		
+		close(conn);
+		
+		return result1 * result2;
 	}
 
 }

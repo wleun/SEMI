@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
     
-    #noticeInstallOuter {
+    #noticeEditOuter {
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
@@ -18,7 +18,7 @@
       margin-left: 75px;
   }
 
-  #noticeInstall {
+  #noticeEdit {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -67,14 +67,14 @@
       text-align: center;
     }
     
-    #noticeInstall>form {
+    #noticeEdit>form {
       display: flex;
       flex-direction: column;
       height: 100%;
       width: 100%;
     }
 
-    #noticeInstall>form * {
+    #noticeEdit>form * {
         font-size: 18px;
     }
 
@@ -210,12 +210,12 @@
 <%@ include file="/WEB-INF/views/common/adminLayout.jsp" %>
 
 <content>
-    <div id="noticeInstallOuter">
-        <div id="noticeInstall">
+    <div id="noticeEditOuter">
+        <div id="noticeEdit">
             <div id="noticeHeader"> 
               <div id="headerNotUsedArea"></div>
-              <div id="noticeHeaderText">공지사항 작성 *</div>
-          <form id="install_form" action="<%=contextPath %>/admin/notice/install" method="post" enctype="multipart/form-data">
+              <div id="noticeHeaderText">공지사항 수정 *</div>
+         <form id="edit_form" action="<%=contextPath %>/admin/notice/edit" method="post" enctype="multipart/form-data">
               <div id="noticeImportant">
                 중요도 : 
                 <select name="important">
@@ -227,13 +227,15 @@
                 <div id="noticeWriteArea">
                     <div id="title">
                         <div id="titleText" class="padding-right">제목 : </div>
-                        <div id="titleInput"><input type="text" name="title"></div>
+                        <div id="titleInput"><input type="text" name="title" value="${adminNoticeVo.title}"></div>
                     </div>
+                <input type="hidden" name="no" value="${adminNoticeVo.no}">
                     <div id="content">
                         <div id="contentText" class="padding-right">내용 : </div>
-                        <div id="contentInput"><textarea name="content" cols="30" rows="10"></textarea></div>
+                        <div id="contentInput"><textarea name="content" cols="30" rows="10">${adminNoticeVo.content}</textarea></div>
                     </div>
                     <div id="file">
+                    *파일을 다시 업로드해주세요.
                       <div class="filebox">
                         <input id="upload-name1" value="섬네일 이미지 첨부" placeholder="섬네일 이미지 첨부">
                         <label for="fileInsert1">파일찾기</label>

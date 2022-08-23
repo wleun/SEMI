@@ -152,7 +152,7 @@
         }
 
         #headerFirst {
-            width: 92%;
+            width: 85%;
             align-self: center;
             font-weight:700;
             font-size: 33px;
@@ -160,7 +160,7 @@
         }
 
         #headerSecond {
-            width: 8%;
+            width: 15%;
             display: flex;
             align-items: center;
             justify-content:center;
@@ -261,6 +261,7 @@
             text-align: left;
         }
 
+
         /*main*/
 
         content {
@@ -270,6 +271,17 @@
             top: 108px;
             border-right: 1px solid #C3B091;
         }
+
+        .dropdown-menu {
+            border-radius: 10px !important;
+            text-align: center !important;
+            align-self: center !important;
+        }
+
+        .dropdown>img {
+            cursor : pointer !important;
+        }
+
 </style>
 </head>
 <body>
@@ -283,8 +295,12 @@
                 <div id="headerFirst">
                 	${functionName}
                 </div>
-                <div id="headerSecond">
-                    <a href=""><img width="60px" heigh="60px" src="<%=contextPath %>/resources/img/adminMypageIcon.png" alt="마이페이지 아이콘"></a>
+                <div id="headerSecond" class="dropdown">
+                    <img id="dropdown_image" width="60px" heigh="60px" src="<%=contextPath %>/resources/img/adminMypageIcon.png" alt="마이페이지 아이콘" data-bs-toggle="dropdown">
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">안녕하세요</a></li>
+                        <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                    </ul>
                 </div>
 
             </div>

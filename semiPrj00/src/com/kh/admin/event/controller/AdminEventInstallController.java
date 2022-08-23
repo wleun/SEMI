@@ -163,10 +163,10 @@ public class AdminEventInstallController extends HttpServlet {
 //				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지 파일이 비어있습니다.");
 			} else if (result ==-7) {
 				System.out.println("[ERROR-CODE :" + result + "]");
-				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 섬네일 파일이 비어있습니다.");
+				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지 파일이 비어있습니다.");
 			} else if (result ==-8) {
 				System.out.println("[ERROR-CODE :" + result + "]");
-				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지 파일이 비어있습니다.");
+				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 섬네일 파일이 비어있습니다.");
 			} else if (result ==-9) {
 				System.out.println("[ERROR-CODE :" + result + "]");
 				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지와 섬네일 파일 저장에 실패하였습니다. 다시 시도해주세요.");

@@ -289,6 +289,67 @@ public class AdminNoticeDao {
 		return adminNoticeAttachmentVo;
 		
 	}
+	
+	//공지사항 수정
+
+	public static int EditNotice(Connection conn, AdminNoticeVo adminNoticeVo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE NOTICE SET TITLE = ? , CONTENT = ? , THUMBNAIL_PATH = ? , THUMBNAIL_NAME = ? , IMPORTANT_YN = ? , EDIT_DATE = SYSDATE , EDIT_ADMIN_NO = ? WHERE NO = ?";
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, adminNoticeVo.getTitle());
+			pstmt.setString(2, adminNoticeVo.getContent());
+			pstmt.setString(3, adminNoticeVo.getThumbnailPath());
+			pstmt.setString(4, adminNoticeVo.getThumbnailName());
+			pstmt.setString(5, adminNoticeVo.getImportantYn());
+			pstmt.setString(6, adminNoticeVo.getAdminName());
+			pstmt.setString(7, adminNoticeVo.getNo());
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("공지사항 수정 현황 : " + result );
+	
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+
+	//공지사항 수정 (파일)
+	
+	public static int EditFile(Connection conn, AdminNoticeAttachmentVo adminNoticeAttachmentVo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE NOTICE_FILE SET PATH = ? , NAME = ? WHERE NOTICE_NO = ?";
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, adminNoticeAttachmentVo.getPath());
+			pstmt.setString(2, adminNoticeAttachmentVo.getName());
+			pstmt.setString(3, adminNoticeAttachmentVo.getNoticeNo());
+			
+			result=pstmt.executeUpdate();
+			
+			System.out.println("이벤트 파일 수정 현황 : " +  result );
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 		
 }
 

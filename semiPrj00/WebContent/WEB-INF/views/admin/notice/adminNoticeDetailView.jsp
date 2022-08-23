@@ -158,7 +158,7 @@
                         </div>
                         <div id="infoSecondDiv">
                             <div id="backBtn"><button onclick="history.back()">뒤로가기</button></div>
-                            <div id="editBtn"><button>수정하기</button></div>
+                            <div id="editBtn"><button onclick="location.href='<%=contextPath%>/admin/notice/edit?no=${adminNoticeVo.no}';">수정하기</button></div>
                             <div id="deletebtn"><button onclick="location.href='<%=contextPath%>/admin/notice/delete?no=${adminNoticeVo.no}';">삭제하기</button></div>
                         </div>
                         
