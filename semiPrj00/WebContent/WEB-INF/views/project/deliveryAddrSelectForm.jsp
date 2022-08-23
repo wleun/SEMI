@@ -66,7 +66,8 @@
 						<td class="modal-addr-num"><label for="radio-btn2"><%=vo.getAddr1()%> <%=vo.getAddr2()%></label></td>
 						<td>
 							<input type="radio" id="radio-btn2" class="form-check-input addr-modal-radio" value="<%=vo.getAddr1()%> <%=vo.getAddr2()%>" <%=vo.getDefaultYN()%>>
-							<input type="hidden" value="<%=vo.getPhone()%>">
+							<input type="hidden" value=<%=vo.getPhone()%>>
+							<input type="hidden" id="addr-no" value=<%=vo.getNo()%>>
 						</td>
 					</tr>
 					<%}%>
@@ -86,6 +87,7 @@
 	
 	<script>
 		$(function(){
+			//체크 하나만 되도록
 			$(".addr-modal-radio").click(function(){
 				if($(".addr-modal-radio") != $(this)){
 					$(".addr-modal-radio").prop("checked",false);
@@ -93,6 +95,7 @@
 				}
 			});
 
+			//기본일경우 기본버튼 나오도록
 			if($(".addr-modal-radio").is(":checked")){
 				$(".addr-modal-radio:checked").parent().parent().children().eq(1).children().first().removeClass("opacity-0");
 			}

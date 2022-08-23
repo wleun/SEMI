@@ -59,22 +59,7 @@
 						<td class="modal-card-num"><label for="radio-btn1">************1234</label></td>
 						<td>
 							<input type="radio" id="radio-btn1" class="form-check-input card-modal-radio" value="************1234" checked>
-						</td>
-					</tr>
-					<tr>
-						<td class="modal-card-name"></td>
-						<td><div class="modal-default btn btn-sm btn-danger disabled opacity-0">기본</div></td>
-						<td class="modal-card-num"><label for="radio-btn2">************5678</label></td>
-						<td>
-							<input type="radio" id="radio-btn2" class="form-check-input card-modal-radio" value="************5678">
-						</td>
-					</tr>
-					<tr>
-						<td class="modal-card-name"></td>
-						<td><div class="modal-default btn btn-sm btn-danger disabled opacity-0">기본</div></td>
-						<td class="modal-card-num"><label for="radio-btn3">************1121</label></td>
-						<td>
-							<input type="radio" id="radio-btn3" class="form-check-input card-modal-radio" value="************1121">
+							<input type="hidden" id="card-no" value="">
 						</td>
 					</tr>
 				</table>

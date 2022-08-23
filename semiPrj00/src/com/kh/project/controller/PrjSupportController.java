@@ -23,8 +23,11 @@ public class PrjSupportController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
-		String num = req.getParameter("num");
-		String reward = req.getParameter("reward");
+		String num = req.getParameter("pnum");
+		String reward = req.getParameter("rnum");
+		String quantity = req.getParameter("qty");
+		String add = req.getParameter("add");
+		if(add == null) {add="0";}
 		
 		if(num != null && reward != null && loginMember != null) {
 			
@@ -35,8 +38,10 @@ public class PrjSupportController extends HttpServlet{
 			req.setAttribute("prjVo", prjVo);
 			req.setAttribute("rewardVo", rewardVo);
 			req.setAttribute("addrList", addrList);
+			req.setAttribute("quantity", quantity);
+			req.setAttribute("add", add);
 			
-			if(prjVo != null && rewardVo != null) {
+			if(prjVo != null && rewardVo != null && quantity != null) {
 				//리워드의 프로젝트 번호가 일치하는지
 				if(!(num.equals(rewardVo.getProjectNo()))) {
 					req.getSession().setAttribute("alertMsg", "리워드가 일치하지 않습니다.");
@@ -59,8 +64,16 @@ public class PrjSupportController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
 		
-		
+		String rewardNo = req.getParameter("rewardNo");
+		String memberNo = req.getParameter("memberNo");
+		String addrNo = req.getParameter("addrNo");
+		String cardNo = req.getParameter("cardNo");
+		String quantity = req.getParameter("quantity");
+		String sum = req.getParameter("sum");
+		String donateDate = req.getParameter("donateDate");
+		String additional = req.getParameter("additional");
 		
 	}//dopost
 	

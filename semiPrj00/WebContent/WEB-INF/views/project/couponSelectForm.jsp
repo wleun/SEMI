@@ -46,21 +46,21 @@
 						<td class="modal-coupon-name"></td>
 						<td class="modal-coupon-num"><label for="check-btn1">coupon1</label></td>
 						<td>
-							<input type="checkbox" id="check-btn1" class="form-check-input" name="coupon" value="coupon1">
+							<input type="checkbox" id="check-btn1" class="form-check-input" name="coupon" value="2000">
 						</td>
 					</tr>
 					<tr>
 						<td class="modal-coupon-name"></td>
 						<td class="modal-coupon-num"><label for="check-btn2">coupon2</label></td>
 						<td>
-							<input type="checkbox" id="check-btn2" class="form-check-input" name="coupon" value="coupon2">
+							<input type="checkbox" id="check-btn2" class="form-check-input" name="coupon" value="1000">
 						</td>
 					</tr>
 					<tr>
 						<td class="modal-coupon-name"></td>
 						<td class="modal-coupon-num"><label for="check-btn3">coupon3</label></td>
 						<td>
-							<input type="checkbox" id="check-btn3" class="form-check-input" name="coupon" value="coupon3">
+							<input type="checkbox" id="check-btn3" class="form-check-input" name="coupon" value="3000">
 						</td>
 					</tr>
 				</table>

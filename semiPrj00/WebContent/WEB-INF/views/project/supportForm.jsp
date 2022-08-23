@@ -7,6 +7,8 @@
 	ProjectVo prjVo = (ProjectVo)request.getAttribute("prjVo");
 	ProjectRewardVo rewardVo = (ProjectRewardVo)request.getAttribute("rewardVo");
 	AddrVo defaultAddr = ((ArrayList<AddrVo>)request.getAttribute("addrList")).get(0);
+	String quantity = (String)request.getAttribute("quantity");
+	String add = (String)request.getAttribute("add");
 %>
 <!DOCTYPE html>
 <html>
@@ -129,10 +131,13 @@
     #sum-div{
         margin-top: 45px;
     }
-    #final-sum{
+    #final-sum-div{
         width: 500px;
         text-align: right;
         padding-right: 30px;
+    }
+    #final-sum{
+    	font-size: 23px;
     }
     .final-div{
         width: 700px;
@@ -194,7 +199,7 @@
                     <table>
                         <tr>
                             <td class="title">선물 구성</td>
-                            <td class="content"><%=rewardVo.getOption()%> <%=rewardVo.getDetail()%></td>
+                            <td class="content"><%=rewardVo.getOption()%> <%=rewardVo.getDetail()%> | <%=quantity%>개</td>
                             <td rowspan="3" class="btn-td"><button class="btn btn-success" id="change-reward">변경</button></td>
                         </tr>
                         <tr>
@@ -249,6 +254,7 @@
             </div>
             <div id="coupon" class="info">
                 <div class="section">쿠폰</div>
+                <%@ include file="/WEB-INF/views/project/couponSelectForm.jsp" %>
                 <div class="table-div">
                     <table>
                         <tr>
@@ -283,9 +289,44 @@
             <div id="sum-div" class="final-div">
                 <div class="table-div">
                     <table>
+                    	<tr>
+                            <td class="title">리워드 금액</td>
+                            <td><div><span id="reward-sum">0</span> 원</div></td>
+                        </tr>
+                    	<tr>
+                            <td class="title">추가 후원 금액</td>
+                            <td><div><span id="add-sum"><%=add%></span> 원</div></td>
+                        </tr>
                         <tr>
                             <td class="title" id="final-sum-title">최종 후원 금액</td>
-                            <td><div id="final-sum">50,000원</div></td>
+                            <td><div id="final-sum-div"><span id="final-sum" class="green-theme">0</span> 원</div></td>
+                            <script>
+                            	//리워드 금액
+                            	var price = Number(<%=rewardVo.getPrice()%>)*Number(<%=quantity%>);
+                            	//쿠폰 할인금액
+                            	var sale = 0;
+	                          	//sum(최종후원금액)
+	                          	$("#reward-sum").text(price);
+	                            var addSum = $("#add-sum").text();
+	                            var sum = Number(price) + Number(addSum);
+	                            $("#final-sum").text(sum);
+	                            //쿠폰적용시 최종후원금액
+                            	$("#coupon-modal-submit-btn").click(function(){
+                            		console.log($("input[name=coupon]:checked"));
+                            		for(var i=0; i<($("input[name=coupon]:checked").length); i++){
+                            			console.log(i);
+                                		sale += Number($("input[name=coupon]:checked").eq(i).val());
+                                		console.log(sale);
+                                	}
+                                	var rewardSum = price - sale;
+                                	$("#reward-sum").text(rewardSum);
+                                
+    	                          	//sum(최종후원금액)
+    	                            var addSum = $("#add-sum").text();
+    	                            var sum = Number(rewardSum) + Number(addSum);
+    	                            $("#final-sum").text(sum);
+                            	});
+                            </script>
                         </tr>
                     </table>
                 </div>
@@ -311,14 +352,14 @@
                     <table>
                         <tr>
                             <td>
-                                <input class="form-check-input" type="checkbox" name="agree">
+                                <input class="form-check-input agree-box" type="checkbox" name="agree">
                                 <label class="form-check-label">개인정보 제 3자 제공 동의</label>
                             </td>
                             <td><a href="" class="margin-left-30">내용보기</a></td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <input class="form-check-input" type="checkbox" name="agree">
+                                <input class="form-check-input agree-box" type="checkbox" name="agree">
                                 <label class="form-check-label">후원 유의사항 확인</label>
                             </td>
                         </tr>
@@ -344,19 +385,42 @@
             </div>
             <div id="support-btn-div" class="final-div">
             	<form action="<%=contextPath%>/project/support" method="post">
-            	
-	                <button type="submit" formmethod="post" class="btn btn-success final-div" id="support-btn">후원하기</button>
+            		<input type="hidden" value=<%=rewardVo.getNo()%> name="rewardNo">
+            		<input type="hidden" value=<%=loginMember.getNo()%> name="memberNo">
+            		<input type="hidden" id="hidden-addrNo" name="addrNo">
+            		<input type="hidden" id="hidden-cardNo" name="cardNo">
+            		<input type="hidden" value=<%=quantity%> name="quantity">
+            		<input type="hidden" id="sum" name="sum">
+            		<input type="hidden" id="donate-date" name="donateDate">
+            		<input type="hidden" name="additional" value=<%=add%>>
+	                <button type="submit" class="btn btn-success final-div" id="support-btn" disabled>후원하기</button>
+            		<script>
+	                	$("#support-btn").click(function(){
+	                    	//클릭시 히든 인풋 벨류 넣기
+	                        $("#sum").val(sum);
+	                        
+	                        //donateDate(후원날짜)
+	                        $("#donate-date").val(payDateStr);
+	                        
+	                        //addrNo(비송지)
+	                        $("#hidden-addrNo").val($("#addr-no").val());
+	                        
+	                        //cardNo(카드)
+	                        $("#hidden-cardNo").val($("#card-no").val());
+	                    });
+            		</script>
             	</form>
             
             </div>
        </div>
        <%@ include file="/WEB-INF/views/project/paymentSelectForm.jsp" %>
-       <%@ include file="/WEB-INF/views/project/couponSelectForm.jsp" %>
+       
        <%@ include file="/WEB-INF/views/project/deliveryAddrSelectForm.jsp" %>
     </div>
 
     <script>
         $(function(){
+        	//카드모달에서 정보 불러오기
             $("#card-modal-submit-btn").click(function(){
                 $("#card-num").text($(".card-modal-radio:checked").val());	
             });
@@ -401,15 +465,23 @@
             }
         });
 
+        //리워드 변경버튼 눌렀을 때 세부페이지의 리워드 선택 부분으로 넘어가기
         $("#change-reward").click(function(){
             location.href='<%=contextPath%>/project/view#reward-option';
         });
 
+        //사용된 쿠폰&&가지고 있는 쿠폰 수 세기
         $("#having-coupon").text($("input:checkbox[name='coupon']").length);
         $("#coupon-modal-submit-btn").click(function(){
             $("#using-coupon").text($("input:checkbox[name='coupon']:checked").length);	
         });
         
+        //동의 체크해야 후원가능
+        $(".agree-box").click(function(){
+            if($(".agree-box:checked").length == $(".agree-box").length){
+            $("#support-btn").prop("disabled", false);
+        };
+        });
     </script>
 </body>
 
