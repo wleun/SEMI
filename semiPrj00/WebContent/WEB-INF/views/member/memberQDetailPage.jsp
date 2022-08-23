@@ -120,7 +120,8 @@
 
         </div>
             
-        <input type="hidden" name="memberNo" value="<%= loginMember.getNo() %>">
+        <form action="/semiPrj00/member/qdetail" method="post">
+        	<input type="hidden" name="memberNo" value="<%= loginMember.getNo() %>">
 
             <section>
             
@@ -146,25 +147,35 @@
                     </div>
                 </div>
 
-            <div id="content-wrap">
-                
-                <div id="content-2">
-                    <table>
-                        <tr>
-                            <td>제목</td>
-                            <td><input type="text" name="title" placeholder="제목을 입력해 주세요." required></td>
-                        </tr>
-                        <tr>
-                            <td>내용</td>
-                            <td><input type="text" name="content" placeholder="내용을 입력해주세요." required></td>
-                        </tr>
-                    </table>
-                </div>
-
-            </div>
-
-
-        </section>
+	            <div id="content-wrap">
+	                
+	                <div id="content-2">
+	                    <table>
+	                        <tr>
+	                            <td>제목</td>
+	                            <td><input type="text" name="title" placeholder="제목을 입력해 주세요." required style="width: 600px;"></td>
+	                        </tr>
+	                        <tr>
+	                            <td>첨부파일</td>
+	                            <td><input type="file" name="f"></td>
+	                        </tr>
+	                        <tr>
+	                            <td>내용</td>
+	                            <td><input type="text" name="content" placeholder="내용을 입력해주세요." required style="width: 600px; height: 400px;"></td>
+	                        </tr>
+	                    </table>
+	                </div>
+	
+	                <div align="center">
+	                    <button type="submit">작성하기</button>
+	                    <button type="reset">취소하기</button>
+	                </div>
+	
+	            </div>
+	
+	
+	        </section>
+        </form>
            
     </div>
     

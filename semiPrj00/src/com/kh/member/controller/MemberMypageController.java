@@ -66,7 +66,7 @@ public class MemberMypageController extends HttpServlet {
 			req.getSession().setAttribute("alertMsg", "회원정보 수정 성공!");
 			resp.sendRedirect("/semiPrj00/member/mypage");
 		}else {
-			req.getRequestDispatcher("/semiPrj00").forward(req, resp);
+			req.getRequestDispatcher("/").forward(req, resp);
 		}
 		
 	}
