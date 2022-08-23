@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>200% 결제수단 등록하기</title>
 <style>
     #header-div{
         width: 1920px;
@@ -58,7 +58,7 @@
 
         <div id="payment-title">결제수단 등록하기</div>
         <div id="payment-body">
-            <form action="<%=contextPath%>/project/paymentRegister" method="post" id="payment-form">
+            <form action="<%=contextPath%>/member/paymentRegister" method="post" id="payment-form">
                 <div id="radio-btn-div">
                     <input type="radio" name="register-type" id="individual" class="form-check-input register-type radio-btn" checked>
                     <label for="individual">개인</label>
@@ -67,26 +67,30 @@
                 </div>
                 <div id="card-num-input-div">
                     카드 번호
-                    <input type="text" placeholder="-없이 16자리" class="form-control" id="card-num">
+                    <input type="text" placeholder="-없이 16자리" class="form-control" id="card-num" name="cardNo" maxlength=16 required>
                 </div>
                 <div id="valid-term-div">
                     유효 기간
-                    <input type="month" name="" id="card-due-date" class="form-control">
+                    <input type="month" name="validTerm" id="card-due-date" class="form-control" maxlength=4 required>
                 </div>
                 <div id="card-pwd-div">
                     카드 비밀번호
-                    <input type="password" name="" id="card-pwd" class="form-control" placeholder="앞자리 2개">
+                    <input type="password" name="cardPwd" id="card-pwd" class="form-control" placeholder="앞자리 2개" maxlength=2 required>
                 </div>
                 <div id="birth-date-div">
                     생년월일
-                    <input type="date" name="" id="birth-date" class="form-control">
+                    <input type="date" name="birthDate" id="birth-date" class="form-control" maxlength=8>
                 </div>
                 <div id="firm-num-div">
                     사업자 등록 번호
-                    <input type="text" name="" id="firm-num" class="form-control">
+                    <input type="text" name="firmNum" id="firm-num" class="form-control" maxlength=10>
+                </div>
+                <div>
+                	결제 비밀번호
+                	<input type="password" name="password" maxlength=6 required>
                 </div>
                 <div id="agree-btn-div">
-                    <input type="checkbox" name="agree" id="agree" class="form-check-input">
+                    <input type="checkbox" name="agree" id="agree" class="form-check-input" required>
                     <label for="agree">결제사 정보제공 동의</label>
                     <a href="">내용보기</a>
                 </div>
@@ -104,6 +108,7 @@
 
 
     <script>
+    	//정보 잘못입력하는 것 방어코드
         $("#payment-form").submit(function(){
             if($("#agree").is(":checked") == false){
                 alert("결제사 정보제공 동의에 체크해주세요.");
@@ -119,6 +124,7 @@
             return true;
         });
 
+    	//개인 || 법인 보이는 디브 다르게
         $(".radio-btn").click(function(){
             if($("#individual").is(":checked")){
                 $("#firm-num-div").css("display", "none");
@@ -129,30 +135,7 @@
             }
         });
 
-        $("#card-num").blur(function(){
-            let cardNum = $("#card-num").val();
-            if(cardNum.length>16){
-                alert("카드 번호는 16자리 이하로 입력해주세요.");
-                $("#card-num").val("");
-            }
-        });
-
-        $("#card-pwd").blur(function(){
-            let cardPwd = $("#card-pwd").val();
-            if(cardPwd.length>2){
-                alert("비밀번호는 2자리 이하로 입력해주세요.");
-                $("#card-pwd").val("");
-            }
-        });
-        
-        $("#firm-num").blur(function(){
-            let firmNum = $("#firm-num").val();
-            if(firmNum.length>10){
-                alert("사업자등록번호는 10자리 이하로 입력해주세요.");
-                $("#firm-num").val("");
-            }
-        });
-
+    	//카드 유효기간 방어코드
         $("#card-due-date").blur(function(){
             let cardDueDate = $("#card-due-date").val();
             let date = new Date();
@@ -168,6 +151,7 @@
             }
         });
 
+    	//생일 방어코드
         $("#birth-date").blur(function(){
             let birthDate = $("#birth-date").val();
             let date = new Date();
