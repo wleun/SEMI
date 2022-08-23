@@ -30,7 +30,7 @@ public class PrjViewController extends HttpServlet {
 		ProjectVo pvo = new PrjViewService().selectProject(prjNum);
 		
 		//모인금액, 달성률, 남은시간, 총 후원자 수 객체로 가져오기
-		new PrjViewService().getTotalSupport(prjNum);
+		new PrjViewService().getTotalDonation(prjNum);
 		
 		//서버 가서 플젝 번호와 일치하는 리워드 vo 조회해오기
 		List<ProjectRewardVo> optionList = new PrjViewService().selectReward(prjNum);

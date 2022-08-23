@@ -44,4 +44,10 @@ public class PrjViewService {
 		return list;
 	}
 
+	//총 후원금액 계산하기
+	public void getTotalDonation(String prjNum) {
+		Connection conn = getConnection();
+		dao.getTotalDonation(conn, prjNum);
+	}
+
 }
