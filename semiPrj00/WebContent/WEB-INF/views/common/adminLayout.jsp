@@ -26,7 +26,6 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -274,13 +273,46 @@
 
         .dropdown-menu {
             border-radius: 10px !important;
-            text-align: center !important;
-            align-self: center !important;
         }
 
         .dropdown>img {
             cursor : pointer !important;
+            width: 60px !important;
+            height: 45px !important;
         }
+
+        .dropdown-menu {
+            width: 140px !important;
+            height: 180px !important;
+            text-align: center !important;
+        }
+
+        .dropdown-menu>li>a:hover {
+            background-color: #48CA7D !important;
+            color: white !important;
+        }
+
+        .dropdown-menu>li img {
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            width: 60% !important;
+            height: 35% !important;
+        }
+
+        .dropdown-menu>li {
+            padding-top: 3px !important;
+        }
+
+        .removeHover {
+            pointer-events: none;
+        }
+
+        .removeHoverBackground :hover {
+            background-color: white;
+        }
+
+
+
 
 </style>
 </head>
@@ -296,10 +328,13 @@
                 	${functionName}
                 </div>
                 <div id="headerSecond" class="dropdown">
-                    <img id="dropdown_image" width="60px" heigh="60px" src="<%=contextPath %>/resources/img/adminMypageIcon.png" alt="마이페이지 아이콘" data-bs-toggle="dropdown">
+                    
+                    <img id="dropdown_image"  role = "button" src="<%=contextPath %>/resources/img/adminMypageIcon.png" alt="마이페이지 아이콘" data-bs-toggle="dropdown">
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">안녕하세요</a></li>
-                        <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                        <li><a class="removeHoverBackground" href="<%=contextPath%>/admin/main"><img src="<%=contextPath %>/resources/img/200perlogo_pse.png" alt="로고"></a></li>
+                        <li><a class="dropdown-item removeHover" href="#">안녕하세요 ${loginAdmin.name}님</a> </li>
+                        <li><a class="dropdown-item" href="<%=contextPath%>">메인 사이트</a></li>
+                        <li><a class="dropdown-item" href="<%=contextPath%>/admin/logout">로그아웃</a></li>
                     </ul>
                 </div>
 

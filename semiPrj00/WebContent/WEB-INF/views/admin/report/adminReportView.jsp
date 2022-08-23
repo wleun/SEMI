@@ -242,7 +242,7 @@
                                     <div class="reportStatus">상태</div>
                                 </div>
                             <c:forEach items="${list}" var="item"> 
-                                <a data-bs-toggle="modal" href="#myModal">
+                                <a data-bs-toggle="modal" href="#myModal${item.no}">
                                     <div class="reportManageColumn">
 
                                         <div class="reportNo">${item.no}</div>
@@ -293,41 +293,76 @@
 
 	</content>
 
+    <c:forEach items="${list}" var="item"> 
     
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header ">
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="modalBodyFlex">
-            <div class="modalNo">신고번호 :</div>
-            <div class="modalName">신고자 : </div>
-            <div class="modalPrj">신고 프로젝트 : </div>
-            <div class="modalStatus">상태 : </div>
-            <div class="modaldate">접수날짜 : </div>
-            <div class="modalText">
-                내용
-            </div>
-            <div class="modalTextarea">
-            </div>
-          </div>
-        </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button>조치완료</button>
-        </div>
-  
-      </div>
-    </div>
-  </div>
+	    <!-- The Modal -->
+	  <div class="modal" id="myModal${item.no}">
+	    <div class="modal-dialog modal-dialog-centered">
+	      <div class="modal-content">
+	  
+	        <!-- Modal Header -->
+	        <div class="modal-header ">
+	          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	        </div>
+	  
+	        <!-- Modal body -->
+	        <div class="modal-body">
+	          <div class="modalBodyFlex">
+	            <div class="modalNo">신고번호 : ${item.no}</div>
+	            <div class="modalName">신고자 : ${item.memberNick}</div>
+	            <div class="modalPrj">신고 프로젝트 : ${item.projectName}</div>
+	            <div class="modalStatus">상태 : ${item.reportAc}</div>
+	            <div class="modaldate">접수날짜 : ${item.submitDate}</div>
+	            <div class="modalText">
+	                내용
+	            </div>
+	            <div class="modalTextarea">
+	            	${item.content}
+	            </div>
+	          </div>
+	        </div>
+	  
+	        <!-- Modal footer -->
+	        <div class="modal-footer">
+	          <button>조치완료</button>
+	        </div>
+	        
+	      </div>
+	    </div>
+	  </div>
+  	</c:forEach>
+  	
+  	
+  	
+  	<script>
+  	$('#submit').click(function() {
+        const checkBoxArr = [];
+        $("input:checkbox[name='boardCheck']:checked").each(function() {
+        	checkBoxArr.push($(this).val());
+        	
+        })
+       	
+        console.log(checkBoxArr);
+        $.ajax({
+        	url : "<%=contextPath%>/admin/project/delete" ,
+        	type:"POST",
+        	traditional : true,
+        	data : {
+        		key : checkBoxArr
+        	},
+        	success:function(result) {
+        		console.log(result); //새로고침으로 인해서 출력이 안됨
+        		$(".statusVal").empty();
+        		//$(".statusVal").load(location.href + "  .statusVal");
+        		$(".statusVal").val('안녕');
+        	//	document.location.reload();
+        	},
+        	error:function(error) {
+        		alert("삭제에 실패하였습니다.");
+        	}
+        });
+    });
+  	</script>
 
 
 </body>

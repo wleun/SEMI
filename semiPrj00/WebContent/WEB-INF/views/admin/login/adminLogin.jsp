@@ -4,6 +4,9 @@
 <% 
 	String contextPath = request.getContextPath();
 	
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	session.removeAttribute("alertMsg");
+
 	String errorMsg = (String) session.getAttribute("errorMsg");
 	session.removeAttribute("errorMsg");
 %>
@@ -17,7 +20,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
 
     
@@ -175,9 +178,16 @@
     </div>
     
     <script>
-	    <%if (errorMsg != null) {%>
-			alert('<%=errorMsg%>');
-		<%}%>
+	    $(function(){ 
+	    	
+	        <%if(alertMsg!=null){%>
+    			alert('<%=alertMsg%>');
+    		<%}%>
+	       
+            <%if(errorMsg!=null){%>
+                alert('<%=errorMsg%>');
+            <%}%>
+	    });
 		
 		
     </script>

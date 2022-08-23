@@ -36,6 +36,7 @@ public class AdminLoginController extends HttpServlet{
 		
 		if(loginAdmin != null) {
 			HttpSession session = req.getSession();
+			session.setAttribute("alertMsg", "로그인에 성공하였습니다.");
 			session.setAttribute("loginAdmin", loginAdmin);
 			resp.sendRedirect("/semiPrj00/admin/main");
 		} else {
