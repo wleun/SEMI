@@ -166,7 +166,7 @@
                     <table>
                         <tr>
                             <td>제목 : </td>
-                            <td>이건 왜 이런거죠?</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>유형 :</td>
@@ -185,16 +185,20 @@
                 <div id="content-3">
                     <table>
                         <tr>
-                            <td><textarea name="" id="" cols="30" rows="10"></textarea></td>
+                            <td>제목</td>
+                            <td><input type="text" name="title" placeholder="제목을 입력해 주세요." required style="width: 600px;"></td>
                         </tr>
                         <tr>
-                            <td><button>등록</button></td>
+                            <td>내용</td>
+                            <td><input type="text" name="content" placeholder="내용을 입력해주세요." required style="width: 600px; height: 400px;"></td>
                         </tr>
                     </table>
                 </div>
 
-            </div>
-
+                <div align="center">
+                    <button type="submit">작성하기</button>
+                    <button type="reset">취소하기</button>
+                </div>
 
         </section>
            

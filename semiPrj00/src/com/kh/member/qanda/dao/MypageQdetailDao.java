@@ -14,7 +14,7 @@ public class MypageQdetailDao {
 		String sql ="INSERT INTO MAKER_QUESTION( NO , MEMBER_NO , MAKER_NO , TITLE , CONTENT ) VALUES( SEQ_MAKER_QUESTION_NO.NEXTVAL , ? , ? , ? , ?)";
 		
 		PreparedStatement pstmt = null;
-		int result =0;
+		int result = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -22,6 +22,8 @@ public class MypageQdetailDao {
 			pstmt.setString(2, vo.getNo());
 			pstmt.setString(3, qvo.getTitle());
 			pstmt.setString(4, qvo.getContent());
+			
+			pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

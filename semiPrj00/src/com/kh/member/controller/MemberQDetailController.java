@@ -46,9 +46,10 @@ public class MemberQDetailController extends HttpServlet {
 		
 		if(result == 1) {
 			req.getSession().setAttribute("alertMsg", "문의 등록 성공!");
-			resp.sendRedirect("/member/qanda");
+			resp.sendRedirect("/semiPrj00/member/qanda");
 		}else {
-			req.getRequestDispatcher("/semiPrj00").forward(req, resp);
+			req.setAttribute("alertMsg", "문의글 작성 실패!");
+			req.getRequestDispatcher("/").forward(req, resp);
 		}
 		
 	}
