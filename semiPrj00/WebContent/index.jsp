@@ -1,5 +1,10 @@
+<%@page import="com.kh.project.vo.ProjectVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+  	  List<ProjectVo> recommandList = (List<ProjectVo>)request.getAttribute("recommendList");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -237,16 +242,16 @@ $('#top-menu').click(function () {
                     </div>
                 </div>
             </div>
-            
+            <%--  <%for(ProjectVo p : recommandList){ %>
             <div class="prj-wrap">
                 <div class="prj-content prj-img">
-                    <img src="" alt="프로젝트 메인 사진">
+                    <img src="<%=contextPath%>/resources/upload/<%=p.getThumbnailName()%>" alt="프로젝트 메인 사진">
                 </div>
                 <div class="prj-content prj-category">
-                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
+                    <span><%=p.getCategoryNo()%></span> | <span><%=p.getMakerNo() %></span>
                 </div>
                 <div class="prj-content prj-title">
-                    프로젝트 타이틀
+                    <%=p.getName() %>
                 </div>
                 <!-- <div class="prj-content prj-subscribe">
                     프로젝트 설명
@@ -255,7 +260,7 @@ $('#top-menu').click(function () {
                 <div class="prj-content gage-div">
                     <div class="prj-content">
                         <span class="percentage">달성률</span>
-                        <span class="amount">모인 금액</span>
+                        <span class="amount"><%=p.getGoal()%></span>
                     </div>
                     <div class="prj-content d-day">
                         남은 날짜
@@ -265,6 +270,7 @@ $('#top-menu').click(function () {
                     </div>
                 </div>
             </div>
+            <%} %> --%>
            
 
             <div class="prj-wrap">

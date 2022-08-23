@@ -1,39 +1,72 @@
 package com.kh.main.service;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.kh.common.JDBCTemplate.*;
-
 import com.kh.main.repository.MainPageDao;
 import com.kh.project.vo.ProjectVo;
 
 public class MainPageService {
 
+	//추천
 	public List<ProjectVo> selectRecommend() {
-		Connection conn = getConnection();
+		Connection conn = null;
+		List<ProjectVo> recommendList = null;
 		
-		List<ProjectVo> recommendList = new MainPageDao().selectRecommend(conn);
+		try {
+			conn = getConnection();
+			recommendList = new MainPageDao().selectRecommend(conn);
+		} catch (Exception e) {
+			System.out.println("추천 항목을 가져오는데 에러 발생");
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
 		
-
-		return null;
+		return recommendList;
 	}
 
-	private Connection getConnection() {
-		// TODO Auto-generated method stub
-		return null;
+	
+
+	//얼리버드
+	public List<ProjectVo> selectEarly() {
+		Connection conn = null;
+		List<ProjectVo> earlyList = null;
+		
+		try {
+			conn = getConnection();
+			earlyList = new MainPageDao().selectEarly(conn);
+		} catch (Exception e) {
+			System.out.println("얼리버드 항목을 가져오는데 에러 발생");
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return earlyList;
 	}
 
-	public List<ProjectVo> selectEalry() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	//마감임박
 	public List<ProjectVo> selectDeadline() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;
+		List<ProjectVo> deadLineList = null;
+		
+		try {
+			conn = getConnection();
+			deadLineList = new MainPageDao().selectDeadline(conn);
+		} catch (Exception e) {
+			System.out.println("마감임박 항목을 가져오는데 에러 발생");
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return deadLineList;
 	}
+
+
 
 
 
