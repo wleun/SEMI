@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String result = (String)request.getAttribute("result");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -196,6 +197,9 @@
     #btn_div a:hover{
         color: #48ca7d;
     }
+    input[type=password]{
+	font-family:"Nanum Gothic", sans-serif !important;
+        }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -222,10 +226,10 @@
                                 <li class="find-li"><input type="text" name="memberName" id="memberName"  required></li>
                                 <li class="find-li">전화번호</li>
                                 <li class="find-li"><input type="phone" name="memberPhone" id="memberPhone" required></li>
-                                <br><li class="find-li"><input type="button" value="아이디찾기" id="submit" onclick="find();"></li>
+                                <br><li class="find-li"><input type="button" value="아이디찾기" id="submit" onclick="findId();"></li>
                             </ul>
                         </form>   
-                        <div id="find"><br><span id="checkd"></span></div>
+                        <div id="find"><br><span id="checked1"></span></div>
                     </div>
                     <div class="modal_close"><button style="color:white;">close</button></div>
                 </div>
@@ -236,37 +240,33 @@
                     <div class="modal_close_pwd"><button style="color:white;">close</button></div>
                     <div>
                         <br> <h1>비밀번호 찾기/변경</h1>
-                        <form action="" method="post" id="find-pwd-form">
+                        <form action="<%=contextPath %>/member/findPwd" method="post" id="find-pwd-form">
                             <ul class="find-ul">
                                 <li class="find-li">E-mail</li>
-                                <li class="find-li"><input type="text" name="memberName" required></li>
+                                <li class="find-li"><input type="text" id="memberEmail" name="memberEmail" required></li>
                                 <li class="find-li">전화번호</li>
-                                <li class="find-li"><input type="phone" name="memberPhone" required></li>
+                                <li class="find-li">
+                                <input type="phone" id="phone" name="memberPhone" required>
+                                <button onclick="findPwd();">인증</button>
+                                </li>
                 
                                 <li class="find-li">새 비밀번호</li>
                                 <li class="find-li"><input type="password" name="memberNewPwd" required></li>
                                 <li class="find-li">비밀번호 재확인</li>
                                 <li class="find-li"><input type="password" name="memberNewPwd2" required></li>
-                                <br><li class="find-li"><input type="submit" value="완료" id="submit_pwd"></li>
+                                <br><li class="find-li"><input type="submit" value="변경하기" id="submit_pwd" disabled></li>
                                 </div>
                             </ul>
                         </form>
                     </div>
                 </div>
-                <!-- <div id="btn_div"><button onclick="location.href='<%=contextPath%>/member/join'" class="under-btn">회원가입</button> <button onclick="location.href='<%=contextPath%>/member/login'" class="under-btn">로그인</button></div> -->
                 <div id="btn_div"><a href="'<%=contextPath%>/member/join'"class="under-btn">회원가입 |</a><a href="'<%=contextPath%>/member/login'"class="under-btn">&nbsp;로그인&nbsp;</a></div>
             </div>
-            
-
-           
-               
-            
-          
             
             
         </div>
         
-    </div>
+    </div>submit_pwd
     </main>
     <!-- 모달창 -->
    <script>
@@ -299,7 +299,7 @@
    </script>
    <!-- 아이디찾기ajax -->
 	<script>
-  		function find(){
+  		function findId(){
   			const name = $('#memberName').val();
   			const phone = $('#memberPhone').val();
   			
@@ -314,11 +314,11 @@
   				dataType : 'text',
   				success : function(result){
   					if(result == ""){
-  						document.getElementById('checked').innerHTML = "일치하는 정보가 없습니다.";
-  						document.getElementById('checked').style.color = "#48CA7D";
+  						document.getElementById('checked1').innerHTML = "일치하는 정보가 없습니다.";
+  						document.getElementById('checked1').style.color = "#48CA7D";
   					}else{
-  						document.getElementById('checked').innerHTML = "<%=result%>";
-  						document.getElementById('checked').style.color = "red";
+  						document.getElementById('checked1').innerHTML = result;
+  						document.getElementById('checked1').style.color = "red";
   					}
   				},
   				error : function(){
@@ -331,26 +331,28 @@
   	</script>
   	<!-- 비밀번호 찾기ajax -->
   	<script>
-  		function find(){
-  			const name = $('#memberName').val();
-  			const phone = $('#memberPhone').val();
+  		function findPwd(){
+  			const email = $('#memberEmail').val();
+  			const phone = $('#phone').val();
   			
-  			console.log(name);
+  			console.log(email);
   			$.ajax({
-  				url : "<%=contextPath %>/member/findId",
-  				type : "POST",
+  				url : "<%=contextPath %>/member/findPwd",
+  				type : "GET",
   				data : {
-  					memberName : name,
+  					memberEmail : email,
   					memberPhone : phone
   					},
   				dataType : 'text',
   				success : function(result){
-  					if(result == ""){
-  						document.getElementById('checked').innerHTML = "일치하는 정보가 없습니다.";
-  						document.getElementById('checked').style.color = "#48CA7D";
+  					if(result == 1){
+  						console.log(result);
+  						alert('비밀번호를 변경해주세요!');
+  						$('#submit_pwd').attr("disabled",false);
   					}else{
-  						document.getElementById('checked').innerHTML = "<%=result%>";
-  						document.getElementById('checked').style.color = "red";
+  						console.log(result);
+  						alert('일치하는 정보가 없습니다.');
+  						return;
   					}
   				},
   				error : function(){

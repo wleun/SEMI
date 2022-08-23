@@ -45,7 +45,8 @@ public class NoticeDao {
 		//conn준비
 		
 		//sql준비
-		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT N.NO , A.NAME , N.TITLE , N.CONTENT , N.THUMBNAIL_PATH , N.THUMBNAIL_NAME , N.WRITE_DATE , N.IMPORTANT_YN , N.EDIT_DATE , N.EDIT_ADMIN_NO , N.DELETE_YN FROM NOTICE N JOIN ADMIN A ON N.ADMIN_NO = A.NO ORDER BY N.NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
+		//String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT N.NO , A.NAME , N.TITLE , N.CONTENT , N.THUMBNAIL_PATH , N.THUMBNAIL_NAME , N.WRITE_DATE , N.IMPORTANT_YN , N.EDIT_DATE , N.EDIT_ADMIN_NO , N.DELETE_YN FROM NOTICE N JOIN ADMIN A ON N.ADMIN_NO = A.NO ORDER BY N.NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
+		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT N.NO , A.NAME , N.TITLE , N.CONTENT , N.THUMBNAIL_PATH , N.THUMBNAIL_NAME , N.WRITE_DATE , N.IMPORTANT_YN , N.EDIT_DATE , N.EDIT_ADMIN_NO , N.DELETE_YN FROM NOTICE N JOIN ADMIN A ON N.ADMIN_NO = A.NO WHERE N.DELETE_YN = 'N'  ORDER BY N.NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
 		
 		PreparedStatement pstmt = null;
 		List<AdminNoticeVo> list = new ArrayList<AdminNoticeVo>();
@@ -57,13 +58,13 @@ public class NoticeDao {
 			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
 			int end = start + pageVo.getBoardLimit() -1;
 			
+			pstmt.setInt(1,start);
+			pstmt.setInt(2,end);
+			
 			rs = pstmt.executeQuery();
 			
-			list = new ArrayList<AdminNoticeVo>();
 			
 			while(rs.next()) {
-				
-				AdminNoticeVo vo = new AdminNoticeVo();
 				
 				String no = rs.getString("NO");
 				String name = rs.getString("NAME");
@@ -77,8 +78,9 @@ public class NoticeDao {
 				String editAdminNo = rs.getString("EDIT_ADMIN_NO"); 
 				String deleteYn = rs.getString("DELETE_YN"); 
 				
+				AdminNoticeVo vo = new AdminNoticeVo();
 				vo.setNo(no);
-				vo.setName(name);
+				vo.setAdminName(name);
 				vo.setTitle(title);
 				vo.setContent(content);
 				vo.setThumbnailPath(thumbnailPath);

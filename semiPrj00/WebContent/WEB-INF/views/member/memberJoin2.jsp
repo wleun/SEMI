@@ -123,7 +123,9 @@
                 <form action="<%=contextPath%>/member/join2" method="post">
                    <ul id="form-ul">
                     <br>
-                    <li class="join-li">*E-mail <br><input type="email" name="memberEmail" id="email" placeholder="이메일 형식으로 입력하세요."> <button id="check-btn" onclick="emailCheck()">중복확인</button></li>
+                    <li class="join-li">*E-mail <br>
+                    <input type="email" name="memberEmail" id="email" placeholder="이메일 형식으로 입력하세요." disabled>
+                     <button id="check-btn" onclick="emailCheck()">중복확인</button></li>
                     <li class="join-li">
                         *비밀번호 <br><input type="password" name="memberPwd" id="pwd" required>
                         <div id="pwd-size" style="color: red; font-size:15px; position: absolute;">4자리 이상 입력하세요.</div>
@@ -148,11 +150,17 @@
         </div>
 
     </main>
+    <!-- 이메일 중복검사 -->
     <script>
     	function emailCheck(){
-    		window.open("<%=contextPath %>/member/emailCheck","none","width=200px, heignt=150px");
+    		var openWin = window.open("<%=contextPath %>/member/emailCheck","none","width=200px, heignt=150px,resizable = no, scrollbars = no");
+    	}
+    	function setChildValue(email){
+    		document.getElementById("email").value=email;
     	}
     </script>
+    
+    
   <script>
   		function test(){
   			const temp = $('#id').val();

@@ -147,6 +147,62 @@ public class MemberService {
 		}
 		return result;
 	}
+	/*
+	 * 비번찾기 인증
+	 */
+	public int findPwd(String email, String phone) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			result = new MemberDao().findPwd(conn, email, phone);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+	/*
+	 * 비번변경
+	 */
+	public int updatePwd(String email, String phone, String pwd, String pwd2) {
+		//서비스 로직
+		int result = 0;
+		if(pwd.length() < 4) {
+			System.out.println("비번 4자리 미만");
+			return -1;
+		}
+		if(pwd.equals(pwd2)==false) {
+			System.out.println("비번, 확인비번 다름");
+			return -1;
+		}
+		
+		Connection conn = null;
+		try {
+		conn = getConnection();
+		//dao호출
+		result = new MemberDao().updatePwd(conn, email, phone , pwd);
+		
+		if(result == 1) {
+			commit(conn);
+			System.out.println("업데이트 완료");
+		}else {
+			rollback(conn);
+			System.out.println("업데이트 실패");
+			return -1;
+		}
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return result;
+		
+	}
 	
 
 }
