@@ -11,32 +11,32 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.service.MemberService;
 
-@WebServlet(urlPatterns = "/member/findId")
-public class MemberFindIdController extends HttpServlet{
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/member/findIdPwd.jsp").forward(req, resp);
-	}
-	
+@WebServlet(urlPatterns = "/busiCheck")
+public class BusiCheckController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		
-		String name = req.getParameter("memberName");
-		String phone = req.getParameter("memberPhone");
+		String busino_ = req.getParameter("busino");
+		System.out.println(busino_);
 		PrintWriter out = resp.getWriter();
 		
-		String result = new MemberService().findId(name, phone);
+		int busino = Integer.parseInt(busino_);
 		
-		if(result != null) {
-			System.out.println(result);
+		//서비스
+		int result = new MemberService().busiCheck(busino);
+		
+		if(result==1) {
+			//사용불가
+			System.out.println("이미 사용중인 번호");
 		}else {
-			System.out.println("일치하는 정보 없음");
+			System.out.println("사용 가능한 번호");
 		}
 		
 		resp.setCharacterEncoding("UTF-8");
 		
-		out.write(result + "");
-	
+		out.write(result+"");
+		
 	}
+
 }

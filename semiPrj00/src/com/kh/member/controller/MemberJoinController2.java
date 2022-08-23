@@ -30,7 +30,6 @@ public class MemberJoinController2 extends HttpServlet{
 		//정보 얻기
 		String memberEmail = req.getParameter("memberEmail");
 		String memberPwd = req.getParameter("memberPwd");
-//		String memberPwd2 = req.getParameter("memberPwd2");
 		String memberName = req.getParameter("memberName");
 		String memberNick = req.getParameter("memberNick");
 		String memberPhone = req.getParameter("memberPhone");
@@ -43,16 +42,13 @@ public class MemberJoinController2 extends HttpServlet{
 		MemberVo memberVo1 = new MemberVo();
 		memberVo1.setEmail(memberEmail);
 		memberVo1.setPwd(memberPwd);
-//		memberVo.setPwd2(memberPwd2);
 		memberVo1.setName(memberName);
 		memberVo1.setNick(memberNick);
 		memberVo1.setPhone(memberPhone);
 		memberVo1.setCode(code);
 		
-		System.out.println(memberVo1);
 		
 		//다음타자(메이커 추가정보등록)에 데이터 보내기
-//		req.setAttribute("memberVo", memberVo);
 		req.getSession().setAttribute("memberVo1", memberVo1);
 		req.getRequestDispatcher("/WEB-INF/views/member/memberJoin3.jsp").forward(req, resp);
 		

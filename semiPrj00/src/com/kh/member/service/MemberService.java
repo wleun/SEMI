@@ -80,6 +80,73 @@ public class MemberService {
 		
 		
 	}
+	/*
+	 * 아이디체크
+	 */
+	public int idCheck(String userId) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = getConnection();
+			result = new MemberDao().idCheck(userId, conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+	/*
+	 * 이메일 중복검사
+	 */
+	public int checkEmail(String email) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = getConnection();
+			result = new MemberDao().checkEmail(conn, email);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+	/*
+	 * 사업자번호 체크
+	 */
+	public int busiCheck(int busino) {
+
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = getConnection();
+			
+			result = new MemberDao().busiCheck(busino, conn);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+	/*
+	 * 아이디찾기
+	 */
+	public String findId(String name, String phone) {
+		Connection conn = null;
+		String result = null;
+		try {
+			conn = getConnection();
+			result = new MemberDao().findId(conn, name, phone);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(conn);
+		}
+		return result;
+	}
 	
 
 }

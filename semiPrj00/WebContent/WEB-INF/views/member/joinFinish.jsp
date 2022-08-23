@@ -80,8 +80,8 @@
             <br>
             <img src="<%=contextPath%>/resources/img/finish.png" alt="" id="finish-img">
             <br><br>
-            <button class="go"onclick="location.href='<%=contextPath%>/member/login'">로그인 하기</button>
-            <button class="go" onclick="location.href='<%=contextPath%>/member/join3'">메이커 등록</button>
+            <button class="go"onclick="location.href='<%=contextPath%>/member/login'">로그인</button>
+            <button class="go" onclick="location.href='<%=contextPath%>'">메인화면</button>
              
             
             

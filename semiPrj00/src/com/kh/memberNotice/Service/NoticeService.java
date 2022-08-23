@@ -4,7 +4,8 @@ import java.sql.Connection;
 
 import com.kh.admin.notice.vo.AdminNoticeVo;
 import com.kh.common.vo.PageVo;
-import com.kh.memberNotice.dao.NoticeDao;
+import com.kh.memberNotice.repository.NoticeDao;
+
 import java.util.*;
 
 import static com.kh.common.JDBCTemplate.*;

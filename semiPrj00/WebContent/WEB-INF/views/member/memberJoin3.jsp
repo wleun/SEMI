@@ -121,12 +121,18 @@
             <div id="form">
                 <form action="<%=contextPath%>/member/join3" method="post">
                    <ul id="form-ul">
-                    <li class="join-li">사업자번호<br><input type="text" name="busi-no" placeholder="-제외 입력"> <button id="check-btn">중복확인</button></li>
-                    <li class="join-li">메이커 타입<br>
+                    <li class="join-li">사업자번호<br>
+                    	<input type="text" id="busino" name="busi-no" placeholder="-제외 10자리 입력" onfocusout="test2();"> 
+                    	<br><br><span id="checked2" style="font-size:20px;"></span>
                     </li>
-                    일반회원<input type="radio" name="busi-type" id="busi-type" value="I" style=""> 
-                     <input type="radio" name="busi-type" id="busi-type" value="B"> 개인회원
-                    <li class="join-li">법인명 <br><input type="text" name="company" placeholder="법인일 경우 필수항목입니다."></li>
+                    <li class="join-li">메이커 타입<br><br>
+                        <input type="radio" name="busi-type" id="busi-type" value="I" style="width: 30px;">개인사업자 
+                        <input type="radio" name="busi-type" id="busi-type" value="B" style="width: 30px;">법인
+                    </li>
+                    
+
+                    <li class="join-li">메이커 닉네임 <br><input type="text" id="id" name="company" placeholder="법인일 경우 법인명입력하세요." onfocusout="test();"> 
+                    <br><br><span id="checked" style="font-size:20px;"></span></li>
                     
                    </ul><br>
                    <input type="button" value="이전" id="pre" onclick="history.go(-1)"><input type="submit" value="다음" id="next">
@@ -138,5 +144,67 @@
         </div>
 
     </main>
+   
 </body>
+ <script>
+  		function test2(){
+  			const temp = $('#busino').val();
+  			
+  			console.log(temp);
+  			$.ajax({
+  				url : "<%=contextPath %>/busiCheck",
+  				type : "POST",
+  				data : {busino : temp},
+  				dataType : 'text',
+  				success : function(result){
+  					if(result == 0){
+  						document.getElementById('checked2').innerHTML = "등록 가능한 사업자번호 입니다.";
+  						document.getElementById('checked2').style.color = "#48CA7D";
+  						
+  					}else{
+  						document.getElementById('checked2').innerHTML = "이미 등록된 사업자번호 입니다.";
+  						document.getElementById('checked2').style.color = "red";
+  						
+  						$('#next').attr("disabled","disabled");
+  					}
+  				},
+  				error : function(){
+  					alert("서버요청실패..");
+  				}
+  			
+  			})
+  			
+  		}
+  	</script>
+  	 <script>
+  		function test(){
+  			const temp = $('#id').val();
+  			
+  			console.log(temp);
+  			$.ajax({
+  				url : "<%=contextPath %>/idCheck",
+  				type : "POST",
+  				data : {userId : temp},
+  				dataType : 'text',
+  				success : function(result){
+  					if(result == 0){
+  						document.getElementById('checked').innerHTML = "사용가능한 닉네임입니다.";
+  						document.getElementById('checked').style.color = "#48CA7D";
+  						$('#next').removeAttr("disabled");
+  					}else{
+  						document.getElementById('checked').innerHTML = "이미 사용 중인 닉네임입니다.";
+  						document.getElementById('checked').style.color = "red";
+  						
+  						$('#next').attr("disabled","disabled");
+  					}
+  				},
+  				error : function(){
+  					alert("서버요청실패..");
+  				}
+  			
+  			})
+  			
+  		}
+  	</script>
+  	
 </html>

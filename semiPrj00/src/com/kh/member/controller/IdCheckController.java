@@ -9,34 +9,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.member.service.MemberService;
 
-@WebServlet(urlPatterns = "/member/findId")
-public class MemberFindIdController extends HttpServlet{
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/member/findIdPwd.jsp").forward(req, resp);
-	}
-	
+@WebServlet(urlPatterns = "/idCheck")
+public class IdCheckController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		
-		String name = req.getParameter("memberName");
-		String phone = req.getParameter("memberPhone");
+		String userId = req.getParameter("userId");
+		System.out.println(userId);
 		PrintWriter out = resp.getWriter();
 		
-		String result = new MemberService().findId(name, phone);
+		int result = 0;
+		result = new MemberService().idCheck(userId);
 		
-		if(result != null) {
-			System.out.println(result);
-		}else {
-			System.out.println("일치하는 정보 없음");
+		if(result == 0) {
+			System.out.println("사용가능 아이디");
+		}else if(result ==1){
+			System.out.println("사용불가 닉네임");
 		}
 		
 		resp.setCharacterEncoding("UTF-8");
 		
 		out.write(result + "");
+		
 	
 	}
+	
 }

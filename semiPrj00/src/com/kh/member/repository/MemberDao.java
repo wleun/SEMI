@@ -132,5 +132,124 @@ public class MemberDao {
 				}
 				return result;
 	}
+	/*
+	 * 아이디체크
+	 */
+	public int idCheck(String userId, Connection conn) {
+		//conn준비
+		//sql
+		String sql = "SELECT COUNT(NO) AS COUNT FROM MEMBER WHERE NICK = ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try{
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("COUNT");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+		
+		
+	}
+	/*
+	 * 이메일 중복검사
+	 */
+	public int checkEmail(Connection conn, String email) {
+		String sql = "SELECT STATUS FROM MEMBER WHERE EMAIL = ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String result_ = rs.getString("STATUS");
+				if(result_.equals("A")) {
+					result = 1;
+				}else if(result_.equals("S")) {
+					result = 2;
+				}else if(result_.equals("Q")) {
+					result = 3;
+				}
+			}else {
+				result = 0;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+		
+	}
+	/*
+	 * 사업자번호체크
+	 */
+	public int busiCheck(int busino, Connection conn) {
+		
+		String sql = "SELECT COUNT(NO) AS COUNT FROM MEMBER WHERE REGISTRATION = ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, busino);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("COUNT");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+	}
+	/*
+	 * 아이디찾기
+	 */
+	public String findId(Connection conn, String name, String phone) {
+		String sql = "SELECT EMAIL FROM MEMBER WHERE NAME = ? AND PHONE = ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String result = null;
+		
+		try{
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getString("EMAIL");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return result;
+	}
 
 }
