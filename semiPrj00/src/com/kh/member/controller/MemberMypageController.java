@@ -42,6 +42,7 @@ public class MemberMypageController extends HttpServlet {
 		String nick = req.getParameter("memberNick");
 		String phone = req.getParameter("memberPhone");
 		String type = req.getParameter("memberType");
+		String registration = req.getParameter("memberRegistration");
 		String mLevel = req.getParameter("mLevel");
 		
 		
@@ -53,6 +54,7 @@ public class MemberMypageController extends HttpServlet {
 		vo.setName(name);
 		vo.setNick(nick);
 		vo.setPhone(phone);
+		vo.setRegistration(registration);
 		
 		//패스워드 변경 서비스 호출
 		int result = new MemberMypageService().changePwd(pwd, pwdNew, pwdNew2);
@@ -64,7 +66,7 @@ public class MemberMypageController extends HttpServlet {
 			req.getSession().setAttribute("alertMsg", "회원정보 수정 성공!");
 			resp.sendRedirect("/semiPrj00/member/mypage");
 		}else {
-			req.getRequestDispatcher("").forward(req, resp);
+			req.getRequestDispatcher("/semiPrj00").forward(req, resp);
 		}
 		
 	}

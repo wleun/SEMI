@@ -61,6 +61,8 @@
             border: 0px
         }
 
+        input[type=password] {font-family:'Malgun gothic', dotum, sans-serif; width: 250px;}
+
          /* ------------------content-1---------------------------- */
 
         .member-info{
@@ -161,13 +163,13 @@
                                 <th>비밀번호 수정</th>
                             </tr>
                             <tr>
-                                <td><input type="password" name="memberPwd" placeholder="기존 비밀번호를 입력하세요."></td>
+                                <td><input class="inputPwd" type="password" name="memberPwd" placeholder="기존 비밀번호를 입력하세요."></td>
                             </tr>
                             <tr>
-                                <td><input type="password" name="memberPwdNew" placeholder="비밀번호를 입력하세요."></td>
+                                <td><input class="inputPwd" type="password" name="memberPwdNew" placeholder="비밀번호를 입력하세요."></td>
                             </tr>
                             <tr>
-                                <td><input type="password" name="memberPwdNew2" placeholder="비밀번호를 확인합니다."></td>
+                                <td><input class="inputPwd" type="password" name="memberPwdNew2" placeholder="비밀번호를 확인합니다."></td>
                             </tr>
                             <tr>
                                 <th>* 이름</th>
@@ -258,7 +260,7 @@
                                  <th>사업자/법인 정보</th>
                              </tr>
                              <tr>
-                                 <td><input type="text" name="memberRegistration"></td>
+                                 <td><input type="text" name="memberRegistration" value="<%= loginMember.getRegistration() %>"></td>
                              </tr>
                              
                          </table>

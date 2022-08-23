@@ -168,31 +168,31 @@
 
         </div>
 
-        <section>
-            
-            <div class="member-info">
-                <div id="content-1">
+        <input type="hidden" name="memberNo" value="<%= loginMember.getNo() %>">
 
-                    <div id="member-name">
-                     <span>테스트 님</span>
+            <section>
+            
+                <div class="member-info">
+                    <div id="content-1">
+    
+                        <div id="member-name">
+                         <span><%= loginMember.getNick() %></span>
+                        </div>
+                        <div id="mall">
+                         <span>친환경몰</span>
+                        </div>
+                        <div id="follow">
+                         <span>팔로우 200명</span>
+                         <span>팔로워 200명</span>
+                        </div>
+                        <div>
+                         <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
+                         <span name="mLevel"><%= loginMember.getmLevel() %></span>
+                         <span name="memberType"><%= loginMember.getType() %></span>
+                        </div>
+             
                     </div>
-                    <div id="mall">
-                     <span>친환경몰</span>
-                    </div>
-                    <div id="follow">
-                     <span>팔로우 200명</span>
-                     <span>팔로워 200명</span>
-                     <span>추천인 등록 수 200명</span>
-                    </div>
-                    <div>
-                     <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
-                     <span>회원등급 GOLD</span>
-                     <span>개인사업자 회원</span>
-                    </div>
-                    <button>로그아웃</button>
-         
                 </div>
-            </div>
     
             <div id="content-wrap">
     
