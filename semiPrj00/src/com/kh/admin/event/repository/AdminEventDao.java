@@ -298,6 +298,8 @@ public class AdminEventDao {
 		
 		
 	}
+	
+	//이벤트 상세조회 > 삭제
 
 	public int deleteEvent(Connection conn, String no) {
 		int result = 0;
@@ -321,5 +323,67 @@ public class AdminEventDao {
 		return result;
 		
 	}
+	
+	//이벤트 수정
 
-}
+	public static int EditEvent(Connection conn, AdminEventVo adminEventVo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE EVENT SET TITLE = ? , CONTENT = ? , THUMBNAIL_PATH = ? , THUMBNAIL_NAME = ? , START_DATE = ? , END_DATE = ? , IMPORTANT_YN = ? , EDIT_DATE = SYSDATE , EDIT_ADMIN_NO = ? WHERE NO = ?";
+		
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, adminEventVo.getTitle());
+			pstmt.setString(2, adminEventVo.getContent());
+			pstmt.setString(3, adminEventVo.getThumbnailPath());
+			pstmt.setString(4, adminEventVo.getThumbnailName());
+			pstmt.setString(5, adminEventVo.getStartDate());
+			pstmt.setString(6, adminEventVo.getEndDate());
+			pstmt.setString(7, adminEventVo.getImportantYN());
+			pstmt.setString(8, adminEventVo.getAdminName());
+			pstmt.setString(9, adminEventVo.getNo());
+			
+			result=pstmt.executeUpdate();
+			
+			System.out.println("이벤트 수정 현황 : " +  result );
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	//이벤트 수정 (파일)
+	
+	public static int EditFile(Connection conn, AdminEventAttachmentVo adminEventAttachmentVo) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = "UPDATE EVENT_FILE SET PATH = ? , NAME = ? WHERE EVENT_NO = ?";
+			
+			try {
+				
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, adminEventAttachmentVo.getPath());
+				pstmt.setString(2, adminEventAttachmentVo.getName());
+				pstmt.setString(3, adminEventAttachmentVo.getEventNo());
+				
+				result=pstmt.executeUpdate();
+				
+				System.out.println("이벤트 파일 수정 현황 : " +  result );
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
+	}
+

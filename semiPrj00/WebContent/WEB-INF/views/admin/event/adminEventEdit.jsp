@@ -236,6 +236,7 @@
               <div id="headerNotUsedArea"></div>
               <div id="eventHeaderText">이벤트 수정 *</div>
          <form id="install_form" action="<%=contextPath %>/admin/event/edit" method="post" enctype="multipart/form-data"> 
+              <input type="hidden" name="no" value="${adminEventVo.no}">
               <div id="eventImportant">
                 중요도 : 
                 <select name="important">

@@ -26,7 +26,6 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -152,7 +151,7 @@
         }
 
         #headerFirst {
-            width: 92%;
+            width: 85%;
             align-self: center;
             font-weight:700;
             font-size: 33px;
@@ -160,7 +159,7 @@
         }
 
         #headerSecond {
-            width: 8%;
+            width: 15%;
             display: flex;
             align-items: center;
             justify-content:center;
@@ -261,6 +260,7 @@
             text-align: left;
         }
 
+
         /*main*/
 
         content {
@@ -270,6 +270,50 @@
             top: 108px;
             border-right: 1px solid #C3B091;
         }
+
+        .dropdown-menu {
+            border-radius: 10px !important;
+        }
+
+        .dropdown>img {
+            cursor : pointer !important;
+            width: 60px !important;
+            height: 45px !important;
+        }
+
+        .dropdown-menu {
+            width: 140px !important;
+            height: 180px !important;
+            text-align: center !important;
+        }
+
+        .dropdown-menu>li>a:hover {
+            background-color: #48CA7D !important;
+            color: white !important;
+        }
+
+        .dropdown-menu>li img {
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+            width: 60% !important;
+            height: 35% !important;
+        }
+
+        .dropdown-menu>li {
+            padding-top: 3px !important;
+        }
+
+        .removeHover {
+            pointer-events: none;
+        }
+
+        .removeHoverBackground :hover {
+            background-color: white;
+        }
+
+
+
+
 </style>
 </head>
 <body>
@@ -283,8 +327,15 @@
                 <div id="headerFirst">
                 	${functionName}
                 </div>
-                <div id="headerSecond">
-                    <a href=""><img width="60px" heigh="60px" src="<%=contextPath %>/resources/img/adminMypageIcon.png" alt="마이페이지 아이콘"></a>
+                <div id="headerSecond" class="dropdown">
+                    
+                    <img id="dropdown_image"  role = "button" src="<%=contextPath %>/resources/img/adminMypageIcon.png" alt="마이페이지 아이콘" data-bs-toggle="dropdown">
+                    <ul class="dropdown-menu">
+                        <li><a class="removeHoverBackground" href="<%=contextPath%>/admin/main"><img src="<%=contextPath %>/resources/img/200perlogo_pse.png" alt="로고"></a></li>
+                        <li><a class="dropdown-item removeHover" href="#">안녕하세요 ${loginAdmin.name}님</a> </li>
+                        <li><a class="dropdown-item" href="<%=contextPath%>">메인 사이트</a></li>
+                        <li><a class="dropdown-item" href="<%=contextPath%>/admin/logout">로그아웃</a></li>
+                    </ul>
                 </div>
 
             </div>

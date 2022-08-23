@@ -143,10 +143,10 @@ public class AdminNoticeInstallController extends HttpServlet{
 				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 내용을 입력하여 주세요.");
 			} else if (result ==-3) {
 				System.out.println("[ERROR-CODE :" + result + "]");
-				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지 파일이 비어있습니다.");
+				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 섬네일 파일이 비어있습니다.");
 			} else if (result ==-4) {
 				System.out.println("[ERROR-CODE :" + result + "]");
-				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 섬네일 파일이 비어있습니다.");
+				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지 파일이 비어있습니다.");
 			} else if (result ==-5) {
 				System.out.println("[ERROR-CODE :" + result + "]");
 				req.getSession().setAttribute("errorMsg", "[ERROR-CODE :" + result + "] 이미지와 섬네일 파일이 비어있습니다.");
