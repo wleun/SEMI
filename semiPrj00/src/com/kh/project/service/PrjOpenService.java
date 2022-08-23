@@ -1,7 +1,6 @@
 package com.kh.project.service;
 
 import java.sql.Connection;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -96,8 +95,14 @@ public class PrjOpenService {
 				rollback(conn);
 			}
 		} catch (Exception e) {
+			if(result1 < 1) {
+				System.out.println("[error]프로젝트 등록 중 문제 발생");
+			}else if(result2 < 1) {
+				System.out.println("[error]상세 첨부파일 등록 중 문제 발생");
+			}else if(result3 < 1) {
+				System.out.println("[error]리워드 등록 중 문제 발생");
+			}
 			rollback(conn);
-			System.out.println("프로젝트 신청 처리 중 문제 발생");
 			e.printStackTrace();
 		} finally {
 			close(conn);
