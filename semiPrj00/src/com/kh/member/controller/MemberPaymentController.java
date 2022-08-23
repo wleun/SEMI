@@ -39,13 +39,14 @@ public class MemberPaymentController extends HttpServlet{
 		String cardNo = req.getParameter("cardNo");
 		String validTerm = req.getParameter("validTerm");//yyyy-mm
 		String cardPwd = req.getParameter("cardPwd");
-		String birthDate = req.getParameter("birthDate");//yyyy-mm-dd
 		String password = req.getParameter("password");
+		String birthDate = req.getParameter("birthDate");//yyyy-mm-dd
 		String firmNum = req.getParameter("firmNum");
 		String defaultYN = req.getParameter("default");
 		
 		//하이픈 제거
 		validTerm = validTerm.replace("-", "");
+		validTerm = validTerm.substring(2);
 		birthDate = birthDate.replace("-", "");
 		
 		//vo 작업
@@ -54,16 +55,21 @@ public class MemberPaymentController extends HttpServlet{
 		paymentVo.setCardNum(cardNo);
 		paymentVo.setValidDate(validTerm);
 		paymentVo.setCardPwd(cardPwd);
-		paymentVo.setBirth(birthDate);
 		paymentVo.setPassword(password);
+		paymentVo.setBirth(birthDate);
 		paymentVo.setRegistration(firmNum);
 		paymentVo.setDefaultYN(defaultYN);
 		
 		//서비스 호출
+		int update = 0;
+		if(defaultYN != null) {
+			update = new MemberPaymentService().updatePayment(memberNo);
+		}
+		
 		int result = new MemberPaymentService().insertPayment(paymentVo);
 		
 		//결과에 따른 화면선택
-		if(result == 1) {
+		if(result == 1 && update != -1) {
 			req.getSession().setAttribute("alertMsg", "성공적으로 등록되었습니다.");
 			resp.sendRedirect(req.getContextPath() + "/member/mypage");
 		}else {

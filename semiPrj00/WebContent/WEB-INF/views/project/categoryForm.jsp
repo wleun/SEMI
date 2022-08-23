@@ -163,7 +163,7 @@
         		<%for(ProjectVo vo : prjList){%>
 	            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view?num=<%=vo.getPrjectNo()%>'">
 	                <div class="prj-content prj-img">
-	                    <img src="<%=vo.getThumbnailPath()%>" alt="<%=vo.getThumbnailName()%>">
+	                    <img src="<%=contextPath%>/resources/upload/<%=vo.getThumbnailName()%>" alt="<%=vo.getThumbnailName()%>">
 	                </div>
 	                <div class="prj-content prj-category">
 	                    <span><%=vo.getCategoryNo()%></span> | <span><%=vo.getMakerNo()%></span>
