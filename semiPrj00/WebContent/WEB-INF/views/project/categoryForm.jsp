@@ -161,7 +161,7 @@
         <div id="category-content-wrap">
         	<%if(prjList!=null){ %>
         		<%for(ProjectVo vo : prjList){%>
-	            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view'">
+	            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view?num=<%=vo.getPrjectNo()%>'">
 	                <div class="prj-content prj-img">
 	                    <img src="<%=vo.getThumbnailPath()%>" alt="<%=vo.getThumbnailName()%>">
 	                </div>

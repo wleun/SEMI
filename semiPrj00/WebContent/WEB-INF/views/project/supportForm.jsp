@@ -343,7 +343,11 @@
                 </ul>
             </div>
             <div id="support-btn-div" class="final-div">
-                <button type="submit" formmethod="post" class="btn btn-success final-div" id="support-btn">후원하기</button>
+            	<form action="<%=contextPath%>/project/support" method="post">
+            	
+	                <button type="submit" formmethod="post" class="btn btn-success final-div" id="support-btn">후원하기</button>
+            	</form>
+            
             </div>
        </div>
        <%@ include file="/WEB-INF/views/project/paymentSelectForm.jsp" %>
