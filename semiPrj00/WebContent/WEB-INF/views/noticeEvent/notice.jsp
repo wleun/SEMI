@@ -96,6 +96,18 @@
         <div id="notice">
             <div id="notice-h1"><h1>공지사항</h1></div>
             <ul>
+                <%for(AdminNoticeVo b : voList) {%>
+                <li >
+                    <a href="" class="noti-a">
+                        <div class="noti-info">
+                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
+                            <h3 class="noti-title"><%=b.getTitle() %></h3>
+                            <span class="noti-date"><%=b.getWriteDate()%></span> 
+                        </div>
+                    </a>
+                    <hr class="last-hr">
+                </li>
+                <%} %>
                 <!--  <li >
                     <hr>
                     <a href="" class="noti-a">
@@ -118,19 +130,7 @@
                     </a>
                     <hr>
                 </li>  --> 
-                <%for(AdminNoticeVo b : voList) {%>
-                <li >
-                    <a href="" class="noti-a">
-                        <div class="noti-info">
-                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
-                            <h3 class="noti-title"><%=b.getTitle() %></h3>
-                            <span class="noti-date"><%=b.WriteDate()%> &nbsp; 조회수 : <%=b.getCnt() %></span> 
-                        </div>
-                    </a>
-                    <hr class="last-hr">
-                </li>
-                <%} %>
-                <li >
+                <!--  <li >
                     <a href="" class="noti-a">
                         <div class="noti-info">
                             <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
@@ -141,7 +141,7 @@
                     <hr class="last-hr">
                 </li>
             </ul>
-
+ -->
             <div class="page-area">
                 <%if(currentPage != 1){ %>
                 <a href="<%=contextPath %>/member/noticeList?p=<%=currentPage-1%>"> &lt;</a>
@@ -158,6 +158,7 @@
                 <%} %>
                 
             </div>
+           
         </div>
 
     </main>

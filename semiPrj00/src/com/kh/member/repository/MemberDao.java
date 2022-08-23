@@ -251,5 +251,74 @@ public class MemberDao {
 		}
 		return result;
 	}
+	/*
+	 * 비번찾기인증
+	 */
+	public int findPwd(Connection conn, String email, String phone) {
+		//CONN준비
+		//STRING 준비
+		String sql = "SELECT COUNT(NO) FROM MEMBER WHERE EMAIL = ? AND PHONE = ? AND STATUS= 'A'";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, phone);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("COUNT(NO)");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}return result;
+		
+		
+				
+	}
+	/*
+	 * 비번변경
+	 */
+	public int updatePwd(Connection conn, String email, String phone, String pwd) {
+		//conn준비
+		//sql
+		String sql = "UPDATE MEMBER SET PWD = ? WHERE EMAIL = ? AND PHONE = ? AND STATUS= 'A'";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1,pwd);
+			pstmt.setString(2, email);
+			pstmt.setString(3, phone);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
