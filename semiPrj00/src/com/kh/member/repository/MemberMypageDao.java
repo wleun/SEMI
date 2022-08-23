@@ -59,7 +59,7 @@ public class MemberMypageDao {
 				String nick = rs.getString("NICK");
 				String phone = rs.getString("PHONE");
 				String type = rs.getString("TYPE");
-				String registration = rs.getString("REGINSTRATION");
+				String registration = rs.getString("REGISTRATION");
 				String mLever = rs.getString("M_LEVEL");
 				
 				vo = new MemberVo();
@@ -71,8 +71,6 @@ public class MemberMypageDao {
 				vo.setType(type);
 				vo.setRegistration(registration);
 				vo.setmLevel(mLever);
-				
-				System.out.println(vo);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
