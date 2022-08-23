@@ -6,7 +6,7 @@
 
 
 <%
-	/* ProjectVo pvo = (ProjectVo)request.getAttribute("projectVo"); */
+	ProjectVo pvo = (ProjectVo)request.getAttribute("projectVo");
 %>
 
 <!DOCTYPE html>
@@ -151,15 +151,16 @@
         align-items: center;
     }
     #project-category{
-        width: 70px;
+        width: 150px;
         height: 40px;
         border-radius: 50px;
         margin: 10px;
         background-color: #48CA7D;
+        text-align:center;
     }
     #project-category>a{
         display: inline-block;
-        padding: 8px 8px 8px 20px;
+        padding: 8px 20px 8px 20px;
         width: 100%;
         height: 100%;
         text-decoration: none;
@@ -494,7 +495,7 @@
         <div class="desc-section" id="desc-head">
             <div id="head-title">
                 <div id="project-category">
-                    <a href="/project/category">푸드</a>
+                    <a href="/project/category">${projectVo.categoryNo}</a>
                 </div>
                 <div id="project-title">
                     <a>${projectVo.name}</a>
@@ -533,15 +534,15 @@
                     <table>
                         <tr>
                             <td><b class="info2-title">목표금액</b></td>
-                            <td><span class="info2">100,000</span>원</td>
+                            <td><span class="info2">${projectVo.goal}</span>원</td>
                         </tr>
                         <tr>
                             <td><b class="info2-title">펀딩기간</b></td>
-                            <td><span class="info2">220303</span>-<span class="info2">220303</span></td>
+                            <td><span class="info2">${projectVo.startDate}</span>-<span class="info2">${projectVo.endDate}</span></td>
                         </tr>
                         <tr>
-                            <td><b class="info2-title">결제</b></td>
-                            <td>플젝 성공 시 <span class="info2">220303</span> 결제 진행</td>
+                            <td><b class="info2-title">배송</b></td>
+                            <td>목표금액 달성 시 <span class="info2">${projectVo.shippingDate}</span> 배송 진행</td>
                         </tr>
                     </table>
                 </div>
@@ -584,25 +585,29 @@
                             </div>
                         </form>
                         <div id="">
-                            <div class="post-area-no-post"><h5>작성된 새소식이 없습니다. 글을 작성해주세요.</h5></div>
-                            <div class="post-area">
-                               
-                                <div class="post-writer-area"><span id="notice-writer">크리에이터명</span><span id="notice-date">2022/08/11</span></div>
-                                <div class="post-content-area">
-                                    <span id="notice-content">
-                                        EVENT <br>
-                                        10위권 랭킹 기념 및 후원자님들의 멋진 의견과
-                                        기대평을 듣고 더욱 성장할 수 있는 시간을 갖고자
-                                        소소한 EVENT를 준비하였어요.
-
-                                    </span>
-                                </div>
-                                <div class="post-reply-area" id="notice-reply-area"><span id="notice-reply">답글</span></div>
-                                <!-- 해당 크리에이터가 로그인 했을 때 -->
-                                <a href="">수정</a>
-                                <a href="">삭제</a>
-                              
-                            </div>
+                        	
+                        	<c:if test="${empty noticeList}">
+                            	<div class="post-area-no-post"><h5>작성된 새소식이 없습니다. 글을 작성해주세요.</h5></div>
+                            </c:if>
+                            
+                            <c:if test="${not empty noticeList}">
+                            	<c:forEach items="${noticeList}" var="nlist">
+		                            <div class="post-area">
+		                                <div class="post-writer-area"><span id="notice-writer">${nlist.memberNo}</span><span id="notice-date">${nlist.newsDate}</span></div>
+		                                <div class="post-content-area">
+		                                    <span id="notice-content">
+		                                        ${nlist.content}
+		                                    </span>
+		                                </div>
+		                                <div class="post-reply-area" id="notice-reply-area"><span id="notice-reply">답글</span></div>
+		                                <c:if test="${nlist.memberNo} eq ${pvo.makerNo}">
+			                                <a href="">수정</a>
+			                                <a href="">삭제</a>
+			                            </c:if>
+		                            </div>
+		                         </c:forEach>
+                            </c:if>
+                            
                         </div>
                     </div>
                 </div>
@@ -726,7 +731,7 @@
 							<div id="option-list-empty">옵션이 존재하지 않습니다.</div>
 						</c:if>
 						<c:if test="${not empty optionList}">
-							<c:forEach items="optionList" var="list">
+							<c:forEach items="${optionList}" var="list">
 	
 		                        <div class="rwd-btn" id="reward-btn">
 		                            <div id="reward-btn-on-display">
@@ -741,14 +746,14 @@
 		                            </div>
 		
 		                            <div class="hide-div" id="option-select-area">
-		                                <form action="<%=contextPath%>/project/support?pnum=${projectVo.no}&rnum=${list.no}">
+		                                <form action="<%=contextPath%>/project/support?pnum=${projectVo.prjectNo}&rnum=${list.no}&qty=&add=">
 		                                    수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
 		                                    <input type="submit">
 		                                </form>
 		                            </div>
 		                        </div>
 		                        
-							</c:forEach>
+						 	</c:forEach>
 						</c:if>
 
                        
@@ -774,6 +779,8 @@
 
 <script>
     $(function(){
+    	
+    	
         
         $("#file").on('change',function(){
             var fileName = $("#file").val();
@@ -808,7 +815,7 @@
                         data : {
                             flag : 1, 
                             memberNo : <%=loginMember.getNo()%>,
-                            projectNo : 1
+                            projectNo : <%=pvo.getPrjectNo()%>
                             },
                         success : function(likeResult){
                             if(likeResult == 1){
@@ -828,7 +835,7 @@
                         data : {
                             flag : 2,
                             memberNo : <%=loginMember.getNo()%>,
-                            projectNo : 1
+                            projectNo : <%=pvo.getPrjectNo()%>
                             },
                         success : function(likeCancel){
                             if(likeCancel == 1){
@@ -843,7 +850,8 @@
             </c:if>
           });
         
-
+		$
+        
         $('.rwd-btn').click(function(){
             const div = $('.hide-div');
             $(div).hide(); 

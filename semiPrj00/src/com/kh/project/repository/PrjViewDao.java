@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.project.notice.vo.ProjectNoticeVo;
 import com.kh.project.vo.ProjectVo;
 import com.kh.reward.vo.ProjectRewardVo;
 
@@ -20,8 +22,8 @@ public class PrjViewDao {
 		ResultSet rs = null;
 		ProjectVo pvo = null;
 		
-		String sql = "SELECT P.PROJECT_NO, C.NAME AS CATEGORY_NO, P.NAME, TO_CHAR(P.REGISTER_DATE,'YY/MM/DD') AS REGISTER_DATE, P.START_DATE, P.END_DATE, TO_CHAR(P.GOAL,'99,999,999,999') AS GOAL, M.NICK AS MAKER_NO, P.TEXT, P.ACCOUNT_NO, P.SHIPPING_DATE, P.THUMBNAIL_NAME, P.THUMBNAIL_PATH, P.ETC, P.ACCOUNT_BANK, P.ACCOUNT_NAME, P.MAKER_INFO, P.STATUS FROM PROJECT P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.PROJECT_NO = ?";
-		
+		String sql = "SELECT P.PROJECT_NO, C.NAME AS CATEGORY_NO, P.NAME, TO_CHAR(P.REGISTER_DATE,'YY/MM/DD') AS REGISTER_DATE, P.START_DATE, P.END_DATE, P.GOAL, M.NICK AS MAKER_NO, P.TEXT, P.ACCOUNT_NO, P.SHIPPING_DATE, P.THUMBNAIL_NAME, P.THUMBNAIL_PATH, P.ETC, P.ACCOUNT_BANK, P.ACCOUNT_NAME, P.MAKER_INFO, P.STATUS FROM PROJECT P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.PROJECT_NO = ?";
+		System.out.println("pvo 조회: 여기까지 왔나?!");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prjNum);
@@ -75,7 +77,7 @@ public class PrjViewDao {
 			close(pstmt);
 			close(rs);
 		}
-		
+		System.out.println("서비스로 전달할 pvo:"+pvo);
 		return pvo;
 	}
 
@@ -85,13 +87,13 @@ public class PrjViewDao {
 		ResultSet rs = null;
 		List<ProjectRewardVo> list = new ArrayList<ProjectRewardVo>();
 		
-		String sql = "SELECT NO,\"OPTION\",DETAIL,TO_CHAR(PRICE, '999,999') AS PRICE,QUANTITY FROM REWARD WHERE PROJECT_NO = ?";
-		
+		String sql = "SELECT NO,\"OPTION\",DETAIL,PRICE,QUANTITY FROM REWARD WHERE PROJECT_NO = ?";
+		System.out.println("rvo 조회: 여기까지 왔나?!");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prjNum);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				String no = rs.getString("NO");
 				String optionName = rs.getString("\"OPTION\"");
 				String detail = rs.getString("DETAIL");
@@ -113,20 +115,54 @@ public class PrjViewDao {
 			close(pstmt);
 			close(rs);
 		}
-		
+		System.out.println("list값:"+list);
 		return list;
 	}
 
-	public void getTotalDonation(Connection conn, String prjNum) {
+
+//	public void getTotalDonation(Connection conn, String prjNum) {
+//		PreparedStatement pstmt = null;
+//		String sql = "";
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+
+	//공지사항 존재하는지 확인
+	public List<ProjectNoticeVo> selectNotice(Connection conn, String prjNum) {
+		
 		PreparedStatement pstmt = null;
-		String sql = "";
+		ResultSet rs = null;
+		List<ProjectNoticeVo> noticeList = new ArrayList<ProjectNoticeVo>();
+		
+		String sql = "SELECT M.NICK AS MEMBER_NO, N.CONTENT, TO_CHAR(N.NEWS_DATE, 'YYYY/MM/DD') AS NEWS_DATE FROM NEWS N JOIN MEMBER M ON N.MEMBER_NO = M.NO WHERE N.PROJECT_NO = ? AND N.DELETE_YN = 'N'";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setString(1, prjNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String member = rs.getString("MEMBER_NO");
+				String content = rs.getString("CONTENT");
+				String newsDate = rs.getString("NEWS_DATE");
+				
+				ProjectNoticeVo nvo = new ProjectNoticeVo();
+				nvo.setMemberNo(member);
+				nvo.setContent(content);
+				nvo.setNewsDate(newsDate);
+				
+				noticeList.add(nvo);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
 		}
+		return noticeList;
 	}
-
 }

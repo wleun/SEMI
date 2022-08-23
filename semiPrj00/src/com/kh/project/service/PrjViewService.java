@@ -5,6 +5,7 @@ import static com.kh.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.project.notice.vo.ProjectNoticeVo;
 import com.kh.project.repository.PrjViewDao;
 import com.kh.project.vo.ProjectVo;
 import com.kh.reward.vo.ProjectRewardVo;
@@ -44,10 +45,23 @@ public class PrjViewService {
 		return list;
 	}
 
-	//총 후원금액 계산하기
-	public void getTotalDonation(String prjNum) {
-		Connection conn = getConnection();
-		dao.getTotalDonation(conn, prjNum);
-	}
 
+	//총 후원금액 계산하기
+//	public void getTotalDonation(String prjNum) {
+//		Connection conn = getConnection();
+//		dao.getTotalDonation(conn, prjNum);
+//	}
+
+	//공지사항 존재하는지 확인
+	public List<ProjectNoticeVo> selectNotice(String prjNum) {
+		
+		Connection conn = getConnection();
+		
+		List<ProjectNoticeVo> noticeList = dao.selectNotice(conn,prjNum);
+		
+		if(noticeList != null) {
+			close(conn);
+		}
+		return noticeList;
+	}
 }
