@@ -23,7 +23,14 @@ public class PrjReportService {
 		//dao 호출
 		try {
 			result = new PrjReportDao().insertReport(conn, reportVo);
+			
+			if(result == 1) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
 		} catch (Exception e) {
+			rollback(conn);
 			e.printStackTrace();
 		}finally {
 			close(conn);

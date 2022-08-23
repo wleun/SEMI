@@ -45,7 +45,7 @@ public class PrjReportDao {
 		Connection conn = getConnection();
 		ProjectVo pvo = null;
 		
-		String sql = "select * from project where project_no = 5";
+		String sql = "select * from project where project_no = 4";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
