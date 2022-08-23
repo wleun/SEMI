@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +34,7 @@
         }
         #form{
             /* border: 1px solid red; */
-            width: 500px; height: 550px;
+            width: 500px; height: 630px;
             margin: 0 auto;
             font-size: 20px;
             background-color: rgba(255, 255, 255, 0.675);
@@ -94,7 +97,10 @@
       .modal-div{
         display: none;
       }
-
+	
+		#checked{
+		font-size: 15px;
+		}
       @import url("//fonts.googleapis.com/earlyaccess/nanumgothic.css" );
     input[type=password]{
 	font-family:"Nanum Gothic", sans-serif !important;
@@ -117,7 +123,7 @@
                 <form action="<%=contextPath%>/member/join2" method="post">
                    <ul id="form-ul">
                     <br>
-                    <li class="join-li">*E-mail <br><input type="email" name="memberEmail" placeholder="이메일 형식으로 입력하세요."> <button id="check-btn">중복확인</button></li>
+                    <li class="join-li">*E-mail <br><input type="email" name="memberEmail" id="email" placeholder="이메일 형식으로 입력하세요."> <button id="check-btn" onclick="emailCheck()">중복확인</button></li>
                     <li class="join-li">
                         *비밀번호 <br><input type="password" name="memberPwd" id="pwd" required>
                         <div id="pwd-size" style="color: red; font-size:15px; position: absolute;">4자리 이상 입력하세요.</div>
@@ -126,9 +132,9 @@
                         *비밀번호 확인<br><input type="password" name="memberPwd2" id="pwd2" required>
                         <div id="danger" style="color: red; font-size:15px; position: absolute;">비밀번호와 일치하지않습니다.</div><div id="success" style="color: #48CA7D; font-size:15px; position: absolute;">비밀번호와 일치합니다!</div>
                     </li>
-                    <li class="join-li">*이름 (법인 : 대표명)<br><input type="text" name="memberName"></li>
-                    <li class="join-li">*닉네임<br><input type="text" name="memberNick"></li>
-                    <li class="join-li">*연락처<br><input type="text" name="memberPhone"></li>
+                    <li class="join-li">*이름 (법인 : 대표명)<br><input type="text" name="memberName" required></li>
+                    <li class="join-li">*닉네임<br><input type="text" id="id" name="memberNick" required onfocusout="test();"> <br><span id="checked"></span> </li>
+                    <li class="join-li">*연락처<br><input type="text" name="memberPhone" required placeholder="-제외 입력"></li>
                     <li class="join-li">추천코드<br><input type="text" name="code"></li>
                     
                    
@@ -142,8 +148,42 @@
         </div>
 
     </main>
-   
     <script>
+    	function emailCheck(){
+    		window.open("<%=contextPath %>/member/emailCheck","none","width=200px, heignt=150px");
+    	}
+    </script>
+  <script>
+  		function test(){
+  			const temp = $('#id').val();
+  			
+  			console.log(temp);
+  			$.ajax({
+  				url : "<%=contextPath %>/idCheck",
+  				type : "POST",
+  				data : {userId : temp},
+  				dataType : 'text',
+  				success : function(result){
+  					if(result == 0){
+  						document.getElementById('checked').innerHTML = "사용가능한 닉네임입니다.";
+  						document.getElementById('checked').style.color = "#48CA7D";
+  					}else{
+  						document.getElementById('checked').innerHTML = "이미 사용 중인 닉네임입니다.";
+  						document.getElementById('checked').style.color = "red";
+  						
+  						$('#next').attr("disabled","disabled");
+  					}
+  				},
+  				error : function(){
+  					alert("서버요청실패..");
+  				}
+  			
+  			})
+  			
+  		}
+  	</script>
+    <script>
+    
         $(function(){
             $("#success").hide();
             $("#danger").hide();
@@ -173,4 +213,5 @@
     </script>
 
 </body>
+	
 </html>

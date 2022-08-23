@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String result = (String)request.getAttribute("result");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -213,16 +216,16 @@
                 <div class="modal_wrap">
                     <div>
                         <br> <h1>아이디 찾기</h1>
-                        <form action="" method="post" id="find-id-form">
+                        <form action="<%=contextPath %>/member/findId" method="post" id="find-id-form">
                             <ul class="find-ul">
                                 <li class="find-li">이름</li>
-                                <li class="find-li"><input type="text" name="memberName" required></li>
+                                <li class="find-li"><input type="text" name="memberName" id="memberName"  required></li>
                                 <li class="find-li">전화번호</li>
-                                <li class="find-li"><input type="phone" name="memberPhone" required></li>
-                                <br><li class="find-li"><input type="submit" value="아이디찾기" id="submit"></li>
+                                <li class="find-li"><input type="phone" name="memberPhone" id="memberPhone" required></li>
+                                <br><li class="find-li"><input type="button" value="아이디찾기" id="submit" onclick="find();"></li>
                             </ul>
                         </form>   
-                        <div id="find"><br> abcd123@naver.com</div>
+                        <div id="find"><br><span id="checkd"></span></div>
                     </div>
                     <div class="modal_close"><button style="color:white;">close</button></div>
                 </div>
@@ -265,6 +268,7 @@
         
     </div>
     </main>
+    <!-- 모달창 -->
    <script>
     window.onload=function(){
         function onClick(){
@@ -291,11 +295,71 @@
         document.getElementById('modal_btn_pwd').addEventListener('click',onClick2);
         document.querySelector('.modal_close_pwd').addEventListener('click',offClick2);
    
-      
-   
-   
     }
    </script>
-
+   <!-- 아이디찾기ajax -->
+	<script>
+  		function find(){
+  			const name = $('#memberName').val();
+  			const phone = $('#memberPhone').val();
+  			
+  			console.log(name);
+  			$.ajax({
+  				url : "<%=contextPath %>/member/findId",
+  				type : "POST",
+  				data : {
+  					memberName : name,
+  					memberPhone : phone
+  					},
+  				dataType : 'text',
+  				success : function(result){
+  					if(result == ""){
+  						document.getElementById('checked').innerHTML = "일치하는 정보가 없습니다.";
+  						document.getElementById('checked').style.color = "#48CA7D";
+  					}else{
+  						document.getElementById('checked').innerHTML = "<%=result%>";
+  						document.getElementById('checked').style.color = "red";
+  					}
+  				},
+  				error : function(){
+  					alert("서버요청실패..");
+  				}
+  			
+  			})
+  			
+  		}
+  	</script>
+  	<!-- 비밀번호 찾기ajax -->
+  	<script>
+  		function find(){
+  			const name = $('#memberName').val();
+  			const phone = $('#memberPhone').val();
+  			
+  			console.log(name);
+  			$.ajax({
+  				url : "<%=contextPath %>/member/findId",
+  				type : "POST",
+  				data : {
+  					memberName : name,
+  					memberPhone : phone
+  					},
+  				dataType : 'text',
+  				success : function(result){
+  					if(result == ""){
+  						document.getElementById('checked').innerHTML = "일치하는 정보가 없습니다.";
+  						document.getElementById('checked').style.color = "#48CA7D";
+  					}else{
+  						document.getElementById('checked').innerHTML = "<%=result%>";
+  						document.getElementById('checked').style.color = "red";
+  					}
+  				},
+  				error : function(){
+  					alert("서버요청실패..");
+  				}
+  			
+  			})
+  			
+  		}
+  	</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.kh.memberNotice.dao;
+package com.kh.memberNotice.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

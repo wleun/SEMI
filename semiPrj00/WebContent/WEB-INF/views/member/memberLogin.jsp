@@ -99,7 +99,7 @@
         
         <div id="login-form-div">
         
-            <form action="" method="post" id="login-form">
+            <form action="<%=contextPath %>/member/login" method="post" id="login-form">
                
                 <ul id="form-ul">
                     <li class="login-li">E - mail&nbsp; <input type="email" name="memberEmail" required placeholder="ex)abc@abc.com"></li>
