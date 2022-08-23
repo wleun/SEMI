@@ -251,7 +251,7 @@
     .main-title>div:first-child{
         background-color: white;
         padding: 10px 50px 10px 50px;
-        margin-bottom: 50px;
+        margin: 100px 0px 50px 0px;
         display: inline-block;
         border-radius: 10px;
     }
@@ -429,7 +429,12 @@
         font-size: 14px;
         height: 100px;
     }
-
+	#option-list-empty{
+		text-align:center;
+		height:690px;
+		line-height:690px;
+	}
+	
     #reward-option{
         position: sticky;
         top: 190px;
@@ -568,17 +573,18 @@
                         <img style="width:100%; height:auto" src="<%=contextPath%>/resources/img/desc3.JPG" alt="???">
                     </div>
                 </div>
+                
                 <div class="main-title" id="notice">
-                    <div><span>공지사항</span></div>
+                    <div><span>새소식</span></div>
                     <div>
-                        <form action="">
+                        <form action="${pageContext.request.contextPath}/project/notice">
                             <div id="notice-comment-wrap">
                                 <textarea name="notice-comment-area" class="comment" id="notice-comment-area" maxlength="500" placeholder="500자 이내로 입력해주세요."></textarea>
                                 <input type="submit" value="작성하기">
                             </div>
                         </form>
                         <div id="">
-                            <div class="post-area-no-post"><h5>작성된 공지사항이 없습니다. 글을 작성해주세요.</h5></div>
+                            <div class="post-area-no-post"><h5>작성된 새소식이 없습니다. 글을 작성해주세요.</h5></div>
                             <div class="post-area">
                                
                                 <div class="post-writer-area"><span id="notice-writer">크리에이터명</span><span id="notice-date">2022/08/11</span></div>
@@ -600,6 +606,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="main-title" id="community">
                     <div><span>커뮤니티</span></div>
 
@@ -687,6 +694,7 @@
                     <!-- 부트스트랩 -->
                     
                 </div>
+                
                 <div class="main-title" id="project-etc">
                     <div><span>예상되는어려움</span></div>
                     <div>
@@ -702,9 +710,8 @@
             <div id="main-side">
                 <div id="creator-info">
                     <div id="creator-title">크리에이터 소개</div>
-                    <div id="creator-name">이코믹스</div>
-                    <div id="creator-desc">이코믹스는 만화 출판사입니다.
-                        글로벌 시장을 대상으로 다양한 만화를 제작, 출판, 유통하고 있습니다.</div>
+                    <div id="creator-name">${projectVo.makerNo}</div>
+                    <div id="creator-desc">${projectVo.makerInfo}</div>
                     <div class="btns" id="btn-div2">
                         <button>+ 팔로우</button>
                         <button onclick="location.href='/semiPrj00/member/qdetail'">1:1 문의하기</button>
@@ -715,80 +722,38 @@
                     <div id="reward-option-title"><span>리워드 선택하기</span></div>
                     <div class="btns" id="reward-btn-area">
 
-                        <div class="rwd-btn" id="reward-btn">
+						<c:if test="${empty optionList}">
+							<div id="option-list-empty">옵션이 존재하지 않습니다.</div>
+						</c:if>
+						<c:if test="${not empty optionList}">
+							<c:forEach items="optionList" var="list">
+	
+		                        <div class="rwd-btn" id="reward-btn">
+		                            <div id="reward-btn-on-display">
+		                                <div><span class="option-attribute" id="option-name">${list.option }</span></div>
+		                                <div><span class="option-attribute option-prc" id="option-price">${list.price}</span><span class="option-attribute" id="option-price"> 원</span></div>
+		                                <div>
+		                                    <span class="option-attribute" id="option-detail">
+		                                        ${list.detail}
+		                                    </span>
+		                                </div>
+		                                <div><span class="option-attribute">선택가능수량: </span><span class="option-attribute" id="option-quantity">${list.quantity}</span></div>
+		                            </div>
+		
+		                            <div class="hide-div" id="option-select-area">
+		                                <form action="<%=contextPath%>/project/support?pnum=${projectVo.no}&rnum=${list.no}">
+		                                    수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
+		                                    <input type="submit">
+		                                </form>
+		                            </div>
+		                        </div>
+		                        
+							</c:forEach>
+						</c:if>
 
-                            <div id="reward-btn-on-display">
-                                <div><span class="option-attribute" id="option-name">옵션1</span></div>
-                                <div><span class="option-attribute option-prc" id="option-price">25000</span><span class="option-attribute" id="option-price"> 원</span></div>
-                                <div>
-                                    <span class="option-attribute" id="option-detail">
-                                        일반 슬리브 3팩 추가<br>
-                                    미드가르드의 챔피언 - 컴플리트 에디션 ( x 1 )<br>
-                                    일반 슬리브 63 * 88 사이즈 2팩 ( x 1 )<br>
-                                    일반 슬리브 41 * 63 사이즈 1팩 ( x 1 )
-                                    </span>
-                                </div>
-                                <div><span class="option-attribute">선택가능수량: </span><span class="option-attribute" id="option-quantity">2</span></div>
-                            </div>
+                       
 
-                            <div class="hide-div" id="option-select-area">
-                                <form action="<%=contextPath%>/project/support?pnum=${projectVo.no}&rnum=${rewardVo.no}">
-                                    수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
-                                    <input type="submit">
-                                </form>
-                            </div>
-
-                        </div>
-
-                        <div class="rwd-btn" id="reward-btn">
-
-                            <div id="reward-btn-on-display">
-                                <div><span class="option-attribute" id="option-name">옵션2</span></div>
-                                <div><span class="option-attribute option-prc" id="option-price">30000</span><span class="option-attribute" id="option-price"> 원</span></div>
-                                <div>
-                                    <span class="option-attribute" id="option-detail">
-                                        일반 슬리브 5팩 추가<br>
-                                    미드가르드의 챔피언 - 컴플리트 에디션 ( x 1 )<br>
-                                    일반 슬리브 63 * 88 사이즈 2팩 ( x 1 )<br>
-                                    일반 슬리브 41 * 63 사이즈 1팩 ( x 1 )
-                                    </span>
-                                </div>
-                                <div><span class="option-attribute">선택가능수량: </span><span class="option-attribute" id="option-quantity">5</span></div>
-                            </div>
-
-                            <div class="hide-div" id="option-select-area">
-                                <form action="<%=contextPath%>/project/support">
-                                    수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
-                                    <input type="submit">
-                                </form>
-                            </div>
-
-                        </div>
-
-                        <div class="rwd-btn" id="reward-btn">
-
-                            <div id="reward-btn-on-display">
-                                <div><span class="option-attribute" id="option-name">옵션3</span></div>
-                                <div><span class="option-attribute option-prc" id="option-price">35000</span><span class="option-attribute" id="option-price"> 원</span></div>
-                                <div>
-                                    <span class="option-attribute" id="option-detail">
-                                        일반 슬리브 5팩 추가<br>
-                                    미드가르드의 챔피언 - 컴플리트 에디션 ( x 1 )<br>
-                                    일반 슬리브 63 * 88 사이즈 2팩 ( x 1 )<br>
-                                    일반 슬리브 41 * 63 사이즈 1팩 ( x 1 )
-                                    </span>
-                                </div>
-                                <div><span class="option-attribute">선택가능수량: </span><span class="option-attribute" id="option-quantity">7</span></div>
-                            </div>
-
-                            <div class="hide-div" id="option-select-area">
-                                <form action="<%=contextPath%>/project/support">
-                                    수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
-                                    <input type="submit">
-                                </form>
-                            </div>
-
-                        </div>                
+                                        
 
                         
                     </div>
@@ -820,8 +785,10 @@
         $('#like-btn').click(function(){
         	
             <c:if test="${ empty loginMember}">
-    			alert('로그인이 필요한 기능입니다.');
-    			location.href='<%=contextPath%>/member/login';
+    			const confirmLogin = confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?');
+    			if(confirmLogin){
+	    			location.href='<%=contextPath%>/member/login';
+    			}
    			</c:if>
     		
 			<c:if test="${ not empty loginMember}">

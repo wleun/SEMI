@@ -13,6 +13,7 @@ import com.kh.reward.vo.ProjectRewardVo;
 
 public class PrjViewDao {
 
+	//번호에 해당하는 플젝 조회해오기
 	public ProjectVo selectProject(Connection conn, String prjNum) {
 		
 		PreparedStatement pstmt = null;
@@ -84,19 +85,21 @@ public class PrjViewDao {
 		ResultSet rs = null;
 		List<ProjectRewardVo> list = new ArrayList<ProjectRewardVo>();
 		
-		String sql = "SELECT \"OPTION\",DETAIL,TO_CHAR(PRICE, '999,999') AS PRICE,QUANTITY FROM REWARD WHERE PROJECT_NO = ?";
+		String sql = "SELECT NO,\"OPTION\",DETAIL,TO_CHAR(PRICE, '999,999') AS PRICE,QUANTITY FROM REWARD WHERE PROJECT_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prjNum);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
+				String no = rs.getString("NO");
 				String optionName = rs.getString("\"OPTION\"");
 				String detail = rs.getString("DETAIL");
 				String price = rs.getString("PRICE");
 				String quantity = rs.getString("QUANTITY");
 				
 				ProjectRewardVo rvo = new ProjectRewardVo();
+				rvo.setNo(no);
 				rvo.setOption(optionName);
 				rvo.setDetail(detail);
 				rvo.setPrice(price);
@@ -112,6 +115,18 @@ public class PrjViewDao {
 		}
 		
 		return list;
+	}
+
+	public void getTotalDonation(Connection conn, String prjNum) {
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
