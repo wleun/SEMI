@@ -38,11 +38,15 @@ public class AdminPrjDeleteController extends HttpServlet {
 			System.out.println(result + "횟수만큼의 삭제 실패");
 		}
 		
+		//디비에 가서, status 조회.
+		//조회결과를 배열로 만들어서 응답하기
+		// 화면 : ajax -> 컨 - 서 - 디 - 서 - 컨 - 서 - 디 - 서 - 컨 . 결과 . 응답
+		
 		//클라이언트에 응답
 		resp.setCharacterEncoding("UTF-8");
 		
 		String answer = result + "회 삭제 완료했습니다.";
-		resp.getWriter().write(answer);
+		resp.getWriter().write("[D,D,D,D,D]");
 		
 	}
 	

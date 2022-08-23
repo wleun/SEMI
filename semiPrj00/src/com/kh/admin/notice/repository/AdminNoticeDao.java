@@ -15,6 +15,7 @@ import com.kh.common.vo.PageVo;
 
 public class AdminNoticeDao {
 
+	//공지사항 페이징을 위한 카운트
 	public int getCount(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -40,6 +41,8 @@ public class AdminNoticeDao {
 		}
 		return count;
 	}
+	
+	//공지사항 페이징
 	
 	public List<AdminNoticeVo> selectList(Connection conn, PageVo pageVo) {
 		
@@ -79,7 +82,7 @@ public class AdminNoticeDao {
 				
 				if("N".equals(importantYn)) {
 					importantYn = "-";
-				} else if ("Y".equals(importantYn)) {
+				} else {
 					importantYn = "중요*";
 				}
 				
@@ -109,6 +112,8 @@ public class AdminNoticeDao {
 		
 		return list;
 	}
+	
+	//공지사항 삭제
 
 	public int deleteNotice(Connection conn, String noticeNo) {
 		int result = 0;
@@ -131,10 +136,12 @@ public class AdminNoticeDao {
 		
 			return result;
 		}
+	
+	//공지사항 작성
 
 	public static int insertNotice(Connection conn, AdminNoticeVo adminNoticeVo) {
 		
-		String sql = " INSERT INTO NOTICE ( NO, ADMIN_NO, TITLE, CONTENT, THUMBNAIL_PATH, THUMBNAIL_NAME ) VALUES ( SEQ_NOTICE_NO.NEXTVAL , ? , ? , ? , ? , ? )";
+		String sql = " INSERT INTO NOTICE ( NO, ADMIN_NO, TITLE, CONTENT, THUMBNAIL_PATH, THUMBNAIL_NAME, IMPORTANT_YN ) VALUES ( SEQ_NOTICE_NO.NEXTVAL , ? , ? , ? , ? , ? , ? )";
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -147,6 +154,7 @@ public class AdminNoticeDao {
 			pstmt.setString(3, adminNoticeVo.getContent());
 			pstmt.setString(4, adminNoticeVo.getThumbnailPath());
 			pstmt.setString(5, adminNoticeVo.getThumbnailName());
+			pstmt.setString(6, adminNoticeVo.getImportantYn());
 			
 			result = pstmt.executeUpdate();
 			
@@ -158,6 +166,8 @@ public class AdminNoticeDao {
 		
 		return result;
 	}
+	
+	//공지사항 작성
 
 	public static int insertNotice(Connection conn, AdminNoticeAttachmentVo adminNoticeAttachmentVo) {
 		
@@ -181,6 +191,104 @@ public class AdminNoticeDao {
 		
 		return result;
 	}
+
+	// 상세조회 (adminNoticeVo 리턴)
+	
+	public AdminNoticeVo selectOne(Connection conn, String no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AdminNoticeVo adminNoticeVo = new AdminNoticeVo();
+		
+		String sql = "SELECT * FROM NOTICE WHERE NO = ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,no);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				String title = rs.getString("TITLE");
+				String content = rs.getString("CONTENT");
+				String writeDate = rs.getString("WRITE_DATE");
+				String editDate = rs.getString("EDIT_DATE");
+				String importantYn = rs.getString("IMPORTANT_YN");
+				String editAdminNo = rs.getString("EDIT_ADMIN_NO");
+				String deleteYn = rs.getString("DELETE_YN");
+				
+				
+				if("N".equals(importantYn)) {
+					importantYn = "-";
+				} else {
+					importantYn = "중요*";
+				}
+				
+				if("N".equals(deleteYn)) {
+					deleteYn = "일반";
+				} else {
+					deleteYn = "삭제됨";
+				}
+				
+				
+				adminNoticeVo.setNo(no);
+				adminNoticeVo.setTitle(title);
+				adminNoticeVo.setContent(content);
+				adminNoticeVo.setWriteDate(writeDate);
+				adminNoticeVo.setEditDate(editDate);
+				adminNoticeVo.setEditAdminNo(editAdminNo);
+				adminNoticeVo.setImportantYn(importantYn);
+				adminNoticeVo.setDeleteYn(deleteYn);
+				
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return adminNoticeVo;
+	}
+
+	//상세조회 (파일)
+	
+	public AdminNoticeAttachmentVo selectFile(Connection conn, String no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AdminNoticeAttachmentVo adminNoticeAttachmentVo = new AdminNoticeAttachmentVo();
+		
+		String sql = "SELECT * FROM NOTICE_FILE WHERE NOTICE_NO = ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,no);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				String path = rs.getString("PATH");
+				String name = rs.getString("NAME");
+				
+				adminNoticeAttachmentVo.setPath(path);
+				adminNoticeAttachmentVo.setName(name);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return adminNoticeAttachmentVo;
 		
 	}
+		
+}
 

@@ -20,13 +20,19 @@ public class AdminEventDetailController extends HttpServlet{
 		
 		String no = req.getParameter("no");
 		
-		AdminEventVo adminEventvo = new AdminEventService().selectOne(no);
-		AdminEventAttachmentVo adminEventAttachmentVo = null;
-		if(adminEventvo!=null) {
-			adminEventAttachmentVo = new AdminEventService().selectFile(no);
+		AdminEventVo adminEventVo = new AdminEventService().selectOne(no);
+		AdminEventAttachmentVo adminEventAttachmentVo = new AdminEventService().selectFile(no);
+		
+		if(adminEventVo!=null && adminEventAttachmentVo !=null) {
+			req.setAttribute("adminEventVo", adminEventVo);
+			req.setAttribute("adminEventAttachmentVo", adminEventAttachmentVo);
+			req.setAttribute("functionName", "이벤트 상세조회");
+			
+			req.getRequestDispatcher("/WEB-INF/views/admin/event/adminEventDetailView.jsp").forward(req, resp);
+		} else {
+			req.getSession().setAttribute("errorMsg", "이벤트 정보를 불러올 수 없습니다.");
+			resp.sendRedirect("/semiPrj00/admin/event?p=1");
 		}
 		
-		req.setAttribute("functionName", "이벤트 상세조회");
-		req.getRequestDispatcher("/WEB-INF/views/admin/event/adminEventDetailView.jsp").forward(req, resp);
 	}
 }

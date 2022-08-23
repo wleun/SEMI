@@ -175,7 +175,7 @@
         <div id="proposalDetail">
             <div id="proposalBtns">
                 <form action="" method="post">
-                    <select name="" id="" style="border-radius:50px ;">
+                    <select name="status" id="" style="border-radius:50px ;">
                         <option value="assessing">검토중</option>
                         <option value="return">반려</option>
                         <option value="approve">승인</option>
@@ -195,12 +195,12 @@
                         <div class="proposalInfo justify-right">처리상태</div>
                     </div>
                     <div class="proposalInfoBox">
-                        <div class="proposalInfo justify-left">1</div>
-                        <div class="proposalInfo justify-left">와디즈</div>
-                        <div class="proposalInfo justify-left">뷰티</div>
-                        <div class="proposalInfo justify-left">당신이 찾던 그 프로젝트!</div>
-                        <div class="proposalInfo justify-left">2022-08-15</div>
-                        <div class="proposalInfo justify-left">접수</div>
+                        <div class="proposalInfo justify-left">${adminProposalVo.no}</div>
+                        <div class="proposalInfo justify-left">${adminProposalVo.nick}</div>
+                        <div class="proposalInfo justify-left">${adminProposalVo.categoryName}</div>
+                        <div class="proposalInfo justify-left">${adminProposalVo.name}</div>
+                        <div class="proposalInfo justify-left">${adminProposalVo.registerDate}</div>
+                        <div class="proposalInfo justify-left">${adminProposalVo.status}</div>
                     </div>
                 </div>
             </div>
@@ -209,23 +209,23 @@
                 <div id="projectInfoBox">
                     <div class="proposalInfoBox">
                         <div class="projectInfo ">프로젝트 일자 </div>
-                        <div class="projectInfo padding_bottom">2022-09-01 ~ 2022-09-10 </div>
+                        <div class="projectInfo padding_bottom">${adminProposalVo.startDate} ~ ${adminProposalVo.endDate} </div>
                         <div class="projectInfo ">프로젝트 목표금액</div>
-                        <div class="projectInfo padding_bottom">10,000,000원</div>
+                        <div class="projectInfo padding_bottom">${adminProposalVo.goal}</div>
                         <div class="projectInfo ">배송일</div>
-                        <div class="projectInfo padding_bottom">2022-12-01</div>
+                        <div class="projectInfo padding_bottom">${adminProposalVo.shippingDate}</div>
                         <div class="projectInfo padding_bottom">설명</div>
                     </div>
-                    <div class="projectExplain"> 내용 </div>
+                    <div class="projectExplain"> ${adminProposalVo.text} </div>
                 </div>
 
             </div>
             <div id="projectMedia">
                 <div class="proposalInfoBar">3.프로젝트 자료</div>
                 <div class="mediaText">썸네일</div>
-                <div class="mediaBox"><img src="" alt=""></div>
+                <div class="mediaBox"><img src="<%=contextPath %>/resources/upload/${adminProposalVo.thumbnailName}>" alt="섬네일 이미지"></div>
                 <div class="mediaText">상세 이미지/영상</div>
-                <div class="mediaBox"><img src="" alt=""></div>
+                <div class="mediaBox"><img src="<%=contextPath %>/resources/upload/${adminProposalAttachmentVo.filePath}" alt="이미지 내용"></div>
             </div>
         </div>
     </div>

@@ -82,8 +82,10 @@ public class AdminEventDao {
 					status = "진행예정";
 				} else if ("I".equals(status)) {
 					status = "진행중";
-				} else {
+				} else if ("E".equals(status)) {
 					status = "종료됨";
+				} else {
+					status = "삭제됨";
 				}
 				
 				if("N".equals(importantYn)) {
@@ -132,7 +134,7 @@ public class AdminEventDao {
 
 	public static int insertEvent(Connection conn, AdminEventVo adminEventVo) {
 		
-		String sql = "INSERT INTO EVENT (NO, ADMIN_NO, TITLE, CONTENT, THUMBNAIL_PATH, THUMBNAIL_NAME, START_DATE, END_DATE) VALUES (SEQ_EVENT_NO.NEXTVAL , ? , ? , ? , ? , ? , ? , ? )";
+		String sql = "INSERT INTO EVENT (NO, ADMIN_NO, TITLE, CONTENT, THUMBNAIL_PATH, THUMBNAIL_NAME, START_DATE, END_DATE, IMPORTANT_YN ) VALUES (SEQ_EVENT_NO.NEXTVAL , ? , ? , ? , ? , ? , ? , ?, ? )";
 		int result =0;
 		PreparedStatement pstmt = null;
 		
@@ -148,6 +150,7 @@ public class AdminEventDao {
 			pstmt.setString(5, adminEventVo.getThumbnailName());
 			pstmt.setString(6, adminEventVo.getStartDate());
 			pstmt.setString(7, adminEventVo.getEndDate());
+			pstmt.setString(8, adminEventVo.getImportantYN());
 			
 			result=pstmt.executeUpdate();
 			
@@ -182,6 +185,141 @@ public class AdminEventDao {
 		}
 		
 		return result;
+	}
+	
+	// 상세조회 (adminEventVo 리턴)
+
+	public AdminEventVo selectOne(Connection conn, String no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AdminEventVo adminEventVo = new AdminEventVo();
+		
+		String sql = "SELECT TITLE , CONTENT , WRITE_DATE , START_DATE , END_DATE , IMPORTANT_YN , EDIT_DATE , EDIT_ADMIN_NO , STATUS , THUMBNAIL_PATH, THUMBNAIL_NAME FROM EVENT WHERE NO = ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,no);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				
+				String title = rs.getString("TITLE");
+				String content = rs.getString("CONTENT");
+				String writeDate = rs.getString("WRITE_DATE");
+				String startDate = rs.getString("START_DATE");
+				String endDate = rs.getString("END_DATE");
+				String editDate = rs.getString("EDIT_DATE");
+				String importantYn = rs.getString("IMPORTANT_YN");
+				String editAdminNo = rs.getString("EDIT_ADMIN_NO");
+				String status = rs.getString("STATUS");
+				String thumbnailPath = rs.getString("THUMBNAIL_PATH");
+				String thumbnailName = rs.getString("THUMBNAIL_NAME");
+
+				if("N".equals(importantYn)) {
+					importantYn = "-";
+				} else if ("Y".equals(importantYn)) {
+					importantYn = "중요*";
+				} 
+				
+				if("B".equals(status)) {
+					status = "진행예정";
+				} else if("I".equals(status)) {
+					status = "진행중";
+				} else if("E".equals(status)) {
+					status = "종료";
+				} else {
+					status = "삭제됨";
+				}
+				
+				adminEventVo.setNo(no);
+				adminEventVo.setTitle(title);
+				adminEventVo.setContent(content);
+				adminEventVo.setWriteDate(writeDate);
+				adminEventVo.setStartDate(startDate);
+				adminEventVo.setEndDate(endDate);
+				adminEventVo.setEditDate(editDate);
+				adminEventVo.setImportantYN(importantYn);
+				adminEventVo.setEditAdminNo(editAdminNo);
+				adminEventVo.setStatus(status);
+				adminEventVo.setThumbnailPath(thumbnailPath);
+				adminEventVo.setThumbnailName(thumbnailName);
+				
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return adminEventVo;
+	}
+
+	// 상세조회 (adminEventAttachmentVo 리턴)
+	
+	public AdminEventAttachmentVo selectFile(Connection conn, String no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AdminEventAttachmentVo adminEventAttachmentVo = new AdminEventAttachmentVo();
+		
+		String sql = "SELECT PATH, NAME FROM EVENT_FILE WHERE EVENT_NO = ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,no);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				String path = rs.getString("PATH");
+				String name = rs.getString("NAME");
+				
+				adminEventAttachmentVo.setPath(path);
+				adminEventAttachmentVo.setName(name);
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return adminEventAttachmentVo;
+		
+		
+	}
+
+	public int deleteEvent(Connection conn, String no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE EVENT SET STATUS = 'D' WHERE NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, no);
+			
+			result = pstmt.executeUpdate();
+		
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+		
+		return result;
+		
 	}
 
 }

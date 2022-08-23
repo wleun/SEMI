@@ -148,32 +148,32 @@
             <div id="eventDetail">
                 <div id="eventHeader">
                     <div id="eventTitle">
-                        <h2> 이벤트 이름 </h2>
+                        <h2> ${adminEventVo.title} </h2>
                     </div>
                     <div id="eventInfo">
                         <div id="infoEventNo">
-                            [이벤트 번호 : 1]
-                            <div id="important">[중요도 : 중요]</div>
+                            [이벤트 번호 : ${adminEventVo.no}]
+                            <div id="important">[중요도 : ${adminEventVo.importantYN}]</div>
                         </div>
                         <div id="infoFirstDiv">
-                            <div id="eventPeriod">[진행예정] 2022-08-15 ~ 2022-09.01</div>
-                            <div id="writeDate">작성시간 : 2022-08-16</div>
-                            <div id="editDate">수정시간 : 2022-08-19</div>
+                            <div id="eventPeriod">[${adminEventVo.status}] ${adminEventVo.startDate} ~ ${adminEventVo.endDate}</div>
+                            <div id="writeDate">작성시간 : ${adminEventVo.writeDate}</div>
+                            <div id="editDate">수정시간 : ${adminEventVo.editDate}</div>
                         </div>
                         <div id="infoSecondDiv">
                             <div id="backBtn"><button onclick="history.back()">뒤로가기</button></div>
-                            <div id="editBtn"><button>수정하기</button></div>
-                            <div id="deletebtn"><button>삭제하기</button></div>
+                            <div id="editBtn"><button onclick="location.href='<%=contextPath%>/admin/event/edit?no=${adminEventVo.no}';">수정하기</button></div>
+                            <div id="deletebtn"><button onclick="location.href='<%=contextPath%>/admin/event/delete?no=${adminEventVo.no}';">삭제하기</button></div>
                         </div>
                         
                     </div>
                 </div>
                 <div id="eventContent">
                     <div id="contentImage">
-                        <img src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 내용">
+                        <img src="<%=contextPath %>/resources/admin/event/${adminEventAttachmentVo.name}" alt="이벤트 내용">
                         <!-- <img src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 내용2"> -->
                     </div>
-                    <div id="contentText">그러한 이벤트입니다.</div>
+                    <div id="contentText">${adminEventVo.content}</div>
                 </div>
             </div>
         </div>

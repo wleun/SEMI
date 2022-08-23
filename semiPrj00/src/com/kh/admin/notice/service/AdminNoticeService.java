@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.kh.admin.attachment.vo.AdminEventAttachmentVo;
 import com.kh.admin.attachment.vo.AdminNoticeAttachmentVo;
+import com.kh.admin.event.repository.AdminEventDao;
+import com.kh.admin.event.vo.AdminEventVo;
 import com.kh.admin.notice.repository.AdminNoticeDao;
 import com.kh.admin.notice.vo.AdminNoticeVo;
 import com.kh.admin.project.repository.AdminPrjDao;
@@ -97,5 +99,34 @@ public class AdminNoticeService {
 		
 		
 	}
+	
+	public AdminNoticeVo selectOne(String no) {
+		Connection conn = getConnection();
+		AdminNoticeVo adminNoticeVo = new AdminNoticeDao().selectOne(conn,no);
+		
+		close(conn);
+		
+		return adminNoticeVo;
+		
+	}
+
+	public AdminNoticeAttachmentVo selectFile(String no) {
+		Connection conn = getConnection();
+		AdminNoticeAttachmentVo adminNoticeAttachmentVo = new AdminNoticeDao().selectFile(conn,no);
+		
+		close(conn);
+		
+		return adminNoticeAttachmentVo;
+	}
+
+	public int deleteNotice(String no) {
+		Connection conn = getConnection();
+		int result = new AdminNoticeDao().deleteNotice(conn, no);
+		
+		close(conn);
+		
+		return result;
+	}
+
 
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import com.kh.admin.attachment.vo.AdminEventAttachmentVo;
 import com.kh.admin.event.repository.AdminEventDao;
 import com.kh.admin.event.vo.AdminEventVo;
+import com.kh.admin.notice.repository.AdminNoticeDao;
 import com.kh.common.vo.PageVo;
 import static com.kh.common.JDBCTemplate.*;
 
@@ -104,13 +105,34 @@ public class AdminEventService {
 	}
 
 	public AdminEventVo selectOne(String no) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Connection conn = getConnection();
+		AdminEventVo adminEventVo = new AdminEventDao().selectOne(conn,no);
+		
+		close(conn);
+		
+		return adminEventVo;
 	}
 
 	public AdminEventAttachmentVo selectFile(String no) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Connection conn = getConnection();
+		AdminEventAttachmentVo adminEventAttachmentVo = new AdminEventDao().selectFile(conn,no);
+		
+		close(conn);
+		
+		return adminEventAttachmentVo;
+	}
+	
+	// 이벤트 삭제
+
+	public int deleteEvent(String no) {
+		Connection conn = getConnection();
+		int result = new AdminEventDao().deleteEvent(conn, no);
+		
+		close(conn);
+		
+		return result;
 	}
 
 }

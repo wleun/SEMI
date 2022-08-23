@@ -234,7 +234,7 @@
                                     	<a href="<%=contextPath%>/admin/notice/detail?no=${item.no}">
 	                                        <div class="noticeColumn">
 	                                           <div class="check"><input type="checkbox" class="form-check-input" name="boardCheck" value=${item.no}></div>
-			                                   <div class="important">${item.importantYn }</div>
+			                                   <div class="important">${item.importantYn}</div>
 			                                   <div class="noticeNo">${item.no}</div>
 			                                   <div class="noticeName">${item.title}</div>
 			                                   <div class="writeDate">${item.writeDate}</div>

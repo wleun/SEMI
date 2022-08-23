@@ -6,7 +6,10 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.admin.attachment.vo.AdminProposalAttachmentVo;
 import com.kh.admin.member.repository.AdminMemberDao;
+import com.kh.admin.notice.repository.AdminNoticeDao;
+import com.kh.admin.notice.vo.AdminNoticeVo;
 import com.kh.admin.proposal.repository.AdminProposalDao;
 import com.kh.admin.proposal.vo.AdminProposalVo;
 import com.kh.common.vo.PageVo;
@@ -30,6 +33,24 @@ public class AdminProposalService {
 		
 		close(conn);
 		return adminProposalVoList;
+	}
+
+	public AdminProposalVo selectOne(String no) {
+		Connection conn = getConnection();
+		AdminProposalVo adminProposalVo = new AdminProposalDao().selectOne(conn,no);
+		
+		close(conn);
+		
+		return adminProposalVo;
+	}
+
+	public AdminProposalAttachmentVo selectFile(String no) {
+		Connection conn = getConnection();
+		AdminProposalAttachmentVo adminProposalAttachmentVo = new AdminProposalDao().selectFile(conn,no);
+		
+		close(conn);
+		
+		return adminProposalAttachmentVo;
 	}
 
 }

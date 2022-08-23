@@ -42,6 +42,7 @@ public class AdminProposalVo {
 	private String text;
 	private String thumbnailName;
 	private String thumbnailPath;
+	
 	public String getNo() {
 		return no;
 	}
