@@ -141,7 +141,7 @@
 					<tr>
 						<td>프로젝트 제목*</td>
 						<td><input type="text" class="form-control" name="prjTitle"
-							placeholder="제목을 입력해주세요." required></td>
+							placeholder="제목을 입력해주세요." maxlength="50" required></td>
 					</tr>
 					<tr>
 						<td>프로젝트 시작일자*</td>
@@ -197,14 +197,15 @@
 					<tr>
 						<td>예상되는 어려움</td>
 						<td><textarea class="form-control" name="etc" cols="40"
-								rows="10" style="resize: none;"
+								rows="10" style="resize: none;" maxlength="500"
 								placeholder="펀딩 진행 및 배송 과정에서 예상되는 어려움을 입력해주세요."></textarea></td>
 					</tr>
 					<tr>
 						<td>예상 전달일*</td>
 						<td>결제 종료일로부터 <input style="width: 50px; display: inline;"
 							class="form-control" type="number" id="shippingDate"
-							name="shippingDate" min="0" value="0" required> 일 뒤
+							name="shippingDate" min="1" maxlength="2" value="0" 
+							oninput="numberMaxLength(this);" required> 일 뒤
 						</td>
 					</tr>
 					<tr>
@@ -228,26 +229,27 @@
 					<tr>
 						<td>메이커 정보</td>
 						<td><textarea class="form-control" name="makerInfo"
-								id="makerInfo" cols="30" rows="5" style="resize: none;"
+								id="makerInfo" cols="30" rows="5" style="resize: none;" maxlength="250"
 								placeholder="메이커님의 간단한 소개를 입력해주세요."></textarea></td>
 					</tr>
 					<tr>
 						<td>후원 계좌*</td>
 						<td><input class="form-control" type="number"
-							name="accountNo" placeholder="계좌번호를 입력해주세요.('-' 제외)" required>
+							name="accountNo" placeholder="계좌번호를 입력해주세요.('-' 제외)" 
+							maxlength="20" oninput="numberMaxLength(this);" required>
 						</td>
 					</tr>
 					<tr>
 						<td>은행명*</td>
 						<td><input class="form-control" type="text"
-							name="accountBank" id="accountBank" placeholder="은행명을 입력해주세요."
+							name="accountBank" id="accountBank" maxlength="8" placeholder="은행명을 입력해주세요."
 							required></td>
 
 					</tr>
 					<tr>
 						<td>예금주*</td>
 						<td><input class="form-control" type="text"
-							name="accountName" id="accountName" placeholder="예금주를 입력해주세요."
+							name="accountName" id="accountName" maxlength="8" placeholder="예금주를 입력해주세요."
 							required></td>
 					</tr>
 					<tr>
@@ -278,13 +280,13 @@
 					<tr>
 						<td>리워드 옵션명*</td>
 						<td><input type="text" class="form-control" name="option"
-							id="option" placeholder="옵션명을 입력해주세요." required></td>
+							id="option" maxlength="25" placeholder="옵션명을 입력해주세요." required></td>
 					</tr>
 					<tr>
 						<td>리워드 옵션 설명*</td>
 						<td><textarea class="form-control" name="detail" cols="30"
 								rows="5" style="resize: none;" placeholder="해당 리워드의 설명을 입력해주세요."
-								required></textarea></td>
+								maxlength="100" required></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2"><hr></td>
@@ -366,7 +368,13 @@
 			}
 
 		}
-		
+		//input 타입이 number인거 자리수 제한
+	    function numberMaxLength(e){
+	        if(e.value.length > e.maxLength){
+	            e.value = e.value.slice(0, e.maxLength); //0 자릿수부터 max 자리수까지 자르기
+	        }
+	    }
+
 		//수수료(5%)를 뺀 정산값 표시 (실제 목표금액은 설정한 그대로 넣기)
 		function amountCalc() {
 			let amount = document.getElementById("prjAmount").value;
