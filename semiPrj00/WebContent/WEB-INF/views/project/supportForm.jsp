@@ -6,6 +6,7 @@
 <%
 	ProjectVo prjVo = (ProjectVo)request.getAttribute("prjVo");
 	ProjectRewardVo rewardVo = (ProjectRewardVo)request.getAttribute("rewardVo");
+	AddrVo defaultAddr = ((ArrayList<AddrVo>)request.getAttribute("addrList")).get(0);
 %>
 <!DOCTYPE html>
 <html>
@@ -233,15 +234,15 @@
                 <div class="table-div">
                     <table>
                         <tr>
-                            <td id="name">김과일</td>
+                            <td id="name"><%=defaultAddr.getName()%></td>
                             <td id="addr-2nd-td"><div id="addr-default" class="btn btn-sm btn-danger disabled opacity-0">기본</div></td>
                             <td rowspan="3" class="btn-td"><button id="change-addr" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addr-select">변경</button></td>
                         </tr>
                         <tr>
-                            <td colspan="3" id="addr">주소1+주소2</td>
+                            <td colspan="3" id="addr"><%=defaultAddr.getAddr1()%> <%=defaultAddr.getAddr2()%></td>
                         </tr>
                         <tr>
-                            <td colspan="3" class="content">전화번호</td>
+                            <td colspan="3" class="content" id="phone"><%=defaultAddr.getPhone()%></td>
                         </tr>
                     </table>
                 </div>
@@ -310,14 +311,14 @@
                     <table>
                         <tr>
                             <td>
-                                <input class="form-check-input" type="checkbox" name="">
+                                <input class="form-check-input" type="checkbox" name="agree">
                                 <label class="form-check-label">개인정보 제 3자 제공 동의</label>
                             </td>
                             <td><a href="" class="margin-left-30">내용보기</a></td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <input class="form-check-input" type="checkbox" name="">
+                                <input class="form-check-input" type="checkbox" name="agree">
                                 <label class="form-check-label">후원 유의사항 확인</label>
                             </td>
                         </tr>
@@ -342,7 +343,11 @@
                 </ul>
             </div>
             <div id="support-btn-div" class="final-div">
-                <button class="btn btn-success final-div" id="support-btn">후원하기</button>
+            	<form action="<%=contextPath%>/project/support" method="post">
+            	
+	                <button type="submit" formmethod="post" class="btn btn-success final-div" id="support-btn">후원하기</button>
+            	</form>
+            
             </div>
        </div>
        <%@ include file="/WEB-INF/views/project/paymentSelectForm.jsp" %>
@@ -359,14 +364,26 @@
                 $("#card-default").removeClass("opacity-0");
             }
 
+            //주소 바꾸기
             $("#addr-modal-submit-btn").click(function(){
                 $("#addr").text($(".addr-modal-radio:checked").val());	
             });
+            //이름 바꾸기
+            $("#addr-modal-submit-btn").click(function(){
+                $("#name").text($(".addr-modal-radio:checked").parent().parent().children().first().text());	
+            });
+            //전화번호 바꾸기
+            $("#addr-modal-submit-btn").click(function(){
+                $("#phone").text($(".addr-modal-radio:checked").next().val());	
+            });
+            
+            //기본버튼 처음부터 보일지 말지
             if($(".addr-modal-radio:checked").parent().parent().children().eq(1).children().first().hasClass("opacity-0") === false){
                 $("#addr-default").removeClass("opacity-0");
             }
         });
 
+        //카드 기본버튼 보일지 말지
         $("#card-modal-submit-btn").click(function(){
             if($(".card-modal-radio:checked").parent().parent().children().eq(1).children().first().hasClass("opacity-0")){
                 $("#card-default").addClass("opacity-0");
@@ -375,6 +392,7 @@
             }
         });
 
+        //주소 기본버튼 보일지 말지
         $("#addr-modal-submit-btn").click(function(){
             if($(".addr-modal-radio:checked").parent().parent().children().eq(1).children().first().hasClass("opacity-0")){
                 $("#addr-default").addClass("opacity-0");
