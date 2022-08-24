@@ -36,7 +36,7 @@
         align-items: center;
     }
 
-    #proposalBtns form * {
+    #proposalBtns * {
         width: 80px;
         height: 30px;
         border-radius: 50px;
@@ -105,6 +105,7 @@
         justify-content:flex-start;
         align-items: center;
     }
+    
 
 
     .proposalInfo {
@@ -174,14 +175,15 @@
     <div id="proposalDetailOuter">
         <div id="proposalDetail">
             <div id="proposalBtns">
-                <form action="" method="post">
-                    <select name="status" id="" style="border-radius:50px ;">
-                        <option value="assessing">검토중</option>
-                        <option value="return">반려</option>
-                        <option value="approve">승인</option>
-                    </select>
-                    <input type="submit" value="수정완료">
-                </form>
+           <c:set var="voStatus" value="${adminProposalVo.status}" />
+           <c:if test="${voStatus eq '접수' or voStatus eq '검토중'}">
+                <select name="status" id="statusSelect" >
+                   <option class="statusSelect" value="assessing">검토중</option>
+                   <option class="statusSelect" value="return">반려</option>
+                   <option class="statusSelect" value="approve">승인</option>
+                </select>
+                <input id="submit" class="button" type="button" value="수정완료">
+           </c:if> 
             </div>
             <div id="proposalInfo">
                 <div class="proposalInfoBar">1.제안서 정보</div>
@@ -195,12 +197,12 @@
                         <div class="proposalInfo justify-right">처리상태</div>
                     </div>
                     <div class="proposalInfoBox">
-                        <div class="proposalInfo justify-left">${adminProposalVo.no}</div>
+                        <div id= "proposalNoBox" class="proposalInfo justify-left">${adminProposalVo.no}</div>
                         <div class="proposalInfo justify-left">${adminProposalVo.nick}</div>
                         <div class="proposalInfo justify-left">${adminProposalVo.categoryName}</div>
                         <div class="proposalInfo justify-left">${adminProposalVo.name}</div>
                         <div class="proposalInfo justify-left">${adminProposalVo.registerDate}</div>
-                        <div class="proposalInfo justify-left">${adminProposalVo.status}</div>
+                        <div id="proposalStatusBox" class="proposalInfo justify-left">${adminProposalVo.status}</div>
                     </div>
                 </div>
             </div>
@@ -231,6 +233,35 @@
     </div>
 
 </content>
+
+
+	<script>
+	
+		$(document).ready(function(){
+			$('#submit').click(function() {
+				
+				const value = $('#statusSelect').val();
+				const no = ${adminProposalVo.no};
+				const arr = {}
+				
+				$.ajax({
+                	url : "<%=contextPath%>/admin/proposal/changeStatus" ,
+                	type:"POST",
+                	data : {
+                		option : value,
+                		no : no
+                	},
+                	success:function(result) {
+                		$('#proposalStatusBox').text(result);
+                	},
+                	error:function(error) {
+                		alert("삭제에 실패하였습니다.");
+                	}
+                });
+			});
+		});
+		
+	</script>
 
 </body>
 </html>

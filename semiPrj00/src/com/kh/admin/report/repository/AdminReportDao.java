@@ -94,4 +94,27 @@ public class AdminReportDao {
 		
 	}
 
+	public int reportComplete(Connection conn, String no) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE REPORT SET REPORT_AC = 'C' WHERE NO = ? ";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, no);
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

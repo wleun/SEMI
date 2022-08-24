@@ -177,6 +177,55 @@ public class AdminPrjDao {
 		
 			return result;
 		}
+
+
+	public AdminPrjVo selectStatusList(String projectNo, Connection conn) {
+		AdminPrjVo projectVo = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT STATUS FROM PROJECT WHERE PROJECT_NO= ?";
+		
+		try {
+			
+			pstmt= conn.prepareStatement(sql);
+			
+			pstmt.setString(1, projectNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				projectVo = new AdminPrjVo();
+				
+				String status = rs.getString("STATUS");
+				
+				if("B".equals(status)) {
+					status = "진행전";
+				} else if("I".equals(status)) {
+					status = "진행중";
+				} else if("S".equals(status)) {
+					status = "성공";
+				} else if("F".equals(status)) {
+					status = "실패";
+				} else {
+					status = "삭제됨";
+				}
+				
+				projectVo.setStatus(status);
+				projectVo.setNo(projectNo);
+				
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return projectVo;
+		
+	}
 		
 		
 

@@ -6,6 +6,7 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.admin.event.repository.AdminEventDao;
@@ -39,7 +40,7 @@ public class AdminMemberService {
 		return memberVoList;
 	}
 
-	//맴버 정지
+	//맴버 정지 (ajax,UPDATE)
 	public int suspendMember(List<String> memberNoList) {
 		int successCnt = 0;
 		int result = 0;
@@ -71,7 +72,7 @@ public class AdminMemberService {
 		return successCnt;
 	}
 
-	//맴버 정지해제
+	//맴버 정지해제 (ajax,UPDATE)
 	public int suspendCancelMember(List<String> memberNoList) {
 		int successCnt = 0;
 		int result = 0;
@@ -101,6 +102,24 @@ public class AdminMemberService {
 		System.out.println(successCnt);
 		
 		return successCnt;
+	}
+
+	//정지 or 정지해제된 멤버의 상태 및 정지일자 가져오기 (ajax,SELECT)
+	public List<AdminMemberVo> selectStatusList(List<String> memberNoList) {
+		Connection conn = getConnection();
+		
+		List<AdminMemberVo> memberVoList = new ArrayList();
+		AdminMemberVo resultVo = null;
+		
+		for (String memberNo : memberNoList) {
+			
+			resultVo = new AdminMemberDao().selectStatusList(memberNo,conn);
+			memberVoList.add(resultVo);
+		}
+		
+		close(conn);
+		return memberVoList;
+		
 	}
 
 

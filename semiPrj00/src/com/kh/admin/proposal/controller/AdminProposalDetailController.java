@@ -30,6 +30,7 @@ public class AdminProposalDetailController extends HttpServlet {
 		req.setAttribute("function", "이벤트 상세조회");
 		
 		req.getRequestDispatcher("/WEB-INF/views/admin/proposal/adminProposalDetail.jsp").forward(req, resp);
+		
 		} else {
 			req.getSession().setAttribute("errorMsg", "제안서 정보를 불러올 수 없습니다.");
 			resp.sendRedirect("/semiPrj00/admin/proposal?p=1");

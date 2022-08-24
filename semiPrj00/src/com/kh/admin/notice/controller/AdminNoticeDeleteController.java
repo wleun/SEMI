@@ -55,16 +55,10 @@ public class AdminNoticeDeleteController extends HttpServlet {
 		System.out.println("성공 횟수 : " + result);
 		
 		if (result == listSize) {
-			System.out.println(result + "횟수만큼 삭제 완료");
+			System.out.println(result + "개의 공지사항 삭제 완료");
 		} else {
-			System.out.println(result + "횟수만큼의 삭제 실패");
+			System.out.println(result + "개의 공지사항 삭제 실패");
 		}
-		
-		//클라이언트에 응답
-		resp.setCharacterEncoding("UTF-8");
-				
-		String answer = result + "회 삭제 완료했습니다.";
-		resp.getWriter().write(answer);
 		
 	}
 }

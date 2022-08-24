@@ -7,6 +7,8 @@ import static com.kh.common.JDBCTemplate.*;
 import java.sql.Connection;
 
 public class AdminLoginService {
+	
+	//로그인 서비스
 
 	public AdminVo login(AdminVo vo) {
 		

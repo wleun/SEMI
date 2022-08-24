@@ -307,7 +307,7 @@
                 
                 <script>
                 
-                
+                $(document).ready(function(){
                     $('#submit').click(function() {
                         const checkBoxArr = [];
                         $("input:checkbox[name='boardCheck']:checked").each(function() {
@@ -324,18 +324,15 @@
                         		key : checkBoxArr
                         	},
                         	success:function(result) {
-                        		console.log(result); //새로고침으로 인해서 출력이 안됨
                         		$(".statusVal").empty();
-                        		//$(".statusVal").load(location.href + "  .statusVal");
-                        		$(".statusVal").val('안녕');
-                        	//	document.location.reload();
+                        		console.log(result);
                         	},
                         	error:function(error) {
                         		alert("삭제에 실패하였습니다.");
                         	}
                         });
                     });
-                
+                });
                 
                 </script>
 

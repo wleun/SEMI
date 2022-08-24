@@ -289,7 +289,7 @@
 	
 	 <script>
                 
-                
+				 $(document).ready(function(){
                     $('#deleteBtn').click(function() {
                         const checkBoxArr = [];
                         $("input:checkbox[name='boardCheck']:checked").each(function() {
@@ -306,7 +306,6 @@
                         		key : checkBoxArr
                         	},
                         	success:function(result) {
-                        		console.log(result);
                         		document.location.reload();
                         	},
                         	error:function(error) {
@@ -314,7 +313,7 @@
                         	}
                         });
                     });
-                
+				 });
                 
                 </script>
 
