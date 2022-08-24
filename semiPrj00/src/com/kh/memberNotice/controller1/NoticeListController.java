@@ -1,6 +1,7 @@
 package com.kh.memberNotice.controller1;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,42 +20,35 @@ public class NoticeListController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//페이징 처리------------
-		int listCount;		//현재 총 게시글 갯수
-		int currentPage;	//현재 페이지(==사용자가 요청한 페이지
-		int pageLimit;		//페이지 하단 보여질 페이지 버튼 갯수
-		int boardLimit;		//한 페이지 내 보여질 게시글 최대 갯수
 		
-		int maxPage;		//가장 마지막 페이지(==총 페이지 수)
-		int startPage;		//페이징 바 시작
-		int endPage;		//페이징 바 끝
+		//--------페이징 처리
 		
-		//listCount 값 구하기
-		listCount = new NoticeService().getCount();//DB에 가서 테이블 총 게시글 갯수 구하기
 		
-		//currentPage 값 구하기
-		currentPage = Integer.parseInt(req.getParameter("p"));
+		//listCount 구하기(총게시글수)
+		int listCount = new NoticeService().getCount();
 		
-		//pageLimit 값 구하기
-		pageLimit = 10;
+		//currentPage 구하기
+		int currentPage = Integer.parseInt(req.getParameter("p"));
 		
-		//boardLimit 값 구하기
-		boardLimit = 5;
+		//pageLimit 구하기
+		int pageLimit = 10;
 		
-		//maxPage 제일 마지막 페이지
-		maxPage = (int)Math.ceil(((double)listCount / boardLimit));
+		//boardLimit 값 구하기(한 페이지 내 게시글 수)
+		int boardLimit = 4;
 		
-		//startPage 페이징 바 시작
-		startPage = (currentPage-1) / pageLimit * pageLimit + 1;
+		//maxPage값 구하기(총 페이지 수)
+		int maxPage = (int)Math.ceil(((double)listCount / boardLimit));
 		
-		//endPage 페이지 바 끝
-		endPage = startPage + pageLimit -1;
+		//startPage (페이징바 시작)
+		int startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
 		
+		//endPage (페이징바 끝)
+		int endPage = startPage + pageLimit -1;
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
 		
-		//vo에 페이지 관련 변수 담기
+		//vo페이지 관련 변수담기
 		PageVo pageVo = new PageVo();
 		pageVo.setBoardLimit(boardLimit);
 		pageVo.setCurrentPage(currentPage);
@@ -64,15 +58,21 @@ public class NoticeListController extends HttpServlet{
 		pageVo.setPageLimit(pageLimit);
 		pageVo.setStartPage(startPage);
 		
-		//게시글 관련 데이터 준비 ( 여러개니 list)
-		List<AdminNoticeVo> adminNoticeVoList = new NoticeService().selectList(pageVo);
+		//게시글 관련 데이터 준비
+		List<AdminNoticeVo> noticeVoList = new NoticeService().selectList(pageVo);
 		
 		//준비한 데이터 담기
 		req.setAttribute("pv", pageVo);
-		req.setAttribute("list", adminNoticeVoList);
-		
+		req.setAttribute("list", noticeVoList);
 		
 		//화면 보여주기
 		req.getRequestDispatcher("/WEB-INF/views/noticeEvent/notice.jsp").forward(req, resp);
+		//----페이징 처리 안한 것----------
+		//서비스 호출
+		//ArrayList<AdminNoticeVo> voList = new NoticeService().selectList();
+		
+		//화면 보여주기
+		//req.setAttribute("voList", voList);
+		//req.getRequestDispatcher("/WEB-INF/views/noticeEvent/notice.jsp").forward(req, resp);
 	}
 }

@@ -1,5 +1,12 @@
+<%@page import="com.kh.admin.attachment.vo.AdminEventAttachmentVo"%>
+<%@page import="com.kh.admin.event.vo.AdminEventVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	AdminEventVo vo = (AdminEventVo)request.getAttribute("eventVo");
+	AdminEventAttachmentVo attachVo = (AdminEventAttachmentVo)request.getAttribute("attachVo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,11 +88,11 @@
             
                 <div>
                  <ul>
-                     <li><div id="event-title">[특가]여름맞이 행사</div></li>
-                     <li><div class="event-date">작성일 : 2022-08-03 &nbsp; 조회수 : 0 &nbsp;</div></li>
-                     <li><div class="event-term">이벤트 기간 : 2022-01-01 ~ 2022-03-03</div></li>
-                     <li><div class="event-img"><img src="" alt="이미지파일입니다"></div></li>
-                     <li><div>텍스트내용..</div></li>
+                     <li><div id="event-title"><%=vo.getTitle() %></div></li>
+                     <li><div class="event-date">작성일 :<%=vo.getWriteDate() %> &nbsp; 조회수 : 0 &nbsp;</div></li>
+                     <li><div class="event-term">이벤트 기간 : <%=vo.getStartDate() %>~ <%=vo.getEndDate() %></div></li>
+                     <li><div class="event-img"><img src="<%=attachVo.getPath() %>" alt="이미지파일입니다"></div></li>
+                     <li><div><%=vo.getContent() %></div></li>
                  </ul>
                 </div>
                 
@@ -96,8 +103,8 @@
                 <button id="event-next" onclick="location.href=''">다음</button>
             </div>
         </div>
-       
-
+     
+    
     </main>
 </body>
 </html>
