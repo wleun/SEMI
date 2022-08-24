@@ -256,7 +256,7 @@
 				onclick="location.href='<%=contextPath%>/project/view?num=<%=recommendList.get(i).getPrjectNo()%>'">
 				<div class="prj-content prj-img">
 					<img
-						src="<%=contextPath%>/resources/upload/<%=earlyList.get(i).getThumbnailName()%>"
+						src="<%=contextPath%>/resources/upload/<%=recommendList.get(i).getThumbnailName()%>"
 						alt="프로젝트 메인 사진">
 				</div>
 				<div class="prj-content prj-category">
@@ -268,7 +268,7 @@
 				<!-- 프로젝트 달성도 부분 -->
 				<div class="prj-content gage-div">
 					<div class="prj-content">
-						<span class="percentage" id="percentage"> <%int total = Integer.parseInt(recommendList.get(i).getEtc())*100/recommendList.get(i).getGoal();%>
+						<span class="percentage" id="percentage"> <%long total = Math.round(Double.parseDouble(recommendList.get(i).getEtc())*100/recommendList.get(i).getGoal());%>
 							<%=total %>%
 						</span> <span class="amount" id="rAmount<%=i%>"></span>
 						<script>
@@ -381,7 +381,7 @@
 				<!-- 프로젝트 달성도 부분 -->
 				<div class="prj-content gage-div">
 					<div class="prj-content">
-						<span class="percentage" id="percentage"> <%int total = Integer.parseInt(earlyList.get(i).getEtc())*100/earlyList.get(i).getGoal();%>
+						<span class="percentage" id="percentage"> <%long total = Math.round(Double.parseDouble(earlyList.get(i).getEtc())*100/earlyList.get(i).getGoal());%>
 							<%=total %>%
 						</span> <span class="amount" id="eAmount<%=i%>"></span>
 						<script>
@@ -475,7 +475,7 @@
 				<!-- 프로젝트 달성도 부분 -->
 				<div class="prj-content gage-div">
 					<div class="prj-content">
-						<span class="percentage" id="percentage"> <%int total = Integer.parseInt(deadlineList.get(i).getEtc())*100/deadlineList.get(i).getGoal();%>
+						<span class="percentage" id="percentage"> <%long total = Math.round(Double.parseDouble(deadlineList.get(i).getEtc())*100/deadlineList.get(i).getGoal());%>
 							<%=total %>%
 						</span> <span class="amount" id="dAmount<%=i%>"></span>
 						<script>
@@ -494,6 +494,7 @@
 					    	var endDate = new Date(endDateStr);
 					    	var differenceMsec = endDate.getTime() - date.getTime();
 					    	var differenceDay = differenceMsec/1000/60/60/24;
+					    	console.log(Math.floor(differenceDay));
 					    	$("#d<%=i%>").text(Math.floor(differenceDay) + "일 남음");
 					    	if(Math.floor(differenceDay)<0){
 					    		$("#d<%=i%>").text("마감");
