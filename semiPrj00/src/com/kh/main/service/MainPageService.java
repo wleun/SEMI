@@ -29,7 +29,7 @@ public class MainPageService {
 
 	
 
-	//얼리버드
+	//신규
 	public List<ProjectVo> selectEarly() {
 		Connection conn = null;
 		List<ProjectVo> earlyList = null;
@@ -38,7 +38,7 @@ public class MainPageService {
 			conn = getConnection();
 			earlyList = new MainPageDao().selectEarly(conn);
 		} catch (Exception e) {
-			System.out.println("얼리버드 항목을 가져오는데 에러 발생");
+			System.out.println("신규 항목을 가져오는데 에러 발생");
 			e.printStackTrace();
 		}finally {
 			close(conn);
