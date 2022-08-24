@@ -1,5 +1,10 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.member.vo.PaymentVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<PaymentVo> paymentList = (ArrayList<PaymentVo>)request.getAttribute("paymentList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,15 +58,17 @@
 			<!-- Modal body -->
 			<div class="modal-body">
 				<table>
+					<%for(PaymentVo vo : paymentList){%>
 					<tr>
 						<td class="modal-card-name"></td>
 						<td><div class="btn btn-sm btn-danger disabled modal-default opacity-0">기본</div></td>
-						<td class="modal-card-num"><label for="radio-btn1">************1234</label></td>
+						<td class="modal-card-num"><label for="radio-btn1">************<%=vo.getCardNum()%></label></td>
 						<td>
-							<input type="radio" id="radio-btn1" class="form-check-input card-modal-radio" value="************1234" checked>
-							<input type="hidden" id="card-no" value="">
+							<input type="radio" id="radio-btn1" class="form-check-input card-modal-radio" value="************<%=vo.getCardNum()%>" <%=vo.getDefaultYN()%>>
+							<input type="hidden" id="card-no" value="<%=vo.getNo()%>">
 						</td>
 					</tr>
+					<%}%>
 				</table>
 			</div>
 	

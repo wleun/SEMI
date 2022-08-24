@@ -9,6 +9,8 @@ import java.util.List;
 import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.addr.vo.AddrVo;
+import com.kh.coupon.vo.CouponVo;
+import com.kh.member.vo.PaymentVo;
 import com.kh.project.vo.ProjectVo;
 import com.kh.reward.vo.ProjectRewardVo;
 
@@ -126,6 +128,89 @@ public class PrjSupportDao {
 		}
 		
 		return addrList;
+	}
+
+	/*
+	 * 결제수단 가져오기
+	 */
+	public List<PaymentVo> selectPayment(Connection conn, String memberNo) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<PaymentVo> paymentList = new ArrayList<PaymentVo>();
+		
+		String sql = "SELECT * FROM PAYMENT_CREDIT_CARD WHERE MEMBER_NO = ? ORDER BY DEFAULT_YN DESC";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				PaymentVo vo = new PaymentVo();
+				vo.setNo(rs.getString("NO"));
+				vo.setNo(rs.getString("PASSWORD"));
+				
+				String cardNum = rs.getString("CARD_NUM");
+				cardNum = cardNum.substring(12);
+				vo.setCardNum(cardNum);
+				
+				String defaultAddr = rs.getString("DEFAULT_YN");
+				if("N".equals(defaultAddr)) {
+					vo.setDefaultYN(null);
+				}else {
+					vo.setDefaultYN("checked");
+				}
+				paymentList.add(vo);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return paymentList;
+	}
+
+	/*
+	 * 쿠폰 가져오기
+	 */
+	public List<CouponVo> selectCoupon(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CouponVo> couponList = new ArrayList<CouponVo>();
+		
+		String sql = "SELECT * FROM COUPON WHERE MEM_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CouponVo vo = new CouponVo();
+				
+				vo.setNo(rs.getString("NO"));
+				vo.setName(rs.getString("NAME"));
+				vo.setDiscount(rs.getInt("DISCOUNT"));
+				
+				couponList.add(vo);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rs);
+		}
+		
+		return couponList;
 	}
 
 }

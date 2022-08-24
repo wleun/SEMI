@@ -6,7 +6,11 @@
 <%
 	ProjectVo prjVo = (ProjectVo)request.getAttribute("prjVo");
 	ProjectRewardVo rewardVo = (ProjectRewardVo)request.getAttribute("rewardVo");
+	
 	AddrVo defaultAddr = ((ArrayList<AddrVo>)request.getAttribute("addrList")).get(0);
+	
+	PaymentVo defaultPayment = ((ArrayList<PaymentVo>)request.getAttribute("paymentList")).get(0);
+	
 	String quantity = (String)request.getAttribute("quantity");
 	String add = (String)request.getAttribute("add");
 %>
@@ -173,7 +177,7 @@
     <div id="support-body">
         <div id="prj-wrap">
             <div id="prj-img-div">
-                <img src="<%=prjVo.getThumbnailPath()%>" alt="<%=prjVo.getThumbnailName()%>" id="prj-img">
+                <img src="<%=contextPath%>/resources/upload/<%=prjVo.getThumbnailName()%>" alt="<%=prjVo.getThumbnailName()%>" id="prj-img">
             </div>
             <div id="prj-description">
                 <div id="prj-category"><%=prjVo.getCategoryNo()%></div>
@@ -199,7 +203,7 @@
                     <table>
                         <tr>
                             <td class="title">선물 구성</td>
-                            <td class="content"><%=rewardVo.getOption()%> <%=rewardVo.getDetail()%> | <%=quantity%>개</td>
+                            <td class="content"><%=rewardVo.getOption()%> | <%=rewardVo.getDetail()%> | <%=quantity%>개</td>
                             <td rowspan="3" class="btn-td"><button class="btn btn-success" id="change-reward">변경</button></td>
                         </tr>
                         <tr>
@@ -260,7 +264,7 @@
                         <tr>
                             <td class="title">쿠폰 선택</td>
                             <td class="content">사용 <span id="using-coupon">0</span>개/보유 <span id="having-coupon">0</span>개</td>
-                            <td class="btn-td"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#coupon-select">사용</button></td>
+                            <td class="btn-td"><button class="btn btn-success" id="coupon-select-btn" data-bs-toggle="modal" data-bs-target="#coupon-select">사용</button></td>
                         </tr>
                     </table>
                 </div>
@@ -279,7 +283,7 @@
                         <tr>
                             <td id="card-name"></td>
                             <td><div id="card-default" class="btn btn-sm btn-danger disabled opacity-0">기본</div></td>
-                            <td id="card-num">************1234</td>
+                            <td id="card-num">************<%=defaultPayment.getCardNum()%></td>
                         </tr>
                     </table>
                 </div>
@@ -303,29 +307,58 @@
                             <script>
                             	//리워드 금액
                             	var price = Number(<%=rewardVo.getPrice()%>)*Number(<%=quantity%>);
+                            	
                             	//쿠폰 할인금액
                             	var sale = 0;
+                            	
 	                          	//sum(최종후원금액)
 	                          	$("#reward-sum").text(price);
 	                            var addSum = $("#add-sum").text();
 	                            var sum = Number(price) + Number(addSum);
 	                            $("#final-sum").text(sum);
+	                            
 	                            //쿠폰적용시 최종후원금액
-                            	$("#coupon-modal-submit-btn").click(function(){
-                            		console.log($("input[name=coupon]:checked"));
-                            		for(var i=0; i<($("input[name=coupon]:checked").length); i++){
-                            			console.log(i);
-                                		sale += Number($("input[name=coupon]:checked").eq(i).val());
-                                		console.log(sale);
-                                	}
-                                	var rewardSum = price - sale;
-                                	$("#reward-sum").text(rewardSum);
-                                
-    	                          	//sum(최종후원금액)
-    	                            var addSum = $("#add-sum").text();
-    	                            var sum = Number(rewardSum) + Number(addSum);
-    	                            $("#final-sum").text(sum);
-                            	});
+	                            $("#coupon-select-btn").click(function(){
+	                            	if($("input[name=coupon]:checked").length >0){//이미 체크된 쿠폰이 있을때
+		                            	var saled = 0;
+		                            	for(var i=0; i<($("input[name=coupon]:checked").length); i++){
+	                                   		saled += Number($("input[name=coupon]:checked").eq(i).val());
+	                                   	}
+		                            	console.log(saled);
+		                            	var nonSaled = 0;
+		                            	nonSaled = Number($("#reward-sum").text()) + saled;//쿠폰 적용금액 복구
+		                            	$("#coupon-modal-submit-btn").click(function(){
+		                            		console.log("nonSaled ::: " + nonSaled);
+		                            		$("#reward-sum").text(nonSaled);
+		                            		sale = 0;
+		                            		for(var i=0; i<($("input[name=coupon]:checked").length); i++){
+	                                       		sale += Number($("input[name=coupon]:checked").eq(i).val());
+	                                       	}
+		                            		var rewardSum = nonSaled - sale;
+		                            		console.log("rewardSum:::" + rewardSum);
+		                            		$("#reward-sum").text(rewardSum);
+		                            		
+		                            		//sum(최종후원금액)
+	           	                            var addSum = $("#add-sum").text();
+	           	                            var sum = Number(rewardSum) + Number(addSum);
+	           	                            $("#final-sum").text(sum);
+		                            	});
+	                           		}else{//체크된 쿠폰이 없을때
+	                           			$("#coupon-modal-submit-btn").click(function(){
+	                           				sale = 0;
+	                                   		for(var i=0; i<($("input[name=coupon]:checked").length); i++){
+	                                       		sale += Number($("input[name=coupon]:checked").eq(i).val());
+	                                       	}
+	                                       	var rewardSum = price - sale;
+	                                       	$("#reward-sum").text(rewardSum);
+	                                       
+	           	                          	//sum(최종후원금액)
+	           	                            var addSum = $("#add-sum").text();
+	           	                            var sum = Number(rewardSum) + Number(addSum);
+	           	                            $("#final-sum").text(sum);
+	                                   	});
+	                           		}
+	                            });
                             </script>
                         </tr>
                     </table>
@@ -467,7 +500,7 @@
 
         //리워드 변경버튼 눌렀을 때 세부페이지의 리워드 선택 부분으로 넘어가기
         $("#change-reward").click(function(){
-            location.href='<%=contextPath%>/project/view#reward-option';
+            location.href='<%=contextPath%>/project/view?num=<%=request.getParameter("pnum")%>#reward-option';
         });
 
         //사용된 쿠폰&&가지고 있는 쿠폰 수 세기
