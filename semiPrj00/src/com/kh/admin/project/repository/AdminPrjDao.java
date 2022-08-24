@@ -47,7 +47,7 @@ public class AdminPrjDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql="SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT P.PROJECT_NO , P.STATUS , C.NAME AS CATEGORY_NAME , P.NAME AS PROJECT_NAME , M.NICK AS MAKER_NAME , P.START_DATE , P.END_DATE FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C USING(CATEGORY_NO) ORDER BY P.PROJECT_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		String sql="SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT P.PROJECT_NO , P.STATUS , C.NAME AS CATEGORY_NAME , P.NAME AS PROJECT_NAME , M.NICK AS MAKER_NAME , TO_CHAR(P.START_DATE,'YYYY-MM-DD') AS START_DATE , TO_CHAR(P.END_DATE,'YYYY-MM-DD') AS END_DATE FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C USING(CATEGORY_NO) ORDER BY P.PROJECT_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		
 		try {
 			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
@@ -153,7 +153,7 @@ public class AdminPrjDao {
 		
 	}
 
-	//프로젝트 삭제
+	//프로젝트 삭제 (ajax, select)
 	public int deleteProject(Connection conn, String projectNo) {
 		
 		
@@ -179,6 +179,7 @@ public class AdminPrjDao {
 		}
 
 
+	// 프로젝트 삭제 후 상태 가져오기 (ajax, select)
 	public AdminPrjVo selectStatusList(String projectNo, Connection conn) {
 		AdminPrjVo projectVo = null;
 		PreparedStatement pstmt = null;

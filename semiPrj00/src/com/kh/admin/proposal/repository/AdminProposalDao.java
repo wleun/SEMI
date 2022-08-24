@@ -148,7 +148,7 @@ public class AdminProposalDao {
 		ResultSet rs = null;
 		AdminProposalVo adminProposalVo = new AdminProposalVo();
 		
-		String sql = "SELECT P.PROJECT_NO , P.NAME , M.NICK , C.NAME AS CATEGORY_NAME , P.REGISTER_DATE , P.STATUS , P.START_DATE , P.END_DATE , P.GOAL , P.SHIPPING_DATE , P.TEXT , P.THUMBNAIL_NAME , P.THUMBNAIL_PATH FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C USING (CATEGORY_NO) WHERE P.PROJECT_NO = ?";
+		String sql = "SELECT P.PROJECT_NO , P.NAME , M.NICK , C.NAME AS CATEGORY_NAME , P.REGISTER_DATE , P.STATUS , TO_CHAR(P.START_DATE,'YYYY-MM-DD') AS START_DATE , TO_CHAR(P.END_DATE,'YYYY-MM-DD') AS END_DATE , P.GOAL , P.SHIPPING_DATE , P.TEXT , P.THUMBNAIL_NAME , P.THUMBNAIL_PATH FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C USING (CATEGORY_NO) WHERE P.PROJECT_NO = ?";
 		
 		try {
 			
@@ -220,12 +220,12 @@ public class AdminProposalDao {
 	
 	//상세조회 (파일)
 
-	public AdminProposalAttachmentVo selectFile(Connection conn, String no) {
+	public List<AdminProposalAttachmentVo> selectFile(Connection conn, String no) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		AdminProposalAttachmentVo adminProposalAttachmentVo = new AdminProposalAttachmentVo();
+		List<AdminProposalAttachmentVo> list = null;
 		
-		String sql = "SELECT NO, PROJECT_NO, FILE_SRC, ORIGIN_NAME, CHANGE_NAME, UPLOAD_DATE FROM DESCRIPTION_FILE WHERE PROJECT_NO = ? ";
+		String sql = "SELECT NO, PROJECT_NO, FILE_SRC, ORIGIN_NAME, CHANGE_NAME, UPLOAD_DATE FROM DESCRIPTION_FILE WHERE PROJECT_NO = ? ORDER BY NO ASC ";
 		
 		try {
 			
@@ -234,13 +234,21 @@ public class AdminProposalDao {
 			
 			rs=pstmt.executeQuery();
 			
-			if(rs.next()) {
+			list = new ArrayList<AdminProposalAttachmentVo>();
+			
+			//while문으로 수정
+			
+			while(rs.next()) {
+				
+				AdminProposalAttachmentVo vo = new AdminProposalAttachmentVo();
 				
 				String path = rs.getString("FILE_SRC");
 				String name = rs.getString("CHANGE_NAME");
 				
-				adminProposalAttachmentVo.setFilePath(path);
-				adminProposalAttachmentVo.setChangeName(name);
+				vo.setFilePath(path);
+				vo.setChangeName(name);
+				
+				list.add(vo);
 			}
 			
 		}catch (Exception e) {
@@ -250,7 +258,7 @@ public class AdminProposalDao {
 			close(pstmt);
 		}
 		
-		return adminProposalAttachmentVo;
+		return list;
 	}
 
 	public int changeStatus(Connection conn, String option, String no) {

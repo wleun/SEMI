@@ -218,7 +218,7 @@
          <form id="edit_form" action="<%=contextPath %>/admin/notice/edit" method="post" enctype="multipart/form-data">
               <div id="noticeImportant">
                 중요도 : 
-                <select name="important">
+                <select name="important" required>
                   <option value="N">일반</option>
                   <option value="Y">중요</option>
                 </select>
@@ -227,24 +227,24 @@
                 <div id="noticeWriteArea">
                     <div id="title">
                         <div id="titleText" class="padding-right">제목 : </div>
-                        <div id="titleInput"><input type="text" name="title" value="${adminNoticeVo.title}"></div>
+                        <div id="titleInput"><input type="text" name="title" value="${adminNoticeVo.title}" required></div>
                     </div>
                 <input type="hidden" name="no" value="${adminNoticeVo.no}">
                     <div id="content">
                         <div id="contentText" class="padding-right">내용 : </div>
-                        <div id="contentInput"><textarea name="content" cols="30" rows="10">${adminNoticeVo.content}</textarea></div>
+                        <div id="contentInput"><textarea name="content" cols="30" rows="10" required>${adminNoticeVo.content}</textarea></div>
                     </div>
                     <div id="file">
                     *파일을 다시 업로드해주세요.
                       <div class="filebox">
                         <input id="upload-name1" value="섬네일 이미지 첨부" placeholder="섬네일 이미지 첨부">
                         <label for="fileInsert1">파일찾기</label>
-                        <input type="file" id="fileInsert1" name="thumbnailFile">
+                        <input type="file" id="fileInsert1" name="thumbnailFile" required>
                       </div>
                       <div class="filebox">
                         <input id="upload-name2" value="공지사항 이미지 파일 첨부" placeholder="공지사항 이미지 파일 첨부">
                         <label for="fileInsert2">파일찾기</label> 
-                        <input type="file" id="fileInsert2" name="imageFile">
+                        <input type="file" id="fileInsert2" name="imageFile" required>
                       </div>
                     </div>  
                     <div id="btns">

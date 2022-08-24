@@ -332,7 +332,7 @@
 		        	},
 		        	success:function(result) {
 		        		console.log(result); //새로고침으로 인해서 출력이 안됨...
-		        		document.location.reload();
+		        	
 		        	},
 		        	error:function(error) {
 		        		alert("삭제에 실패하였습니다.");

@@ -1,6 +1,7 @@
 package com.kh.admin.proposal.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,12 +22,12 @@ public class AdminProposalDetailController extends HttpServlet {
 		String no = req.getParameter("no");
 		
 		AdminProposalVo adminProposalVo = new AdminProposalService().selectOne(no);
-		AdminProposalAttachmentVo adminProposalAttachmentVo = new AdminProposalService().selectFile(no);
+		List<AdminProposalAttachmentVo> proposalAttachmentVoList = new AdminProposalService().selectFile(no);
 		
 		
-		if(adminProposalVo!=null && adminProposalAttachmentVo!=null) {
+		if(adminProposalVo!=null && proposalAttachmentVoList!=null) {
 		req.setAttribute("adminProposalVo", adminProposalVo);
-		req.setAttribute("adminProposalAttachmentVo", adminProposalAttachmentVo);
+		req.setAttribute("proposalAttachmentVoList", proposalAttachmentVoList);
 		req.setAttribute("function", "이벤트 상세조회");
 		
 		req.getRequestDispatcher("/WEB-INF/views/admin/proposal/adminProposalDetail.jsp").forward(req, resp);
