@@ -63,18 +63,19 @@ public class MainPageDao {
 
 	}
 
+	//신규
 	public List<ProjectVo> selectEarly(Connection conn) throws Exception {
 		List<ProjectVo> earlyList = new ArrayList<ProjectVo>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		//신규
+		//시작한지 5일전 ~ 오늘인 프로젝트를 조회하는 sql 문
 		String sql = "SELECT p.*, m.*, c.name categoty_name, total FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO"
-				+ "				JOIN category C ON p.category_no = c.category_no"
-				+ "				JOIN (SELECT p.project_no, SUM(TOTAL) total FROM PROJECT P JOIN REWARD R ON p.project_no = r.project_no"
-				+ "				JOIN (SELECT R.NO, SUM((TO_NUMBER(d.amount)*TO_NUMBER(d.quantity))+TO_NUMBER(NVL(d.additional, 0))) total"
-				+ "				FROM REWARD R JOIN DONATE_LIST D ON r.no = d.reward_no GROUP BY R.NO) T ON T.NO = R.NO GROUP BY p.project_no) t"
-				+ "				ON p.project_no = t.PROJECT_NO WHERE P.STATUS = 'I' AND p.start_date <= TO_CHAR(SYSDATE, 'YYYY/MM/DD') and p.start_date >= TO_CHAR(SYSDATE-5, 'YYYY/MM/DD')";
+				+ "	JOIN category C ON p.category_no = c.category_no"
+				+ "	JOIN (SELECT p.project_no, SUM(TOTAL) total FROM PROJECT P JOIN REWARD R ON p.project_no = r.project_no"
+				+ "	JOIN (SELECT R.NO, SUM((TO_NUMBER(d.amount)*TO_NUMBER(d.quantity))+TO_NUMBER(NVL(d.additional, 0))) total"
+				+ "	FROM REWARD R JOIN DONATE_LIST D ON r.no = d.reward_no GROUP BY R.NO) T ON T.NO = R.NO GROUP BY p.project_no) t"
+				+ "	ON p.project_no = t.PROJECT_NO WHERE P.STATUS = 'I' AND p.start_date <= TO_CHAR(SYSDATE, 'YYYY/MM/DD') and p.start_date >= TO_CHAR(SYSDATE-5, 'YYYY/MM/DD')";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -111,19 +112,20 @@ public class MainPageDao {
 		return earlyList;
 	}
 
+	//마감임박
 	public List<ProjectVo> selectDeadline(Connection conn) throws Exception {
 		List<ProjectVo> deadlineList = new ArrayList<ProjectVo>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		//마감날짜가 오늘이고 프로젝트별 후원 토탈값을 구한 sql문 (상태 수정예정)
+		//마감날짜가 오늘~3일이후이고 프로젝트별 후원 토탈값을 구한 sql문 (상태 수정예정)
 		String sql = "SELECT p.*, m.*, c.name categoty_name, total FROM PROJECT P "
 				+ "JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN category C ON p.category_no = c.category_no "
 				+ "JOIN (SELECT p.project_no, SUM(TOTAL) total FROM PROJECT P "
 				+ "JOIN REWARD R ON p.project_no = r.project_no "
 				+ "JOIN (SELECT R.NO, SUM((TO_NUMBER(d.amount)*TO_NUMBER(d.quantity))+TO_NUMBER(NVL(d.additional, 0))) total FROM REWARD R "
 				+ "JOIN DONATE_LIST D ON r.no = d.reward_no GROUP BY R.NO) T ON T.NO = R.NO GROUP BY p.project_no) T ON p.project_no = t.PROJECT_NO "
-				+ "WHERE P.STATUS = 'I' AND p.end_date=TO_CHAR(SYSDATE, 'YYYY/MM/DD')";
+				+ "WHERE P.STATUS = 'I' AND p.end_date >= TO_CHAR(SYSDATE, 'YYYY/MM/DD') and p.end_date <= TO_CHAR(SYSDATE+3, 'YYYY/MM/DD') ORDER BY end_date";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

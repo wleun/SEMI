@@ -3,10 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
+    
   	  List<ProjectVo> recommendList = (List<ProjectVo>)request.getAttribute("recommendList");
    	  List<ProjectVo> earlyList = (List<ProjectVo>)request.getAttribute("earlyList");
       List<ProjectVo> deadlineList = (List<ProjectVo>)request.getAttribute("deadlineList");
-    %>
+
+      %>
 <!DOCTYPE html>
 <html>
 <head>

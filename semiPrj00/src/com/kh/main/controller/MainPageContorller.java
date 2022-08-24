@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.main.service.MainPageService;
 import com.kh.project.vo.ProjectVo;
 
-@WebServlet(urlPatterns ="/")
+@WebServlet(urlPatterns ="/main")
 public class MainPageContorller extends HttpServlet{
 	
 	@Override
