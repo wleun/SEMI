@@ -8,11 +8,12 @@
 	ProjectRewardVo rewardVo = (ProjectRewardVo)request.getAttribute("rewardVo");
 	
 	AddrVo defaultAddr = ((ArrayList<AddrVo>)request.getAttribute("addrList")).get(0);
-	
 	PaymentVo defaultPayment = ((ArrayList<PaymentVo>)request.getAttribute("paymentList")).get(0);
 	
 	String quantity = (String)request.getAttribute("quantity");
 	String add = (String)request.getAttribute("add");
+	int totalDonation = (int)request.getAttribute("totalDonation");
+	long percent = (long)request.getAttribute("percent");
 %>
 <!DOCTYPE html>
 <html>
@@ -183,7 +184,7 @@
                 <div id="prj-category"><%=prjVo.getCategoryNo()%></div>
                 <div id="prj-name"><%=prjVo.getName()%></div>
                 <div id="prj-detail">
-                    <span>달성률</span> | <span>모인 금액</span> | <span id="d-day">남은 날짜</span>
+                    <span>달셩률 <%=percent%> %</span> | <span>모인 금액 <%=totalDonation%> 원</span> | <span id="d-day">남은 날짜</span>
                     <script>
                     	//남은 날짜
 				    	var endDateStr = "<%=prjVo.getEndDate()%>";
@@ -418,6 +419,7 @@
             </div>
             <div id="support-btn-div" class="final-div">
             	<form action="<%=contextPath%>/project/support" method="post">
+            		<input type="hidden" value=<%=prjVo.getPrjectNo()%> name="num">
             		<input type="hidden" value=<%=rewardVo.getNo()%> name="rewardNo">
             		<input type="hidden" value=<%=loginMember.getNo()%> name="memberNo">
             		<input type="hidden" id="hidden-addrNo" name="addrNo">
@@ -452,6 +454,7 @@
     </div>
 
     <script>
+    	console.log(<%=prjVo.getPrjectNo()%>);
         $(function(){
         	//카드모달에서 정보 불러오기
             $("#card-modal-submit-btn").click(function(){
