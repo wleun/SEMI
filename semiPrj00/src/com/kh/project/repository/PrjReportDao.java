@@ -40,44 +40,6 @@ public class PrjReportDao {
 		
 	}
 
-	//삭제 예정
-	public ProjectVo selectPrj() {
-		Connection conn = getConnection();
-		ProjectVo pvo = null;
-		
-		String sql = "select * from project where project_no = 4";
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-			if(rs.next()) {
-				pvo = new ProjectVo();
-				pvo.setPrjectNo(rs.getString(1));
-				pvo.setCategoryNo(rs.getString(2));
-				pvo.setName(rs.getString(3));
-				pvo.setRegisterDate(rs.getString(4));
-				pvo.setStartDate(rs.getString(5));
-				pvo.setEndDate(rs.getString(6));
-				pvo.setGoal(rs.getInt(7));
-				pvo.setMakerNo(rs.getString(8));
-				pvo.setText(rs.getString(9));
-				pvo.setAccountNo(rs.getString(10));
-				pvo.setShippingDate(rs.getString(11));
-				pvo.setThumbnailName(rs.getString(12));
-				pvo.setThumbnailPath(rs.getString(13));
-				pvo.setEtc(rs.getString(14));
-				pvo.setAccountBank(rs.getString(15));
-				pvo.setAccountName(rs.getString(16));
-				pvo.setMakerInfo(rs.getString(17));
-				pvo.setStatus(rs.getString(18));
 	
-				
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	 
-		return pvo;
-	}
 
 }

@@ -18,19 +18,6 @@ import com.kh.project.vo.ProjectVo;
 @WebServlet(urlPatterns = "/project/report")
 public class PrjReportController extends HttpServlet{
 	
-	//확인용 메서드 추후 삭제!
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ProjectVo pvo = new ProjectVo();
-		
-		pvo = new PrjReportDao().selectPrj();
-		
-		req.setAttribute("projectVo", pvo);
-	
-		req.getRequestDispatcher("/WEB-INF/views/project/projectReport.jsp").forward(req, resp);
-		
-	}
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");

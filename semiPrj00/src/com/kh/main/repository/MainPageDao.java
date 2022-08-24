@@ -19,7 +19,7 @@ public class MainPageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		//회원 등급이 골드이면서 프로젝트가 진행중이고 프로젝트별 후원 토탈값을 구한 sql문 (상태, 레벨 수정예정)
+		//회원 등급이 골드이면서 프로젝트가 진행중이고 프로젝트별 후원 토탈값을 구한 sql문
 		String sql = "SELECT p.*, m.*, c.name categoty_name, total FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN category C ON p.category_no = c.category_no "
 				+ "	JOIN (SELECT p.project_no, SUM(TOTAL) total FROM PROJECT P JOIN REWARD R ON p.project_no = r.project_no "
 				+ "	JOIN (SELECT R.NO, SUM((TO_NUMBER(d.amount)*TO_NUMBER(d.quantity))+TO_NUMBER(NVL(d.additional, 0))) total FROM REWARD R"
@@ -63,13 +63,13 @@ public class MainPageDao {
 
 	}
 
-	//신규
+	//신규 그룹 select
 	public List<ProjectVo> selectEarly(Connection conn) throws Exception {
 		List<ProjectVo> earlyList = new ArrayList<ProjectVo>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		//시작한지 5일전 ~ 오늘인 프로젝트를 조회하는 sql 문
+		//시작한지 5일전 ~ 오늘이고 프로젝트별 후원 토탈값을 구한 sql문
 		String sql = "SELECT p.*, m.*, c.name categoty_name, total FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO"
 				+ "	JOIN category C ON p.category_no = c.category_no"
 				+ "	JOIN (SELECT p.project_no, SUM(TOTAL) total FROM PROJECT P JOIN REWARD R ON p.project_no = r.project_no"
@@ -112,13 +112,13 @@ public class MainPageDao {
 		return earlyList;
 	}
 
-	//마감임박
+	//마감임박 그룹 select
 	public List<ProjectVo> selectDeadline(Connection conn) throws Exception {
 		List<ProjectVo> deadlineList = new ArrayList<ProjectVo>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		//마감날짜가 오늘~3일이후이고 프로젝트별 후원 토탈값을 구한 sql문 (상태 수정예정)
+		//마감날짜가 오늘~3일 이후까지이고 프로젝트별 후원 토탈값을 구한 sql문
 		String sql = "SELECT p.*, m.*, c.name categoty_name, total FROM PROJECT P "
 				+ "JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN category C ON p.category_no = c.category_no "
 				+ "JOIN (SELECT p.project_no, SUM(TOTAL) total FROM PROJECT P "

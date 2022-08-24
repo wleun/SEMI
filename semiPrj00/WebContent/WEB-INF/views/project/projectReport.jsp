@@ -1,29 +1,13 @@
 <%@page import="com.kh.project.vo.ProjectVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%
-	 ProjectVo pvo = (ProjectVo)request.getAttribute("projectVo"); 
-	%>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	body {
-		width: 1920px;
-		height: 900px;
-	}
-	
-	#prjReport {
-		margin-top: 300px;
-	}
-	
-	#prjReport span {
-		border-bottom: 1px solid gray;
-		font-size: x-small;
-	}
-	
 	/* 여기서부터 남겨야 함 */
 	.prjInfo {
 		display: flex;
@@ -57,14 +41,7 @@
 
 <body>
 
-	<%@ include file="/WEB-INF/views/common/userHeader.jsp"%>
-
-
-	<!-- Open the Modal -->
-	<button type="button" id="prjReport" class="btn shadow-none"
-		data-bs-toggle="modal" data-bs-target="#myModal">
-		<span>프로젝트 신고</span>
-	</button>
+	
 
 	<!-- 여기부터 남기는 곳 -->
 	<!-- The Modal -->
