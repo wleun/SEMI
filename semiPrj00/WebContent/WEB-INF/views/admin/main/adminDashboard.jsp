@@ -80,6 +80,11 @@
             flex-direction: row;
             justify-content:center;
         }
+        
+        #proposalTable>table {
+        	width : 100%;
+        	height : 100%;
+        }
 
         
 
@@ -96,6 +101,15 @@
             justify-content: center;
             font-size: 18px;
 
+        }
+        
+        #messageTable {
+        	width : 100%;
+        	height : 78%;
+        	display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
         }
 
         #eventDashBoard {
@@ -124,6 +138,15 @@
             font-size: 18px;
 
         }
+        
+        #eventOngoingTable {
+        	width : 100%;
+        	height : 75%;
+        	display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
+        }
 
         #noticeDashBoard {
             width: 430px;
@@ -137,7 +160,15 @@
             flex-direction: column;
             justify-content: center;
             font-size: 18px;
-
+        }
+        
+        #noticeDashBoardTable {
+        	width: 100%;
+            height: 75%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
         }
 
         #todaySuccessPrj {
@@ -154,6 +185,16 @@
             font-size: 18px;
 
         }
+        
+        #todaySuccessPrjTable {
+        
+        	width: 100%;
+            height: 77%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
+        }
 
         #todayStartPrj {
             width: 430px;
@@ -169,6 +210,17 @@
             font-size: 18px;
 
         }
+        
+        
+        
+        #todayStartPrjTable {
+        	width: 100%;
+            height: 77%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
+        }
 
         #todayReport{
             width: 430px;
@@ -182,8 +234,18 @@
             flex-direction: column;
             justify-content: center;
             font-size: 18px;
-
         }
+        
+        #todayReportTable {
+       		width: 100%;
+            height: 77%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        
 	
 </style>
 </head>
@@ -223,20 +285,87 @@
                                     <td>진행중 프로젝트</td>
                                     <td>0건</td>
                                 </tr>
+                                
                             </table>
                         </div>
                     </div>
                     <div id="proposal" class="animationHover">
                         <div id="proposalText"><a>제안서</a></div>
                         <div id="proposalTable">
-                            <table></table>
+                            <table>
+                            	<tr>
+                            		<td>asd</td>
+                            		<td>qeqw</td>
+                            		<td>qwesa</td>
+                            		<td>asda</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qweqw</td>
+                            		<td>sada</td>
+                            		<td>zxzxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asdas</td>
+                            		<td>qweqw</td>
+                            		<td>asdas</td>
+                            		<td>zxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	
+                            	
+                            </table>
                             
                         </div>
                     </div>
                     <div id="message" class="animationHover">
                         <div id="messageText"><a>접수된 신고</a></div>
                         <div id="messageTable">
-                            <table></table>
+                            <table>
+                            	<tr>
+                            		<td>asd</td>
+                            		<td>qeqw</td>
+                            		<td>qwesa</td>
+                            		<td>asda</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qweqw</td>
+                            		<td>sada</td>
+                            		<td>zxzxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asdas</td>
+                            		<td>qweqw</td>
+                            		<td>asdas</td>
+                            		<td>zxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	
+                            	
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -279,7 +408,33 @@
                         <div id="eventOngoing">
                             <div id="eventOngoingText"><a>진행중인 이벤트</a></div>
                             <div id="eventOngoingTable">
-                                <table></table>
+                                <table>
+                            	<tr>
+                            		<td>asd</td>
+                            		<td>qeqw</td>
+                            		<td>qwesa</td>
+                            		<td>asda</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qweqw</td>
+                            		<td>sada</td>
+                            		<td>zxzxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asdas</td>
+                            		<td>qweqw</td>
+                            		<td>asdas</td>
+                            		<td>zxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	
+                            </table>
                             </div>
                         </div>
                     </div>
@@ -288,8 +443,38 @@
                             <a>공지사항 관리</a>
                         </div>
                         <div id="noticeDashBoardTable">
-                            <table>
-
+                             <table>
+                            	<tr>
+                            		<td>asd</td>
+                            		<td>qeqw</td>
+                            		<td>qwesa</td>
+                            		<td>asda</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qweqw</td>
+                            		<td>sada</td>
+                            		<td>zxzxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asdas</td>
+                            		<td>qweqw</td>
+                            		<td>asdas</td>
+                            		<td>zxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	
                             </table>
                         </div>
                     </div>
@@ -300,13 +485,65 @@
                             <a>오늘 성사된 프로젝트</a>
                         </div>
                         <div id="todaySuccessPrjTable">
-
+							 <table>
+                            	<tr>
+                            		<td>asd</td>
+                            		<td>qeqw</td>
+                            		<td>qwesa</td>
+                            		<td>asda</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qweqw</td>
+                            		<td>sada</td>
+                            		<td>zxzxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asdas</td>
+                            		<td>qweqw</td>
+                            		<td>asdas</td>
+                            		<td>zxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	
+                            </table>
                         </div>
                     </div>
                     <div id="todayStartPrj" class="animationHover">
                         <div id="todayStartPrjText"><a>오늘 시작하는 프로젝트</a></div>
                         <div id="todayStartPrjTable">
-                            <table></table>
+                             <table>
+                            	<tr>
+                            		<td>asd</td>
+                            		<td>qeqw</td>
+                            		<td>qwesa</td>
+                            		<td>asda</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qweqw</td>
+                            		<td>sada</td>
+                            		<td>zxzxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asdas</td>
+                            		<td>qweqw</td>
+                            		<td>asdas</td>
+                            		<td>zxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	
+                            </table>
                         </div>
                     </div>
                     <div id="todayReport" class="animationHover">
@@ -314,7 +551,33 @@
                             <a>마감임박 이벤트</a>
                         </div>
                         <div id="todayReportTable">
-                            <table></table>
+                             <table>
+                            	<tr>
+                            		<td>asd</td>
+                            		<td>qeqw</td>
+                            		<td>qwesa</td>
+                            		<td>asda</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qweqw</td>
+                            		<td>sada</td>
+                            		<td>zxzxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asdas</td>
+                            		<td>qweqw</td>
+                            		<td>asdas</td>
+                            		<td>zxc</td>
+                            	</tr>
+                            	<tr>
+                            		<td>asda</td>
+                            		<td>qwewq</td>
+                            		<td>asdas</td>
+                            		<td>zxcz</td>
+                            	</tr>
+                            	
+                            </table>
                         </div>
                     </div>
                 </div>
