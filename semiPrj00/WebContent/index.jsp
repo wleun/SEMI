@@ -3,13 +3,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%
+	<%
     
   	  List<ProjectVo> recommendList = (List<ProjectVo>)request.getAttribute("recommendList");
    	  List<ProjectVo> earlyList = (List<ProjectVo>)request.getAttribute("earlyList");
       List<ProjectVo> deadlineList = (List<ProjectVo>)request.getAttribute("deadlineList");
 
-      %>
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -270,7 +270,12 @@
 					<div class="prj-content">
 						<span class="percentage" id="percentage"> <%int total = Integer.parseInt(recommendList.get(i).getEtc())*100/recommendList.get(i).getGoal();%>
 							<%=total %>%
-						</span> <span class="amount"><fmt:formatNumber value="${recommendList.get(i).getEtc()}" pattern="#,###.##"/>원</span>
+						</span> <span class="amount" id="rAmount<%=i%>"></span>
+						<script>
+							//정규식으로 3자리마다 , 처리
+							var amount = (<%=recommendList.get(i).getEtc()%>).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+							$("#rAmount<%=i%>").text(amount+'원');
+						</script>
 					</div>
 					<div class="prj-content d-day" id="<%=i%>">
 						<!-- 남은 날짜 계산 -->
@@ -379,7 +384,13 @@
 					<div class="prj-content">
 						<span class="percentage" id="percentage"> <%int total = Integer.parseInt(earlyList.get(i).getEtc())*100/earlyList.get(i).getGoal();%>
 							<%=total %>%
-						</span> <span class="amount"><%=earlyList.get(i).getEtc()%>원</span>
+						</span> <span class="amount" id="eAmount<%=i%>"></span>
+						<script>
+							//정규식으로 3자리마다 , 처리
+							var amount = (<%=earlyList.get(i).getEtc()%>).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+							$("#eAmount<%=i%>").text(amount+'원');
+						
+						</script>
 					</div>
 					<div class="prj-content d-day" id="n<%=i%>">
 						<!-- 남은 날짜 계산 -->
@@ -468,7 +479,12 @@
 					<div class="prj-content">
 						<span class="percentage" id="percentage"> <%int total = Integer.parseInt(deadlineList.get(i).getEtc())*100/deadlineList.get(i).getGoal();%>
 							<%=total %>%
-						</span> <span class="amount"><%=deadlineList.get(i).getEtc()%>원</span>
+						</span> <span class="amount" id="dAmount<%=i%>"></span>
+						<script>
+							//정규식으로 3자리마다 , 처리
+							var amount = (<%=deadlineList.get(i).getEtc()%>).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+							$("#dAmount<%=i%>").text(amount+'원');
+						</script>
 					</div>
 					<div class="prj-content d-day" id="d<%=i%>">
 						<!-- 남은 날짜 계산 -->
