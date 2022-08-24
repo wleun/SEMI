@@ -115,6 +115,10 @@
         .memberNo {
             width: 6%;
         }
+        
+        .memberNoVal {
+            width: 6%;
+        }
 
         .memberType {
             width: 7%;
@@ -255,7 +259,7 @@
                                   <c:forEach items="${list}" var="item"> 
                                     <div class="memberManageColumn">
                                         <div class="check"><input type="checkbox" class="form-check-input" name="boardCheck" value=${item.no}></div>
-                                        <div class="memberNo">${item.no}</div>
+                                        <div class="memberNoVal">${item.no}</div>
                                         <div class="memberType">${item.type}</div>
                                         <div class="memberLevel">${item.mLevel}</div>
                                         <div class="memberName">${item.nick}</div>
@@ -314,15 +318,16 @@
 	
 	
 	<script>
-		$(document).ready(function(){
+		
+			//체크박스 체크 후 회원정지 누르면 ajax 동작
 			$('#suspendBtn').click(function() {
 		        const checkBoxArr = [];
+		        
 		        $("input:checkbox[name='boardCheck']:checked").each(function() {
 		        	checkBoxArr.push($(this).val());
 		        	
 		        })
 		       	
-		        console.log(checkBoxArr);
 		        $.ajax({
 		        	url : "<%=contextPath%>/admin/member/suspend" ,
 		        	type:"POST",
@@ -331,8 +336,25 @@
 		        		key : checkBoxArr
 		        	},
 		        	success:function(result) {
-		        		console.log(result); //새로고침으로 인해서 출력이 안됨...
-		        	
+		        		const jr = JSON.parse(result);
+		        		const memberNoArr = document.querySelectorAll('.memberNoVal');
+		        		
+		        		for(let i = 0 ; i < jr.length; ++i){
+		        			const susNo = jr[i].no;	
+                			const susText = jr[i].status;
+		        			const susDate = jr[i].suspendDate;
+		        			
+                			for(let i = 0 ; i < memberNoArr.length; ++i){
+                    			const tempNo = memberNoArr[i].innerText;
+                    			if(susNo == tempNo){
+                    				const target = memberNoArr[i].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+                        			const target2 = memberNoArr[i].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+                    				target.innerText = susText;	
+                    				target2.innerText = susDate;
+                        			break;
+                    			}
+                    		}
+		        		}
 		        	},
 		        	error:function(error) {
 		        		alert("삭제에 실패하였습니다.");
@@ -340,14 +362,14 @@
 		        });
 		    });
 			
+			
+			//체크박스 체크 후 정지해제 누르면 ajax 동작
 			$('#cancelBtn').click(function() {
 		        const checkBoxArr = [];
 		        $("input:checkbox[name='boardCheck']:checked").each(function() {
 		        	checkBoxArr.push($(this).val());
-		        	
 		        })
 		       	
-		        console.log(checkBoxArr);
 		        $.ajax({
 		        	url : "<%=contextPath%>/admin/member/suspend/cancellation" ,
 		        	type:"POST",
@@ -356,14 +378,32 @@
 		        		key : checkBoxArr
 		        	},
 		        	success:function(result) {
-		        		console.log(result); 
+		        		const jr = JSON.parse(result);
+		        		const memberNoArr = document.querySelectorAll('.memberNoVal');
+		        		
+		        		for(let i = 0 ; i < jr.length; ++i){
+		        			const canNo = jr[i].no;	
+                			const canText = jr[i].status;
+		        			const canDate = "";
+		        			
+                			for(let i = 0 ; i < memberNoArr.length; ++i){
+                    			const tempNo = memberNoArr[i].innerText;
+                    			if(canNo == tempNo){
+                    				const target = memberNoArr[i].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+                        			const target2 = memberNoArr[i].nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+                    				target.innerText = canText;	
+                    				target2.innerText = canDate;
+                        			break;
+                    			}
+                    		}
+		        		}
 		        	},
 		        	error:function(error) {
 		        		alert("삭제에 실패하였습니다.");
 		        	}
 		        });
 		    });
-		});
+		
 	</script>
 
 </body>

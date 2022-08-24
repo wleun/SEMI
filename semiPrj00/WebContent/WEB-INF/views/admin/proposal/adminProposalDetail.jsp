@@ -15,12 +15,12 @@
         justify-content: center;
         align-items: center;
         width: 1500px;
-        height: 3000px;
+        height: 4000px;
         margin-left: 50px;
     }
 
     #proposalDetail {
-        height: 2750px;
+        height: 3750px;
         display: flex;
         flex-direction: column;
         width: 50%;
@@ -48,21 +48,21 @@
 
     #proposalInfo {
         width: 100%;
-        height: 17%;
+        height: 16%;
         display: flex;
         flex-direction: column;
     }
 
     #projectInfo {
         width: 100%;
-        height: 33%;
+        height: 27%;
         display: flex;
         flex-direction: column;
     }
 
     #projectMedia {
         width: 100%;
-        height: 40%;
+        height: 60%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -84,10 +84,11 @@
 
     #proposalInfoBox {
         width: 100%;
-        height: 320px;
+        height: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
+        align-items : center;
     }
 
     .proposalInfoBox {
@@ -95,6 +96,7 @@
         height: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
     }
 
     #projectInfoBox {
@@ -110,7 +112,7 @@
 
     .proposalInfo {
         width: 100%;
-        height: 20%;
+        height: 10%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -156,6 +158,16 @@
     .mediaText {
         margin-top: 40px;
         height: 30px;
+    }
+    
+    .mediaBox {
+    	width : 100%
+    	height : 100%
+    	display : flex;
+    	flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
     .padding_bottom {
@@ -227,8 +239,8 @@
                 <div class="mediaText">썸네일</div>
                 <div class="mediaBox"><img src="<%=contextPath %>/resources/upload/${adminProposalVo.thumbnailName}>" alt="섬네일 이미지"></div>
                 <div class="mediaText">상세 이미지/영상</div>
-              <c:forEach items="${list}" var="item">
-                <div class="mediaBox"><img src="<%=contextPath%>/resources/upload/${item.changeName}" alt="이미지 내용"></div>
+              <c:forEach items="${proposalAttachmentVoList}" var="item">
+                <div class="mediaBox"><img src="<%=contextPath %>/resources/upload/${item.changeName}" alt="이미지 내용"></div>
            	  </c:forEach>
             </div>
         </div>
