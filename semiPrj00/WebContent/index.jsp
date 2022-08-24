@@ -230,7 +230,10 @@ $('#top-menu').click(function () {
                 <!-- 프로젝트 달성도 부분 -->
                 <div class="prj-content gage-div">
                     <div class="prj-content">
-                        <span class="percentage" id="percentage"></span>
+                        <span class="percentage" id="percentage">
+                        <%int total = Integer.parseInt(p.getEtc())*100/p.getGoal();%>
+                        <%=total %>%
+                        </span>
                         <span class="amount"><%=p.getEtc()%></span>
                     </div>
                     <div class="prj-content d-day" id="<%=p.getPrjectNo()%>">
@@ -253,19 +256,11 @@ $('#top-menu').click(function () {
 					    </script>
                     </div>
                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                        <div class="progress-bar" id="progress" style=" height: 5px; background-color: #48CA7D!important;"></div>
+                        <div class="progress-bar" id="progress" style="width: <%=total %>%; height: 5px; background-color: #48CA7D!important;"></div>
                     </div>
                 </div>
             </div>
-           <!-- 달성률 계산 -->
-            <script>
-                var goal = "<%=p.getGoal()%>";
-                var total = "<%=Integer.parseInt(p.getEtc())%>";
-
-                var goalPercentage = (total *100)/goal;
-                $("#percentage").text(Math.floor(goalPercentage) + "%");
-                $("#progress").css({"width" : Math.floor(goalPercentage)+"%"});
-            </script>
+           
             <%} %>
  			<%} %>
             <div class="prj-wrap">
