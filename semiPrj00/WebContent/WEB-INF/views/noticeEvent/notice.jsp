@@ -107,13 +107,13 @@
                 </li>
               <%for(int i = 0; i <voList.size(); i++){ %>
                <li >
-                    <a href="" class="noti-a">
+                    <div class="noti-a">
                         <div class="noti-info">
                             <h3 class="noti-title"><%=voList.get(i).getTitle() %></h3>
-                            <span class="noti-date"><span id="notiNo"><%=voList.get(i).getNo()%> &nbsp;</span> &nbsp;<%=voList.get(i).getWriteDate()%> </span>
+                            <span class="noti-date"><span id="notiNo"><%=voList.get(i).getNo()%></span> &nbsp; &nbsp;<%=voList.get(i).getWriteDate()%> </span>
                             
                         </div>
-                    </a>
+                    </div>
                     <hr>
                 </li>
                 <%} %>
@@ -142,6 +142,7 @@
       $(function(){
          $('.noti-a').click(function(){
             //행 클릭 되었을 때, 동작할 내용
+            
             
             //글 번호 가져오기
             const num = $('#notiNo').text();

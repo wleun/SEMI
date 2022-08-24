@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.kh.admin.attachment.vo.AdminEventAttachmentVo;
 import com.kh.admin.event.vo.AdminEventVo;
+import com.kh.admin.notice.vo.AdminNoticeVo;
 import com.kh.common.vo.PageVo;
 
 public class EventDao {
@@ -130,7 +131,7 @@ public class EventDao {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		AdminEventVo eventVo = new AdminEventVo();
+		AdminEventVo eventVo = null;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -166,6 +167,8 @@ public class EventDao {
 				} else {
 					status = "삭제됨";
 				}
+				
+				eventVo = new AdminEventVo();
 				
 				eventVo.setNo(num);
 				eventVo.setTitle(title);

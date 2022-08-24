@@ -29,8 +29,8 @@ public class NoticeDetailController extends HttpServlet {
 		AdminNoticeAttachmentVo adminNoticeAttachmentVo = new NoticeService().selectFile(num);
 		
 		if(adminNoticeVo!=null && adminNoticeAttachmentVo !=null) {
-			req.setAttribute("adminNoticeVo", adminNoticeVo);
-			req.setAttribute("adminNoticeAttachmentVo", adminNoticeAttachmentVo);
+			req.setAttribute("vo", adminNoticeVo);
+			req.setAttribute("attachVo", adminNoticeAttachmentVo);
 			//req.setAttribute("function", "이벤트 상세조회");
 			
 			req.getRequestDispatcher("/WEB-INF/views/noticeEvent/noticeDetail.jsp").forward(req, resp);
@@ -41,9 +41,5 @@ public class NoticeDetailController extends HttpServlet {
 			
 		}
 		
-		
-		
-		
-		req.getRequestDispatcher("/WEB-INF/views/noticeEvent/noticeDetail.jsp").forward(req, resp);
 	}
 }

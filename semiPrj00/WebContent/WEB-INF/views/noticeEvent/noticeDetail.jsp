@@ -1,8 +1,10 @@
+<%@page import="com.kh.admin.attachment.vo.AdminNoticeAttachmentVo"%>
 <%@page import="com.kh.admin.notice.vo.AdminNoticeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	AdminNoticeVo vo = (AdminNoticeVo)request.getAttribute("vo");
+	AdminNoticeAttachmentVo attachVo = (AdminNoticeAttachmentVo)request.getAttribute("attachVo");
 %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +28,7 @@
             background-color: rgba(255, 255, 255, 0.675);
         }
         #notice-h1{
-            text-align: center;
+            text-align: left;
             border-bottom: 2px solid lightgray;
         }
        #noti-outer{
@@ -38,16 +40,16 @@
        }
        #noti-title{
         text-align: center;
-        font-size: 20px;
+        font-size: 45px;
        }
        .noti-date{
         text-align: right;
         border-bottom: 2px solid lightgray;
-        font-size: small;
+        font-size: 15px;
         margin-left: -34px;
        } 
        .noti-img{
-        border: 1px solid blue;
+        /*border: 1px solid blue;*/
         width: 300px;
         height: 300px;
         margin: 10px auto;
@@ -76,23 +78,23 @@
         <div id="box"></div>
         <div id="notice">
             <div id="noti-outer">
-                <div id="notice-h1"><h1>공지사항</h1></div>
+                <!-- <div id="notice-h1"><h1>공지사항</h1></div> -->
             
                 <div>
                  <ul>
-                     <li><div id="noti-title">제목</div></li>
-                     <li><div class="noti-date">작성일 : &nbsp;</div></li>
+                     <li><br> <div id="noti-title"><%=vo.getTitle() %></div></li>
+                     <li><div class="noti-date">작성일 :<%=vo.getWriteDate() %> &nbsp;</div></li>
                    
-                     <li><div class="noti-img"><img src="" alt="이미지파일입니다"></div></li>
-                     <li><div>내용~</div></li>
+                     <li><div class="noti-img"><img src="<%=attachVo.getPath() %>" alt="이미지파일입니다"></div></li>
+                     <li><div style="font-size : 25px;"><%=vo.getContent() %></div></li>
                  </ul>
                 </div>
                 
             </div>
             <div id="noti-btn-div">
-                <button id="noti-pre"  onclick="location.href=''">이전</button>
-                <button id="noti-list"  onclick="location.href='<%=contextPath%>/member/noticeList'">목록</button>
-                <button id="noti-next"  onclick="location.href=''">다음</button> </div>
+               <!-- <button id="noti-pre" style="color:white;" onclick="location.href=''">이전</button> --> 
+                <button id="noti-list" style="color:white;" onclick="location.href='<%=contextPath%>/member/noticeList?p=1'">목록</button> 
+               <!--<button id="noti-next" style="color:white;" onclick=" location.href='<%=contextPath%>/notice/detail?num=<%=vo.getNo()%> + 1'">다음</button> </div>  --> 
              </div>
        
 

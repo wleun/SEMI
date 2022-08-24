@@ -23,7 +23,7 @@
         #event{
             /* border: 2px solid red; */
             width: 700px;
-            height: 800px;
+            height: 850px;
             margin: 0 auto;
             background-color: rgba(255, 255, 255, 0.675);
         }
@@ -40,17 +40,16 @@
        }
        #event-title{
         text-align: center;
-        font-size: 28px;
+        font-size: 45px;
        }
        .event-date{
         text-align: right;
         width: 700px;
         margin-left: -34px;
         border-bottom: 1px solid  lightgray;
-        font-size: small;
+        font-size: 15px;
        } 
        .event-img{
-        border: 1px solid blue;
         width: 300px;
         height: 300px;
         margin: 10px auto;
@@ -60,14 +59,10 @@
         text-align: center;
         border-bottom: 1px solid lightgray;
         margin-left: -34px;
+        font-size:20px;
+        color:#48CA7D;
        }
-       /* a{
-        text-decoration: none;
-        color: black;
-        border:none;
-        font-size: 18px;
-        text-align: center;
-       } */
+       
        #event-btn-div{
             border-top: 2px solid lightgray; 
             text-align: center;
@@ -84,23 +79,20 @@
         <div id="box"></div>
         <div id="event">
             <div id="event-outer">
-                <div id="event-h1"><h1>이벤트</h1></div>
             
                 <div>
                  <ul>
-                     <li><div id="event-title"><%=vo.getTitle() %></div></li>
-                     <li><div class="event-date">작성일 :<%=vo.getWriteDate() %> &nbsp; 조회수 : 0 &nbsp;</div></li>
-                     <li><div class="event-term">이벤트 기간 : <%=vo.getStartDate() %>~ <%=vo.getEndDate() %></div></li>
+                     <li><br> <div id="event-title"><%=vo.getTitle() %></div></li>
+                     <li><div class="event-date">작성일 :&nbsp;<%=vo.getWriteDate() %>&nbsp;</div></li>
+                     <li><div class="event-term">이벤트 기간 : <%=vo.getStartDate() %> ~ <%=vo.getEndDate() %></div></li>
                      <li><div class="event-img"><img src="<%=attachVo.getPath() %>" alt="이미지파일입니다"></div></li>
-                     <li><div><%=vo.getContent() %></div></li>
+                     <li><div style="font-size : 25px;"><%=vo.getContent() %></div></li>
                  </ul>
                 </div>
                 
             </div>
             <div id="event-btn-div">
-                <button id="event-pre" onclick="location.href=''">이전</button>
-                <button id="event-list" onclick="location.href='<%=contextPath%>/member/eventList'">목록</button>
-                <button id="event-next" onclick="location.href=''">다음</button>
+                <button id="event-list" onclick="location.href='<%=contextPath%>/member/eventList?p=1'" style="color:white;">목록</button>
             </div>
         </div>
      

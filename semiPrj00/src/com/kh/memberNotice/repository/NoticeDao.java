@@ -108,6 +108,7 @@ public class NoticeDao {
 					deleteYn = "삭제됨";
 				}
 				
+				vo = new AdminNoticeVo();
 				
 				vo.setNo(num);
 				vo.setTitle(title);
