@@ -121,40 +121,37 @@
         }
 
         .status {
-            width: 8%;
+            width: 9%;
         }
         
         .statusVal {
-            width: 8%;
+            width: 9%;
         }
 
         .prjNo {
-            width: 6%;
+            width: 8%;
         }
 
         .category {
-            width: 13%;
+            width: 14%;
         }
 
-        .percent {
-            width: 8%;
-        }
 
         .prjName {
             width: 22%;
         }
 
         .makerName {
-            width: 15%;
+            width: 16%;
         }
 
         .period {
-            width: 15%;
+            width: 16%;
 
         }
 
         .reportCnt {
-            width: 7%;
+            width: 8%;
         }
 
 
@@ -242,7 +239,6 @@
                                     <div class="prjNo">번호</div>
                                     <div class="status">상태</div>
                                     <div class="category">카테고리</div>
-                                    <div class="percent">달성률</div>
                                     <div class="prjName">프로젝트 이름</div>
                                     <div class="makerName">메이커 이름</div>
                                     <div class="period">기간</div>
@@ -256,7 +252,6 @@
                                         <div class="prjNo">${item.no}</div>
                                         <div class="statusVal">${item.status}</div>
                                         <div class="category">${item.categoryName}</div>
-                                        <div class="percent">X</div>
                                         <div class="prjName">${item.projectName}</div>
                                         <div class="makerName">${item.makerName}</div>
                                         <div class="period">${item.startDate} ~ ${item.endDate}</div>
@@ -315,7 +310,6 @@
                         	
                         })
                        	
-                        console.log(checkBoxArr);
                         $.ajax({
                         	url : "<%=contextPath%>/admin/project/delete" ,
                         	type:"POST",
@@ -329,7 +323,22 @@
                         		//console.log(jr[0]);
                         		//console.log(jr[0].no);
                         		
+                        		const prjNoArr = document.querySelectorAll('.prjNo');
                         		
+                        		for(let i = 0 ; i < jr.length; ++i){
+                        			const delNo = jr[i].no;	//삭제할 번호
+                        			const delText = jr[i].status;
+                        			
+                        			for(let i = 0 ; i < prjNoArr.length; ++i){
+                            			const tempNo = prjNoArr[i].innerText;
+                            			if(delNo == tempNo){
+                            				const target = prjNoArr[i].nextElementSibling;
+                                			target.innerText = delText;	
+                                			break;
+                            			}
+                            		}
+                        			
+                        		}
                         		
                         	},
                         	error:function(error) {

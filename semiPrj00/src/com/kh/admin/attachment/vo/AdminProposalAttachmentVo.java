@@ -30,6 +30,8 @@ public class AdminProposalAttachmentVo {
 	private String originName;
 	private String changeName;
 	private String uploadDate;
+	
+	
 	public String getNo() {
 		return no;
 	}

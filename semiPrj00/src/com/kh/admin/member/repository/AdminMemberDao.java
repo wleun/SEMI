@@ -50,7 +50,7 @@ public class AdminMemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT NO , TYPE , M_LEVEL , NICK , EMAIL , PHONE , STATUS , ENROLL_DATE , SUSPEND_DATE , QUIT_DATE FROM MEMBER WHERE STATUS = 'A' OR STATUS= 'S' ORDER BY NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
+		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT NO , TYPE , M_LEVEL , NICK , EMAIL , PHONE , STATUS , TO_CHAR(ENROLL_DATE,'YYYY-MM-DD') AS ENROLL_DATE , TO_CHAR(SUSPEND_DATE,'YYYY-MM-DD') AS SUSPEND_DATE ,  TO_CHAR(QUIT_DATE,'YYYY-MM-DD') AS QUIT_DATE FROM MEMBER WHERE STATUS = 'A' OR STATUS= 'S' ORDER BY NO DESC ) T ) WHERE RNUM BETWEEN ? AND ? ";
 	
 		
 		try {
@@ -216,7 +216,7 @@ public class AdminMemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT STATUS, SUSPEND_DATE FROM MEMBER WHERE NO = ?";
+		String sql = "SELECT STATUS, TO_CHAR(SUSPEND_DATE,'YYYY-MM-DD') AS SUSPEND_DATE FROM MEMBER WHERE NO = ?";
 		
 		try {
 			
@@ -245,6 +245,7 @@ public class AdminMemberDao {
 				
 				memberVo.setStatus(status);
 				memberVo.setSuspendDate(suspendDate);
+				memberVo.setNo(memberNo);
 			
 			}
 		}catch (Exception e) {
