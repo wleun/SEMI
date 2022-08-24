@@ -14,6 +14,7 @@ import com.kh.coupon.vo.CouponVo;
 import com.kh.member.vo.MemberVo;
 import com.kh.member.vo.PaymentVo;
 import com.kh.project.service.PrjSupportService;
+import com.kh.project.service.PrjViewService;
 import com.kh.project.vo.ProjectVo;
 import com.kh.project.vo.SupportVo;
 import com.kh.reward.vo.ProjectRewardVo;
@@ -40,6 +41,10 @@ public class PrjSupportController extends HttpServlet{
 			List<PaymentVo> paymentList = new PrjSupportService().selectPayment(loginMember.getNo());
 			List<CouponVo> couponList = new PrjSupportService().selectCoupon(loginMember.getNo());
 			
+			int totalDonation = new PrjViewService().getTotalDonation(num);
+			double getPercentage = ((double)totalDonation / (double)prjVo.getGoal()) * 100;
+			long percent = Math.round(getPercentage);
+			
 			req.setAttribute("prjVo", prjVo);
 			req.setAttribute("rewardVo", rewardVo);
 			req.setAttribute("addrList", addrList);
@@ -47,6 +52,8 @@ public class PrjSupportController extends HttpServlet{
 			req.setAttribute("couponList", couponList);
 			req.setAttribute("quantity", quantity);
 			req.setAttribute("add", add);
+			req.setAttribute("totalDonation", totalDonation);
+			req.setAttribute("percent", percent);
 			
 			if(prjVo != null && rewardVo != null && quantity != null) {
 				//리워드의 프로젝트 번호가 일치하는지

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.category.vo.CategoryVo;
 import com.kh.common.vo.PageVo;
 import com.kh.project.service.PrjCategoryService;
+import com.kh.project.service.PrjViewService;
 import com.kh.project.vo.ProjectVo;
 
 @WebServlet(urlPatterns = "/project/category")
@@ -71,10 +72,24 @@ public class PrjCategoryController extends HttpServlet{
 		List<ProjectVo> selectedProject = new PrjCategoryService().selectProject(category, sort, pageVo);
 		CategoryVo selectedCategory = new PrjCategoryService().selectCategory(category);
 		
+		/*
+		 * 프로젝트 모인금액/달성률 내용 받기
+		 */
+		int[] totalDonateArr = new int[selectedProject.size()];
+		long[] percentArr = new long[selectedProject.size()];
+		for(int i=0; i<selectedProject.size();i++) {
+			totalDonateArr[i] = new PrjViewService().getTotalDonation(selectedProject.get(i).getPrjectNo());
+			double getPercentage = ((double)totalDonateArr[i] / (double)selectedProject.get(i).getGoal()) * 100;
+			percentArr[i] = Math.round(getPercentage);
+		}
+		
 		req.setAttribute("sort", sort);
 		req.setAttribute("pageVo", pageVo);
 		req.setAttribute("categoryVo", selectedCategory);
 		req.setAttribute("prjList", selectedProject);
+		req.setAttribute("totalDonateArr", totalDonateArr);
+		req.setAttribute("percentArr", percentArr);
+		
 		req.getRequestDispatcher("/WEB-INF/views/project/categoryForm.jsp").forward(req, resp);
 		
 	}

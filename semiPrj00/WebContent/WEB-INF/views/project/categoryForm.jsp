@@ -12,6 +12,9 @@
 	PageVo pageVo = (PageVo)request.getAttribute("pageVo");
 	String sort = (String)request.getAttribute("sort");
 	
+	int[] totalDonateArr = (int[])request.getAttribute("totalDonateArr");
+	long[] percentArr = (long[])request.getAttribute("percentArr");
+	
 	int currentPage = pageVo.getCurrentPage();
 	int startPage = pageVo.getStartPage();
 	int endPage = pageVo.getEndPage();
@@ -160,6 +163,7 @@
         </div>
         <div id="category-content-wrap">
         	<%if(prjList!=null){ %>
+        		<%int idx = 0;%>
         		<%for(ProjectVo vo : prjList){%>
 	            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view?num=<%=vo.getPrjectNo()%>'">
 	                <div class="prj-content prj-img">
@@ -176,8 +180,8 @@
 	                </div>
 	                <div class="prj-content gage-div">
 	                    <div class="prj-content">
-	                        <span class="percentage">달성률</span>
-	                        <span class="amount">모인 금액</span>
+	                        <span class="percentage"><%=percentArr[idx]%>%</span>
+	                        <span class="amount">모인 금액 <%=totalDonateArr[idx]%>원</span>
 	                    </div>
 	                    <div class="prj-content d-day" id="<%=vo.getPrjectNo()%>">
 	                    <!-- 남은 날짜 계산 -->
@@ -204,7 +208,7 @@
 	                </div>
 	            </div>
 	            
-                
+                <%idx++;%>
 	            <%}%>
         	<%} %>
             
