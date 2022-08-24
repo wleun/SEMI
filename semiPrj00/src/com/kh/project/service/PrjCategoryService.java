@@ -37,8 +37,21 @@ public class PrjCategoryService {
 			if("I".equals(sort) || "S".equals(sort) || "B".equals(sort)) {
 				if(!("21".equals(category)) && !("22".equals(category)) && !("23".equals(category)) && !("0".equals(category) && "intended".equals(sort))) {
 					result = dao.listCount(conn, category, sort);
-				}else {
-					//헤더 카테고리들 총갯수세는거 만들기
+				}else if("0".equals(category) && "intended".equals(sort)) {
+					result = dao.countSort(conn, sort);
+				}
+				else {
+					switch(category) {
+					case "21":
+						result = dao.countPopular(conn);
+						break;
+					case "22":
+						result = dao.countEarly(conn);
+						break;
+					case "23":
+						result = dao.countDeadline(conn);
+						break;
+					}
 				}
 			}else if("all".equals(sort)) {
 				result = dao.listCount(conn, category);

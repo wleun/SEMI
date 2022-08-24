@@ -456,5 +456,131 @@ public class PrjCategoryDao {
 		return projectList;
 	}
 
+	/*
+	 * 인기순 총갯수
+	 */
+	public int countPopular(Connection conn) {
+		String sql = "SELECT COUNT(U.PROJECT_NO) COUNT FROM ( SELECT T.*, M.NICK NICK, C.NAME CATEGORY_NAME ,PRJ.NAME NAME ,PRJ.REGISTER_DATE REGISTER_DATE ,PRJ.START_DATE START_DATE ,PRJ.END_DATE END_DATE ,PRJ.GOAL GOAL ,PRJ.TEXT TEXT ,PRJ.THUMBNAIL_NAME THUMBNAIL_NAME ,PRJ.THUMBNAIL_PATH THUMBNAIL_PATH ,PRJ.STATUS STATUS FROM ( SELECT Z.* FROM ( SELECT P.PROJECT_NO, COUNT(*) COUNT FROM PROJECT P JOIN PROJECT_LIKE L ON P.PROJECT_NO = L.PROJECT_NO WHERE L.STATUS = 'L' GROUP BY P.PROJECT_NO ORDER BY COUNT DESC ) Z WHERE COUNT > 9 ) T JOIN PROJECT PRJ ON PRJ.PROJECT_NO = T.PROJECT_NO JOIN MEMBER M ON PRJ.MAKER_NO = M.NO JOIN CATEGORY C ON PRJ.CATEGORY_NO = C.CATEGORY_NO WHERE PRJ.STATUS = 'I' OR PRJ.STATUS = 'S' OR PRJ.STATUS = 'B' ) U";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			//SQL 을 객체에 담기 및 ㅓSQL 완성
+			pstmt = conn.prepareStatement(sql);
+			
+			//SQL 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		//실행 결과 리턴
+		return count;
+	}
+
+	/*
+	 * 신규순 총갯수
+	 */
+	public int countEarly(Connection conn) {
+		String sql = "SELECT COUNT(Z.PROJECT_NO) COUNT FROM ( SELECT PRJ.*, M.*, C.NAME CATEGORY_NAME, TOTAL FROM PROJECT PRJ JOIN MEMBER M ON PRJ.MAKER_NO = M.NO JOIN CATEGORY C ON PRJ.CATEGORY_NO = C.CATEGORY_NO JOIN (SELECT P.PROJECT_NO, SUM(TOTAL) TOTAL FROM PROJECT P JOIN REWARD R ON P.PROJECT_NO = R.PROJECT_NO JOIN (SELECT R.NO, SUM((TO_NUMBER(D.AMOUNT)*TO_NUMBER(D.QUANTITY))+TO_NUMBER(NVL(D.ADDITIONAL, 0))) TOTAL FROM REWARD R JOIN DONATE_LIST D ON R.NO = D.REWARD_NO GROUP BY R.NO) T ON T.NO = R.NO GROUP BY P.PROJECT_NO) TBL ON PRJ.PROJECT_NO = TBL.PROJECT_NO WHERE PRJ.STATUS = 'I' AND PRJ.START_DATE <= TO_CHAR(SYSDATE, 'YYYY/MM/DD') AND PRJ.START_DATE >= TO_CHAR(SYSDATE-5, 'YYYY/MM/DD') ) Z";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			//SQL 을 객체에 담기 및 ㅓSQL 완성
+			pstmt = conn.prepareStatement(sql);
+			
+			//SQL 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		//실행 결과 리턴
+		return count;
+	}
+
+	/*
+	 * 마감임박순 총갯수
+	 */
+	public int countDeadline(Connection conn) {
+		String sql = "SELECT COUNT(U.PROJECT_NO) COUNT FROM ( SELECT P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO WHERE P.STATUS = 'I' AND (P.END_DATE >= TO_CHAR(SYSDATE, 'YYYY/MM/DD') AND P.END_DATE <= TO_CHAR(SYSDATE+3, 'YYYY/MM/DD')) ) U";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			//SQL 을 객체에 담기 및 ㅓSQL 완성
+			pstmt = conn.prepareStatement(sql);
+			
+			//SQL 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		//실행 결과 리턴
+		return count;
+	}
+
+	/*
+	 * 정렬별 총갯수
+	 */
+	public int countSort(Connection conn, String sort) {
+		String sql = "SELECT COUNT(PROJECT_NO) COUNT FROM PROJECT WHERE STATUS = ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			//SQL 을 객체에 담기 및 ㅓSQL 완성
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, sort);
+			
+			//SQL 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		//실행 결과 리턴
+		return count;
+	}
+
 
 }
