@@ -4,6 +4,8 @@
     pageEncoding="UTF-8"%>
     <%
   	  List<ProjectVo> recommendList = (List<ProjectVo>)request.getAttribute("recommendList");
+   	  List<ProjectVo> earlyList = (List<ProjectVo>)request.getAttribute("earlyList");
+      List<ProjectVo> deadlineList = (List<ProjectVo>)request.getAttribute("deadlineList");
     %>
 <!DOCTYPE html>
 <html>
@@ -216,45 +218,45 @@ $('#top-menu').click(function () {
         <div id="category-content-wrap">
             <!-- 프로젝트 하나 당 래퍼 -->
             <%if(recommendList!=null){ %>
-           <%for(ProjectVo p : recommendList){ %> 
-            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view?num=<%=p.getPrjectNo()%>'">
+           <%for(int i = 0; i < recommendList.size(); i++){ %> 
+            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view?num=<%=recommendList.get(i).getPrjectNo()%>'">
                 <div class="prj-content prj-img">
-                    <img src="<%=contextPath%>/resources/upload/<%=p.getThumbnailName()%>" alt="프로젝트 메인 사진">
+                    <img src="<%=contextPath%>/resources/upload/<%=earlyList.get(i).getThumbnailName()%>" alt="프로젝트 메인 사진">
                 </div>
                 <div class="prj-content prj-category">
-                    <span><%=p.getCategoryNo()%></span> | <span><%=p.getMakerNo() %></span>
+                    <span><%=recommendList.get(i).getCategoryNo()%></span> | <span><%=recommendList.get(i).getMakerNo() %></span>
                 </div>
                 <div class="prj-content prj-title">
-                    <%=p.getName() %>
+                    <%=recommendList.get(i).getName() %>
                 </div>
                 <!-- 프로젝트 달성도 부분 -->
                 <div class="prj-content gage-div">
                     <div class="prj-content">
                         <span class="percentage" id="percentage">
-                        <%int total = Integer.parseInt(p.getEtc())*100/p.getGoal();%>
+                        <%int total = Integer.parseInt(recommendList.get(i).getEtc())*100/recommendList.get(i).getGoal();%>
                         <%=total %>%
                         </span>
-                        <span class="amount"><%=p.getEtc()%></span>
+                        <span class="amount"><%=recommendList.get(i).getEtc()%>원</span>
                     </div>
-                    <div class="prj-content d-day" id="<%=p.getPrjectNo()%>">
+                    <div class="prj-content d-day" id="<%=i%>">
                          <!-- 남은 날짜 계산 -->
 	                    <script>
-	            			var startDateStr = "<%=p.getStartDate()%>";
-					    	var endDateStr = "<%=p.getEndDate()%>";
+	            			var startDateStr = "<%=recommendList.get(i).getStartDate()%>";
+					    	var endDateStr = "<%=recommendList.get(i).getEndDate()%>";
 					    	var date = new Date();
 					    	var startDate = new Date(startDateStr);
 					    	var endDate = new Date(endDateStr);
 					    	var differenceMsec = endDate.getTime() - date.getTime();
 					    	var differenceDay = differenceMsec/1000/60/60/24;
-					    	$("#<%=p.getPrjectNo()%>").text(Math.floor(differenceDay) + "일 남음");
+					    	$("#<%=i%>").text(Math.floor(differenceDay) + "일 남음");
 					    	if(Math.floor(differenceDay)<0){
-					    		$("#<%=p.getPrjectNo()%>").text("마감");
+					    		$("#<%=i%>").text("마감");
 					    	}
 					    	if(Math.floor(differenceDay)==0){
-					    		$("#<%=p.getPrjectNo()%>").text("오늘마감");
+					    		$("#<%=i%>").text("오늘마감");
 					    	}
 					    	if(date<startDate){
-					    		$("#<%=p.getPrjectNo()%>").text("공개 예정");
+					    		$("#<%=i%>").text("공개 예정");
 					    	}
 					    </script>
                     </div>
@@ -266,86 +268,7 @@ $('#top-menu').click(function () {
            
             <%} %>
  			<%} %>
-            <div class="prj-wrap">
-                <div class="prj-content prj-img">
-                    <img src="" alt="프로젝트 메인 사진">
-                </div>
-                <div class="prj-content prj-category">
-                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                </div>
-                <div class="prj-content prj-title">
-                    프로젝트 타이틀
-                </div>
-                <!-- 프로젝트 달성도 부분 -->
-                <div class="prj-content gage-div">
-                    <div class="prj-content">
-                        <span class="percentage">달성률</span>
-                        <span class="amount">모인 금액</span>
-                    </div>
-                    <div class="prj-content d-day">
-                        남은 날짜
-                    </div>
-                    <div class="prj-content gage-bar progress" style="height: 5px;">
-                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="prj-wrap">
-                <div class="prj-content prj-img">
-                    <img src="" alt="프로젝트 메인 사진">
-                </div>
-                <div class="prj-content prj-category">
-                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                </div>
-                <div class="prj-content prj-title">
-                    프로젝트 타이틀
-                </div>
-                <!-- <div class="prj-content prj-subscribe">
-                    프로젝트 설명
-                </div> -->
-                <!-- 프로젝트 달성도 부분 -->
-                <div class="prj-content gage-div">
-                    <div class="prj-content">
-                        <span class="percentage">달성률</span>
-                        <span class="amount">모인 금액</span>
-                    </div>
-                    <div class="prj-content d-day">
-                        남은 날짜
-                    </div>
-                    <div class="prj-content gage-bar progress" style="height: 5px;">
-                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="prj-wrap">
-                <div class="prj-content prj-img">
-                    <img src="" alt="프로젝트 메인 사진">
-                </div>
-                <div class="prj-content prj-category">
-                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                </div>
-                <div class="prj-content prj-title">
-                    프로젝트 타이틀
-                </div>
-                <!-- <div class="prj-content prj-subscribe">
-                    프로젝트 설명
-                </div> -->
-                <!-- 프로젝트 달성도 부분 -->
-                <div class="prj-content gage-div">
-                    <div class="prj-content">
-                        <span class="percentage">달성률</span>
-                        <span class="amount">모인 금액</span>
-                    </div>
-                    <div class="prj-content d-day">
-                        남은 날짜
-                    </div>
-                    <div class="prj-content gage-bar progress" style="height: 5px;">
-                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                    </div>
-                </div>
-            </div>
+            
 
             <div class="prj-wrap">
                 <div class="prj-content prj-img">
@@ -399,118 +322,59 @@ $('#top-menu').click(function () {
          <h2>신규 프로젝트</h2>  <h5>신제품을 빠르게 만나보세요!</h5>
          <div id="category-content-wrap">
              <!-- 프로젝트 하나 당 래퍼 -->
-             <div class="prj-wrap">
-                 <div class="prj-content prj-img">
-                     <img src="" alt="프로젝트 메인 사진">
-                 </div>
-                 <div class="prj-content prj-category">
-                     <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                 </div>
-                 <div class="prj-content prj-title">
-                     프로젝트 타이틀
-                 </div>
-                 <!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-                 <!-- 프로젝트 달성도 부분 -->
-                 <div class="prj-content gage-div">
-                     <div class="prj-content">
-                         <span class="percentage">달성률</span>
-                         <span class="amount">모인 금액</span>
-                     </div>
-                     <div class="prj-content d-day">
-                         남은 날짜
-                     </div>
-                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                         <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                     </div>
-                 </div>
-             </div>
+              <%if(earlyList!=null){ %>
+           <%for(int i = 0; i < earlyList.size(); i++){ %> 
+            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view?num=<%=earlyList.get(i).getPrjectNo()%>'">
+                <div class="prj-content prj-img">
+                    <img src="<%=contextPath%>/resources/upload/<%=earlyList.get(i).getThumbnailName()%>" alt="프로젝트 메인 사진">
+                </div>
+                <div class="prj-content prj-category">
+                    <span><%=earlyList.get(i).getCategoryNo()%></span> | <span><%=earlyList.get(i).getMakerNo() %></span>
+                </div>
+                <div class="prj-content prj-title">
+                    <%=earlyList.get(i).getName() %>
+                </div>
+                <!-- 프로젝트 달성도 부분 -->
+                <div class="prj-content gage-div">
+                    <div class="prj-content">
+                        <span class="percentage" id="percentage">
+                        <%int total = Integer.parseInt(earlyList.get(i).getEtc())*100/earlyList.get(i).getGoal();%>
+                        <%=total %>%
+                        </span>
+                        <span class="amount"><%=earlyList.get(i).getEtc()%>원</span>
+                    </div>
+                    <div class="prj-content d-day" id="n<%=i%>">
+                         <!-- 남은 날짜 계산 -->
+	                    <script>
+	            			var startDateStr = "<%=earlyList.get(i).getStartDate()%>";
+					    	var endDateStr = "<%=earlyList.get(i).getEndDate()%>";
+					    	var date = new Date();
+					    	var startDate = new Date(startDateStr);
+					    	var endDate = new Date(endDateStr);
+					    	var differenceMsec = endDate.getTime() - date.getTime();
+					    	var differenceDay = differenceMsec/1000/60/60/24;
+					    	$("#n<%=i%>").text(Math.floor(differenceDay) + "일 남음");
+					    	if(Math.floor(differenceDay)<0){
+					    		$("#n<%=i%>").text("마감");
+					    	}
+					    	if(Math.floor(differenceDay)==0){
+					    		$("#n<%=i%>").text("오늘마감");
+					    	}
+					    	if(date<startDate){
+					    		$("#n<%=i%>").text("공개 예정");
+					    	}
+					    </script>
+                    </div>
+                    <div class="prj-content gage-bar progress" style="height: 5px;">
+                        <div class="progress-bar" id="progress" style="width: <%=total %>%; height: 5px; background-color: #48CA7D!important;"></div>
+                    </div>
+                </div>
+            </div>
+           
+            <%} %>
+ 			<%} %>
              
-             <div class="prj-wrap">
-                 <div class="prj-content prj-img">
-                     <img src="" alt="프로젝트 메인 사진">
-                 </div>
-                 <div class="prj-content prj-category">
-                     <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                 </div>
-                 <div class="prj-content prj-title">
-                     프로젝트 타이틀
-                 </div>
-                 <!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-                 <!-- 프로젝트 달성도 부분 -->
-                 <div class="prj-content gage-div">
-                     <div class="prj-content">
-                         <span class="percentage">달성률</span>
-                         <span class="amount">모인 금액</span>
-                     </div>
-                     <div class="prj-content d-day">
-                         남은 날짜
-                     </div>
-                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                         <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                     </div>
-                 </div>
-             </div>
-            
-             <div class="prj-wrap">
-                 <div class="prj-content prj-img">
-                     <img src="" alt="프로젝트 메인 사진">
-                 </div>
-                 <div class="prj-content prj-category">
-                     <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                 </div>
-                 <div class="prj-content prj-title">
-                     프로젝트 타이틀
-                 </div>
-                 <!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-                 <!-- 프로젝트 달성도 부분 -->
-                 <div class="prj-content gage-div">
-                     <div class="prj-content">
-                         <span class="percentage">달성률</span>
-                         <span class="amount">모인 금액</span>
-                     </div>
-                     <div class="prj-content d-day">
-                         남은 날짜
-                     </div>
-                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                         <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                     </div>
-                 </div>
-             </div>
- 
-             <div class="prj-wrap">
-                 <div class="prj-content prj-img">
-                     <img src="" alt="프로젝트 메인 사진">
-                 </div>
-                 <div class="prj-content prj-category">
-                     <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                 </div>
-                 <div class="prj-content prj-title">
-                     프로젝트 타이틀
-                 </div>
-                 <!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-                 <!-- 프로젝트 달성도 부분 -->
-                 <div class="prj-content gage-div">
-                     <div class="prj-content">
-                         <span class="percentage">달성률</span>
-                         <span class="amount">모인 금액</span>
-                     </div>
-                     <div class="prj-content d-day">
-                         남은 날짜
-                     </div>
-                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                         <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                     </div>
-                 </div>
-             </div>
- 
+             
              <div class="prj-wrap">
                  <div class="prj-content prj-img">
                      <img src="" alt="프로젝트 메인 사진">
@@ -546,31 +410,58 @@ $('#top-menu').click(function () {
          <h2>마감 임박 프로젝트</h2>  <h5>놓치지 말고 막차탑승!</h5>
          <div id="category-content-wrap">
              <!-- 프로젝트 하나 당 래퍼 -->
-             <div class="prj-wrap">
-                 <div class="prj-content prj-img">
-                     <img src="" alt="프로젝트 메인 사진">
-                 </div>
-                 <div class="prj-content prj-category">
-                     <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                 </div>
-                 <div class="prj-content prj-title">
-                     프로젝트 타이틀
-                 </div>
-              
-                 <!-- 프로젝트 달성도 부분 -->
-                 <div class="prj-content gage-div">
-                     <div class="prj-content">
-                         <span class="percentage">달성률</span>
-                         <span class="amount">모인 금액</span>
-                     </div>
-                     <div class="prj-content d-day">
-                         남은 날짜
-                     </div>
-                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                         <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                     </div>
-                 </div>
-             </div>
+              <%if(deadlineList!=null){ %>
+           <%for(int i = 0; i < deadlineList.size(); i++){ %> 
+            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view?num=<%=deadlineList.get(i).getPrjectNo()%>'">
+                <div class="prj-content prj-img">
+                    <img src="<%=contextPath%>/resources/upload/<%=deadlineList.get(i).getThumbnailName()%>" alt="프로젝트 메인 사진">
+                </div>
+                <div class="prj-content prj-category">
+                    <span><%=deadlineList.get(i).getCategoryNo()%></span> | <span><%=deadlineList.get(i).getMakerNo() %></span>
+                </div>
+                <div class="prj-content prj-title">
+                    <%=deadlineList.get(i).getName() %>
+                </div>
+                <!-- 프로젝트 달성도 부분 -->
+                <div class="prj-content gage-div">
+                    <div class="prj-content">
+                        <span class="percentage" id="percentage">
+                        <%int total = Integer.parseInt(deadlineList.get(i).getEtc())*100/deadlineList.get(i).getGoal();%>
+                        <%=total %>%
+                        </span>
+                        <span class="amount"><%=deadlineList.get(i).getEtc()%>원</span>
+                    </div>
+                    <div class="prj-content d-day" id="d<%=i%>">
+                         <!-- 남은 날짜 계산 -->
+	                    <script>
+	            			var startDateStr = "<%=deadlineList.get(i).getStartDate()%>";
+					    	var endDateStr = "<%=deadlineList.get(i).getEndDate()%>";
+					    	var date = new Date();
+					    	var startDate = new Date(startDateStr);
+					    	var endDate = new Date(endDateStr);
+					    	var differenceMsec = endDate.getTime() - date.getTime();
+					    	var differenceDay = differenceMsec/1000/60/60/24;
+					    	$("#d<%=i%>").text(Math.floor(differenceDay) + "일 남음");
+					    	if(Math.floor(differenceDay)<0){
+					    		$("#d<%=i%>").text("마감");
+					    	}
+					    	if(Math.floor(differenceDay)==0){
+					    		$("#d<%=i%>").text("오늘마감");
+					    	}
+					    	if(date<startDate){
+					    		$("#d<%=i%>").text("공개 예정");
+					    	}
+					    </script>
+                    </div>
+                    <div class="prj-content gage-bar progress" style="height: 5px;">
+                        <div class="progress-bar" id="progress" style="width: <%=total %>%; height: 5px; background-color: #48CA7D!important;"></div>
+                    </div>
+                </div>
+            </div>
+           
+            <%} %>
+ 			<%} %>
+             
              
              <div class="prj-wrap">
                  <div class="prj-content prj-img">
@@ -599,93 +490,9 @@ $('#top-menu').click(function () {
                      </div>
                  </div>
              </div>
-            
-             <div class="prj-wrap">
-                 <div class="prj-content prj-img">
-                     <img src="" alt="프로젝트 메인 사진">
-                 </div>
-                 <div class="prj-content prj-category">
-                     <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                 </div>
-                 <div class="prj-content prj-title">
-                     프로젝트 타이틀
-                 </div>
-                 <!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-                 <!-- 프로젝트 달성도 부분 -->
-                 <div class="prj-content gage-div">
-                     <div class="prj-content">
-                         <span class="percentage">달성률</span>
-                         <span class="amount">모인 금액</span>
-                     </div>
-                     <div class="prj-content d-day">
-                         남은 날짜
-                     </div>
-                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                         <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                     </div>
-                 </div>
-             </div>
- 
-             <div class="prj-wrap">
-                 <div class="prj-content prj-img">
-                     <img src="" alt="프로젝트 메인 사진">
-                 </div>
-                 <div class="prj-content prj-category">
-                     <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                 </div>
-                 <div class="prj-content prj-title">
-                     프로젝트 타이틀
-                 </div>
-                 <!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-                 <!-- 프로젝트 달성도 부분 -->
-                 <div class="prj-content gage-div">
-                     <div class="prj-content">
-                         <span class="percentage">달성률</span>
-                         <span class="amount">모인 금액</span>
-                     </div>
-                     <div class="prj-content d-day">
-                         남은 날짜
-                     </div>
-                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                         <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                     </div>
-                 </div>
-             </div>
- 
-             <div class="prj-wrap">
-                 <div class="prj-content prj-img">
-                     <img src="" alt="프로젝트 메인 사진">
-                 </div>
-                 <div class="prj-content prj-category">
-                     <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                 </div>
-                 <div class="prj-content prj-title">
-                     프로젝트 타이틀
-                 </div>
-                 <!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-                 <!-- 프로젝트 달성도 부분 -->
-                 <div class="prj-content gage-div">
-                     <div class="prj-content">
-                         <span class="percentage">달성률</span>
-                         <span class="amount">모인 금액</span>
-                     </div>
-                     <div class="prj-content d-day">
-                         남은 날짜
-                     </div>
-                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                         <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                     </div>
-                 </div>
-             </div>
          </div>
-
-
+	</div>
+	<br><br><br><br><br><br>
 	
 <%@ include file="/WEB-INF/views/common/userFooter.jsp" %>
 </body>
