@@ -119,11 +119,11 @@ public class PrjViewDao {
 	}
 
 
-	public String getTotalDonation(Connection conn, String prjNum) {
+	public int getTotalDonation(Connection conn, String prjNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sum = null;
-		String sql = "SELECT TO_CHAR(SUM(D.AMOUNT),'9,999,999,999') AS AMOUNT FROM DONATE_LIST D JOIN REWARD R ON D.REWARD_NO = R.NO WHERE CANCEL_YN = 'N' AND R.PROJECT_NO = ?";
+		int sum = 0;
+		String sql = "SELECT SUM(D.AMOUNT) AS AMOUNT FROM DONATE_LIST D JOIN REWARD R ON D.REWARD_NO = R.NO WHERE CANCEL_YN = 'N' AND R.PROJECT_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class PrjViewDao {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				sum = rs.getString("AMOUNT");
+				sum = rs.getInt("AMOUNT");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -139,6 +139,7 @@ public class PrjViewDao {
 			close(pstmt);
 			close(rs);
 		}
+		System.out.println("dao의 sum 값:"+sum);
 		return sum;
 	}
 
@@ -177,7 +178,7 @@ public class PrjViewDao {
 		return noticeList;
 	}
 
-	//총 후원자 계산하기
+	//총 후원자 수 계산하기
 	public String getTotalDonator(Connection conn, String prjNum) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -199,5 +200,28 @@ public class PrjViewDao {
 			close(rs);
 		}
 		return count;
+	}
+
+	//카테고리번호 조회해오기
+	public String getCategoryNo(Connection conn, String prjNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String categoryNo = null;
+		String sql = "SELECT CATEGORY_NO FROM PROJECT WHERE PROJECT_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, prjNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				categoryNo = rs.getString("CATEGORY_NO");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return categoryNo;
 	}
 }
