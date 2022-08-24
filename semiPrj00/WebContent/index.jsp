@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-  	  List<ProjectVo> recommandList = (List<ProjectVo>)request.getAttribute("recommendList");
+  	  List<ProjectVo> recommendList = (List<ProjectVo>)request.getAttribute("recommendList");
     %>
 <!DOCTYPE html>
 <html>
@@ -215,34 +215,8 @@ $('#top-menu').click(function () {
         <h2>추천 프로젝트</h2> <h5>여러 카테고리의 프로젝트를 추천해드려요!</h5>
         <div id="category-content-wrap">
             <!-- 프로젝트 하나 당 래퍼 -->
-            <div class="prj-wrap">
-                <div class="prj-content prj-img">
-                    <img src="" alt="프로젝트 메인 사진">
-                </div>
-                <div class="prj-content prj-category">
-                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                </div>
-                <div class="prj-content prj-title">
-                    프로젝트 타이틀
-                </div>
-                <!-- <div class="prj-content prj-subscribe">
-                    프로젝트 설명
-                </div> -->
-                <!-- 프로젝트 달성도 부분 -->
-                <div class="prj-content gage-div">
-                    <div class="prj-content">
-                        <span class="percentage">달성률</span>
-                        <span class="amount">모인 금액</span>
-                    </div>
-                    <div class="prj-content d-day">
-                        남은 날짜
-                    </div>
-                    <div class="prj-content gage-bar progress" style="height: 5px;">
-                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                    </div>
-                </div>
-            </div>
-            <%--  <%for(ProjectVo p : recommandList){ %>
+            <%if(recommendList!=null){ %>
+           <%for(ProjectVo p : recommendList){ %> 
             <div class="prj-wrap">
                 <div class="prj-content prj-img">
                     <img src="<%=contextPath%>/resources/upload/<%=p.getThumbnailName()%>" alt="프로젝트 메인 사진">
@@ -253,26 +227,47 @@ $('#top-menu').click(function () {
                 <div class="prj-content prj-title">
                     <%=p.getName() %>
                 </div>
-                <!-- <div class="prj-content prj-subscribe">
-                    프로젝트 설명
-                </div> -->
                 <!-- 프로젝트 달성도 부분 -->
                 <div class="prj-content gage-div">
                     <div class="prj-content">
-                        <span class="percentage">달성률</span>
-                        <span class="amount"><%=p.getGoal()%></span>
+                        <span class="percentage" id="percentage"></span>
+                        <span class="amount"><%=p.getEtc()%></span>
                     </div>
-                    <div class="prj-content d-day">
-                        남은 날짜
+                    <div class="prj-content d-day" id="<%=p.getPrjectNo()%>">
+                         <!-- 남은 날짜 계산 -->
+	                    <script>
+	            			var startDateStr = "<%=p.getStartDate()%>";
+					    	var endDateStr = "<%=p.getEndDate()%>";
+					    	var date = new Date();
+					    	var startDate = new Date(startDateStr);
+					    	var endDate = new Date(endDateStr);
+					    	var differenceMsec = endDate.getTime() - date.getTime();
+					    	var differenceDay = differenceMsec/1000/60/60/24;
+					    	$("#<%=p.getPrjectNo()%>").text(Math.floor(differenceDay) + "일 남음");
+					    	if(Math.floor(differenceDay)<0){
+					    		$("#<%=p.getPrjectNo()%>").text("마감");
+					    	}
+					    	if(date<startDate){
+					    		$("#<%=p.getPrjectNo()%>").text("공개 예정");
+					    	}
+					    </script>
                     </div>
                     <div class="prj-content gage-bar progress" style="height: 5px;">
-                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
+                        <div class="progress-bar" id="progress" style=" height: 5px; background-color: #48CA7D!important;"></div>
                     </div>
                 </div>
             </div>
-            <%} %> --%>
-           
+           <!-- 달성률 계산 -->
+            <script>
+                var goal = "<%=p.getGoal()%>";
+                var total = "<%=Integer.parseInt(p.getEtc())%>";
 
+                var goalPercentage = (total *100)/goal;
+                $("#percentage").text(Math.floor(goalPercentage) + "%");
+                $("#progress").css({"width" : Math.floor(goalPercentage)+"%"});
+            </script>
+            <%} %>
+ 			<%} %>
             <div class="prj-wrap">
                 <div class="prj-content prj-img">
                     <img src="" alt="프로젝트 메인 사진">
@@ -403,7 +398,7 @@ $('#top-menu').click(function () {
 
          <!-- 카테고리 내용 래퍼 -->
          <br><br>
-         <h2>얼리버드 프로젝트</h2>  <h5>신제품을 빠르게 만나보세요!</h5>
+         <h2>신규 프로젝트</h2>  <h5>신제품을 빠르게 만나보세요!</h5>
          <div id="category-content-wrap">
              <!-- 프로젝트 하나 당 래퍼 -->
              <div class="prj-wrap">

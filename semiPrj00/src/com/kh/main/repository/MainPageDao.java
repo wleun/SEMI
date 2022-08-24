@@ -39,8 +39,10 @@ public class MainPageDao {
 				prjVo.setPrjectNo(rs.getString("PROJECT_NO")); //프로젝트 번호
 				prjVo.setCategoryNo(rs.getString("categoty_name")); //카테고리 이름
 				prjVo.setName(rs.getString("NAME")); //프로젝트 타이틀
+				prjVo.setStartDate(rs.getString("START_DATE")); //시작날짜
 				prjVo.setEndDate(rs.getString("END_DATE")); //마감날짜
-				prjVo.setGoal(rs.getInt("TOTAL")); //총 모인금액
+				prjVo.setGoal(rs.getInt("goal")); //목표금액
+				prjVo.setEtc(rs.getString("TOTAL")); //총 모인금액 (임시로 etc에 넣기)
 				prjVo.setMakerNo(rs.getString("NICK")); //메이커 닉네임 
 				prjVo.setThumbnailName(rs.getString("THUMBNAIL_NAME")); //썸네일 파일명
 				
@@ -66,7 +68,7 @@ public class MainPageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		//마감날짜가 오늘이고 프로젝트별 후원 토탈값을 구한 sql문 (상태 수정예정)
+		//신규
 		String sql = "SELECT p.*, m.*, c.name categoty_name, total FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO"
 				+ "JOIN category C ON p.category_no = c.category_no"
 				+ "JOIN (SELECT p.project_no, SUM(TOTAL) total FROM PROJECT P JOIN REWARD R ON p.project_no = r.project_no"
