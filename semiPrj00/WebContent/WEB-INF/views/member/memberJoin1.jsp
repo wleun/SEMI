@@ -6,10 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <style>
-       #radio-btn:checked{
-        background-color: #48CA7D;
-        border: 0;
-  		 }
+       
         #box{height: 150px;width: 1920px;}
         #join-outer{
         /* border: 1px solid blue;*/
@@ -146,8 +143,8 @@
             <div id="check">
                 <div class="agree">
                     <br>
-                    동의하지않습니다&nbsp;<input type="radio" id="radio-btn" name="check" value="no" checked>&nbsp;&nbsp;
-                    동의합니다&nbsp;<input type="radio" id="radio-btn" name="check" value="yes">
+                    동의하지않습니다&nbsp;<input type="radio" name="check" value="no" checked>&nbsp;&nbsp;
+                    동의합니다&nbsp;<input type="radio" name="check" value="yes">
                     <br><br>
                     <input type="button" value="이전" id="pre" onclick="location.href='<%=contextPath%>/member/login'">&nbsp;&nbsp;
                     <input type="submit" value="다음" id="next" onclick="Click(value)">

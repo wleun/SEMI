@@ -41,8 +41,7 @@
     <div id="emailCheck">
         <div class="email">
         <form action="<%=request.getContextPath()%>/member/emailCheck" method="post">
-            E-mail <input type="email" name="checkEmail" id="checkemail" > 
-            <input type="button" value="중복확인" onclick="testEmail();">
+            E-mail <input type="email" name="checkEmail" id="checkemail" > <input type="button" value="중복확인" onclick="testEmail()">
         </form>
         <div id="r" font-weight: bold; font-size: 20px;"></div>
         <div><button id="checkbtn" onclick="sendChildValue();">확인</button></div>
@@ -71,7 +70,7 @@
     </script>
     <script>
   		function testEmail(){
-  			const email = $('#checkemail').val();
+  			const email = $('checkemail').val();
   			
   			console.log(email);
   			$.ajax({

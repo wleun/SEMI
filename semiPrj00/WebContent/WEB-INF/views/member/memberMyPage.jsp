@@ -26,12 +26,12 @@
         #header a{
             padding: 15px;
             text-decoration: none;
-			color:black;
+
             font-size: 1.3rem;
         }
 
         #header a:visited{
-            color: #48CA7D;
+            color: black;
         }
 
         #header a:hover{
@@ -98,52 +98,7 @@
         #membership-img{
             width: 130px;
         }
-	/*회원탈퇴*/
-	 .back {
-	 	box-sizing:border-box;
-        display: none;
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 1600px;
-        background-color: rgba(0,0,0,0.5);
-        top: 0;
-        left: 0;
-        z-index: 1;
-    }
-	.modal_wrap{
-		box-sizing:border-box;
-        display: none;
-        width: 500px;
-        height: 300px;
-        position: absolute;
-        top: 90%;
-        margin:0 auto;
-        left:35%;
-        border-radius: 10px;
-        background: #F9F5EA;
-        z-index: 2;
-    }
-     .modal_close {
-        width: 26px;
-        height: 26px;
-        position: absolute;
-        bottom: 30px;
-        right: 50px;
-        border-radius: 50px;
-        color: white;
-    }
-    #submit{
-    color:white;border:none;  border-radius: 50px; background-color:#48CA7D;}
-    #modal_btn{
-    	background-color: lightgray;
-    }
-    #modal-btn-div{
-    	margin-left:460px;
-    }
-    .btn-style{
-    color:white;border:none;  border-radius: 50px; background-color:#48CA7D;
-    }
+
     </style>
 </head>
 <body>
@@ -268,9 +223,7 @@
                              <tr>
                                  <td></td>
                                  <td></td>
-                                 <td>
-                                 <input class="btn-style" type="button" value="배송지등록" onclick="location.href='<%=contextPath %>/member/addrRegister'">
-                                 </td>
+                                 <td onclick="location.href='/semiPrj00/member/addrRegister'"><button>배송지 등록</button></td>
                              </tr>
                              <tr>
                                  <th>결제정보 등록</th>
@@ -290,9 +243,7 @@
                              <tr>
                                  <td></td>
                                  <td></td>
-                                 <td>
-                                 <input class="btn-style" type="button" onclick="location.href='<%=contextPath %>/member/paymentRegister'" value="카드등록">
-                                 </td>
+                                 <td><button onclick="location.href='/semiPrj00/member/paymentRegister'">카드 등록</button></td>
                              </tr>
              
                          </table>
@@ -309,14 +260,7 @@
                                  <th>사업자/법인 정보</th>
                              </tr>
                              <tr>
-                                 <td>
-                                 <input type="text" name="memberRegistration" 
-                                 <% if(loginMember.getRegistration()==null){%>
-                                 value=""
-                                 <% ;}else{%>
-                                 value="<%= loginMember.getRegistration() %>">
-                                 <%}%>
-                                 </td>
+                                 <td><input type="text" name="memberRegistration" value="<%= loginMember.getRegistration() %>"></td>
                              </tr>
                              
                          </table>
@@ -325,7 +269,7 @@
     
                      <hr>
              
-                     <!--<div id="content-5">
+                     <div id="content-5">
              
                          <table>
              
@@ -339,9 +283,9 @@
              
                          </table>
              
-                     </div>  
-                     <hr>-->
+                     </div>
     
+                     <hr>
              
                      <div id="content-6">
              
@@ -349,9 +293,9 @@
              
                              <tr>
                                  <td><button type="submit">수정하기</button></td>
-                                 <td><div id="modal-btn-div"><button type="button" id="modal_btn">회원탈퇴</button></div></td>
                              </tr>
                              <tr>
+                                 <td><button type="button">회원탈퇴</button></td>
                              </tr>
              
                          </table>
@@ -362,36 +306,7 @@
             </section>
 
         </form>
-        <div class="back"></div>
-         <div class="modal_wrap" style="text-align: center; vertical-align: center;">
-                    <div>
-                        <br> <h3 style="text-align: center;color:red;">회원탈퇴를 진행하시겠습니까?</h1>
-                         <form action="<%=contextPath %>/member/quit" method="post">
-                         <span style="display:block; margin-right:120px; margin-top:50px; font-size: 20px;"></span>
-                         <input type="password" name="pwd" required="required" placeholder="*비밀번호를 입력하세요">
-                         <input type="submit" value="탈퇴하기" id="submit">
-                         <br><br><span>회원탈퇴 후 같은 이메일로 재가입이 불가합니다.</span>
-                         </form>
-                        
-                    </div>
-                    <div class="modal_close"><button style="color:white;border:none;  border-radius: 50px; background-color:#48CA7D; ">close</button></div>
-                </div>
         
-<script>
-window.onload=function(){
-    function onClick(){
-        document.querySelector('.modal_wrap').style.display='block';
-        document.querySelector('.back').style.display='block';
-    }
-    function offClick(){
-        document.querySelector('.modal_wrap').style.display='none';
-        document.querySelector('.back').style.display='none';
-    }
-
-    document.getElementById('modal_btn').addEventListener('click',onClick);
-    document.querySelector('.modal_close').addEventListener('click',offClick);
-}
-</script>
 
     </div>
     
