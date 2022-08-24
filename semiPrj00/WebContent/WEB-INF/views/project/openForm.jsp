@@ -141,7 +141,7 @@
 					<tr>
 						<td>프로젝트 제목*</td>
 						<td><input type="text" class="form-control" name="prjTitle"
-							placeholder="제목을 입력해주세요." maxlength="50" required></td>
+							placeholder="제목을 입력해주세요." maxlength="30" required></td>
 					</tr>
 					<tr>
 						<td>프로젝트 시작일자*</td>
@@ -164,7 +164,7 @@
 						<td>프로젝트 목표금액*</td>
 						<td><input type="number" class="form-control"
 							name="prjAmount" id="prjAmount" value="0"
-							min="100000" max="9999999999" style="display: inline;" onchange=amountCalc() required>
+							min="100000" max="999999999" style="display: inline;" onchange=amountCalc() required>
 							원</td>
 					</tr>
 					<tr>
@@ -191,13 +191,13 @@
 					<tr>
 						<td>상세 설명*</td>
 						<td><textarea class="form-control" name="prjText" cols="40"
-								rows="10" style="resize: none;"
+								rows="10" style="resize: none;" maxlength="350"
 								placeholder="이 프로젝트의 정보를 입력해주세요." required></textarea></td>
 					</tr>
 					<tr>
 						<td>예상되는 어려움</td>
 						<td><textarea class="form-control" name="etc" cols="40"
-								rows="10" style="resize: none;" maxlength="500"
+								rows="10" style="resize: none;" maxlength="350"
 								placeholder="펀딩 진행 및 배송 과정에서 예상되는 어려움을 입력해주세요."></textarea></td>
 					</tr>
 					<tr>
@@ -229,7 +229,7 @@
 					<tr>
 						<td>메이커 정보</td>
 						<td><textarea class="form-control" name="makerInfo"
-								id="makerInfo" cols="30" rows="5" style="resize: none;" maxlength="250"
+								id="makerInfo" cols="30" rows="5" style="resize: none;" maxlength="160"
 								placeholder="메이커님의 간단한 소개를 입력해주세요."></textarea></td>
 					</tr>
 					<tr>
@@ -266,14 +266,16 @@
 					<tr>
 						<td>리워드 금액*</td>
 						<td><input type="number" class="form-control" name="price"
-							min="1000" value="1000" placeholder="이 리워드의 금액을 입력해주세요."
+							min="1000" maxlength="7" oninput="numberMaxLength(this);"
+							value="1000" placeholder="이 리워드의 금액을 입력해주세요."
 							style="display: inline;" required>
 							원</td>
 					</tr>
 					<tr>
 						<td>리워드 수*</td>
 						<td><input type="number" class="form-control" name="quantity"
-							id="rewardNum" min="1" value="1" placeholder="이 리워드의 수를 입력해주세요."
+							id="rewardNum" min="1" value="1" maxlength="5" oninput="numberMaxLength(this);"
+							placeholder="이 리워드의 수를 입력해주세요."
 							style="display: inline;" required> 개</td>
 					</tr>
 
@@ -286,7 +288,7 @@
 						<td>리워드 옵션 설명*</td>
 						<td><textarea class="form-control" name="detail" cols="30"
 								rows="5" style="resize: none;" placeholder="해당 리워드의 설명을 입력해주세요."
-								maxlength="100" required></textarea></td>
+								maxlength="65" required></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2"><hr></td>
@@ -379,16 +381,16 @@
 		function amountCalc() {
 			let amount = document.getElementById("prjAmount").value;
 			//목표금액이 허용범위가 아니면 알림
-			if(amount < 100000 || amount > 9999999999){
-				alert("목표금액은 100,000 ~ 9,999,999,999원 사이로 설정해주세요.")
+			if(amount < 100000 || amount > 999999999){
+				alert("목표금액은 100,000 ~ 999,999,999원 사이로 설정해주세요.")
 				document.getElementById("prjAmount").value = 100000;
 				amountCalc();
 			}else{
-				let priceCalc = amount - (amount / 100 * 5);
+				let priceCalc = Math.floor(amount - (amount / 100 * 5));
 				document.getElementById("priceCalcResult").innerHTML = priceCalc;
 				}
 			}
-		
+	
 
 		//선물 전달일 (배송일)계산
 		$(function shippingDateCalc() {

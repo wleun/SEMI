@@ -47,7 +47,7 @@ public class PrjOpenController extends HttpServlet{
 			req.getRequestDispatcher("/WEB-INF/views/project/openForm.jsp").forward(req, resp);
 		}else {
 			req.getSession().setAttribute("alertMsg", "로그인 후 이용 가능한 서비스입니다.");
-			resp.sendRedirect(req.getContextPath()+"/member/login"); /////
+			resp.sendRedirect(req.getContextPath()+"/member/login");
 		}
 		
 	}

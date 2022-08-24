@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.main.service.MainPageService;
 import com.kh.project.vo.ProjectVo;
 
-@WebServlet(urlPatterns ="/main")
+@WebServlet(urlPatterns ="/main.do")
 public class MainPageContorller extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//리스트 목록 가져오기 추천 / 얼리버드 / 마감임박
+		//리스트 목록 가져오기 추천 / 신규 / 마감임박
 		List<ProjectVo> recommendList = new MainPageService().selectRecommend();
 		List<ProjectVo> earlyList = new MainPageService().selectEarly();
 		List<ProjectVo> deadlineList = new MainPageService().selectDeadline();
