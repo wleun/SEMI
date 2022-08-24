@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.main.service.MainPageService;
 import com.kh.project.vo.ProjectVo;
 
-@WebServlet(urlPatterns ="/")
+@WebServlet(urlPatterns ="/main")
 public class MainPageContorller extends HttpServlet{
 	
 	@Override
@@ -20,8 +20,12 @@ public class MainPageContorller extends HttpServlet{
 		
 		//리스트 목록 가져오기 추천 / 얼리버드 / 마감임박
 		List<ProjectVo> recommendList = new MainPageService().selectRecommend();
-		List<ProjectVo> ealryList = new MainPageService().selectEalry();
-		List<ProjectVo> deadlineList = new MainPageService().selectDeadline();
+		//List<ProjectVo> earlyList = new MainPageService().selectEarly();
+		//List<ProjectVo> deadlineList = new MainPageService().selectDeadline();
+		
+
+		req.setAttribute("recommendList", recommendList);
+		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
 
 }
