@@ -217,6 +217,8 @@
 			<% }%>
         </div>
     </div>
+    
+    <%@ include file="/WEB-INF/views/common/userFooter.jsp" %>s
 
 </body>
 </html>
