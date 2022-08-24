@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.addr.vo.AddrVo;
+import com.kh.coupon.vo.CouponVo;
 import com.kh.member.vo.MemberVo;
+import com.kh.member.vo.PaymentVo;
 import com.kh.project.service.PrjSupportService;
 import com.kh.project.vo.ProjectVo;
 import com.kh.reward.vo.ProjectRewardVo;
@@ -34,10 +36,14 @@ public class PrjSupportController extends HttpServlet{
 			ProjectVo prjVo = new PrjSupportService().selectPrj(num);
 			ProjectRewardVo rewardVo = new PrjSupportService().selectReward(reward);
 			List<AddrVo> addrList = new PrjSupportService().selectAddr(loginMember.getNo());
+			List<PaymentVo> paymentList = new PrjSupportService().selectPayment(loginMember.getNo());
+			List<CouponVo> couponList = new PrjSupportService().selectCoupon(loginMember.getNo());
 			
 			req.setAttribute("prjVo", prjVo);
 			req.setAttribute("rewardVo", rewardVo);
 			req.setAttribute("addrList", addrList);
+			req.setAttribute("paymentList", paymentList);
+			req.setAttribute("couponList", couponList);
 			req.setAttribute("quantity", quantity);
 			req.setAttribute("add", add);
 			
@@ -74,6 +80,10 @@ public class PrjSupportController extends HttpServlet{
 		String sum = req.getParameter("sum");
 		String donateDate = req.getParameter("donateDate");
 		String additional = req.getParameter("additional");
+		
+		
+		
+		int result = new PrjSupportService().insertSupport();
 		
 	}//dopost
 	

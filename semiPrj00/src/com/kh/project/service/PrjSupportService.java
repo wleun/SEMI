@@ -7,6 +7,8 @@ import java.util.List;
 import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.addr.vo.AddrVo;
+import com.kh.coupon.vo.CouponVo;
+import com.kh.member.vo.PaymentVo;
 import com.kh.project.repository.PrjSupportDao;
 import com.kh.project.vo.ProjectVo;
 import com.kh.reward.vo.ProjectRewardVo;
@@ -78,6 +80,57 @@ public class PrjSupportService {
 		}
 		
 		return addrList;
+	}
+
+	/*
+	 * 결제수단 가져오기
+	 */
+	public List<PaymentVo> selectPayment(String memberNo) {
+		
+		Connection conn = null;
+		List<PaymentVo> paymentList = new ArrayList<PaymentVo>();
+		
+		try {
+			conn = getConnection();
+			
+			paymentList = dao.selectPayment(conn, memberNo);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return paymentList;
+	}
+
+	/*
+	 * 쿠폰 가져오기
+	 */
+	public List<CouponVo> selectCoupon(String memberNo) {
+		
+		Connection conn = null;
+		List<CouponVo> couponList = new ArrayList<CouponVo>();
+		
+		try {
+			conn = getConnection();
+			
+			couponList = dao.selectCoupon(conn, memberNo);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return couponList;
+	}
+
+	/*
+	 * 후원내역 정보 넣기
+	 */
+	public int insertSupport() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }//class
