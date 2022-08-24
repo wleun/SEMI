@@ -202,6 +202,37 @@ public class MemberService {
 		return result;
 		
 	}
+	/*
+	 * 회원탈퇴
+	 */
+	public int quit(String no, String pwd, String pwd1) {
+		
+		//서비스로직
+		if(!(pwd.equals(pwd1))) {
+			return -1;
+		}
+		
+		Connection conn = null;
+		int result = 0;
+		
+		
+		try {
+			conn= getConnection();
+			result = new MemberDao().quit(conn, no);
+			if(result == 1) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return result;
+		
+	}
 	
 
 }

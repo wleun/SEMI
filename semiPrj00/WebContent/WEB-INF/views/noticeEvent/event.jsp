@@ -44,12 +44,16 @@
         text-decoration: none;
         color: black;
        }
+       .event-a:hover{
+       	color:#48CA7D;
+       	cursor: pointer;
+       }
        .event-info{
         /* border: 1px solid blue; */
         height: 130px;
        }
        .event-img{
-        border: 1px solid black;
+        /*border: 1px solid black;*/
         width: 120px;
         height: 110px;
         float: right;
@@ -106,7 +110,7 @@
     <main>
         <div id="box"></div>
         <div id="event">
-            <div id="event-h1"><h1>이벤트</h1></div>
+            <div id="event-h1"><h1>이벤트 EVENT</h1></div>
             <ul>
                 <li>
                     <hr>
