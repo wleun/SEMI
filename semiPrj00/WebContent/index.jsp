@@ -2,8 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-	<%
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%
     
   	  List<ProjectVo> recommendList = (List<ProjectVo>)request.getAttribute("recommendList");
    	  List<ProjectVo> earlyList = (List<ProjectVo>)request.getAttribute("earlyList");
@@ -324,8 +324,8 @@
 				<!-- 프로젝트 달성도 부분 -->
 				<div class="prj-content gage-div">
 					<div class="prj-content">
-						<span class="percentage">달성률</span> 
-						<span class="amount">모인 금액</span>
+						<span class="percentage">달성률</span> <span class="amount">모인
+							금액</span>
 					</div>
 					<div class="prj-content d-day">남은 날짜</div>
 					<div class="prj-content gage-bar progress" style="height: 5px;">
@@ -358,8 +358,7 @@
 		<!-- 2번째 추천 -->
 
 		<!-- 카테고리 내용 래퍼 -->
-		<br>
-		<br>
+		<br> <br>
 		<h2>신규 프로젝트</h2>
 		<h5>신제품을 빠르게 만나보세요!</h5>
 		<div id="category-content-wrap">
@@ -453,8 +452,7 @@
 
 		<!--세번째 추천-->
 		<!-- 카테고리 내용 래퍼 -->
-		<br>
-		<br>
+		<br> <br>
 		<h2>마감 임박 프로젝트</h2>
 		<h5>놓치지 말고 막차탑승!</h5>
 		<div id="category-content-wrap">
@@ -545,7 +543,12 @@
 			</div>
 		</div>
 	</div>
-	<br><br><br><br><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 	<%@ include file="/WEB-INF/views/common/userFooter.jsp"%>
 </body>
