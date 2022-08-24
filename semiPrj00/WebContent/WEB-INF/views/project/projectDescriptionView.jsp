@@ -100,10 +100,11 @@
         border-top: 1px solid #48CA7D;
     }
     #option-select-area input[type='number']{
-        width: 20%;
+        width: 30%;
         border: 1px solid #48CA7D;
         border-radius: 10px;
         padding-left: 10px;
+        margin-bottom: 10px;
         margin-left: 20px;
     }
     #option-select-area input[type='submit']{
@@ -111,7 +112,6 @@
         background-color: #48CA7D;
         color: white;
         border-radius: 50px;    
-        margin-top: 20px;
         width: 100%;
         height: 2em;
         
@@ -454,6 +454,13 @@
         color: black;
         font-size: 25px;
     }
+    #additional-memo{
+    	font-size: 12px;
+    	margin: 0px 0px 5px 5px;
+    	padding-left:10px;
+    	font-weight: lighter;
+    	color: gray;
+    }
     
     /* 신고하기 부분 */
     #report-area{
@@ -513,20 +520,20 @@
                             <td>모인금액</td>
                         </tr>
                         <tr>
-                            <td><span class="prj-info">140,000,000</span>원</td>
-                            <td><span id="prj-percent">200%</span></td>
+                            <td><span class="prj-info">${totalDonation}</span>원</td>
+                            <td><span id="prj-percent">${percent}%</span></td>
                         </tr>
                         <tr>
-                            <td>남은시간</td>
+                            <td>남은기간</td>
                         </tr>
                         <tr>
-                            <td><span class="prj-info">1</span>일</td>
+                            <td><span class="prj-info">${dayLeft}</span>일</td>
                         </tr>
                         <tr>
                             <td>후원자</td>
                         </tr>
                         <tr>
-                            <td><span class="prj-info">40</span>명</td>
+                            <td><span class="prj-info">${totalDonator}</span>명</td>
                         </tr>
                     </table>
                 </div>
@@ -538,7 +545,7 @@
                         </tr>
                         <tr>
                             <td><b class="info2-title">펀딩기간</b></td>
-                            <td><span class="info2">${projectVo.startDate}</span>-<span class="info2">${projectVo.endDate}</span></td>
+                            <td><span class="info2">${projectVo.startDate}</span> ~ <span class="info2">${projectVo.endDate}</span></td>
                         </tr>
                         <tr>
                             <td><b class="info2-title">배송</b></td>
@@ -578,12 +585,14 @@
                 <div class="main-title" id="notice">
                     <div><span>새소식</span></div>
                     <div>
+                    	<c:if test="${loginMember.no} == ${pvo.makerNo}">
                         <form action="${pageContext.request.contextPath}/project/notice">
                             <div id="notice-comment-wrap">
                                 <textarea name="notice-comment-area" class="comment" id="notice-comment-area" maxlength="500" placeholder="500자 이내로 입력해주세요."></textarea>
                                 <input type="submit" value="작성하기">
                             </div>
                         </form>
+                        </c:if>
                         <div id="">
                         	
                         	<c:if test="${empty noticeList}">
@@ -600,7 +609,7 @@
 		                                    </span>
 		                                </div>
 		                                <div class="post-reply-area" id="notice-reply-area"><span id="notice-reply">답글</span></div>
-		                                <c:if test="${nlist.memberNo} eq ${pvo.makerNo}">
+		                                <c:if test="${nlist.memberNo} == ${loginMember.no}">
 			                                <a href="">수정</a>
 			                                <a href="">삭제</a>
 			                            </c:if>
@@ -746,8 +755,10 @@
 		                            </div>
 		
 		                            <div class="hide-div" id="option-select-area">
-		                                <form action="<%=contextPath%>/project/support?pnum=${projectVo.prjectNo}&rnum=${list.no}&qty=&add=">
-		                                    수량선택 <input type="number" class="reward-qty" id="reward-quantity" value="1" min='1'>
+		                                <form action="<%=contextPath%>/project/support?pnum=3&rnum=9" method="get">
+		                                    후원수량 <input type="number" class="reward-qty" id="reward-quantity" name="qty" value="1" min='1'><br>
+		                                    추가후원 <input type="number" class="additional-support" name="add" value="0" min='0' step="1000"> <span id="additional-memo">(선택)</span><br>
+		                                    <div id="additional-memo">*추가후원을 통해 프로젝트 성사일을 앞당길 수 있어요!</div>
 		                                    <input type="submit">
 		                                </form>
 		                            </div>
@@ -779,8 +790,6 @@
 
 <script>
     $(function(){
-    	
-    	
         
         $("#file").on('change',function(){
             var fileName = $("#file").val();
@@ -860,7 +869,7 @@
             
             $(this).find($('.hide-div input')).first().attr("max", $(this).find($('.option-attribute')).last().text() );
 
-            const totalPrice = $(this).find($('.option-prc')).text() * $(this).find($('.reward-qty')).val();
+            const totalPrice = $(this).find($('.option-prc')).text() * $(this).find($('.reward-qty')).val() + parseInt($(this).find($('.additional-support')).val());
             $(this).find($('.hide-div input')).last().val(totalPrice+"원 후원하기");
         });
 

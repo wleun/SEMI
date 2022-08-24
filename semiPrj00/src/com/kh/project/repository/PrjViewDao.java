@@ -22,7 +22,7 @@ public class PrjViewDao {
 		ResultSet rs = null;
 		ProjectVo pvo = null;
 		
-		String sql = "SELECT P.PROJECT_NO, C.NAME AS CATEGORY_NO, P.NAME, TO_CHAR(P.REGISTER_DATE,'YY/MM/DD') AS REGISTER_DATE, P.START_DATE, P.END_DATE, P.GOAL, M.NICK AS MAKER_NO, P.TEXT, P.ACCOUNT_NO, P.SHIPPING_DATE, P.THUMBNAIL_NAME, P.THUMBNAIL_PATH, P.ETC, P.ACCOUNT_BANK, P.ACCOUNT_NAME, P.MAKER_INFO, P.STATUS FROM PROJECT P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.PROJECT_NO = ?";
+		String sql = "SELECT P.PROJECT_NO, C.NAME AS CATEGORY_NO, P.NAME, TO_CHAR(P.REGISTER_DATE,'YY/MM/DD') AS REGISTER_DATE, TO_CHAR(P.START_DATE,'YYYY.MM.DD') AS START_DATE, TO_CHAR(P.END_DATE,'YYYY.MM.DD') AS END_DATE, P.GOAL, M.NICK AS MAKER_NO, P.TEXT, P.ACCOUNT_NO, TO_CHAR(P.SHIPPING_DATE,'YYYY.MM.DD') AS SHIPPING_DATE, P.THUMBNAIL_NAME, P.THUMBNAIL_PATH, P.ETC, P.ACCOUNT_BANK, P.ACCOUNT_NAME, P.MAKER_INFO, P.STATUS FROM PROJECT P JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO JOIN MEMBER M ON P.MAKER_NO = M.NO WHERE P.PROJECT_NO = ?";
 		System.out.println("pvo 조회: 여기까지 왔나?!");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -88,7 +88,6 @@ public class PrjViewDao {
 		List<ProjectRewardVo> list = new ArrayList<ProjectRewardVo>();
 		
 		String sql = "SELECT NO,\"OPTION\",DETAIL,PRICE,QUANTITY FROM REWARD WHERE PROJECT_NO = ?";
-		System.out.println("rvo 조회: 여기까지 왔나?!");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prjNum);
@@ -115,22 +114,33 @@ public class PrjViewDao {
 			close(pstmt);
 			close(rs);
 		}
-		System.out.println("list값:"+list);
+		
 		return list;
 	}
 
 
-//	public void getTotalDonation(Connection conn, String prjNum) {
-//		PreparedStatement pstmt = null;
-//		String sql = "";
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public String getTotalDonation(Connection conn, String prjNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sum = null;
+		String sql = "SELECT TO_CHAR(SUM(D.AMOUNT),'9,999,999,999') AS AMOUNT FROM DONATE_LIST D JOIN REWARD R ON D.REWARD_NO = R.NO WHERE CANCEL_YN = 'N' AND R.PROJECT_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, prjNum);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				sum = rs.getString("AMOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return sum;
+	}
 
 	//공지사항 존재하는지 확인
 	public List<ProjectNoticeVo> selectNotice(Connection conn, String prjNum) {
@@ -145,7 +155,7 @@ public class PrjViewDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, prjNum);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				String member = rs.getString("MEMBER_NO");
 				String content = rs.getString("CONTENT");
 				String newsDate = rs.getString("NEWS_DATE");
@@ -163,6 +173,31 @@ public class PrjViewDao {
 			close(pstmt);
 			close(rs);
 		}
+		System.out.println("noticeList값:"+noticeList);
 		return noticeList;
+	}
+
+	//총 후원자 계산하기
+	public String getTotalDonator(Connection conn, String prjNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String count = null;
+		String sql = "SELECT TO_CHAR(COUNT(MEMBER_NO),'999,999') AS MEMBER_NO FROM DONATE_LIST D JOIN REWARD R ON D.REWARD_NO = R.NO WHERE CANCEL_YN = 'N' AND R.PROJECT_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, prjNum);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getString("MEMBER_NO");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return count;
 	}
 }
