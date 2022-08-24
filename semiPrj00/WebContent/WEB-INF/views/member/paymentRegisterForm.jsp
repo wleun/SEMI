@@ -87,7 +87,7 @@
                 </div>
                 <div>
                 	결제 비밀번호
-                	<input type="password" name="password" maxlength=6 required>
+                	<input type="password" id="pay-pwd" class="form-control" name="password" maxlength=6 placeholder="숫자 6자리" required>
                 </div>
                 <div id="agree-btn-div">
                     <input type="checkbox" name="agree" id="agree" class="form-check-input" required>
@@ -99,7 +99,7 @@
                     <label for="set-default">기본 결제수단으로 등록</label>
                 </div>
                 <div id="submit-div">
-                    <button type="submit" class="btn btn-success">등록 완료</button>
+                    <button type="submit" class="btn btn-success" id="register-btn" disabled>등록 완료</button>
                 </div>
             </form>
         </div>
@@ -117,7 +117,8 @@
             let cardNum = $("#card-num").val();
             let cardPwd = $("#card-pwd").val();
             let firmNum = $("#firm-num").val();
-            if((cardNum.length<16 && cardPwd.length<2) || (cardNum.length<16 && firmNum.length<10)){
+            let payPwd = $("#pay-pwd").val();
+            if((cardNum.length<16 && cardPwd.length<2 && payPwd<6) || (cardNum.length<16 && firmNum.length<10 && payPwd<6)){
                 alert("정보를 마저 입력해주세요.");
                 return false;
             }
@@ -165,6 +166,13 @@
                 alert("생일은 오늘 이전으로 입력해주세요.");
                 $("#brith-date").val("");
             }
+        });
+    	
+    	//동의 후 버튼활성화
+    	$("#agree").click(function(){
+            if($("#agree").is(":checked")){
+            	$("#register-btn").prop("disabled", false);
+        	}
         });
 
     </script>

@@ -479,8 +479,8 @@
         //동의 체크해야 후원가능
         $(".agree-box").click(function(){
             if($(".agree-box:checked").length == $(".agree-box").length){
-            $("#support-btn").prop("disabled", false);
-        };
+            	$("#support-btn").prop("disabled", false);
+        	}
         });
     </script>
 </body>
