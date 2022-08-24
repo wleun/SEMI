@@ -165,7 +165,7 @@ public class MemberDao {
 	 * 이메일 중복검사
 	 */
 	public int checkEmail(Connection conn, String email) {
-		String sql = "SELECT COUNT(NO) FROM MEMBER WHERE EMAIL = ?";
+		String sql = "SELECT COUNT(NO) AS CNT FROM MEMBER WHERE EMAIL = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -176,8 +176,7 @@ public class MemberDao {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				result = rs.getInt("COUNT(NO)");
-				System.out.println("왜그래????"+result);
+				result = rs.getInt("CNT");
 			}
 			
 		}catch(Exception e) {
@@ -295,6 +294,26 @@ public class MemberDao {
 			
 			result = pstmt.executeUpdate();
 			System.out.println("쿼리문 실행결과 " +  result);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	/*
+	 * 회원탈퇴
+	 */
+	public int quit(Connection conn, String no) {
+		String sql = "UPDATE MEMBER SET STATUS = 'Q', QUIT_DATE = SYSDATE WHERE NO = ?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			
+			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
