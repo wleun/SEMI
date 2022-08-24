@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.admin.member.service.AdminMemberService;
+import com.kh.admin.member.vo.AdminMemberVo;
 
 @WebServlet (urlPatterns = "/admin/member/suspend")
 public class AdminMemberSuspendController extends HttpServlet {
@@ -31,18 +33,31 @@ public class AdminMemberSuspendController extends HttpServlet {
 		System.out.println("리스트 사이즈 : " + listSize);
 		System.out.println("성공 횟수 : " + result);
 		
-		
+		List<AdminMemberVo> memberVoList = null;
 		if (result == listSize) {
-			System.out.println(result + " 횟수 만큼 정지 완료");
+			
+			memberVoList = new AdminMemberService().selectStatusList(memberNoList);
+		
+			if(memberVoList==null) {
+				System.out.println("회원정지 후 상태 조회 실패");
+				req.getSession().setAttribute("errorMsg", "회원 정지에는 성공하였으나, 상태조회에 실패하였습니다.");
+				resp.sendRedirect("/semiPrj00/admin/memberManage?p=1");
+			}
 		} else {
-			System.out.println(result + " 횟수 만큼 정지 실패");
+			System.out.println("회원정지 실패");
+			req.getSession().setAttribute("errorMsg", "회원 정지에 실패하였습니다.");
+			resp.sendRedirect("/semiPrj00/admin/memberManage?p=1");
 		}
 		
+		System.out.println("회원정지 후 프로젝트 상태조회 성공");
 		//클라이언트에 응답
 		resp.setCharacterEncoding("UTF-8");
 		
-		String answer = result + "회 정지완료했습니다.";
-		resp.getWriter().write(answer);
+		//GSON으로 자바 객체 -> JSON포맷 변환
+		Gson gson =  new Gson();
+						
+		String jsonStr = gson.toJson(memberVoList);
+		resp.getWriter().write(jsonStr);
 		
 	}
 }

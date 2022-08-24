@@ -16,6 +16,8 @@ import static com.kh.common.JDBCTemplate.*;
 
 public class AdminEventService {
 
+	//페이징 카운트
+	
 	public int getCount() {
 		
 		Connection conn = getConnection();
@@ -26,6 +28,8 @@ public class AdminEventService {
 		return result;
 		
 	}
+	
+	//페이징 셀렉트 
 
 	public List<AdminEventVo> selectList(PageVo pageVo) {
 		
@@ -106,6 +110,8 @@ public class AdminEventService {
 		
 		
 	}
+	
+	// 상세조회 SELECT
 
 	public AdminEventVo selectOne(String no) {
 		
@@ -116,6 +122,8 @@ public class AdminEventService {
 		
 		return adminEventVo;
 	}
+	
+	// 상세조회 (파일) SELECT
 
 	public AdminEventAttachmentVo selectFile(String no) {
 		
@@ -127,18 +135,30 @@ public class AdminEventService {
 		return adminEventAttachmentVo;
 	}
 	
-	// 이벤트 삭제
+	// 이벤트 삭제 (UPDATE)
 
 	public int deleteEvent(String no) {
 		Connection conn = getConnection();
-		int result = new AdminEventDao().deleteEvent(conn, no);
-		
-		close(conn);
+		int result = 0;
+				
+		try {
+			result = new AdminEventDao().deleteEvent(conn, no);
+			
+			if(result==1) {
+				commit(conn);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		} finally {
+			rollback(conn);
+			close(conn);
+		}
 		
 		return result;
 	}
 	
-	//이벤트 수정
+	//이벤트 수정 (UPDATE)
 
 	public int editEvent(AdminEventVo adminEventVo, AdminEventAttachmentVo adminEventAttachmentVo) {
 		

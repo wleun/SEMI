@@ -314,55 +314,56 @@
 	
 	
 	<script>
-	$('#suspendBtn').click(function() {
-        const checkBoxArr = [];
-        $("input:checkbox[name='boardCheck']:checked").each(function() {
-        	checkBoxArr.push($(this).val());
-        	
-        })
-       	
-        console.log(checkBoxArr);
-        $.ajax({
-        	url : "<%=contextPath%>/admin/member/suspend" ,
-        	type:"POST",
-        	traditional : true,
-        	data : {
-        		key : checkBoxArr
-        	},
-        	success:function(result) {
-        		console.log(result); //새로고침으로 인해서 출력이 안됨...
-        		document.location.reload();
-        	},
-        	error:function(error) {
-        		alert("삭제에 실패하였습니다.");
-        	}
-        });
-    });
-	
-	$('#cancelBtn').click(function() {
-        const checkBoxArr = [];
-        $("input:checkbox[name='boardCheck']:checked").each(function() {
-        	checkBoxArr.push($(this).val());
-        	
-        })
-       	
-        console.log(checkBoxArr);
-        $.ajax({
-        	url : "<%=contextPath%>/admin/member/suspend/cancellation" ,
-        	type:"POST",
-        	traditional : true,
-        	data : {
-        		key : checkBoxArr
-        	},
-        	success:function(result) {
-        		console.log(result); //새로고침으로 인해서 출력이 안됨...
-        		document.location.reload();
-        	},
-        	error:function(error) {
-        		alert("삭제에 실패하였습니다.");
-        	}
-        });
-    });
+		$(document).ready(function(){
+			$('#suspendBtn').click(function() {
+		        const checkBoxArr = [];
+		        $("input:checkbox[name='boardCheck']:checked").each(function() {
+		        	checkBoxArr.push($(this).val());
+		        	
+		        })
+		       	
+		        console.log(checkBoxArr);
+		        $.ajax({
+		        	url : "<%=contextPath%>/admin/member/suspend" ,
+		        	type:"POST",
+		        	traditional : true,
+		        	data : {
+		        		key : checkBoxArr
+		        	},
+		        	success:function(result) {
+		        		console.log(result); //새로고침으로 인해서 출력이 안됨...
+		        		document.location.reload();
+		        	},
+		        	error:function(error) {
+		        		alert("삭제에 실패하였습니다.");
+		        	}
+		        });
+		    });
+			
+			$('#cancelBtn').click(function() {
+		        const checkBoxArr = [];
+		        $("input:checkbox[name='boardCheck']:checked").each(function() {
+		        	checkBoxArr.push($(this).val());
+		        	
+		        })
+		       	
+		        console.log(checkBoxArr);
+		        $.ajax({
+		        	url : "<%=contextPath%>/admin/member/suspend/cancellation" ,
+		        	type:"POST",
+		        	traditional : true,
+		        	data : {
+		        		key : checkBoxArr
+		        	},
+		        	success:function(result) {
+		        		console.log(result); 
+		        	},
+		        	error:function(error) {
+		        		alert("삭제에 실패하였습니다.");
+		        	}
+		        });
+		    });
+		});
 	</script>
 
 </body>

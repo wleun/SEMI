@@ -4,6 +4,7 @@ import static com.kh.common.JDBCTemplate.*;
 import static com.kh.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.admin.member.repository.AdminMemberDao;
@@ -14,6 +15,8 @@ import com.kh.common.vo.PageVo;
 
 public class AdminPrjService {
 
+	//페이징 관련 카운트
+	
 	public int getCount() {
 		Connection conn = getConnection();
 		int result = new AdminPrjDao().getCount(conn);
@@ -23,6 +26,7 @@ public class AdminPrjService {
 		return result;
 	}
 
+	//페이징 리스트
 	public List<AdminPrjVo> selectList(PageVo pageVo) {
 		Connection conn = getConnection();
 		Connection conn2 = getConnection();
@@ -33,6 +37,7 @@ public class AdminPrjService {
 		return adminPrjVoList;
 	}
 
+	//프로젝트 삭제 (ajax, UPDATE)
 	public int deleteProject(List<String> projectNoList) {
 		
 		int successCnt = 0;
@@ -63,6 +68,25 @@ public class AdminPrjService {
 		System.out.println(successCnt);
 		
 		return successCnt;
+	}
+
+	//삭제된 프로젝트 조회 (ajax,SELECT)
+	public List<AdminPrjVo> selectStatusList(List<String> projectNoList) {
+		
+		Connection conn = getConnection();
+		List<AdminPrjVo> projectVoList = new ArrayList();
+		AdminPrjVo resultVo = null;
+		
+		for (String projectNo : projectNoList) {
+			
+			resultVo = new AdminPrjDao().selectStatusList(projectNo, conn);
+			projectVoList.add(resultVo);
+			
+		}
+		
+		close(conn);
+		return projectVoList;
+		
 	}
 
 }

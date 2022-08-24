@@ -252,5 +252,76 @@ public class AdminProposalDao {
 		
 		return adminProposalAttachmentVo;
 	}
-	
+
+	public int changeStatus(Connection conn, String option, String no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "UPDATE PROJECT SET STATUS=? WHERE PROJECT_NO = ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, option);
+			pstmt.setString(2, no);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public String selectStatus(Connection conn, String no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String status = null;
+		String sql = "SELECT STATUS FROM PROJECT  WHERE PROJECT_NO = ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				status = rs.getString("STATUS");
+				
+				if("R".equals(status)) {
+					status = "접수";
+				} else if ("N".equals(status)) {
+					status = "반려";
+				} else if ("A".equals(status)) {
+					status = "검토중";
+				} else if ("B".equals(status)) {
+					status = "진행전";
+				} else if ("I".equals(status)) {
+					status = "진행중";
+				} else if ("S".equals(status)) {
+					status = "펀딩 성공";
+				} else if ("F".equals(status)) {
+					status = "펀딩 실패";
+				} else {
+					status = "삭제됨";
+				}
+			}
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		return status;
+	}
+
 }	

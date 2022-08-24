@@ -37,7 +37,7 @@ public class AdminNoticeService {
 		return adminNoticeVoList;
 	}
 	
-	// 공지사항 삭제
+	// 공지사항 삭제 (ajax, UPDATE)
 	
 
 	public int deleteNotice(List<String> noticeNoList) {
@@ -136,10 +136,21 @@ public class AdminNoticeService {
 	//공지사항 삭제 (상세페이지)
 	public int deleteNotice(String no) {
 		Connection conn = getConnection();
-		int result = new AdminNoticeDao().deleteNotice(conn, no);
+		int result = 0;
 		
-		close(conn);
+		try {
+			result = new AdminNoticeDao().deleteNotice(conn, no);
 		
+			if(result==1) {commit(conn);}
+			else {rollback(conn);}
+		
+		} catch (Exception e) {
+			rollback(conn);
+			e.printStackTrace();
+		} finally {
+			rollback(conn);
+			close(conn);
+		}
 		return result;
 	}
 

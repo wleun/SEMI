@@ -209,4 +209,53 @@ public class AdminMemberDao {
 			return result;
 		}
 
+	//정지 or 정지해제된 회원의 상태 및 정지날짜 선택
+	public AdminMemberVo selectStatusList(String memberNo, Connection conn) {
+		
+		AdminMemberVo memberVo = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT STATUS, SUSPEND_DATE FROM MEMBER WHERE NO = ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+			
+				memberVo = new AdminMemberVo();
+				
+				String status = rs.getString("STATUS");
+				
+				if("A".equals(status)) {
+					status = "활동";
+				}else if ("S".equals(status)) {
+					status = "정지";
+				}else {
+					status = "탈퇴";
+				}
+				
+				String suspendDate = rs.getString("SUSPEND_DATE");
+				
+				
+				memberVo.setStatus(status);
+				memberVo.setSuspendDate(suspendDate);
+			
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return memberVo;
+		
+	}
+
 }

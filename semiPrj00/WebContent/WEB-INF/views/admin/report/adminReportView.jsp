@@ -324,7 +324,7 @@
 	  
 	        <!-- Modal footer -->
 	        <div class="modal-footer">
-	          <button>조치완료</button>
+	          <button onclick="location.href='<%=contextPath%>/admin/report/complete?no=${item.no}';">조치완료</button>
 	        </div>
 	        
 	      </div>
@@ -333,36 +333,6 @@
   	</c:forEach>
   	
   	
-  	
-  	<script>
-  	$('#submit').click(function() {
-        const checkBoxArr = [];
-        $("input:checkbox[name='boardCheck']:checked").each(function() {
-        	checkBoxArr.push($(this).val());
-        	
-        })
-       	
-        console.log(checkBoxArr);
-        $.ajax({
-        	url : "<%=contextPath%>/admin/project/delete" ,
-        	type:"POST",
-        	traditional : true,
-        	data : {
-        		key : checkBoxArr
-        	},
-        	success:function(result) {
-        		console.log(result); //새로고침으로 인해서 출력이 안됨
-        		$(".statusVal").empty();
-        		//$(".statusVal").load(location.href + "  .statusVal");
-        		$(".statusVal").val('안녕');
-        	//	document.location.reload();
-        	},
-        	error:function(error) {
-        		alert("삭제에 실패하였습니다.");
-        	}
-        });
-    });
-  	</script>
 
 
 </body>
