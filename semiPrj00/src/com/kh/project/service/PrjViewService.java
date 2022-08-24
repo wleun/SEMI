@@ -47,10 +47,15 @@ public class PrjViewService {
 
 
 	//총 후원금액 계산하기
-//	public void getTotalDonation(String prjNum) {
-//		Connection conn = getConnection();
-//		dao.getTotalDonation(conn, prjNum);
-//	}
+	public String getTotalDonation(String prjNum) {
+		Connection conn = getConnection();
+		String sum = dao.getTotalDonation(conn, prjNum);
+		
+		if(sum != null) {
+			close(conn);
+		}
+		return sum;
+	}
 
 	//공지사항 존재하는지 확인
 	public List<ProjectNoticeVo> selectNotice(String prjNum) {
@@ -63,5 +68,16 @@ public class PrjViewService {
 			close(conn);
 		}
 		return noticeList;
+	}
+
+	//총 후원자 계산하기
+	public String getTotalDonator(String prjNum) {
+		Connection conn = getConnection();
+		String count = dao.getTotalDonator(conn, prjNum);
+		
+		if(count != null) {
+			close(conn);
+		}
+		return count;
 	}
 }
