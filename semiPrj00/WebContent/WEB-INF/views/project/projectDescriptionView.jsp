@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <%
@@ -502,7 +503,7 @@
         <div class="desc-section" id="desc-head">
             <div id="head-title">
                 <div id="project-category">
-                    <a href="/project/category">${projectVo.categoryNo}</a>
+                    <a href="<%=contextPath%>/project/category?category=${categoryNo}&sort=all">${projectVo.categoryNo}</a>
                 </div>
                 <div id="project-title">
                     <a>${projectVo.name}</a>
@@ -520,7 +521,7 @@
                             <td>모인금액</td>
                         </tr>
                         <tr>
-                            <td><span class="prj-info">${totalDonation}</span>원</td>
+                            <td><span class="prj-info"><f:formatNumber value="${totalDonation}" pattern="#,###.#"/></span>원</td>
                             <td><span id="prj-percent">${percent}%</span></td>
                         </tr>
                         <tr>
@@ -541,7 +542,7 @@
                     <table>
                         <tr>
                             <td><b class="info2-title">목표금액</b></td>
-                            <td><span class="info2">${projectVo.goal}</span>원</td>
+                            <td><span class="info2"><f:formatNumber value="${projectVo.goal}" pattern="#,###.#"/></span>원</td>
                         </tr>
                         <tr>
                             <td><b class="info2-title">펀딩기간</b></td>
@@ -716,7 +717,7 @@
                     </div>
                 </div>
              	<div id="report-area">
-                    <a href="">이 프로젝트 신고하기</a>
+                    <a href="<%=contextPath%>/project/report">이 프로젝트 신고하기</a>
                 </div>
                 
                 
@@ -755,8 +756,10 @@
 		                            </div>
 		
 		                            <div class="hide-div" id="option-select-area">
-		                                <form action="<%=contextPath%>/project/support?pnum=3&rnum=9" method="get">
+		                                <form action="<%=contextPath%>/project/support" method="get">
 		                                    후원수량 <input type="number" class="reward-qty" id="reward-quantity" name="qty" value="1" min='1'><br>
+		                                	<input type="hidden" name="pnum" value="${projectVo.prjectNo}">
+		                                	<input type="hidden" name="rnum" value="${list.no}">
 		                                    추가후원 <input type="number" class="additional-support" name="add" value="0" min='0' step="1000"> <span id="additional-memo">(선택)</span><br>
 		                                    <div id="additional-memo">*추가후원을 통해 프로젝트 성사일을 앞당길 수 있어요!</div>
 		                                    <input type="submit">
@@ -870,7 +873,8 @@
             $(this).find($('.hide-div input')).first().attr("max", $(this).find($('.option-attribute')).last().text() );
 
             const totalPrice = $(this).find($('.option-prc')).text() * $(this).find($('.reward-qty')).val() + parseInt($(this).find($('.additional-support')).val());
-            $(this).find($('.hide-div input')).last().val(totalPrice+"원 후원하기");
+            total = totalPrice.toLocaleString('en-us');
+            $(this).find($('.hide-div input')).last().val(total+"원 후원하기");
         });
 
     
