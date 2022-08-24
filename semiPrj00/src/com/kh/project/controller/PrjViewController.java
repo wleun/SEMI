@@ -40,6 +40,19 @@ public class PrjViewController extends HttpServlet{
 			//서버 가서 플젝 번호와 일치하는 카테고리 no 조회해오기
 			String categoryNo = new PrjViewService().getCategoryNo(prjNum);
 			
+			//썸네일 가져오기
+			String getThumbnail = null;
+			if(pvo.getThumbnailPath().length() > 17) {
+				String thumbNailPath = pvo.getThumbnailPath();
+				String thumbNailName = pvo.getThumbnailName();
+				String path = req.getContextPath()+thumbNailPath.substring(thumbNailPath.length()-17,thumbNailPath.length());
+				getThumbnail = path+"\\"+thumbNailName;
+				System.out.println("썸네일 앞경로:"+path);
+				System.out.println("썸네일 풀경로:"+getThumbnail);
+			}else {
+				getThumbnail = req.getContextPath()+"/resources/img/200perlogo_.png";
+			}
+			
 			//총 후원금 계산하기
 			int totalDonation = new PrjViewService().getTotalDonation(prjNum);
 			System.out.println("total:"+totalDonation);
@@ -75,16 +88,22 @@ public class PrjViewController extends HttpServlet{
 		
 			//현재 로그인한 멤버가 해당 플젝을 좋아요 했는지 확인
 		
+			//상세페이지 이미지 가져오기
+			List<String> pathList = new PrjViewService().getDescriptionImage(prjNum);
+			System.out.println("컨트롤러에서 경로list:"+pathList);
+			
 		//전달할거 가지고 (  ) jsp 파일로 포워딩
 		
 			req.setAttribute("projectVo", pvo);
 			req.setAttribute("categoryNo", categoryNo);
+			req.setAttribute("getThumbnail", getThumbnail);
 			req.setAttribute("totalDonation", totalDonation);
 			req.setAttribute("percent", percent);
 			req.setAttribute("dayLeft", dayLeft);
 			req.setAttribute("totalDonator", totalDonator);
 			req.setAttribute("noticeList", noticeList);
 			req.setAttribute("optionList", optionList);
+			req.setAttribute("pathList", pathList);
 			req.getRequestDispatcher("/WEB-INF/views/project/projectDescriptionView.jsp").forward(req, resp);
 		}else{
 			req.getSession().setAttribute("alertMsg", "url 주소가 올바르지 않습니다.");
