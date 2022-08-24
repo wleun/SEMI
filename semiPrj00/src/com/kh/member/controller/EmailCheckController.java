@@ -24,6 +24,7 @@ public class EmailCheckController extends HttpServlet{
 		
 		if(result == 1) {
 			req.setAttribute("result1", "이미 사용 중인 이메일 입니다.");
+			req.setAttribute("email", email);
 			req.getRequestDispatcher("/WEB-INF/views/member/emailCheck.jsp").forward(req, resp);
 		}else if(result == 2) {
 			req.setAttribute("result1", "정지 된 계정입니다. 일정기간 이후 로그인해주세요.");
@@ -33,6 +34,7 @@ public class EmailCheckController extends HttpServlet{
 			req.getRequestDispatcher("/WEB-INF/views/member/emailCheck.jsp").forward(req, resp);
 		}else {
 			req.setAttribute("result", "사용 가능한 이메일입니다.");
+			req.setAttribute("email", email);
 			req.getRequestDispatcher("/WEB-INF/views/member/emailCheck.jsp").forward(req, resp);
 		}
 		

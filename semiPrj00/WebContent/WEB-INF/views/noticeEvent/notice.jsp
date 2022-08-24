@@ -78,9 +78,21 @@
        .noti-img .noti-info .noti-title .noti-date #notice{
         box-sizing: border-box;
        }
-       .page{
-        text-align: center;
-       }
+       #page-area{
+       		text-align:center;
+       		padding:30px;
+       	}
+       	#page-area a{
+       		width:35px;
+       		font-size : 18px;
+       	}
+        .btn-success{
+            background-color: #48CA7D!important;
+            border: 0px!important;
+        }
+        .btn{
+            border-radius: 50px !important;
+        }
     </style>
 </head>
 <body>
@@ -90,9 +102,11 @@
         <div id="notice">
             <div id="notice-h1"><h1>공지사항</h1></div>
             <ul>
+                <li>
+                    <hr>
+                </li>
               <%for(int i = 0; i <voList.size(); i++){ %>
                <li >
-                    <hr>
                     <a href="" class="noti-a">
                         <div class="noti-info">
                             <h3 class="noti-title"><%=voList.get(i).getTitle() %></h3>
@@ -106,20 +120,20 @@
               
             </ul>
  
-            <div class="page-area">
+            <div id="page-area">
            	<%if(currentPage != 1){ %>
-		<a href="<%=contextPath %>/member/noticeList?p=<%=currentPage-1%>"> &lt; </a>
+		<a class="btn btn-sm btn-success" href="<%=contextPath %>/member/noticeList?p=<%=currentPage-1%>"> &lt; </a>
 		<%} %>
 		
 		<% for(int i = startPage; i <= endPage; i++){ %>
 			<%if(i==currentPage){ %>
-				<a><%=i %><a>
+				<a class="btn btn-sm btn-success" ><%=i %><a>
 			<%}else{ %>
-				<a href="<%=contextPath %>/member/noticeList?p=<%=i%>"><%=i %><a>
+				<a class="btn btn-sm" href="<%=contextPath %>/member/noticeList?p=<%=i%>"><%=i %><a>
 			<%} %>
 		<%} %>
 		<%if(currentPage != maxPage){ %>
-		<a  href="<%=contextPath %>/member/noticeList?p=<%=currentPage+1%>"> &gt; </a>
+		<a class="btn btn-sm btn-success" href="<%=contextPath %>/member/noticeList?p=<%=currentPage+1%>"> &gt; </a>
 		<%} %>
             </div>
            

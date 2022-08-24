@@ -84,9 +84,21 @@
        .event-img .event-info .event-title .event-date #event{
         box-sizing: border-box;
        }
-       .page{
-        text-align: center;
-       }
+       #page-area{
+       		text-align:center;
+       		padding:30px;
+       	}
+       	#page-area a{
+       		width:35px;
+       		font-size : 18px;
+       	}
+        .btn-success{
+            background-color: #48CA7D!important;
+            border: 0px!important;
+        }
+        .btn{
+            border-radius: 50px !important;
+        }
     </style>
 </head>
 <body>
@@ -96,9 +108,11 @@
         <div id="event">
             <div id="event-h1"><h1>이벤트</h1></div>
             <ul>
+                <li>
+                    <hr>
+                </li>
             <%for(int i = 0; i <voList.size(); i++){ %>
                 <li >
-                    <hr>
                     <a href="" class="event-a">
                         <div class="event-info">
                             <div class="event-img"><img src="" alt=""></div>
@@ -112,20 +126,20 @@
                 
             </ul>
 
-            <div class="page">
+            <div id="page-area">
                 <%if(currentPage != 1){ %>
-		<a href="<%=contextPath %>/member/eventList?p=<%=currentPage-1%>"> &lt; </a>
+		<a class="btn btn-sm btn-success" href="<%=contextPath %>/member/eventList?p=<%=currentPage-1%>"> &lt; </a>
 		<%} %>
 		
 		<% for(int i = startPage; i <= endPage; i++){ %>
 			<%if(i==currentPage){ %>
-				<a><%=i %><a>
+				<a class="btn btn-sm btn-success"><%=i %><a>
 			<%}else{ %>
-				<a href="<%=contextPath %>/member/eventList?p=<%=i%>"><%=i %><a>
+				<a class="btn btn-sm" href="<%=contextPath %>/member/eventList?p=<%=i%>"><%=i %><a>
 			<%} %>
 		<%} %>
 		<%if(currentPage != maxPage){ %>
-		<a  href="<%=contextPath %>/member/eventList?p=<%=currentPage+1%>"> &gt; </a>
+		<a class="btn btn-sm btn-success" href="<%=contextPath %>/member/eventList?p=<%=currentPage+1%>"> &gt; </a>
 		<%} %>
             </div>
         </div>

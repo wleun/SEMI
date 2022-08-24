@@ -23,6 +23,7 @@ public class NoticeDetailController extends HttpServlet {
 		//num번: 조회할 공지사항 번호
 		String num = req.getParameter("num");
 		
+		System.out.println(num);
 		//디비에서 특정 공지사항 정보 조회
 		AdminNoticeVo adminNoticeVo = new NoticeService().selectOne(num);
 		AdminNoticeAttachmentVo adminNoticeAttachmentVo = new NoticeService().selectFile(num);
