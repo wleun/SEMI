@@ -124,7 +124,7 @@
                    <ul id="form-ul">
                     <br>
                     <li class="join-li">*E-mail <br>
-                    <input type="email" name="memberEmail" id="email" placeholder="중복확인을 해주세요." required>
+                    <input type="email" name="memberEmail" id="email" placeholder="중복확인을 해주세요." required readonly>
                      <button id="check-btn" onclick="emailCheck()">중복확인</button></li>
                     <li class="join-li">
                         *비밀번호 <br><input type="password" name="memberPwd" id="pwd" required>
@@ -158,22 +158,27 @@
     $(function(){
         $("#success1").hide();
         $("#danger1").hide();
-        $("#code").keyup(function(){
+        $("#code").blur(function(){
             var code=$('#code').val();
-            if(code != ""){
-                if(code == "북극곰아 미안해"){
-                	$('#danger1').hide();
-                    $("#success1").show();
-                }else if(code == ""){
-                	$('#code').value=null;
+            
+            if(code == "북극곰아 미안해"){
+            	$('#danger1').hide();
+                $("#success1").show();
+            }else{
+            	if(code == ''){
+            		//아무것도 없음
+            		$('#code').value=null;
                 	$("#success1").hide();
-                    $("#danger1").hide();
-                }else{
-                	$('#code').value=null;
+                    $('#danger1').hide();
+            	}else{
+            		//이상한 코드 들어옴
+            		$('#code').value=null;
                 	$("#success1").hide();
                     $('#danger1').show();
-                }
+            	}
             }
+            
+            
             
         })
 

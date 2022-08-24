@@ -113,13 +113,13 @@
                 </li>
             <%for(int i = 0; i <voList.size(); i++){ %>
                 <li >
-                    <a href="" class="event-a">
+                    <div  class="event-a">
                         <div class="event-info">
                             <div class="event-img"><img src="" alt=""></div>
                             <h3 class="event-title"><%=voList.get(i).getTitle() %></h3>
-                            <span class="event-date">NO.<span id="eventNo"><%=voList.get(i).getNo()%> &nbsp;</span><%=voList.get(i).getWriteDate() %></span>
+                            <span class="event-date">NO.<span id="eventNo"><%=voList.get(i).getNo()%></span> &nbsp;<%=voList.get(i).getWriteDate() %></span>
                         </div>
-                    </a>
+                    </div>
                     <hr>
                 </li>
                 <%} %>

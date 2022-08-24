@@ -165,7 +165,7 @@ public class MemberDao {
 	 * 이메일 중복검사
 	 */
 	public int checkEmail(Connection conn, String email) {
-		String sql = "SELECT STATUS FROM MEMBER WHERE EMAIL = ?";
+		String sql = "SELECT COUNT(NO) FROM MEMBER WHERE EMAIL = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -176,17 +176,10 @@ public class MemberDao {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				String result_ = rs.getString("STATUS");
-				if(result_.equals("A")) {
-					result = 1;
-				}else if(result_.equals("S")) {
-					result = 2;
-				}else if(result_.equals("Q")) {
-					result = 3;
-				}
-			}else {
-				result = 0;
+				result = rs.getInt("COUNT(NO)");
+				System.out.println("왜그래????"+result);
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
