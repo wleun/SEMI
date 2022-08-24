@@ -147,6 +147,7 @@
         <div id="category-name">
             <%=categoryVo.getCategoryName()%>
         </div>
+        <%if(!("21".equals(categoryVo.getCategoryNo())) && !("22".equals(categoryVo.getCategoryNo())) && !("23".equals(categoryVo.getCategoryNo())) && !("0".equals(categoryVo.getCategoryNo()) && "intended".equals(sort))){%>
         <div id="category-sort" class="dropdown">
             <button type="button" id="sort-btn" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
                 상태
@@ -158,6 +159,7 @@
                     <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=categoryVo.getCategoryNo()%>&sort=intended">공개예정 프로젝트</a></li>
                 </ul>
         </div>
+        <%}%>
         <div id="quantity-div">
             <span id="quantity"><%=pageVo.getListCount()%></span>개의 프로젝트가 있습니다
         </div>
@@ -203,7 +205,7 @@
 					    </script>
 	                    </div>
 	                    <div class="prj-content gage-bar progress" style="height: 5px;">
-	                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
+	                        <div class="progress-bar" style="width: <%=percentArr[idx]%>%; height: 5px; background-color: #48CA7D!important;"></div>
 	                    </div>
 	                </div>
 	            </div>

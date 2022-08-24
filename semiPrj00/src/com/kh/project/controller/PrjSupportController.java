@@ -81,7 +81,6 @@ public class PrjSupportController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		String num = req.getParameter("num");
-		System.out.println(num);
 		
 		String rewardNo = req.getParameter("rewardNo");
 		String memberNo = req.getParameter("memberNo");
@@ -91,6 +90,7 @@ public class PrjSupportController extends HttpServlet{
 		String sum = req.getParameter("sum");
 		String donateDate = req.getParameter("donateDate");//결제일자
 		String additional = req.getParameter("additional");
+		String sale = req.getParameter("sale");
 		
 		SupportVo supportVo = new SupportVo();
 		supportVo.setRewardNo(rewardNo);
@@ -104,13 +104,13 @@ public class PrjSupportController extends HttpServlet{
 		
 		System.out.println(supportVo);
 		
-		int result = new PrjSupportService().insertSupport(supportVo);
+		int result = new PrjSupportService().insertSupport(supportVo, sale);
 		
 		if(result == 1) {
 			req.getSession().setAttribute("alertMsg", "후원이 성공적으로 이루어졌습니다.");
-			resp.sendRedirect(req.getContextPath() + "/main");
+			resp.sendRedirect(req.getContextPath());
 		}else {
-			System.out.println("error result ::: " + result);
+			System.out.println("support error result ::: " + result);
 			req.getSession().setAttribute("erorrMsg", "정보 처리에 실패하였습니다.");
 			resp.sendRedirect(req.getContextPath() + "/project/view?num=" + num);
 		}

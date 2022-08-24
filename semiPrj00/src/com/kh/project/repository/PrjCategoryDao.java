@@ -247,7 +247,7 @@ public class PrjCategoryDao {
 		int count = 0;
 		
 		try {
-			//SQL 을 객체에 담기 및 ㅓSQL 완성
+			//SQL 을 객체에 담기 및 SQL 완성
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, category);
@@ -284,7 +284,7 @@ public class PrjCategoryDao {
 		int count = 0;
 		
 		try {
-			//SQL 을 객체에 담기 및 ㅓSQL 완성
+			//SQL 을 객체에 담기 및 SQL 완성
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, category);
@@ -302,10 +302,158 @@ public class PrjCategoryDao {
 			close(rs);
 		}
 		
-		
-		
 		//실행 결과 리턴
 		return count;
+	}
+
+	/*
+	 * 인기 프로젝트 조회
+	 */
+	public List<ProjectVo> selectPopular(Connection conn, PageVo pageVo) {
+
+		String sql = "SELECT U.* FROM ( SELECT ROWNUM RNUM, T.*, M.NICK NICK, C.NAME CATEGORY_NAME ,PRJ.NAME NAME ,PRJ.REGISTER_DATE REGISTER_DATE ,PRJ.START_DATE START_DATE ,PRJ.END_DATE END_DATE ,PRJ.GOAL GOAL ,PRJ.TEXT TEXT ,PRJ.THUMBNAIL_NAME THUMBNAIL_NAME ,PRJ.THUMBNAIL_PATH THUMBNAIL_PATH ,PRJ.STATUS STATUS FROM ( SELECT Z.* FROM ( SELECT P.PROJECT_NO, COUNT(*) COUNT FROM PROJECT P JOIN PROJECT_LIKE L ON P.PROJECT_NO = L.PROJECT_NO WHERE L.STATUS = 'L' GROUP BY P.PROJECT_NO ORDER BY COUNT DESC ) Z WHERE COUNT > 9 ) T JOIN PROJECT PRJ ON PRJ.PROJECT_NO = T.PROJECT_NO JOIN MEMBER M ON PRJ.MAKER_NO = M.NO JOIN CATEGORY C ON PRJ.CATEGORY_NO = C.CATEGORY_NO WHERE PRJ.STATUS = 'I' OR PRJ.STATUS = 'S' OR PRJ.STATUS = 'B' ) U WHERE RNUM BETWEEN ? AND ?";
+		
+		List<ProjectVo> projectList = new ArrayList<ProjectVo>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			
+			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit()+1;
+			int end = start+pageVo.getBoardLimit()-1;
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProjectVo vo = new ProjectVo();
+				vo.setPrjectNo(rs.getString("PROJECT_NO"));
+				vo.setCategoryNo(rs.getString("CATEGORY_NAME"));
+				vo.setName(rs.getString("NAME"));
+				vo.setMakerNo(rs.getString("NICK"));
+				vo.setStartDate(rs.getString("START_DATE"));
+				vo.setEndDate(rs.getString("END_DATE"));
+				vo.setGoal(rs.getInt("GOAL"));
+				vo.setText(rs.getString("TEXT"));
+				vo.setThumbnailName(rs.getString("THUMBNAIL_NAME"));
+				vo.setThumbnailPath(rs.getString("THUMBNAIL_PATH"));
+				vo.setStatus(rs.getString("STATUS"));
+				
+				projectList.add(vo);
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return projectList;
+	}
+
+	/*
+	 * 마감임박 프로젝트
+	 */
+	public List<ProjectVo> selectDeadline(Connection conn, PageVo pageVo) {
+		String sql = "SELECT U.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO WHERE P.STATUS = 'I' AND (P.END_DATE >= TO_CHAR(SYSDATE, 'YYYY/MM/DD') AND P.END_DATE <= TO_CHAR(SYSDATE+3, 'YYYY/MM/DD')) ) U WHERE RNUM BETWEEN ? AND ?";
+
+		
+		List<ProjectVo> projectList = new ArrayList<ProjectVo>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			
+			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit()+1;
+			int end = start+pageVo.getBoardLimit()-1;
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProjectVo vo = new ProjectVo();
+				vo.setPrjectNo(rs.getString("PROJECT_NO"));
+				vo.setCategoryNo(rs.getString("CATEGORY_NAME"));
+				vo.setName(rs.getString("NAME"));
+				vo.setMakerNo(rs.getString("NICK"));
+				vo.setStartDate(rs.getString("START_DATE"));
+				vo.setEndDate(rs.getString("END_DATE"));
+				vo.setGoal(rs.getInt("GOAL"));
+				vo.setText(rs.getString("TEXT"));
+				vo.setThumbnailName(rs.getString("THUMBNAIL_NAME"));
+				vo.setThumbnailPath(rs.getString("THUMBNAIL_PATH"));
+				
+				projectList.add(vo);
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return projectList;
+	}
+
+	/*
+	 * 신규 프로젝트
+	 */
+	public List<ProjectVo> selectEarly(Connection conn, PageVo pageVo) {
+		String sql = "SELECT U.* FROM ( SELECT ROWNUM RNUM, P.*, C.NAME CATEGORY_NAME, M.NICK NICK FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO WHERE P.STATUS = 'I' AND ( P.START_DATE <= TO_CHAR(SYSDATE, 'YYYY/MM/DD') AND P.START_DATE >= TO_CHAR(SYSDATE-5, 'YYYY/MM/DD')) ) U WHERE RNUM BETWEEN ? AND ?";		
+		
+		List<ProjectVo> projectList = new ArrayList<ProjectVo>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			
+			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit()+1;
+			int end = start+pageVo.getBoardLimit()-1;
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProjectVo vo = new ProjectVo();
+				vo.setPrjectNo(rs.getString("PROJECT_NO"));
+				vo.setCategoryNo(rs.getString("CATEGORY_NAME"));
+				vo.setName(rs.getString("NAME"));
+				vo.setMakerNo(rs.getString("NICK"));
+				vo.setStartDate(rs.getString("START_DATE"));
+				vo.setEndDate(rs.getString("END_DATE"));
+				vo.setGoal(rs.getInt("GOAL"));
+				vo.setText(rs.getString("TEXT"));
+				vo.setThumbnailName(rs.getString("THUMBNAIL_NAME"));
+				vo.setThumbnailPath(rs.getString("THUMBNAIL_PATH"));
+				
+				projectList.add(vo);
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return projectList;
 	}
 
 

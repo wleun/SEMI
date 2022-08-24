@@ -150,16 +150,16 @@
                     </li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=21">인기</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=21&sort=ongoing">인기</a></li>
                 </ul>
                 <ul>
                     <li><a class="nav-link" href="<%=contextPath%>/project/category?sort=intended">오픈예정</a></li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=22">신규</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=22&sort=ongoing">신규</a></li>
                 </ul>
                 <ul>
-                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=23">마감임박</a></li>
+                    <li><a class="nav-link" href="<%=contextPath%>/project/category?category=23&sort=ongoing">마감임박</a></li>
                 </ul>
             </div>
             <div id="etc">

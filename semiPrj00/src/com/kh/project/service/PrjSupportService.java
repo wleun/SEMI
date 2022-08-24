@@ -129,10 +129,13 @@ public class PrjSupportService {
 	/*
 	 * 후원내역 정보 넣기
 	 */
-	public int insertSupport(SupportVo supportVo) {
+	public int insertSupport(SupportVo supportVo, String sale) {
 		
 		Connection conn = null;
 		int result = 0;
+		
+		int check = 0;
+		if(sale != null) {check = Integer.parseInt(sale);}
 		
 		try {
 			conn = getConnection();
@@ -140,11 +143,23 @@ public class PrjSupportService {
 			if(supportVo.getAdditional() == null || supportVo.getAmount() == null || supportVo.getDeliveryAddrNo() == null || supportVo.getDonateDate() == null || supportVo.getPaymentMethodNo() == null || supportVo.getQuantity() == null) {
 				result = -1;
 			}else {
-				result = new PrjSupportDao().insertSupport(conn, supportVo);
+				String price = dao.selectReward(conn, supportVo.getRewardNo()).getPrice();
+				int additional = Integer.parseInt(supportVo.getAdditional());
+				//금액확인 방어코드
+				if((Integer.parseInt(price)*Integer.parseInt(supportVo.getQuantity())) == (Integer.parseInt(supportVo.getAmount())+check-additional)) {
+					result = new PrjSupportDao().insertSupport(conn, supportVo);
+					if(result == 1) {
+						commit(conn);
+					}else {
+						rollback(conn);
+					}
+				}else {
+					result = -2;
+				}
 			}
-			
 		}catch(Exception e) {
 			e.printStackTrace();
+			rollback(conn);
 		}finally {
 			close(conn);
 		}

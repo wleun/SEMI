@@ -428,6 +428,7 @@
             		<input type="hidden" id="sum" name="sum">
             		<input type="hidden" id="donate-date" name="donateDate">
             		<input type="hidden" name="additional" value=<%=add%>>
+            		<input type="hidden" name="sale" id="sale">
 	                <button type="submit" class="btn btn-success final-div" id="support-btn" disabled>후원하기</button>
             		<script>
 	                	$("#support-btn").click(function(){
@@ -437,11 +438,14 @@
 	                        //donateDate(후원날짜)
 	                        $("#donate-date").val(payDateStr);
 	                        
-	                        //addrNo(비송지)
+	                        //addrNo(배송지)
 	                        $("#hidden-addrNo").val($("#addr-no").val());
 	                        
 	                        //cardNo(카드)
 	                        $("#hidden-cardNo").val($("#card-no").val());
+	                        
+	                        //쿠폰 후원금액
+	                        $("#sale").val(sale);
 	                    });
             		</script>
             	</form>
