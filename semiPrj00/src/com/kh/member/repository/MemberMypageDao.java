@@ -18,6 +18,10 @@ public class MemberMypageDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
+		if(vo.getRegistration() == null) {
+			vo.setRegistration("");
+		}
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getName());
@@ -25,6 +29,7 @@ public class MemberMypageDao {
 			pstmt.setString(3, vo.getPhone());
 			pstmt.setString(4, vo.getRegistration());
 			pstmt.setString(5, vo.getNo());
+			System.out.println(vo);//swy
 			
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {

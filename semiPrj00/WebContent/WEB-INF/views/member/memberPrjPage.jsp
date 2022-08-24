@@ -1,5 +1,10 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kh.project.vo.ProjectVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+<% List<ProjectVo> pVoList = (List<ProjectVo>)request.getAttribute("pVoList"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -195,80 +200,42 @@
     
                 <div id="content-2">
     
-                   <button>전체</button>
-                   <button>심사중</button>
-                   <button>진행중</button>
-                   <button>종료</button>
+    			   <button onclick="location.href='/semiPrj00/member/myprj?type=A&type=I&type=S'">전체</button>
+                   <button onclick="location.href='/semiPrj00/member/myprj?type=A'">심사중</button>
+                   <button onclick="location.href='/semiPrj00/member/myprj?type=I'">진행중</button>
+                   <button onclick="location.href='/semiPrj00/member/myprj?type=S'">종료</button>
          
                 </div>
 
+					<%for(ProjectVo vo : pVoList){ %>
                 <div id="content-3">
-
+					
                     <table>
-
                         <tr>
                             <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
+                            <td><%=vo.getName() %></td>
                         </tr>
                         <tr>
-                            <td>목표펀딩 : 50000원</td>
+                            <td>목표펀딩 : <%=vo.getGoal() %></td>
                         </tr>
                         <tr>
-                            <td>등록일자 : 2022-08-05</td>
+                            <td>등록일자 : <%=vo.getRegisterDate() %></td>
                         </tr>
                         <tr>
-                            <td>상태 : 심사중</td>
+                            <td>상태 : 
+                            	<%if(vo.getStatus().equals("A")){%>
+                           			심사중
+                            	<%}else if(vo.getStatus().equals("I")){%>
+                            		진행중
+                            	<%}else if(vo.getStatus().equals("S")){%>
+                            		종료
+                            	<%}%>
+                            </td>
                         </tr>
-
                     </table>
-
+					
                 </div>
-
-                <div id="content-4">
-
-                    <table>
-
-                        <tr>
-                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
-                        </tr>
-                        <tr>
-                            <td>목표펀딩 : 50000원</td>
-                        </tr>
-                        <tr>
-                            <td>등록일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 진행중</td>
-                        </tr>
-
-                    </table>
-
-                </div>
-
-
-                <div id="content-5">
-
-                    <table>
-
-                        <tr>
-                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
-                        </tr>
-                        <tr>
-                            <td>목표펀딩 : 50000원</td>
-                        </tr>
-                        <tr>
-                            <td>등록일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 종료</td>
-                        </tr>
-
-                    </table>
-
-                </div>
-
+				<%}%>
 
             </div>
 
