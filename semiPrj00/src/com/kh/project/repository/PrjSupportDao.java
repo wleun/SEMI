@@ -12,6 +12,7 @@ import com.kh.addr.vo.AddrVo;
 import com.kh.coupon.vo.CouponVo;
 import com.kh.member.vo.PaymentVo;
 import com.kh.project.vo.ProjectVo;
+import com.kh.project.vo.SupportVo;
 import com.kh.reward.vo.ProjectRewardVo;
 
 public class PrjSupportDao {
@@ -35,6 +36,7 @@ public class PrjSupportDao {
 			
 			if(rs.next()) {
 
+				prjVo.setPrjectNo(num);
 				prjVo.setCategoryNo(rs.getString("CATEGORY_NAME"));
 				prjVo.setName(rs.getString("NAME"));
 				prjVo.setEndDate(rs.getString("END_DATE"));
@@ -151,7 +153,7 @@ public class PrjSupportDao {
 			while(rs.next()) {
 				PaymentVo vo = new PaymentVo();
 				vo.setNo(rs.getString("NO"));
-				vo.setNo(rs.getString("PASSWORD"));
+				vo.setCardPwd(rs.getString("PASSWORD"));
 				
 				String cardNum = rs.getString("CARD_NUM");
 				cardNum = cardNum.substring(12);
@@ -211,6 +213,39 @@ public class PrjSupportDao {
 		}
 		
 		return couponList;
+	}
+
+	/*
+	 * 후원 정보 넣기
+	 */
+	public int insertSupport(Connection conn, SupportVo supportVo) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "INSERT INTO DONATE_LIST( NO ,REWARD_NO ,MEMBER_NO ,PAYMENT_METHOD_NO ,DELIVERY_ADDR_NO ,DONATE_DATE ,AMOUNT ,QUANTITY ,ADDITIONAL ) VALUES ( SEQ_DONATE_LIST_NO.NEXTVAL ,? ,? ,? ,? ,? ,? ,? ,? )";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, supportVo.getRewardNo());
+			pstmt.setString(2, supportVo.getMemberNo());
+			pstmt.setString(3, supportVo.getPaymentMethodNo());
+			pstmt.setString(4, supportVo.getDeliveryAddrNo());
+			pstmt.setString(5, supportVo.getDonateDate());
+			pstmt.setString(6, supportVo.getAmount());
+			pstmt.setString(7, supportVo.getQuantity());
+			pstmt.setString(8, supportVo.getAdditional());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

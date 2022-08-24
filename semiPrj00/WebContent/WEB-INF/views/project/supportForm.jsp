@@ -418,6 +418,7 @@
             </div>
             <div id="support-btn-div" class="final-div">
             	<form action="<%=contextPath%>/project/support" method="post">
+            		<input type="hidden" value=<%=prjVo.getPrjectNo()%> name="num">
             		<input type="hidden" value=<%=rewardVo.getNo()%> name="rewardNo">
             		<input type="hidden" value=<%=loginMember.getNo()%> name="memberNo">
             		<input type="hidden" id="hidden-addrNo" name="addrNo">
@@ -452,6 +453,7 @@
     </div>
 
     <script>
+    	console.log(<%=prjVo.getPrjectNo()%>);
         $(function(){
         	//카드모달에서 정보 불러오기
             $("#card-modal-submit-btn").click(function(){

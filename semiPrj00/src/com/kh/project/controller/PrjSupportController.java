@@ -15,6 +15,7 @@ import com.kh.member.vo.MemberVo;
 import com.kh.member.vo.PaymentVo;
 import com.kh.project.service.PrjSupportService;
 import com.kh.project.vo.ProjectVo;
+import com.kh.project.vo.SupportVo;
 import com.kh.reward.vo.ProjectRewardVo;
 
 @WebServlet(urlPatterns = "/project/support")
@@ -72,18 +73,40 @@ public class PrjSupportController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		
+		String num = req.getParameter("num");
+		System.out.println(num);
+		
 		String rewardNo = req.getParameter("rewardNo");
 		String memberNo = req.getParameter("memberNo");
 		String addrNo = req.getParameter("addrNo");
 		String cardNo = req.getParameter("cardNo");
 		String quantity = req.getParameter("quantity");
 		String sum = req.getParameter("sum");
-		String donateDate = req.getParameter("donateDate");
+		String donateDate = req.getParameter("donateDate");//결제일자
 		String additional = req.getParameter("additional");
 		
+		SupportVo supportVo = new SupportVo();
+		supportVo.setRewardNo(rewardNo);
+		supportVo.setMemberNo(memberNo);
+		supportVo.setDeliveryAddrNo(addrNo);
+		supportVo.setPaymentMethodNo(cardNo);
+		supportVo.setQuantity(quantity);
+		supportVo.setAmount(sum);
+		supportVo.setDonateDate(donateDate);
+		supportVo.setAdditional(additional);
 		
+		System.out.println(supportVo);
 		
-		int result = new PrjSupportService().insertSupport();
+		int result = new PrjSupportService().insertSupport(supportVo);
+		
+		if(result == 1) {
+			req.getSession().setAttribute("alertMsg", "후원이 성공적으로 이루어졌습니다.");
+			resp.sendRedirect(req.getContextPath() + "/main");
+		}else {
+			System.out.println("error result ::: " + result);
+			req.getSession().setAttribute("erorrMsg", "정보 처리에 실패하였습니다.");
+			resp.sendRedirect(req.getContextPath() + "/project/view?num=" + num);
+		}
 		
 	}//dopost
 	

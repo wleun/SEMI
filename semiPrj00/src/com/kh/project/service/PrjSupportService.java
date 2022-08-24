@@ -11,6 +11,7 @@ import com.kh.coupon.vo.CouponVo;
 import com.kh.member.vo.PaymentVo;
 import com.kh.project.repository.PrjSupportDao;
 import com.kh.project.vo.ProjectVo;
+import com.kh.project.vo.SupportVo;
 import com.kh.reward.vo.ProjectRewardVo;
 
 public class PrjSupportService {
@@ -128,9 +129,27 @@ public class PrjSupportService {
 	/*
 	 * 후원내역 정보 넣기
 	 */
-	public int insertSupport() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertSupport(SupportVo supportVo) {
+		
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			
+			if(supportVo.getAdditional() == null || supportVo.getAmount() == null || supportVo.getDeliveryAddrNo() == null || supportVo.getDonateDate() == null || supportVo.getPaymentMethodNo() == null || supportVo.getQuantity() == null) {
+				result = -1;
+			}else {
+				result = new PrjSupportDao().insertSupport(conn, supportVo);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return result;
 	}
 
 }//class
