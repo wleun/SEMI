@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.admin.notice.vo.AdminNoticeVo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kh.common.vo.PageVo"%>
@@ -5,14 +6,18 @@
     pageEncoding="UTF-8"%>
     
 <%
+
+//ArrayList<AdminNoticeVo> voList = (ArrayList<AdminNoticeVo>)request.getAttribute("voList");
+
 	List<AdminNoticeVo> voList = (List<AdminNoticeVo>)request.getAttribute("list");
 	PageVo pv = (PageVo)request.getAttribute("pv");
-	
+
 	int currentPage = pv.getCurrentPage();
 	int startPage = pv.getStartPage();
 	int endPage = pv.getEndPage();
 	int maxPage = pv.getMaxPage();
-	
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -49,19 +54,8 @@
         /* border: 1px solid blue; */
         height: 130px;
        }
-       .noti-img{
-        border: 1px solid black;
-        width: 120px;
-        height: 110px;
-        float: right;
-        position: relative;;
-        bottom: -6.5%;
-        right: 3%;
-       }
-       img{
-        width: 110px;
-        height: 110px;
-       }
+       
+       
        .noti-title{
         line-height: 33px;
         font-size: 25px;
@@ -84,9 +78,21 @@
        .noti-img .noti-info .noti-title .noti-date #notice{
         box-sizing: border-box;
        }
-       .page{
-        text-align: center;
-       }
+       #page-area{
+       		text-align:center;
+       		padding:30px;
+       	}
+       	#page-area a{
+       		width:35px;
+       		font-size : 18px;
+       	}
+        .btn-success{
+            background-color: #48CA7D!important;
+            border: 0px!important;
+        }
+        .btn{
+            border-radius: 50px !important;
+        }
     </style>
 </head>
 <body>
@@ -96,70 +102,54 @@
         <div id="notice">
             <div id="notice-h1"><h1>공지사항</h1></div>
             <ul>
-                <%for(AdminNoticeVo b : voList) {%>
-                <li >
+                <li>
+                    <hr>
+                </li>
+              <%for(int i = 0; i <voList.size(); i++){ %>
+               <li >
                     <a href="" class="noti-a">
                         <div class="noti-info">
-                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
-                            <h3 class="noti-title"><%=b.getTitle() %></h3>
-                            <span class="noti-date"><%=b.getWriteDate()%></span> 
+                            <h3 class="noti-title"><%=voList.get(i).getTitle() %></h3>
+                            <span class="noti-date"><span id="notiNo"><%=voList.get(i).getNo()%> &nbsp;</span> &nbsp;<%=voList.get(i).getWriteDate()%> </span>
+                            
                         </div>
                     </a>
-                    <hr class="last-hr">
+                    <hr>
                 </li>
                 <%} %>
-                <!--  <li >
-                    <hr>
-                    <a href="" class="noti-a">
-                        <div class="noti-info">
-                            <div class="noti-img">
-                            </div>
-                            <h3 class="noti-title">[중요]꼭 읽어보세요!</h3>
-                            <span class="noti-date">2022-08-03 &nbsp; 조회수 : 0</span> 
-                        </div>
-                    </a>
-                    <hr>
-                </li>
-                <li >
-                    <a href="" class="noti-a">
-                        <div class="noti-info">
-                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
-                            <h3 class="noti-title">[중요]공지사항입니다</h3>
-                            <span class="noti-date">2022-08-03 &nbsp; 조회수 : 0</span> 
-                        </div>
-                    </a>
-                    <hr>
-                </li>  --> 
-                <!--  <li >
-                    <a href="" class="noti-a">
-                        <div class="noti-info">
-                            <div class="noti-img"><img src="<%=contextPath%>/resources/img/join3.png" alt=""></div>
-                            <h3 class="noti-title">[중요]공지입니다입니다입니다공지입니다공지공지</h3>
-                            <span class="noti-date">2022-08-03 &nbsp; 조회수 : 0</span> 
-                        </div>
-                    </a>
-                    <hr class="last-hr">
-                </li>
+              
             </ul>
- -->
-            <div class="page-area">
-                <%if(currentPage != 1){ %>
-                <a href="<%=contextPath %>/member/noticeList?p=<%=currentPage-1%>"> &lt;</a>
-                <%} %>
-                
-                <%for(int i = startPage; i <=endPage; i++){ %>
-                	<%if(i==currentPage){ %>
-                		<a><%=i %></a>
-                	<%}else{ %>
-                		<a href="<%=contextPath %>/board/list?p=<%=i%>"><%=i %></a>
-                <%}%>
-                <%if(currentPage != maxPage){ %>
-                <a href="/semi/board/list?p=<%=currentPage+1%>"> &gt; </a>
-                <%} %>
-                
+ 
+            <div id="page-area">
+           	<%if(currentPage != 1){ %>
+		<a class="btn btn-sm btn-success" href="<%=contextPath %>/member/noticeList?p=<%=currentPage-1%>"> &lt; </a>
+		<%} %>
+		
+		<% for(int i = startPage; i <= endPage; i++){ %>
+			<%if(i==currentPage){ %>
+				<a class="btn btn-sm btn-success" ><%=i %><a>
+			<%}else{ %>
+				<a class="btn btn-sm" href="<%=contextPath %>/member/noticeList?p=<%=i%>"><%=i %><a>
+			<%} %>
+		<%} %>
+		<%if(currentPage != maxPage){ %>
+		<a class="btn btn-sm btn-success" href="<%=contextPath %>/member/noticeList?p=<%=currentPage+1%>"> &gt; </a>
+		<%} %>
             </div>
            
         </div>
-
+<script>
+      $(function(){
+         $('.noti-a').click(function(){
+            //행 클릭 되었을 때, 동작할 내용
+            
+            //글 번호 가져오기
+            const num = $('#notiNo').text();
+            console.log(num);
+            //해당 번호 이용해서 요청 보내기
+            location.href='<%=contextPath%>/notice/detail?num=' + num;
+         });
+      })
+   </script>
     </main>
 </html>

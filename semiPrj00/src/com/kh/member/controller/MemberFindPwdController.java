@@ -43,16 +43,16 @@ public class MemberFindPwdController extends HttpServlet {
 		String pwd = req.getParameter("memberNewPwd");
 		String pwd2 = req.getParameter("memberNewPwd2");
 		
-		System.out.println("정보받기 완료");
+		System.out.println("정보받기 완료" + email + phone + pwd + pwd2);
 		int result = new MemberService().updatePwd(email, phone, pwd, pwd2);
 		
 		if(result == 1) {
 			System.out.println("비밀번호변경성공");
-			req.setAttribute("alertMsg","비밀번호 변경 완료!");
+			req.getSession().setAttribute("alertMsg", "비밀번호 변경 성공!");
 			req.getRequestDispatcher("/WEB-INF/views/member/findIdPwd.jsp").forward(req, resp);
 		}else {
 			System.out.println("비밀번호 변경 실패");
-			req.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요.");
+			req.getSession().setAttribute("alertMsg", "비밀번호 변경 실패! 다시 시도해주세요.");
 			req.getRequestDispatcher("/WEB-INF/views/member/findIdPwd.jsp").forward(req, resp);
 		}
 	}

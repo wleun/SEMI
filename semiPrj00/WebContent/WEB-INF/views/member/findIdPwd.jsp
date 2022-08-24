@@ -247,20 +247,20 @@
                                 <li class="find-li">전화번호</li>
                                 <li class="find-li">
                                 <input type="phone" id="phone" name="memberPhone" required>
-                                <button onclick="findPwd();">인증</button>
+        						<button onclick="findPwd();" style='color:white;'>인증</button>
                                 </li>
-                
+                				<br>
                                 <li class="find-li">새 비밀번호</li>
                                 <li class="find-li"><input type="password" name="memberNewPwd" required></li>
                                 <li class="find-li">비밀번호 재확인</li>
                                 <li class="find-li"><input type="password" name="memberNewPwd2" required></li>
-                                <br><li class="find-li"><input type="submit" value="변경하기" id="submit_pwd" disabled></li>
+                                <br><li class="find-li"><input type="submit" value="변경하기" id="submit_pwd" disabled style="width:85px;"></li>
                                 </div>
                             </ul>
                         </form>
                     </div>
                 </div>
-                <div id="btn_div"><a href="'<%=contextPath%>/member/join'"class="under-btn">회원가입 |</a><a href="'<%=contextPath%>/member/login'"class="under-btn">&nbsp;로그인&nbsp;</a></div>
+                <div id="btn_div"><a href="<%=contextPath %>/member/join" class="under-btn">회원가입 |</a><a href="<%=contextPath %>/member/login"class="under-btn">&nbsp;로그인&nbsp;</a></div>
             </div>
             
             
@@ -347,7 +347,7 @@
   				success : function(result){
   					if(result == 1){
   						console.log(result);
-  						alert('비밀번호를 변경해주세요!');
+  						alert('변경할 비밀번호를 입력해주세요!');
   						$('#submit_pwd').attr("disabled",false);
   					}else{
   						console.log(result);

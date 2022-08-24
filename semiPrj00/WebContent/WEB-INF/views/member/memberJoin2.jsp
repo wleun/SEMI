@@ -124,7 +124,7 @@
                    <ul id="form-ul">
                     <br>
                     <li class="join-li">*E-mail <br>
-                    <input type="email" name="memberEmail" id="email" placeholder="이메일 형식으로 입력하세요." disabled>
+                    <input type="email" name="memberEmail" id="email" placeholder="중복확인을 해주세요." required>
                      <button id="check-btn" onclick="emailCheck()">중복확인</button></li>
                     <li class="join-li">
                         *비밀번호 <br><input type="password" name="memberPwd" id="pwd" required>
@@ -137,7 +137,10 @@
                     <li class="join-li">*이름 (법인 : 대표명)<br><input type="text" name="memberName" required></li>
                     <li class="join-li">*닉네임<br><input type="text" id="id" name="memberNick" required onfocusout="test();"> <br><span id="checked"></span> </li>
                     <li class="join-li">*연락처<br><input type="text" name="memberPhone" required placeholder="-제외 입력"></li>
-                    <li class="join-li">추천코드<br><input type="text" name="code"></li>
+                    <li class="join-li">
+                    추천코드<br><input type="text" name="code" id="code">
+                    	<div id="danger1" style="color: red; font-size:15px; position: absolute;">존재하지않는 추천코드입니다.</div><div id="success1" style="color: #48CA7D; font-size:15px; position: absolute;">추천코드가 확인되었습니다!</div>
+                    </li>
                     
                    
                    
@@ -150,6 +153,32 @@
         </div>
 
     </main>
+    <!-- 추천코드 일치 확인 -->
+    <script>
+    $(function(){
+        $("#success1").hide();
+        $("#danger1").hide();
+        $("#code").keyup(function(){
+            var code=$('#code').val();
+            if(code != ""){
+                if(code == "북극곰아 미안해"){
+                	$('#danger1').hide();
+                    $("#success1").show();
+                }else if(code == ""){
+                	$('#code').value=null;
+                	$("#success1").hide();
+                    $("#danger1").hide();
+                }else{
+                	$('#code').value=null;
+                	$("#success1").hide();
+                    $('#danger1').show();
+                }
+            }
+            
+        })
+
+    })
+    </script>
     <!-- 이메일 중복검사 -->
     <script>
     	function emailCheck(){

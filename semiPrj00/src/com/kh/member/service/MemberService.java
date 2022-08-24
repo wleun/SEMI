@@ -169,7 +169,6 @@ public class MemberService {
 	 */
 	public int updatePwd(String email, String phone, String pwd, String pwd2) {
 		//서비스 로직
-		int result = 0;
 		if(pwd.length() < 4) {
 			System.out.println("비번 4자리 미만");
 			return -1;
@@ -180,6 +179,7 @@ public class MemberService {
 		}
 		
 		Connection conn = null;
+		int result = 0;
 		try {
 		conn = getConnection();
 		//dao호출
@@ -191,7 +191,6 @@ public class MemberService {
 		}else {
 			rollback(conn);
 			System.out.println("업데이트 실패");
-			return -1;
 		}
 		
 		}catch(Exception e) {

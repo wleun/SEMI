@@ -1,5 +1,9 @@
+<%@page import="com.kh.admin.notice.vo.AdminNoticeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	AdminNoticeVo vo = (AdminNoticeVo)request.getAttribute("vo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,11 +80,11 @@
             
                 <div>
                  <ul>
-                     <li><div id="noti-title">[공지]사기꾼 조심하세요!</div></li>
-                     <li><div class="noti-date">작성일 : 2022-08-03 &nbsp; 조회수 : 0 &nbsp;</div></li>
+                     <li><div id="noti-title">제목</div></li>
+                     <li><div class="noti-date">작성일 : &nbsp;</div></li>
                    
                      <li><div class="noti-img"><img src="" alt="이미지파일입니다"></div></li>
-                     <li><div>텍스트내용..</div></li>
+                     <li><div>내용~</div></li>
                  </ul>
                 </div>
                 

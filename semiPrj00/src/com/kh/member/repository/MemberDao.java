@@ -301,7 +301,7 @@ public class MemberDao {
 			pstmt.setString(3, phone);
 			
 			result = pstmt.executeUpdate();
-			
+			System.out.println("쿼리문 실행결과 " +  result);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {

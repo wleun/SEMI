@@ -3,6 +3,10 @@
 <% 
 	String result = (String)request.getAttribute("result");
 	String result1 = (String)request.getAttribute("result1");
+	String email = (String)request.getAttribute("email");
+	if(email==null){
+		email="이메일 형태로 입력하세요.";
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -35,7 +39,7 @@
     <div id="emailCheck">
         <div class="email">
         <form action="<%=request.getContextPath()%>/member/emailCheck" method="post">
-            E-mail <input type="email" name="checkEmail" id="checkemail"> <input type="submit" value="중복확인">
+            E-mail <input type="email" name="checkEmail" id="checkemail" value="<%=email%>" > <input type="submit" value="중복확인">
         </form>
         <%if(result != null){ %>
         <div id="r" style="color: #48CA7D; font-weight: bold; font-size: 20px;"><%=result %></div>  
@@ -54,16 +58,18 @@
     		const r = document.querySelector('#r');
     		
     		console.log(r);
-    		
+    	
     		if(r == null || r.innerText != '사용 가능한 이메일입니다.'){
     			alert('중복체크를 먼저 해주세요 !');
     			return;
-    		}
-    		
-    		
+    		}else{
+    			
     		var email = $("#checkemail").val();
-    		window.opener.document.getElementById("email").value = email;
+    		console.log(email);
+    		window.opener.console.log(email);
+    		window.opener.document.getElementById('email').value = email;
     		window.close();
+    		}
     	}
     </script>
     
