@@ -217,7 +217,7 @@ $('#top-menu').click(function () {
             <!-- 프로젝트 하나 당 래퍼 -->
             <%if(recommendList!=null){ %>
            <%for(ProjectVo p : recommendList){ %> 
-            <div class="prj-wrap">
+            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view?num=<%=p.getPrjectNo()%>'">
                 <div class="prj-content prj-img">
                     <img src="<%=contextPath%>/resources/upload/<%=p.getThumbnailName()%>" alt="프로젝트 메인 사진">
                 </div>
@@ -249,6 +249,9 @@ $('#top-menu').click(function () {
 					    	$("#<%=p.getPrjectNo()%>").text(Math.floor(differenceDay) + "일 남음");
 					    	if(Math.floor(differenceDay)<0){
 					    		$("#<%=p.getPrjectNo()%>").text("마감");
+					    	}
+					    	if(Math.floor(differenceDay)==0){
+					    		$("#<%=p.getPrjectNo()%>").text("오늘마감");
 					    	}
 					    	if(date<startDate){
 					    		$("#<%=p.getPrjectNo()%>").text("공개 예정");
@@ -682,27 +685,6 @@ $('#top-menu').click(function () {
              </div>
          </div>
 
-         <!---->
-
-         <!--공지사항 확인-->
-          <!-- 카테고리 내용 래퍼 -->
-          <br><br>
-          <h2>200% 소식</h2> 
-          <div id="category-content-wrap">
-            공지사항??이벤트?? 슬라이드효과..?
-            </div>
-              
-            
-             
-              
-  
-              
-          </div>
-          <div>임시div  <br><br><br><br></div>
-
-
-
-    </div>
 
 	
 <%@ include file="/WEB-INF/views/common/userFooter.jsp" %>
