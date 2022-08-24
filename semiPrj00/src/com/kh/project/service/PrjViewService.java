@@ -92,4 +92,15 @@ public class PrjViewService {
 		}
 		return categoryNo;
 	}
+
+	//상세페이지 이미지 가져오기
+	public List<String> getDescriptionImage(String prjNum) {
+		Connection conn = getConnection();
+		List<String> pathList = dao.getDescriptionImage(conn, prjNum);
+		
+		if(pathList != null) {
+			close(conn);
+		}
+		return pathList;
+	}
 }

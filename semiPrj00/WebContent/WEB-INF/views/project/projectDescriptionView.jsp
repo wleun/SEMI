@@ -511,7 +511,7 @@
             </div>
             <div id="head-img">
                 <div id="img-section">
-                    <img style="width:600px; height:600px" src="<%=contextPath%>/resources/img/main.PNG" alt="이미지왜안나옴?">
+                    <img src="${getThumbnail}" alt="이미지 로딩 실패!">
                 </div>
             </div>
             <div id="head-info">
@@ -577,9 +577,10 @@
                 <div class="main-title" id="introduce">
                     <div><span>프로젝트소개</span></div>
                     <div>
-                        <img style="width:100%; height:auto" src="<%=contextPath%>/resources/img/desc1.JPG" alt="?">
-                        <img style="width:100%; height:auto" src="<%=contextPath%>/resources/img/desc2.JPG" alt="??">
-                        <img style="width:100%; height:auto" src="<%=contextPath%>/resources/img/desc3.JPG" alt="???">
+                    <c:forEach items="${pathList}" var="plist">
+                        <img style="width:100%; height:auto" src="<%=contextPath%>plist.get[1]" alt="?">
+                    </c:forEach>    
+                        ${projectVo.text}
                     </div>
                 </div>
                 
@@ -713,7 +714,7 @@
                 <div class="main-title" id="project-etc">
                     <div><span>예상되는어려움</span></div>
                     <div>
-                        <img style="width: 100%; height:auto" src="<%=contextPath%>/resources/img/etc.JPG" alt="">
+                        ${projectVo.etc}
                     </div>
                 </div>
              	<div id="report-area">
