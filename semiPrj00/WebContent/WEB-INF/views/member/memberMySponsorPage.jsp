@@ -198,8 +198,8 @@
                 <div id="content-2">
     
                    <button>전체</button>
-                   <button>진행중</button>
-                   <button>종료</button>
+                   <button>후원</button>
+                   <button>후원취소</button>
          
                 </div>
 

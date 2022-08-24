@@ -172,7 +172,7 @@
                          <span>팔로워 200명</span>
                         </div>
                         <div>
-                         <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
+                         <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미여기" id="membership-img">
                          <span name="mLevel"><%= loginMember.getmLevel() %></span>
                          <span name="memberType"><%= loginMember.getType() %></span>
                         </div>
@@ -187,7 +187,6 @@
                    <button>전체</button>
                    <button>보낸 메세지</button>
                    <button>받은 메세지</button>
-                   <button onclick="location.href='/semiPrj00/member/qdetail'">문의하기</button>
          
                 </div>
 

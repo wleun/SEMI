@@ -1,5 +1,10 @@
+<%@page import="com.kh.member.vo.MemberMyfollowVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% List<MemberMyfollowVo> fVoList = (List<MemberMyfollowVo>)request.getAttribute("fVoList"); %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -200,59 +205,28 @@
     
                    <button>전체</button>
                    <button>팔로잉</button>
-                   <button>팔로우</button>
+                   <button>팔로워</button>
          
                 </div>
 
+				<% for(MemberMyfollowVo vo : fVoList){ %>
                 <div id="content-3">
 
                     <table>
 
                         <tr>
                             <td rowspan="2"><img src="" alt="프로필사진"></td>
-                            <td>여긴이름</td>
+                            <td rowspan="2"><%= vo.getNick() %></td>
                         </tr>
                         <tr>
-                            <td>올린 프로젝트 1개</td>
+                            <td></td>
                             <td rowspan="2"><button type="button" data-bs-toggle="modal" data-bs-target="#myModal">팔로잉</button></td>
                         </tr>
 
                     </table>
 
                 </div>
-
-                <div id="content-4">
-
-                    <table>
-
-                        <tr>
-                            <td rowspan="2"><img src="" alt="프로필사진"></td>
-                            <td>여긴이름</td>
-                        </tr>
-                        <tr>
-                            <td>올린 프로젝트 1개</td>
-                            <td rowspan="2"><button type="button" data-bs-toggle="modal" data-bs-target="#myModal">팔로잉</button></td>
-                        </tr>
-
-                    </table>
-
-                </div>
-
-
-                <div id="content-5">
-
-                    <table>
-
-                        <tr>
-                            <td rowspan="2"><img src="" alt="프로필사진"></td>
-                            <td>여긴이름</td>
-                        </tr>
-                        <tr>
-                            <td>올린 프로젝트 1개</td>
-                            <td rowspan="2"><button type="button" data-bs-toggle="modal" data-bs-target="#myModal">팔로잉</button></td>
-                        </tr>
-
-                    </table>
+                <% } %>
 
                 </div>
 

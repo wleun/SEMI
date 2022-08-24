@@ -18,7 +18,6 @@ public class MemberMyprjController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//강사님 피드백
 		String[] type = req.getParameterValues("type");
 		
 		if(type == null) {
