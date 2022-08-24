@@ -48,13 +48,14 @@ public class AdminProposalService {
 	}
 
 	//제안서 상세조회 (파일)
-	public AdminProposalAttachmentVo selectFile(String no) {
+	public List<AdminProposalAttachmentVo> selectFile(String no) {
+		
 		Connection conn = getConnection();
-		AdminProposalAttachmentVo adminProposalAttachmentVo = new AdminProposalDao().selectFile(conn,no);
+		List<AdminProposalAttachmentVo> proposalAttachmentVoList = new AdminProposalDao().selectFile(conn,no);
 		
 		close(conn);
 		
-		return adminProposalAttachmentVo;
+		return proposalAttachmentVoList;
 	}
 
 	//제안서 상태변경 (ajax, UPDATE)

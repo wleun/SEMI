@@ -250,7 +250,7 @@
                                 </div>
                             
                             <c:forEach items="${list}" var="item">
-                                <a href="<%=contextPath%>/admin/project/detail?no=${item.no}">
+                                <a href="<%=contextPath%>/project/view?num=${item.no}">
                                     <div class="boardColumn">
                                         <div class="check"><input type="checkbox" class="form-check-input" name="boardCheck" value=${item.no} ></div>
                                         <div class="prjNo">${item.no}</div>
@@ -324,8 +324,13 @@
                         		key : checkBoxArr
                         	},
                         	success:function(result) {
-                        		$(".statusVal").empty();
-                        		console.log(result);
+                        		const jr = JSON.parse(result);
+                        		//console.log(jr);
+                        		//console.log(jr[0]);
+                        		//console.log(jr[0].no);
+                        		
+                        		
+                        		
                         	},
                         	error:function(error) {
                         		alert("삭제에 실패하였습니다.");

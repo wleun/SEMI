@@ -13,6 +13,7 @@ import com.kh.common.vo.PageVo;
 
 public class AdminEventDao {
 
+	//페이징 관련 카운트 
 	public int getCount(Connection conn) {
 		
 		PreparedStatement pstmt = null;
@@ -40,12 +41,13 @@ public class AdminEventDao {
 		return count;
 	}
 
+	//페이징 리스트
 	public List<AdminEventVo> selectList(Connection conn, PageVo pageVo) {
 		
 		List<AdminEventVo> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT E.NO , A.NAME , E.TITLE , E.CONTENT , E.THUMBNAIL_PATH , E.THUMBNAIL_NAME , E.WRITE_DATE , E.START_DATE , E.END_DATE , E.IMPORTANT_YN , E.EDIT_DATE , E.EDIT_ADMIN_NO , E.STATUS FROM EVENT E JOIN ADMIN A ON E.ADMIN_NO = A.NO WHERE E.STATUS = 'B' OR E.STATUS = 'I' OR E.STATUS = 'E' ORDER BY E.NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT E.NO , A.NAME , E.TITLE , E.CONTENT , E.THUMBNAIL_PATH , E.THUMBNAIL_NAME , E.WRITE_DATE , TO_CHAR(E.START_DATE,'YYYY-MM-DD') AS START_DATE , TO_CHAR(E.END_DATE,'YYYY-MM-DD') AS END_DATE , E.IMPORTANT_YN , E.EDIT_DATE , E.EDIT_ADMIN_NO , E.STATUS FROM EVENT E JOIN ADMIN A ON E.ADMIN_NO = A.NO WHERE E.STATUS = 'B' OR E.STATUS = 'I' OR E.STATUS = 'E' ORDER BY E.NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		
 		try {
 			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
@@ -194,7 +196,7 @@ public class AdminEventDao {
 		ResultSet rs = null;
 		AdminEventVo adminEventVo = new AdminEventVo();
 		
-		String sql = "SELECT TITLE , CONTENT , WRITE_DATE , START_DATE , END_DATE , IMPORTANT_YN , EDIT_DATE , EDIT_ADMIN_NO , STATUS , THUMBNAIL_PATH, THUMBNAIL_NAME FROM EVENT WHERE NO = ?";
+		String sql = "SELECT TITLE , CONTENT , WRITE_DATE , TO_CHAR(START_DATE,'YYYY-MM-DD') AS START_DATE , TO_CHAR(END_DATE,'YYYY-MM-DD') AS END_DATE , IMPORTANT_YN , EDIT_DATE , EDIT_ADMIN_NO , STATUS , THUMBNAIL_PATH, THUMBNAIL_NAME FROM EVENT WHERE NO = ?";
 		
 		try {
 			

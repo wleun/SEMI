@@ -239,7 +239,7 @@
               <input type="hidden" name="no" value="${adminEventVo.no}">
               <div id="eventImportant">
                 중요도 : 
-                <select name="important">
+                <select name="important" required>
                   <option value="N">일반</option>
                   <option value="Y">중요</option>
                 </select>
@@ -249,16 +249,16 @@
                     <div id="title">
                         <div id="titleNotUsedArea"></div>
                         <div id="titleText" class="padding-right">제목 : </div>
-                        <div id="titleInput"><input type="text" name="title" value="${adminEventVo.title}"></div>
+                        <div id="titleInput"><input type="text" name="title" value="${adminEventVo.title}" required></div>
                         <div id="datebox">
                          *기간을 다시 설정해주세요.
-                          <div class="datebox">시작일 : <input type="date" name="startDate"></div>
-                          <div class="datebox">마감일 : <input type="date" name="endDate"></div>
+                          <div class="datebox">시작일 : <input type="date" id="startDate" name="startDate" onchange=dateCalc() max="2022-12-31" required></div>
+                          <div class="datebox">마감일 : <input type="date" id="endDate" name="endDate" onchange=dateCalc() max="2022-12-31" required></div>
                         </div>
                     </div>
                     <div id="content">
                         <div id="contentText" class="padding-right">내용 : </div>
-                        <div id="contentInput"><textarea name="content" cols="30" rows="10">${adminEventVo.content}</textarea></div>
+                        <div id="contentInput"><textarea name="content" cols="30" rows="10" required>${adminEventVo.content}</textarea></div>
                     </div>
                     <div id="file">
                     *파일을 다시 업로드해주세요.
@@ -301,6 +301,59 @@
     var fileName = $("#fileInsert2").val();
     $("#upload-name2").val(fileName);
   });
+
+  // 오늘 날짜 (시작날짜가 오늘날짜 이전이면 자동으로 오늘날짜로 설정됨)
+  function getToday() {
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = ("0" + (1 + date.getMonth())).slice(-2);
+			var day = ("0" + date.getDate()).slice(-2);
+			return year + "-" + month + "-" + day;
+		}
+
+		// 내일 날짜 (마감날짜가 시작날짜 이전이면 자동으로 시작날짜 1일후로 설정)
+		function getTomorrow(startDay) {
+			var temp = new Date(startDay);
+			var date = new Date(temp.setDate(temp.getDate() + 1));
+			var year = date.getFullYear();
+			var month = ("0" + (1 + date.getMonth())).slice(-2);
+			var day = ("0" + date.getDate()).slice(-2);
+			return year + "-" + month + "-" + day;
+		}
+
+		const today = getToday();
+
+		// 진행날짜 구하는 함수
+		function dateCalc() {
+
+			let startDay = new Date(document.querySelector('#startDate').value);
+			let endDay = new Date(document.querySelector('#endDate').value);
+
+			//시작일이 종료일 보다 크면
+			if (startDay.getTime() >= endDay.getTime()) {
+				alert("마감날짜는 시작날짜 이후로 설정해주세요");
+				document.getElementById('endDate').value = getTomorrow(startDay);
+				dateCalc();
+
+				//시작일이 오늘보다 이전이면
+			} else if (document.querySelector('#startDate').value < today) {
+				alert("시작날짜는 오늘날짜 이후로 설정해주세요");
+				document.querySelector('#startDate').value = today;
+				dateCalc();
+
+				//모든 조건 통과 시 진행날짜 계산
+			} else {
+				let passedTime = endDay.getTime() - startDay.getTime();
+				passedTime = Math.round(passedTime / (1000 * 60 * 60 * 24));
+				//NaN 방지 
+				if (isNaN(passedTime)) {
+					passedTime = 0;
+				}
+				document.querySelector('#dateCalcResult').innerHTML = passedTime;
+
+			}
+
+		}
 
 </script>
 

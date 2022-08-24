@@ -227,7 +227,9 @@
                 <div class="mediaText">썸네일</div>
                 <div class="mediaBox"><img src="<%=contextPath %>/resources/upload/${adminProposalVo.thumbnailName}>" alt="섬네일 이미지"></div>
                 <div class="mediaText">상세 이미지/영상</div>
-                <div class="mediaBox"><img src="<%=contextPath %>/resources/upload/${adminProposalAttachmentVo.filePath}" alt="이미지 내용"></div>
+              <c:forEach items="${list}" var="item">
+                <div class="mediaBox"><img src="<%=contextPath%>/resources/upload/${item.changeName}" alt="이미지 내용"></div>
+           	  </c:forEach>
             </div>
         </div>
     </div>
