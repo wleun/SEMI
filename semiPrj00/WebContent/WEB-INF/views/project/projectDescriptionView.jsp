@@ -656,7 +656,7 @@
                             </form>
                             <div id="">
                                 <div class="post-area-no-post"><h5>작성된 게시글이 없습니다. 글을 작성해주세요.</h5></div>
-                                <div class="post-area">
+                                <!-- <div class="post-area">
                                     <div class="post-writer-area"><span id="post-writer">작성자명</span><span id="post-date">2022/08/10</span></div>
                                     <div class="post-content-area">
                                         <span id="post-content">
@@ -666,18 +666,8 @@
                                         이름만 들어도 벌써 시원한 느낌이 들어요
                                         한번 믿고 기대해봅니다!</span></div>
                                     <div class="post-reply-area"><span id="post-reply">답글</span></div>
-                                </div>
-                                <div class="post-area">
-                                    <div class="post-writer-area"><span id="post-writer">작성자명</span><span id="post-date">2022/08/10</span></div>
-                                    <div class="post-content-area">
-                                        <span id="post-content">
-                                            넵튠과 우라노스 향을 골랐는데,
-                                        푸른 하늘 속 흐르는 구름과
-                                        상냥한 바다의 조화.
-                                        이름만 들어도 벌써 시원한 느낌이 들어요
-                                        한번 믿고 기대해봅니다!</span></div>
-                                    <div class="post-reply-area"><span id="post-reply">답글</span></div>
-                                </div>
+                                </div> -->
+                                
                             </div>
                           </div>
                           <div id="menu1" class="container tab-pane fade"><br>
