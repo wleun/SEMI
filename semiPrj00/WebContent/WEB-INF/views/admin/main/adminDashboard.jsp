@@ -342,7 +342,6 @@
         }
         
         
-        
 	
 </style>
 </head>
@@ -477,7 +476,7 @@
                                 </a>
                               <c:forEach items="${eventVoList}" var="item">
                                 <a href="<%=contextPath%>/admin/event/detail?no=${item.no}">
-                                	<div class="column" class="firstColumn">
+                                	<div class="column">
                                         <div class="eventNo">${item.no}</div>
                                         <div class="importantYn">${item.importantYN}</div>
                                         <div class="eventName">${item.title}</div>
