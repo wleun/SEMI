@@ -1,5 +1,27 @@
+<%@page import="com.kh.member.vo.PaymentVo"%>
+<%@page import="com.kh.addr.vo.AddrVo"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<AddrVo> addrList_ = (ArrayList<AddrVo>)request.getAttribute("addrList");
+	ArrayList<PaymentVo> paymentList_ = (ArrayList<PaymentVo>)request.getAttribute("paymentList");
+	AddrVo defaultAddr  = new AddrVo();
+	PaymentVo defaultPayment  = new PaymentVo();
+	if(addrList_.size()!=0){
+		defaultAddr = addrList_.get(0);
+	}else{
+		defaultAddr.setName("");
+		defaultAddr.setAddr1("");
+		defaultAddr.setAddr2("");
+		defaultAddr.setPhone("");
+	}
+	if(paymentList_.size()!=0){
+		defaultPayment = paymentList_.get(0);
+	}else{
+		defaultPayment.setCardNum("");
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +53,7 @@
         }
 
         #header a:visited{
-            color: #48CA7D;
+            color: black;
         }
 
         #header a:hover{
@@ -246,18 +268,18 @@
                                  <td></td>
                              </tr>
                              <tr>
-                                 <td>주소1</td>
+                                 <td><%=defaultAddr.getAddr1()%></td>
                                  <td></td>
                                  <td></td>
                              </tr>
                              <tr>
-                                 <td>12345</td>
+                                 <td><%=defaultAddr.getPostNum()%></td>
                                  <td></td>
                                  <td></td>
                              </tr>
                              <tr>
-                                 <td colspan="2">대한민국 어딘가1</td>
-                                 <td><button>삭제</button></td>
+                                 <td colspan="2"><%=defaultAddr.getAddr2()%></td>
+                                 <td></td>
                              </tr>
                              <tr>
                                  <td></td>
@@ -272,14 +294,14 @@
                                  <td></td>
                              </tr>
                              <tr>
-                                 <td>BC카드 (기본)</td>
+                                 <td><%=defaultPayment.getDefaultYN()%></td>
                                  <td></td>
                                  <td></td>
                              </tr>
                              <tr>
-                                 <td>****-****-****-1234</td>
+                                 <td>****-****-****-<%=defaultPayment.getCardNum()%></td>
                                  <td></td>
-                                 <td><button>삭제</button></td>
+                                 <td></td>
                              </tr>
                              <tr>
                                  <td></td>

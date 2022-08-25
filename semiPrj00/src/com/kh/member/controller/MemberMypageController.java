@@ -1,6 +1,7 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.addr.vo.AddrVo;
 import com.kh.member.service.MemberMypageService;
 import com.kh.member.vo.MemberVo;
+import com.kh.member.vo.PaymentVo;
+import com.kh.project.service.PrjSupportService;
 
 @WebServlet(urlPatterns = "/member/mypage")
 public class MemberMypageController extends HttpServlet {
@@ -20,6 +24,11 @@ public class MemberMypageController extends HttpServlet {
 		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
 		
 		if(loginMember != null) {
+			List<AddrVo> addrList = new PrjSupportService().selectAddr(loginMember.getNo());
+			List<PaymentVo> paymentList = new PrjSupportService().selectPayment(loginMember.getNo());
+			req.setAttribute("addrList", addrList);
+			req.setAttribute("paymentList", paymentList);
+			
 			req.getRequestDispatcher("/WEB-INF/views/member/memberMyPage.jsp").forward(req, resp);
 		}else {
 			req.getSession().setAttribute("alertMsg", "로그인 후 접속이 가능합니다!");
