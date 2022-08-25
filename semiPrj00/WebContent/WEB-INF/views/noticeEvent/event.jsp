@@ -119,7 +119,7 @@
                 <li >
                     <div  class="event-a">
                         <div class="event-info">
-                            <div class="event-img"><img src="" alt=""></div>
+                            <div class="event-img"><img src="<%=contextPath%>/resources/admin/event/<%=voList.get(i).getThumbnailName()%>" alt="<%=voList.get(i).getThumbnailName()%>"></div>
                             <h3 class="event-title"><%=voList.get(i).getTitle() %></h3>
                             <span class="event-date">NO.<span id="eventNo"><%=voList.get(i).getNo()%></span> &nbsp;<%=voList.get(i).getWriteDate() %></span>
                         </div>
