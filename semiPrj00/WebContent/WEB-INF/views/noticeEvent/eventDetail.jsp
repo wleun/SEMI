@@ -85,7 +85,7 @@
                      <li><br> <div id="event-title"><%=vo.getTitle() %></div></li>
                      <li><div class="event-date">작성일 :&nbsp;<%=vo.getWriteDate() %>&nbsp;</div></li>
                      <li><div class="event-term">이벤트 기간 : <%=vo.getStartDate() %> ~ <%=vo.getEndDate() %></div></li>
-                     <li><div class="event-img"><img src="<%=attachVo.getPath() %>" alt="이미지파일입니다"></div></li>
+                     <li><div class="event-img"><img src="<%=contextPath%>/resources/admin/event/<%=attachVo.getName()%>" alt="이미지파일입니다"></div></li>
                      <li><div style="font-size : 25px;"><%=vo.getContent() %></div></li>
                  </ul>
                 </div>

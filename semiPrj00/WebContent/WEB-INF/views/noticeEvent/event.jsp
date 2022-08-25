@@ -155,8 +155,7 @@
             //행 클릭 되었을 때, 동작할 내용
             
             //글 번호 가져오기
-            const num = $('#eventNo').text();
-            console.log(num);
+            const num = $(this).children().children().last().children().text();
             //해당 번호 이용해서 요청 보내기
             location.href='<%=contextPath%>/event/detail?num=' + num;
          });
