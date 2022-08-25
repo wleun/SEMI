@@ -1,5 +1,14 @@
+<%@page import="com.kh.member.qanda.vo.MypageAdetailVo"%>
+<%@page import="com.kh.member.qanda.vo.MypageQdetailVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% 
+	List<MypageQdetailVo> qVoList = (List<MypageQdetailVo>)request.getAttribute("qVoList"); 
+	List<MypageAdetailVo> aVoList = (List<MypageAdetailVo>)request.getAttribute("aVoList");
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -164,45 +173,43 @@
 
             <div id="content-wrap">
                 
+                <%for(MypageQdetailVo vo : qVoList) {%>
                 <div id="content-2">
                     <table>
                         <tr>
                             <td>제목 : </td>
-                            <td>이건 왜 이런거죠?</td>
+                            <td><%= vo.getTitle() %></td>
                         </tr>
                         <tr>
-                            <td>유형 :</td>
-                            <td>선물/후원</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">저는 정말 이해가 안가요</td>
+                            <td>내용 :</td>
+                            <td><%= vo.getContent() %></td>
                         </tr>
                         <tr>
                             <td>보낸 날짜 : </td>
-                            <td>2022-08-05</td>
+                            <td><%= vo.getWriteDate() %></td>
                         </tr>
                     </table>
                 </div>
+                <% } %>
 
+				<% for(MypageAdetailVo vo : aVoList) {%>
                 <div id="content-3">
                     <table>
                         <tr>
                             <td>제목 : </td>
-                            <td>이건 왜 이런거죠?</td>
+                            <td><%=vo.getTitle() %></td>
                         </tr>
                         <tr>
-                            <td>유형 : </td>
-                            <td>선물/후원</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">그렇다면 어쩔 수 없네요</td>
+                            <td>내용 : </td>
+                            <td><%= vo.getContent() %></td>
                         </tr>
                         <tr>
                             <td>보낸 날짜 : </td>
-                            <td>2022-08-05</td>
+                            <td><%=vo.getWriteDate() %></td>
                         </tr>
                     </table>
                 </div>
+                <% } %>
 
             </div>
 

@@ -176,13 +176,7 @@
                         <div id="member-name">
                          <span><%= loginMember.getNick() %></span>
                         </div>
-                        <div id="mall">
-                         <span>친환경몰</span>
-                        </div>
-                        <div id="follow">
-                         <span>팔로우 200명</span>
-                         <span>팔로워 200명</span>
-                        </div>
+                        
                         <div>
                          <img src="<%=contextPath %>/resources/img/memberLevelGold.png" alt="멤버십 이미지" id="membership-img">
                          <span name="mLevel"><%= loginMember.getmLevel() %></span>

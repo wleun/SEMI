@@ -1,5 +1,10 @@
+<%@page import="com.kh.member.vo.ProjectLikeVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	List<ProjectLikeVo> plVoList = (List<ProjectLikeVo>) request.getAttribute("plVoList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -203,74 +208,27 @@
                    <button>종료</button>
          
                 </div>
-
+                
+				<%for(ProjectLikeVo vo : plVoList) {%>
                 <div id="content-3">
 
                     <table>
 
                         <tr>
                             <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
+                            <td><%=vo.getProjectName() %></td>
                         </tr>
                         <tr>
-                            <td>목표펀딩 : 50000원</td>
+                            <td>목표펀딩 : <%=vo.getGoal() %></td>
                         </tr>
                         <tr>
-                            <td>등록일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 진행중</td>
+                            <td>등록일자 : <%=vo.getRegisterDate() %></td>
                         </tr>
 
                     </table>
 
                 </div>
-
-                <div id="content-4">
-
-                    <table>
-
-                        <tr>
-                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
-                        </tr>
-                        <tr>
-                            <td>목표펀딩 : 50000원</td>
-                        </tr>
-                        <tr>
-                            <td>등록일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 진행중</td>
-                        </tr>
-
-                    </table>
-
-                </div>
-
-
-                <div id="content-5">
-
-                    <table>
-
-                        <tr>
-                            <td rowspan="4"><img src="" alt="프로젝트사진"></td>
-                            <td>이런이런프로젝트</td>
-                        </tr>
-                        <tr>
-                            <td>목표펀딩 : 50000원</td>
-                        </tr>
-                        <tr>
-                            <td>등록일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 종료</td>
-                        </tr>
-
-                    </table>
-
-                </div>
-
+				<%} %>
 
             </div>
 

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,7 +126,8 @@
             
         <form action="/semiPrj00/member/qdetail" method="post">
         	<input type="hidden" name="memberNo" value="<%= loginMember.getNo() %>">
-
+        	<input type="hidden" name="makerNo" value="${makerNo }">
+        	
             <section>
             
                 <div class="member-info">

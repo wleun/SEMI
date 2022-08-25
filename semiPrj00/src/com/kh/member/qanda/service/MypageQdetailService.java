@@ -8,32 +8,24 @@ import com.kh.member.qanda.vo.MypageQdetailVo;
 import com.kh.member.vo.MemberVo;
 
 public class MypageQdetailService {
-
-	//문의글 작성
-	public int insertQdetail(MypageQdetailVo qvo, MemberVo vo) {
-		if(qvo.getTitle().length() < 1) {
-			System.out.println("제목을 작성하지 않음");
-			return -1;
-		}
+	
+	private final MypageQdetailDao dao = new MypageQdetailDao();
+	
+	public int insertQdetail(MypageQdetailVo vo) {
 		
-		if(qvo.getContent().length() < 1) {
-			System.out.println("내용을 작성하지 않음");
-			return -2;
-		}
+		//서비스 로직 필요
 		
-		Connection conn = null;
-		int result = 0;
 		
-		try {
-			conn = getConnection();
-			
-			result = MypageQdetailDao.insertQdetail(conn, qvo, vo);
-		}catch(Exception e) {
+		Connection conn = getConnection();
+		int result = dao.insertQdetail(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		} else {
 			rollback(conn);
-		}finally {
-			close(conn);
 		}
-
+		close(conn);
+		
 		return result;
 	}
 
