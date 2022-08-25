@@ -35,9 +35,9 @@ public class PrjCategoryService {
 			if(category == null) {category = "0";}
 			
 			if("I".equals(sort) || "S".equals(sort) || "B".equals(sort)) {
-				if(!("21".equals(category)) && !("22".equals(category)) && !("23".equals(category)) && !("0".equals(category) && "intended".equals(sort))) {
+				if(!("21".equals(category)) && !("22".equals(category)) && !("23".equals(category)) && !("0".equals(category) && "B".equals(sort))) {
 					result = dao.listCount(conn, category, sort);
-				}else if("0".equals(category) && "intended".equals(sort)) {
+				}else if("0".equals(category) && "B".equals(sort)) {
 					result = dao.countSort(conn, sort);
 				}
 				else {
