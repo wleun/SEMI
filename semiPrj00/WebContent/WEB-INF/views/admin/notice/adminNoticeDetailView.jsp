@@ -166,7 +166,7 @@
                 </div>
                 <div id="noticeContent">
                     <div id="contentImage">
-                        <img src="<%=contextPath %>/resources/admin/notice/${adminNoticeAttachmentVo.name}" alt="이벤트 내용">
+                        <img src="<%=contextPath %>/resources/admin/event/${adminNoticeAttachmentVo.name}" alt="이벤트 내용">
                     </div>
                     <div id="contentText">${adminNoticeVo.content}</div>
                 </div>

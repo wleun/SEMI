@@ -307,8 +307,8 @@
                         const checkBoxArr = [];
                         $("input:checkbox[name='boardCheck']:checked").each(function() {
                         	checkBoxArr.push($(this).val());
-                        	
                         })
+                        
                        	
                         $.ajax({
                         	url : "<%=contextPath%>/admin/project/delete" ,

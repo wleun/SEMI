@@ -62,7 +62,7 @@ public class AdminNoticeInstallController extends HttpServlet{
 			InputStream is = thumbnailFile.getInputStream();
 			BufferedInputStream bis = new  BufferedInputStream(is);
 		
-			String realPath = req.getServletContext().getRealPath("/resources/admin/notice");
+			String realPath = req.getServletContext().getRealPath("/resources/admin/event");
 			savePath = realPath + File.separator + thumbnaulFileName;
 		
 			FileOutputStream os = new FileOutputStream(savePath); 
@@ -93,7 +93,7 @@ public class AdminNoticeInstallController extends HttpServlet{
 			InputStream is = imageFile.getInputStream();
 			BufferedInputStream bis = new  BufferedInputStream(is);
 		
-			String realPath = req.getServletContext().getRealPath("/resources/admin/notice");
+			String realPath = req.getServletContext().getRealPath("/resources/admin/event");
 			savePath = realPath + File.separator + imageFileName;
 		
 			FileOutputStream os = new FileOutputStream(savePath); //아웃풋 스트림 준비

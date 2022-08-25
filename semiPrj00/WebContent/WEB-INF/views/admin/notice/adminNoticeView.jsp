@@ -296,6 +296,7 @@
                         	checkBoxArr.push($(this).val());
                         	
                         })
+                        
                        	
                         console.log(checkBoxArr);
                         $.ajax({
