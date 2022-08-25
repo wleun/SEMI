@@ -178,7 +178,7 @@
 
             <a href="/semiPrj00/member/mypage">정보수정</a>
             <a href="/semiPrj00/member/myprj">나의 프로젝트</a>
-            <a href="/semiPrj00/member/mysponsor">나의 후원내역</a>
+            <a href="/semiPrj00/member/mysponsor?p=1">나의 후원내역</a>
             <a href="/semiPrj00/member/myfollow">팔로우</a>
             <a href="/semiPrj00/member/mylike">좋아요</a>
             <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>

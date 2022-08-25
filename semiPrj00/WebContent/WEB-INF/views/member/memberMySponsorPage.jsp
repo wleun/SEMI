@@ -1,5 +1,18 @@
+<%@page import="com.kh.common.vo.PageVo"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kh.project.vo.SupportVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+ 	List<SupportVo> sponList = (List<SupportVo>)request.getAttribute("sponList");
+	PageVo pv = (PageVo)request.getAttribute("pv");
+	
+	int currentPage = pv.getCurrentPage();
+	int startPage = pv.getStartPage();
+	int endPage = pv.getEndPage();
+	int maxPage = pv.getMaxPage();
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,7 +159,22 @@
         #membership-img{
             width: 130px;
         }
-
+		#page-area{
+			position:relative;
+			top:800px;
+			right:550px;
+		}
+			#page-area a{
+       		width:35px;
+       		font-size : 18px;
+       	}
+        .btn-success{
+            background-color: #48CA7D!important;
+            border: 0px!important;
+        }
+        .btn{
+            border-radius: 50px !important;
+        }
     </style>
 </head>
 <body>
@@ -202,77 +230,53 @@
                    <button>후원취소</button>
          
                 </div>
-
+                
+				<%for(int i = 0; i <sponList.size(); i++){ %>
+				
                 <div id="content-3">
 
                     <table>
 
                         <tr>
                             <td rowspan="4"><a href="/semiPrj00/member/mysponsor2"><img src="" alt="프로젝트사진"></a></td>
-                            <td>이런이런프로젝트</td>
+                            <td><%=sponList.get(i).getProjectTitle() %></td>
                         </tr>
                         <tr>
-                            <td>후원금액 : 50000원</td>
+                            <td>후원금액 : <%=sponList.get(i).getAmount() %></td>
                         </tr>
                         <tr>
-                            <td>후원일자 : 2022-08-05</td>
+                            <td>후원일자 : <%=sponList.get(i).getDonateDate() %></td>
                         </tr>
                         <tr>
-                            <td>상태 : 진행중</td>
+                            <td>상태 : <%=sponList.get(i).getCancelYN() %></td>
                         </tr>
 
                     </table>
 
                 </div>
-
-                <div id="content-4">
-
-                    <table>
-
-                        <tr>
-                            <td rowspan="4"><a href="/semiPrj00/member/mysponsor2"><img src="" alt="프로젝트사진"></a></td>
-                            <td>이런이런프로젝트</td>
-                        </tr>
-                        <tr>
-                            <td>후원금액 : 50000원</td>
-                        </tr>
-                        <tr>
-                            <td>후원일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 진행중</td>
-                        </tr>
-
-                    </table>
-
-                </div>
-
-
-                <div id="content-5">
-
-                    <table>
-
-                        <tr>
-                            <td rowspan="4"><a href="/semiPrj00/member/mysponsor2"><img src="" alt="프로젝트사진"></a></td>
-                            <td>이런이런프로젝트</td>
-                        </tr>
-                        <tr>
-                            <td>후원금액 : 50000원</td>
-                        </tr>
-                        <tr>
-                            <td>후원일자 : 2022-08-05</td>
-                        </tr>
-                        <tr>
-                            <td>상태 : 종료</td>
-                        </tr>
-
-                    </table>
-
-                </div>
+				<% }%>
+                
 
 
             </div>
-
+			
+            <div id="page-area">
+                <%if(currentPage != 1){ %>
+		<a class="btn btn-sm btn-success" href="<%=contextPath %>/member/mysponsor?p=<%=currentPage-1%>"> &lt; </a>
+		<%} %>
+		
+		<% for(int i = startPage; i <= endPage; i++){ %>
+			<%if(i==currentPage){ %>
+				<a class="btn btn-sm btn-success"><%=i %><a>
+			<%}else{ %>
+				<a class="btn btn-sm" href="<%=contextPath %>/member/mysponsor?p=<%=i%>"><%=i %><a>
+			<%} %>
+		<%} %>
+		<%if(currentPage != maxPage){ %>
+		<a  class="btn btn-sm btn-success" href="<%=contextPath %>/member/mysponsor?p=<%=currentPage+1%>"> &gt; </a>
+		<%} %>
+            </div>
+        </div>
         </section>
         
 

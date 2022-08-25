@@ -6,21 +6,6 @@ public class SupportVo {
 		
 	}
 	
-	public SupportVo(String no, String rewardNo, String memberNo, String paymentMethodNo, String deliveryAddrNo,
-			String donateDate, String amount, String quantity, String additional, String cancelYN, String cancelDate) {
-		super();
-		this.no = no;
-		this.rewardNo = rewardNo;
-		this.memberNo = memberNo;
-		this.paymentMethodNo = paymentMethodNo;
-		this.deliveryAddrNo = deliveryAddrNo;
-		this.donateDate = donateDate;
-		this.amount = amount;
-		this.quantity = quantity;
-		this.additional = additional;
-		this.cancelYN = cancelYN;
-		this.cancelDate = cancelDate;
-	}
 
 	private String no;
 	private String rewardNo;
@@ -33,6 +18,44 @@ public class SupportVo {
 	private String additional;
 	private String cancelYN;
 	private String cancelDate;
+	private String projectNo;
+	private String projectTitle;
+
+	
+	
+	public SupportVo(String no, String rewardNo, String memberNo, String paymentMethodNo, String deliveryAddrNo,
+			String donateDate, String amount, String quantity, String additional, String cancelYN, String cancelDate,
+			String projectNo, String projectTitle) {
+		super();
+		this.no = no;
+		this.rewardNo = rewardNo;
+		this.memberNo = memberNo;
+		this.paymentMethodNo = paymentMethodNo;
+		this.deliveryAddrNo = deliveryAddrNo;
+		this.donateDate = donateDate;
+		this.amount = amount;
+		this.quantity = quantity;
+		this.additional = additional;
+		this.cancelYN = cancelYN;
+		this.cancelDate = cancelDate;
+		this.projectNo = projectNo;
+		this.projectTitle = projectTitle;
+	}
+
+	
+	
+	public String getProjectTitle() {
+		return projectTitle;
+	}
+
+
+
+	public void setProjectTitle(String projectTitle) {
+		this.projectTitle = projectTitle;
+	}
+
+
+
 	public String getNo() {
 		return no;
 	}
@@ -121,12 +144,22 @@ public class SupportVo {
 		this.cancelDate = cancelDate;
 	}
 
+	public String getProjectNo() {
+		return projectNo;
+	}
+
+	public void setProjectNo(String projectNo) {
+		this.projectNo = projectNo;
+	}
+	
 	@Override
 	public String toString() {
 		return "SupportVo [no=" + no + ", rewardNo=" + rewardNo + ", memberNo=" + memberNo + ", paymentMethodNo="
 				+ paymentMethodNo + ", deliveryAddrNo=" + deliveryAddrNo + ", donateDate=" + donateDate + ", amount="
 				+ amount + ", quantity=" + quantity + ", additional=" + additional + ", cancelYN=" + cancelYN
-				+ ", cancelDate=" + cancelDate + "]";
+				+ ", cancelDate=" + cancelDate + ", projectNo=" + projectNo + ", projectTitle=" + projectTitle + "]";
 	}
+
+	
 
 }
