@@ -24,6 +24,9 @@ public class PrjCategoryController extends HttpServlet{
 		
 		String category = req.getParameter("category");
 		String sort = req.getParameter("sort");
+		if(sort == null) {
+			sort = "all";
+		}
 		
 		/*
 		 * 페이징 처리
@@ -71,18 +74,28 @@ public class PrjCategoryController extends HttpServlet{
 		 */
 		List<ProjectVo> selectedProject = new PrjCategoryService().selectProject(category, sort, pageVo);
 		CategoryVo selectedCategory = new PrjCategoryService().selectCategory(category);
+		if(category==null && "intended".equals(sort)) {
+			selectedCategory.setCategoryName("오픈예정");
+		}
 		
 		/*
 		 * 프로젝트 모인금액/달성률 내용 받기
 		 */
-		int[] totalDonateArr = new int[selectedProject.size()];
-		long[] percentArr = new long[selectedProject.size()];
-		for(int i=0; i<selectedProject.size();i++) {
-			totalDonateArr[i] = new PrjViewService().getTotalDonation(selectedProject.get(i).getPrjectNo());
-			double getPercentage = ((double)totalDonateArr[i] / (double)selectedProject.get(i).getGoal()) * 100;
-			percentArr[i] = Math.round(getPercentage);
+		int[] totalDonateArr = null;
+		long[] percentArr = null;
+		if(selectedProject != null) {
+			totalDonateArr = new int[selectedProject.size()];
+			percentArr = new long[selectedProject.size()];
+			for(int i=0; i<selectedProject.size();i++) {
+				totalDonateArr[i] = new PrjViewService().getTotalDonation(selectedProject.get(i).getPrjectNo());
+				double getPercentage = ((double)totalDonateArr[i] / (double)selectedProject.get(i).getGoal()) * 100;
+				percentArr[i] = Math.round(getPercentage);
+			}
 		}
 		
+		/*
+		 * 내용 전달하기
+		 */
 		req.setAttribute("sort", sort);
 		req.setAttribute("pageVo", pageVo);
 		req.setAttribute("categoryVo", selectedCategory);

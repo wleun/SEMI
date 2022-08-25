@@ -1,7 +1,7 @@
 package com.kh.project.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.category.vo.CategoryVo;
+import com.kh.common.vo.PageVo;
 import com.kh.project.service.PrjCategoryService;
+import com.kh.project.service.PrjSearchService;
+import com.kh.project.service.PrjViewService;
 import com.kh.project.vo.ProjectVo;
 
 @WebServlet(urlPatterns = "/project/search")
@@ -23,7 +26,76 @@ public class PrjSearchController extends HttpServlet{
 		String searching = req.getParameter("searching");
 		String sort = req.getParameter("sort");
 		
-		//ArrayList<ProjectVo> projectVo = new PrjSearchService().selectProject(searching, sort);
+		/*
+		 * 페이징 처리
+		 */
+		int listCount;			//현재 총 게시글 갯수
+		int currentPage;		//현재 페이지(==사용자가 요청한 페이지)
+		int pageLimit;			//페이지 하단에 보여질 페이지 버튼의 최대 갯수
+		int boardLimit;			//한 페이지 내 보여질 게시글 최대 갯수
+		//위의 4개를 이용해서 아래 3개 값 구하기
+		int maxPage;			//가장 마지막 페이지(==총 페이지 수)
+		int startPage;			//페이징바의 시작
+		int endPage;			//페이징바의 끝
+		
+		listCount = new PrjSearchService().listCount(searching, sort);
+		
+		if(req.getParameter("p")==null) {
+			currentPage = 1;
+		}else {
+			currentPage = Integer.parseInt(req.getParameter("p"));
+		}
+		pageLimit = 10;
+		boardLimit = 20;
+		
+		maxPage = (int)Math.ceil((double)listCount / boardLimit);
+		if(listCount==0) {
+			maxPage = 1;
+		}
+		startPage = (currentPage-1) / pageLimit * pageLimit + 1;
+		endPage = startPage + pageLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageVo pageVo = new PageVo();
+		pageVo.setListCount(listCount);
+		pageVo.setCurrentPage(currentPage);
+		pageVo.setPageLimit(pageLimit);
+		pageVo.setBoardLimit(boardLimit);
+		pageVo.setMaxPage(maxPage);
+		pageVo.setStartPage(startPage);
+		pageVo.setEndPage(endPage);
+		
+		/*
+		 * 프로젝트 불러오기
+		 */
+		List<ProjectVo> selectedProject = new PrjSearchService().selectProject(searching, sort, pageVo);
+		
+		/*
+		 * 프로젝트 모인금액/달성률 내용 받기
+		 */
+		int[] totalDonateArr = null;
+		long[] percentArr = null;
+		if(selectedProject != null) {
+			totalDonateArr = new int[selectedProject.size()];
+			percentArr = new long[selectedProject.size()];
+			for(int i=0; i<selectedProject.size();i++) {
+				totalDonateArr[i] = new PrjViewService().getTotalDonation(selectedProject.get(i).getPrjectNo());
+				double getPercentage = ((double)totalDonateArr[i] / (double)selectedProject.get(i).getGoal()) * 100;
+				percentArr[i] = Math.round(getPercentage);
+			}
+		}
+		
+		/*
+		 * 내용 전달하기
+		 */
+		req.setAttribute("sort", sort);
+		req.setAttribute("searching", searching);
+		req.setAttribute("pageVo", pageVo);
+		req.setAttribute("prjList", selectedProject);
+		req.setAttribute("totalDonateArr", totalDonateArr);
+		req.setAttribute("percentArr", percentArr);
 		
 		req.getRequestDispatcher("/WEB-INF/views/project/searchForm.jsp").forward(req, resp);
 		

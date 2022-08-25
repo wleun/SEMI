@@ -1,15 +1,22 @@
+<%@page import="com.kh.common.vo.PageVo"%>
+<%@page import="com.kh.project.vo.ProjectVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
-    //ArrayList<PrjVo> prjList = (ArrayList<PrjVo>)request.getAttribute("prjList");
-
-	String searching = (String)request.getParameter("searching");
-
-    int currentPage = 5;
-	int startPage = 1;
-	int endPage = 10;
-	int maxPage = 10;
+	List<ProjectVo> prjList = (List<ProjectVo>)request.getAttribute("prjList");
+	PageVo pageVo = (PageVo)request.getAttribute("pageVo");
+	String sort = (String)request.getAttribute("sort");
+	String searching = (String)request.getAttribute("searching");
+	
+	int[] totalDonateArr = (int[])request.getAttribute("totalDonateArr");
+	long[] percentArr = (long[])request.getAttribute("percentArr");
+	
+	int currentPage = pageVo.getCurrentPage();
+	int startPage = pageVo.getStartPage();
+	int endPage = pageVo.getEndPage();
+	int maxPage = pageVo.getMaxPage();
 
 %>
     
@@ -48,8 +55,11 @@
     #sort-btn:hover{
         color: #48CA7D;
     }
-    #quantity{
+    #quantity-div{
         clear: both;
+        font-size: 18px;
+    }
+    #quantity{
         font-size: 18px;
     }
     #category-content-wrap{
@@ -64,6 +74,9 @@
         width: 300px;
         margin: 42px;
     }
+    .prj-wrap:hover{
+        cursor: pointer;
+    }
     .prj-img{
     	background-color: gray;
         height: 200px;
@@ -71,6 +84,17 @@
     }
     .prj-content{
         margin: 5px 0px;
+    }
+    .prj-category{
+    	color : #48CA7D;
+    }
+    .prj-title{
+    	font-size : 18px;
+    	height: 75px
+    }
+    .prj-subscribe{
+    	color : gray;
+    	height: 25px;
     }
     .gage-div{
         height: 10%;
@@ -104,6 +128,7 @@
     #page-area{
         text-align: center;
         padding: 30px;
+        margin-top: 50px;
     }
     #page-area a{
         width: 35px;
@@ -121,70 +146,100 @@
 
     <div id="category-body">
         <div id="search-voca">
-            00의 검색결과
+            <%=searching%> 의 검색결과
         </div>
-        <div id="category-sort" class="dropdown">
-            <button type="button" id="sort-btn" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
-                상태
-            </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=all">전체 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=ongoing">진행중인 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=complete">성사된 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=intended">공개예정 프로젝트</a></li>
-                </ul>
-        </div>
-        <div id="quantity">
-            00개의 프로젝트가 있습니다
+        <div id="quantity-div">
+            <span id="quantity"><%=pageVo.getListCount()%></span>개의 프로젝트가 있습니다
         </div>
         <div id="category-content-wrap">
-            <%//for(int i=0;i<prjVo;i++){%>
-            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view'">
-                <div class="prj-content prj-img">
-                    <img src="" alt="프로젝트 메인 사진">
-                </div>
-                <div class="prj-content prj-category">
-                    <span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-                </div>
-                <div class="prj-content prj-title">
-                    프로젝트 타이틀
-                </div>
-                <div class="prj-content prj-subscribe">
-                    프로젝트 설명
-                </div>
-                <div class="prj-content gage-div">
-                    <div class="prj-content">
-                        <span class="percentage">달성률</span>
-                        <span class="amount">모인 금액</span>
-                    </div>
-                    <div class="prj-content d-day">
-                        남은 날짜
-                    </div>
-                    <div class="prj-content gage-bar progress" style="height: 5px;">
-                        <div class="progress-bar" style="width: 50%; height: 5px; background-color: #48CA7D!important;"></div>
-                    </div>
-                </div>
-            </div>
-            <%//}%>
+        	<%if(prjList!=null){ %>
+        		<%int idx = 0;%>
+        		<%for(ProjectVo vo : prjList){%>
+	            <div class="prj-wrap" onclick="location.href='<%=contextPath%>/project/view?num=<%=vo.getPrjectNo()%>'">
+	                <div class="prj-content prj-img">
+	                    <img src="<%=contextPath%>/resources/upload/<%=vo.getThumbnailName()%>" alt="<%=vo.getThumbnailName()%>">
+	                </div>
+	                <div class="prj-content prj-category">
+	                    <span><%=vo.getCategoryNo()%></span> | <span><%=vo.getMakerNo()%></span>
+	                </div>
+	                <div class="prj-content prj-title">
+	                    <%=vo.getName()%>
+	                </div>
+	                <div class="prj-content prj-subscribe">
+	                    <%if(vo.getText().length() > 50){ %>
+	                    	<%=vo.getText().substring(0, 50)%> ...
+	                    <%}else{ %>
+	                    	<%=vo.getText()%>
+	                    <%} %>
+	                </div>
+	                <div class="prj-content gage-div">
+	                    <div class="prj-content">
+	                        <span class="percentage"><%=percentArr[idx]%>%</span>
+	                        <span class="amount">모인 금액 <%=totalDonateArr[idx]%>원</span>
+	                    </div>
+	                    <div class="prj-content d-day" id="<%=vo.getPrjectNo()%>">
+	                    <!-- 남은 날짜 계산 -->
+	                    <script>
+	                    	var startDateStr = "<%=vo.getStartDate()%>";
+					    	var endDateStr = "<%=vo.getEndDate()%>";
+					    	var date = new Date();
+					    	var startDate = new Date(startDateStr);
+					    	var endDate = new Date(endDateStr);
+					    	var differenceMsec = endDate.getTime() - date.getTime();
+					    	var differenceDay = differenceMsec/1000/60/60/24;
+					    	$("#<%=vo.getPrjectNo()%>").text(Math.floor(differenceDay) + "일 남음");
+					    	if(Math.floor(differenceDay)<0){
+					    		$("#<%=vo.getPrjectNo()%>").text("마감");
+					    	}
+					    	if(date<startDate){
+					    		$("#<%=vo.getPrjectNo()%>").text("공개 예정");
+					    	}
+					    </script>
+	                    </div>
+	                    <div class="prj-content gage-bar progress" style="height: 5px;">
+	                        <div class="progress-bar" style="width: <%=percentArr[idx]%>%; height: 5px; background-color: #48CA7D!important;"></div>
+	                    </div>
+	                </div>
+	            </div>
+	            
+                <%idx++;%>
+	            <%}%>
+        	<%} %>
+            
         </div>
         <div id="page-area">
             <%if(currentPage!=1){ %>
-				<a class="btn btn-sm btn-success" href="#"> &lt; </a>
+            	<%if(sort != null){ %>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/search?searching=<%=searching%>&sort=<%=sort%>&p=<%=currentPage-1%>"> &lt; </a></a>				
+				<%}else{%>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/search?searching=<%=searching%>&p=<%=currentPage-1%>"> &lt; </a>	
+				<%}%>
+				
 			<%} %>
 			
 			<% for(int i=startPage; i<=endPage;i++){ %>
 				<%if(i==currentPage){%>
 					<a class="btn btn-sm btn-success"><%=i%></a>
 				<%}else{%>
-					<a class="btn btn-sm" href="#"><%=i%></a>				
+					<%if(sort != null){ %>
+					<a class="btn btn-sm" href="<%=contextPath%>/project/search?searching=<%=searching%>&sort=<%=sort%>&p=<%=i%>"><%=i%></a>				
+					<%}else{%>
+					<a class="btn btn-sm" href="<%=contextPath%>/project/search?searching=<%=searching%>&p=<%=i%>"><%=i%></a>	
+					<%}%>
 				<%}%>
 			<% } %>
 			
-			<%if(currentPage!=maxPage){ %>
-				<a class="btn btn-sm btn-success" href="#"> &gt; </a>
-			<%} %>
+			<% if(currentPage!=maxPage){ %>
+				<%if(sort != null){ %>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/search?searching=<%=searching%>&sort=<%=sort%>&p=<%=currentPage+1%>"> &gt; </a>				
+				<%}else{%>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/search?searching=<%=searching%>&p=<%=currentPage+1%>"> &gt; </a>	
+				<%}%>
+			<% }%>
         </div>
     </div>
+    
+    <%@ include file="/WEB-INF/views/common/userFooter.jsp" %>s
 
 </body>
 </html>

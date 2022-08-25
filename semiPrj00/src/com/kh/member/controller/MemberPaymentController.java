@@ -73,7 +73,7 @@ public class MemberPaymentController extends HttpServlet{
 			req.getSession().setAttribute("alertMsg", "성공적으로 등록되었습니다.");
 			resp.sendRedirect(req.getContextPath() + "/member/mypage");
 		}else {
-			System.out.println("error result ::: " + result);
+			System.out.println("payment error result ::: " + result);
 			req.getSession().setAttribute("errorMsg", "등록에 실패하였습니다.");
 			resp.sendRedirect(req.getContextPath() + "/member/mypage");
 		}
