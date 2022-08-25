@@ -42,6 +42,9 @@ public class PrjViewController extends HttpServlet{
 			//서버 가서 플젝 번호와 일치하는 카테고리 no 조회해오기
 			String categoryNo = new PrjViewService().getCategoryNo(prjNum);
 			
+			//서버 가서 플젝 번호와 일치하는 메이커 no 조회해오기
+			String mnum = new PrjViewService().getMakerNo(prjNum);
+			
 			//썸네일 가져오기
 			String getThumbnail = null;
 			if(pvo.getThumbnailPath().length() > 17) {
@@ -109,6 +112,7 @@ public class PrjViewController extends HttpServlet{
 		
 			req.setAttribute("projectVo", pvo);
 			req.setAttribute("categoryNo", categoryNo);
+			req.setAttribute("mnum", mnum);
 			req.setAttribute("getThumbnail", getThumbnail);
 			req.setAttribute("totalDonation", totalDonation);
 			req.setAttribute("percent", percent);
