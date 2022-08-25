@@ -38,7 +38,7 @@ public class PrjSearchService {
 			}else if(searching != null && "all".equals(sort)) {
 				result = dao.listCount(conn, searching);
 			}else {
-				result = new PrjCategoryDao().listCountAll(conn);
+				result = dao.listCount(conn, searching);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
