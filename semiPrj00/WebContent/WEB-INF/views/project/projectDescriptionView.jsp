@@ -556,7 +556,12 @@
                 </div>
                 <div class="btns" id="btn-div1">
                     <a id="like-btn">
-                        <img id="heart-btn" width="20px" src="<%=contextPath%>/resources/img/project_like.png" alt="??">
+                    	<c:if test="${selectLikeResult == 0}">
+                        	<img id="heart-btn" width="20px" src="<%=contextPath%>/resources/img/project_like.png" alt="??">
+                        </c:if>
+                        <c:if test="${selectLikeResult == 1}">
+                        	<img id="heart-btn" width="20px" src="<%=contextPath%>/resources/img/project_liked.png" alt="??">
+                        </c:if>
                     </a>
                     <a id="support-btn" href="#reward-option">이 프로젝트 후원하기</a>
                 </div>
@@ -578,7 +583,7 @@
                     <div><span>프로젝트소개</span></div>
                     <div>
                     <c:forEach items="${pathList}" var="plist">
-                        <img style="width:100%; height:auto" src="<%=contextPath%>plist.get[1]" alt="?">
+                        <img style="width:100%; height:auto" src="${plist}" alt="?">
                     </c:forEach>    
                         ${projectVo.text}
                     </div>
@@ -587,13 +592,13 @@
                 <div class="main-title" id="notice">
                     <div><span>새소식</span></div>
                     <div>
-                    	<c:if test="${loginMember.no} == ${pvo.makerNo}">
-                        <form action="${pageContext.request.contextPath}/project/notice">
-                            <div id="notice-comment-wrap">
-                                <textarea name="notice-comment-area" class="comment" id="notice-comment-area" maxlength="500" placeholder="500자 이내로 입력해주세요."></textarea>
-                                <input type="submit" value="작성하기">
-                            </div>
-                        </form>
+                    	<c:if test="${loginMember.nick == projectVo.makerNo}">
+	                        
+	                            <div id="notice-comment-wrap">
+	                                <textarea name="notice-comment-area" class="comment" id="notice-comment-area" maxlength="500" placeholder="500자 이내로 입력해주세요."></textarea>
+	                                <input type="submit" value="작성하기">
+	                            </div>
+	                        
                         </c:if>
                         <div id="">
                         	
@@ -718,7 +723,8 @@
                     </div>
                 </div>
              	<div id="report-area">
-                    <a href="<%=contextPath%>/project/report">이 프로젝트 신고하기</a>
+                    <a data-bs-toggle="modal" data-bs-target="#myModal">이 프로젝트 신고하기</a>
+                    <%@ include file="/WEB-INF/views/project/projectReport.jsp"%>
                 </div>
                 
                 
@@ -730,7 +736,7 @@
                     <div id="creator-desc">${projectVo.makerInfo}</div>
                     <div class="btns" id="btn-div2">
                         <button>+ 팔로우</button>
-                        <button onclick="location.href='/semiPrj00/member/qdetail'">1:1 문의하기</button>
+                        <button onclick="location.href='/semiPrj00/member/qdetail?mnum=${projectVo.makerNo}'">1:1 문의하기</button>
                     </div>
                 </div>
 
@@ -795,6 +801,33 @@
 <script>
     $(function(){
         
+    	$('#notice-comment-wrap>input').click(function(){
+    		<c:if test="${not empty loginMember}">
+	    		console.log('제출하기 클릭됨');
+	    		if(confirm('새소식을 작성하시겠습니까?')){
+		    		$.ajax({
+		    			url : "<%=contextPath%>/project/notice",
+		    			method : "get",
+		    			data : {
+		    				memberNo : <%=loginMember.getNo()%>,
+		                    projectNo : <%=pvo.getPrjectNo()%>,
+		    				content : $('#notice-comment-wrap>textarea').val()
+		    				},
+		    			success : function(result){
+		    				if(data == 1){
+		    					alert('새소식 작성이 완료되었습니다.');
+		    				}else if(data == -1){
+		    					alert('새소식의 내용을 작성해주세요.');
+		    				}
+		    			},
+		    			error : function(){
+		    				console.log('ajax 통신오류!');
+		    			}
+		    		});
+	    		}
+	    	</c:if>
+    	});
+    	
         $("#file").on('change',function(){
             var fileName = $("#file").val();
             $(".upload-name").val(fileName);
@@ -862,8 +895,6 @@
                 }
             </c:if>
           });
-        
-		$
         
         $('.rwd-btn').click(function(){
             const div = $('.hide-div');

@@ -94,13 +94,23 @@ public class PrjViewService {
 	}
 
 	//상세페이지 이미지 가져오기
-	public List<String> getDescriptionImage(String prjNum) {
+	public List<String> getDescriptionImage(String prjNum, String contextPath) {
 		Connection conn = getConnection();
-		List<String> pathList = dao.getDescriptionImage(conn, prjNum);
+		List<String> pathList = dao.getDescriptionImage(conn, prjNum, contextPath);
 		
 		if(pathList != null) {
 			close(conn);
 		}
 		return pathList;
+	}
+
+	//현재 로그인한 멤버가 해당 플젝을 좋아요 했는지 확인
+	public int selectLike(String memNo, String prjNum) {
+		Connection conn = getConnection();
+		int like = dao.selectLike(conn, memNo, prjNum);
+		if(like == 1) {
+			close(conn);
+		}
+		return like;
 	}
 }
