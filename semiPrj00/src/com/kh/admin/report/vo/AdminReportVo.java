@@ -24,6 +24,7 @@ public class AdminReportVo {
 	private String content;
 	private String submitDate;
 	private String reportAc;
+	
 	public String getNo() {
 		return no;
 	}

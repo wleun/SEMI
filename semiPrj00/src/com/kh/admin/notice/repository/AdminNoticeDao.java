@@ -350,6 +350,91 @@ public class AdminNoticeDao {
 		
 		return result;
 	}
+
+	//대시보드 - 공지사항 카운트
+	public String getNoticeCnt(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String count = "";
+		
+		String sql = "SELECT COUNT(NO) AS COUNT FROM NOTICE WHERE DELETE_YN = 'N'";
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getString("COUNT");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return count;
+	
+	}
+
+	//대시보드 - 공지사항 정보 가져오기
+	public List<AdminNoticeVo> getMainData(Connection conn) {
+		List<AdminNoticeVo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT N.NO , A.NAME , N.TITLE , N.CONTENT , N.THUMBNAIL_PATH , N.THUMBNAIL_NAME , TO_CHAR(N.WRITE_DATE,'YYYY-MM-DD') AS WRITE_DATE , N.IMPORTANT_YN , N.EDIT_DATE , N.EDIT_ADMIN_NO , N.DELETE_YN FROM NOTICE N JOIN ADMIN A ON N.ADMIN_NO = A.NO WHERE N.DELETE_YN = 'N'  ORDER BY N.NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 4 ";
+		
+		try {
+			
+			pstmt= conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<AdminNoticeVo>();
+			
+			while(rs.next()) {
+				
+				AdminNoticeVo vo = new AdminNoticeVo();
+				
+				String no = rs.getString("NO");
+				String title = rs.getString("TITLE");
+				String writeDate = rs.getString("WRITE_DATE");
+				String importantYn = rs.getString("IMPORTANT_YN");
+				
+				if("N".equals(importantYn)) {
+					importantYn = "-";
+				} else {
+					importantYn = "중요*";
+				}
+				
+				int nameLength = title.length();
+				int subStringLength = 13;
+				if(nameLength<subStringLength) {
+					subStringLength = nameLength;
+				}
+				String subTitle = title.substring(0,subStringLength);
+				
+				vo.setNo(no);
+				vo.setTitle(subTitle);
+				vo.setWriteDate(writeDate);
+				vo.setImportantYn(importantYn);
+				
+				
+				list.add(vo);
+				
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 		
 }
 

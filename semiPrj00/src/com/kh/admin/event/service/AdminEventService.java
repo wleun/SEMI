@@ -56,26 +56,6 @@ public class AdminEventService {
 			return -4;
 		}
 		
-//		String startDate = adminEventVo.getStartDate();
-//		String endDate = adminEventVo.getEndDate();
-//		
-//		//날짜 계산 (endDate가 startDate보다 미래인지)
-//		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		try {
-//			Date date1 = (Date) transFormat.parse(startDate);
-//			Date date2 = (Date) transFormat.parse(endDate);
-//			
-//			if(date1.compareTo(date2)>0) {
-//				//startDate가 endDate보다 미래이다.
-//				return -5;
-//			}
-//			
-//			if(date1.compareTo(date2)==0) {
-//				//startDate = endDate이다.
-//				return -6;
-//			}
-//		} catch (ParseException e) {e.printStackTrace();}
-//		
 		Connection conn = getConnection();
 		
 		int result1 = AdminEventDao.insertEvent(conn,adminEventVo);
@@ -207,6 +187,17 @@ public class AdminEventService {
 		close(conn);
 		
 		return result1 * result2;
+	}
+
+	//대시보드 - 메인 페이지 정보 가져오기
+	public List<AdminEventVo> getMainData() {
+		Connection conn = getConnection();
+		
+		List<AdminEventVo> eventVoList = new AdminEventDao().getMainData(conn);
+		
+		close(conn);
+		
+		return eventVoList;
 	}
 
 }

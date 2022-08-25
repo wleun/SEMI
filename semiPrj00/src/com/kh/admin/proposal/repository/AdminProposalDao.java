@@ -261,6 +261,7 @@ public class AdminProposalDao {
 		return list;
 	}
 
+	//제안서 상태 변경 (ajax, 업데이트)
 	public int changeStatus(Connection conn, String option, String no) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -285,6 +286,7 @@ public class AdminProposalDao {
 		return result;
 	}
 
+	//제안서 상태 변경 후 정보 가져오기 (ajax, select)
 	public String selectStatus(Connection conn, String no) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -330,6 +332,89 @@ public class AdminProposalDao {
 			close(conn);
 		}
 		return status;
+	}
+
+	//대시보드 - 접수된 제안서 카운트
+	public String getProposalCnt(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String count = "";
+		
+		String sql = "SELECT COUNT(PROJECT_NO) AS COUNT FROM PROJECT WHERE STATUS = 'R' OR STATUS = 'A'";
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getString("COUNT");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return count;
+	
+	}
+
+	// 대시보드 - 제안서 정보 가져오기
+	public List<AdminProposalVo> getMainData(Connection conn) {
+		List<AdminProposalVo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql= "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT P.PROJECT_NO , P.NAME , M.NICK , C.NAME AS CATEGORY_NAME , P.REGISTER_DATE , P.STATUS , P.START_DATE , P.END_DATE , P.GOAL , P.SHIPPING_DATE , P.TEXT , P.THUMBNAIL_NAME , P.THUMBNAIL_PATH FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C USING (CATEGORY_NO) WHERE P.STATUS = 'A' OR P.STATUS = 'R' ORDER BY P.PROJECT_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 4";
+		
+		try {
+				
+				pstmt= conn.prepareStatement(sql);
+				
+				
+				rs = pstmt.executeQuery();
+				
+				list = new ArrayList<AdminProposalVo>();
+			
+				while(rs.next()) {
+					
+					AdminProposalVo vo = new AdminProposalVo();
+					
+					String no = rs.getString("PROJECT_NO");
+					String nick = rs.getString("NICK");
+					String name = rs.getString("NAME");
+					String categoryName = rs.getString("CATEGORY_NAME");
+					
+					int nameLength = name.length();
+					int subStringLength = 13;
+					if(nameLength<subStringLength) {
+						subStringLength = nameLength;
+					}
+					String subName = name.substring(0,subStringLength);
+				    
+					vo.setNo(no);
+					vo.setNick(nick);
+					vo.setName(subName);
+					vo.setCategoryName(categoryName);
+					
+					list.add(vo);
+				    
+				
+				}
+			
+			
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				close(conn);
+				close(pstmt);
+			}
+		
+		
+			return list;
 	}
 
 }	

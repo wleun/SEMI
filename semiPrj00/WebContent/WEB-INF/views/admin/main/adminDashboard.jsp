@@ -6,12 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 		#dashBoard {
             display: flex;
             flex-direction: row;
             width: 1632px;
             height: 972px;
         }
+
+        
 
         .dashBoard>div {
             background-color: white;
@@ -39,12 +42,9 @@
         #summaryText {
             width: 100%;
             height: 35%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             font-size: 18px;
-
         }
+        
 
         #summaryTable {
             padding-top: 3px;
@@ -66,19 +66,12 @@
         #proposalText {
             width: 100%;
             height: 25%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
         }
 
         #proposalTable {
-            padding: 5px;
             width: 100%;
-            height: 65%;
-            display: flex;
-            flex-direction: row;
-            justify-content:center;
+            height: 75%;
+            border-top : 1px solid #C3B091;
         }
         
         #proposalTable>table {
@@ -88,28 +81,21 @@
 
         
 
-        #message {
+        #report {
             width: 430px;
             height: 240px;
         }
 
-        #messageText {
+        #reportText {
             width: 100%;
             height: 22%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
 
         }
         
-        #messageTable {
+        #reportTable {
         	width : 100%;
         	height : 78%;
-        	display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
+            border-top : 1px solid #C3B091;
         }
 
         #eventDashBoard {
@@ -132,20 +118,13 @@
         #eventOngoingText {
             width: 100%;
             height: 25%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
 
         }
         
         #eventOngoingTable {
         	width : 100%;
         	height : 75%;
-        	display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
+            border-top : 1px solid #C3B091;
         }
 
         #noticeDashBoard {
@@ -156,94 +135,212 @@
         #noticeDashBoardText {
             width: 100%;
             height: 25%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
         }
         
         #noticeDashBoardTable {
         	width: 100%;
             height: 75%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
+            border-top : 1px solid #C3B091;
         }
 
-        #todaySuccessPrj {
+        #beforeStartPrj {
             width: 430px;
             height: 200px;
         }
 
-        #todaySuccessPrjText {
+        #beforeStartPrjText {
             width: 100%;
             height: 23%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
 
         }
         
-        #todaySuccessPrjTable {
+        #beforeStartPrjTable {
         
         	width: 100%;
             height: 77%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
+            border-top : 1px solid #C3B091;
         }
 
-        #todayStartPrj {
+        #todayPrj {
             width: 430px;
             height: 200px;
         }
 
-        #todayStartPrjText {
+        #todayPrjText {
             width: 100%;
             height: 23%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
 
         }
         
-        
-        
-        #todayStartPrjTable {
+        #todayPrjTable {
         	width: 100%;
             height: 77%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
+            border-top : 1px solid #C3B091;
         }
 
-        #todayReport{
+        #successproject{
             width: 430px;
             height: 200px;
         }
 
-        #todayReportText {
+        #successprojectText {
             width: 100%;
             height: 23%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 18px;
         }
         
-        #todayReportTable {
+        #successprojectbeforeStart {
        		width: 100%;
             height: 77%;
+            border-top : 1px solid #C3B091;
+        }
+        
+        #successprojectTable {
+            width: 100%;
+            height: 77%;
+            font-size: 18px;
+            border-top : 1px solid #C3B091;
+        }
+        
+        .animationHover>div>table {
+        	width : 100%;
+        	height : 100%;
+        }
+
+        .tableWrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .tableWrap * {
+            font-size: 15px;
+         
+        }
+
+        .textWrap {
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
             font-size: 18px;
+            background-color: #F9F5EA;
+            border-radius: 10px 10px 0px 0px;
         }
+
+        #dashBoard a {
+            width: 100%;
+            height: 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .column {
+            width: 95%;
+            height: 95%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .firstColumn:hover {
+        	background-color: 
+        }
+
+        #dashBoard a:hover {
+            background-color: #48CA7D;
+            color: white;
+            cursor: pointer;
+        }
+
+        .column:hover {
+            color: white;
+        }
+
+
+        .column > div {
+            text-align: center;
+        }
+        
+        .firstColumn:hover {
+        	background-color : #C3B091;
+        	color : black;
+        }
+
+       
+
+        /*신고*/
+
+        .reportNo {
+            width: 15%;
+        }
+
+        .reportMember {
+            width: 30%;
+        }
+
+        .reportProject {
+            width: 40%;
+        }
+
+        .reportStatus {
+            width: 15%;
+        }
+
+        /*이벤트*/
+
+        .eventNo {
+            width: 15%;
+        }
+
+        .importantYn {
+            width: 20%;
+        }
+
+        .eventName {
+            width: 45%;
+        }
+
+        .eventEndDate {
+            width: 20%;
+        }
+
+
+        /*공지사항*/
+
+        .noticeNo {
+            width: 15%;
+        }
+
+        .noticeName {
+            width: 45%;
+        }
+
+        .noticeWriteDate {
+            width: 20%;
+        }
+
+
+        /*프로젝트*/
+        .prjNo {
+            width: 15%;
+        }
+
+        .prjName {
+            width: 40%;
+        }
+
+        .prjMaker {
+            width: 25%;
+        }
+
+        .prjCategory {
+            width: 20%;
+        }
+        
         
         
 	
@@ -258,326 +355,245 @@
 
                 <div id="dashBoardDiv1" class="dashBoard">
                     <div id="summary" class="animationHover">
-                        <div id="summaryText">요약</div>
-                        <div id="summaryTable">
+                        <div id="summaryText" class="textWrap">요약</div>
+                        <div id="summaryTable" class="tableWrap">
                             <table>
                                 <tr>
                                     <td>접수된 제안서</td>
-                                    <td>0건</td>
+                                    <td>${cntVo.proposalCnt}건</td>
                                     <td width="10px"></td>
                                     <td>|</td>
                                     <td>접수된 신고</td>
-                                    <td>0건</td>
+                                    <td>${cntVo.reportCnt}건</td>
                                 </tr>
                                 <tr>
                                     <td>진행중인 이벤트</td>
-                                    <td>0건</td>
+                                    <td>${cntVo.eventCnt}건</td>
                                     <td width="10px"></td>
                                     <td>|</td>
                                     <td>유효한 공지사항</td>
-                                    <td>0건</td>
+                                    <td>${cntVo.noticeCnt}건</td>
                                 </tr>
                                 <tr>
                                     <td>시작전 프로젝트</td>
-                                    <td>0건</td>
+                                    <td>${cntVo.beforePrjCnt}건</td>
                                     <td width="10px"></td>
                                     <td>|</td>
                                     <td>진행중 프로젝트</td>
-                                    <td>0건</td>
+                                    <td>${cntVo.prjCnt}건</td>
                                 </tr>
                                 
                             </table>
                         </div>
                     </div>
+                   
+                   
+                   
                     <div id="proposal" class="animationHover">
-                        <div id="proposalText"><a>제안서</a></div>
-                        <div id="proposalTable">
-                            <table>
-                            	<tr>
-                            		<td>asd</td>
-                            		<td>qeqw</td>
-                            		<td>qwesa</td>
-                            		<td>asda</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qweqw</td>
-                            		<td>sada</td>
-                            		<td>zxzxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asdas</td>
-                            		<td>qweqw</td>
-                            		<td>asdas</td>
-                            		<td>zxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
-                            	
-                            	
-                            </table>
+                        <div id="proposalText" class="textWrap">제안서</div>
+                        <div id="proposalTable" class="tableWrap">
+                            <a>
+	                            <div class="column" class="firstColumn">
+	                                <div class="prjNo">번호</div>
+	                                <div class="prjMaker">메이커</div>
+	                                <div class="prjName">프로젝트명</div>
+	                                <div class="prjCategory">카테고리</div>
+	                            </div>
+                            </a>
+                           <c:forEach items="${proposalVoList}" var="item">
+                            <a href="<%=contextPath%>/admin/proposal/detail?no=${item.no}">
+	                            <div class="column">
+	                                <div class="prjNo">${item.no}</div>
+	                                <div class="prjMaker">${item.nick}</div>
+	                                <div class="prjName">${item.name}</div>
+	                                <div class="prjCategory">${item.categoryName}</div>
+	                            </div>
+                            </a>
+                           </c:forEach>
+                        </div>
+                    </div>
+                   
+                   
+                    <div id="report" class="animationHover">
+                        <div id="reportText" class="textWrap" >접수된 신고</div>
+                        <div id="reportTable" class="tableWrap">
+                        	<a>
+                        		<div class="column" class="firstColumn">
+                                <div class="reportNo">번호</div>
+                                <div class="reportMember">신고자</div>
+                                <div class="reportProject">프로젝트</div>
+                                <div class="reportStatus">처리상태</div>
+                            </div>
+                        	</a>
                             
+                          <c:forEach items="${reportVoList}" var="item">
+                            <a href="<%=contextPath%>/admin/report?p=1">
+                            	<div class="column" >
+                                <div class="reportNo">${item.no}</div>
+                                <div class="reportMember">${item.memberNick}</div>
+                                <div class="reportProject">${item.projectName}</div>
+                                <div class="reportStatus">${item.reportAc}</div>
+                            	</div>
+                            </a>
+                          </c:forEach>  
                         </div>
                     </div>
-                    <div id="message" class="animationHover">
-                        <div id="messageText"><a>접수된 신고</a></div>
-                        <div id="messageTable">
-                            <table>
-                            	<tr>
-                            		<td>asd</td>
-                            		<td>qeqw</td>
-                            		<td>qwesa</td>
-                            		<td>asda</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qweqw</td>
-                            		<td>sada</td>
-                            		<td>zxzxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asdas</td>
-                            		<td>qweqw</td>
-                            		<td>asdas</td>
-                            		<td>zxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
-                            	
-                            	
-                            </table>
-                        </div>
-                    </div>
+               
+               
+               
                 </div>
+                
+                
+                
                 <div id="dashBoardDiv2" class="dashBoard">
                     <div id="eventDashBoard" class="animationHover">
                         <div id="eventThumbnail">
-                      <!--   <img style="border-radius: 10px 10px 0px 0px;" width="100%" height="100%" src="<%=contextPath %>/resources/img/adminDashboard_img.jpg" alt="이벤트 섬네일"> -->  
-                        <!-- Carousel -->
+                     
+                       
 							<div id="demo" class="carousel slide" data-bs-ride="carousel">
 							
-							  <!-- Indicators/dots -->
-							  <div class="carousel-indicators">
-							    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-							    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-							    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-							  </div>
-							
-							  <!-- The slideshow/carousel -->
+							  
 							  <div class="carousel-inner">
-							    <div class="carousel-item active">
-							      <img src="la.jpg" alt="Los Angeles" class="d-block w-100">
-							    </div>
-							    <div class="carousel-item">
-							      <img src="chicago.jpg" alt="Chicago" class="d-block w-100">
-							    </div>
-							    <div class="carousel-item">
-							      <img src="ny.jpg" alt="New York" class="d-block w-100">
-							    </div>
+							  	<c:forEach items="${eventVoList}" var="item">
+								    <div class="carousel-item active" id="thumbnail">
+								      <img src="<%=contextPath %>/resources/admin/event/${item.thumbnailName}" alt="이벤트 섬네일" class="d-block w-100" width="428px" height="260px" onclick="location.href='<%=contextPath%>/admin/event/detail?no=${item.no}';" style="border-radius: 10px 10px 0px 0px; cursor: pointer;">
+								    </div>
+								</c:forEach>
 							  </div>
-							
-							  <!-- Left and right controls/icons -->
-							  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-							    <span class="carousel-control-prev-icon"></span>
-							  </button>
-							  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-							    <span class="carousel-control-next-icon"></span>
-							  </button>
 							</div>
                         </div>
+                       
+                       
                         <div id="eventOngoing">
-                            <div id="eventOngoingText"><a>진행중인 이벤트</a></div>
-                            <div id="eventOngoingTable">
-                                <table>
-                            	<tr>
-                            		<td>asd</td>
-                            		<td>qeqw</td>
-                            		<td>qwesa</td>
-                            		<td>asda</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qweqw</td>
-                            		<td>sada</td>
-                            		<td>zxzxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asdas</td>
-                            		<td>qweqw</td>
-                            		<td>asdas</td>
-                            		<td>zxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
-                            	
-                            </table>
+                            <div id="eventOngoingText" class="textWrap">진행중인 이벤트</div>
+                            <div id="eventOngoingTable" class="tableWrap">
+                                <a>
+                                	<div class="column" class="firstColumn">
+                                    <div class="eventNo">번호</div>
+	                                <div class="importantYn">중요도</div>
+	                                <div class="eventName">이벤트명</div>
+	                                <div class="eventEndDate">마감일</div>
+                                	</div>
+                                </a>
+                              <c:forEach items="${eventVoList}" var="item">
+                                <a href="<%=contextPath%>/admin/event/detail?no=${item.no}">
+                                	<div class="column" class="firstColumn">
+                                        <div class="eventNo">${item.no}</div>
+                                        <div class="importantYn">${item.importantYN}</div>
+                                        <div class="eventName">${item.title}</div>
+                                        <div class="eventEndDate">${item.endDate}</div>
+                                	</div>
+                                </a>
+                              </c:forEach>   
                             </div>
                         </div>
+                    
+                    
                     </div>
+                    
+                    
                     <div id="noticeDashBoard" class="animationHover">
-                        <div id="noticeDashBoardText">
-                            <a>공지사항 관리</a>
-                        </div>
-                        <div id="noticeDashBoardTable">
-                             <table>
-                            	<tr>
-                            		<td>asd</td>
-                            		<td>qeqw</td>
-                            		<td>qwesa</td>
-                            		<td>asda</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qweqw</td>
-                            		<td>sada</td>
-                            		<td>zxzxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asdas</td>
-                            		<td>qweqw</td>
-                            		<td>asdas</td>
-                            		<td>zxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
+                        <div id="noticeDashBoardText" class="textWrap" >공지사항 관리</div>
+                        <div id="noticeDashBoardTable" class="tableWrap">
+                            <a>
+                            	<div class="column" class="firstColumn">
+                                <div class="noticeNo">번호</div>
+                                <div class="importantYn">중요도</div>
+                                <div class="noticeName">공지사항명</div>
+                                <div class="noticeWriteDate">작성일</div>
+                            	</div>
+                            </a>
+                          <c:forEach items="${noticeVoList}" var="item">
+                            <a href="<%=contextPath%>/admin/notice/detail?no=${item.no}">
+                            	<div class="column" >
+                                <div class="noticeNo">${item.no}</div>
+                                <div class="importantYn">${item.importantYn}</div>
+                                <div class="noticeName">${item.title}</div>
+                                <div class="noticeWriteDate">${item.writeDate}</div>
+                            	</div>
+                            </a>
+                          </c:forEach>    
                             	
-                            </table>
                         </div>
                     </div>
                 </div>
                 <div id="dashBoardDiv3" class="dashBoard">
-                    <div id="todaySuccessPrj" class="animationHover">
-                        <div id="todaySuccessPrjText">
-                            <a>오늘 성사된 프로젝트</a>
-                        </div>
-                        <div id="todaySuccessPrjTable">
-							 <table>
-                            	<tr>
-                            		<td>asd</td>
-                            		<td>qeqw</td>
-                            		<td>qwesa</td>
-                            		<td>asda</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qweqw</td>
-                            		<td>sada</td>
-                            		<td>zxzxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asdas</td>
-                            		<td>qweqw</td>
-                            		<td>asdas</td>
-                            		<td>zxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
-                            	
-                            </table>
+
+
+                    <div id="beforeStartPrj" class="animationHover">
+                        <div id="beforeStartPrjText" class="textWrap" >시작전 프로젝트</div>
+                        <div id="beforeStartPrjTable" class="tableWrap">
+                            <a>
+                            	<div class="column" class="firstColumn">
+                                <div class="prjNo">번호</div>
+                                <div class="prjMaker">메이커</div>
+                                <div class="prjName">프로젝트명</div>
+                                <div class="prjCategory">카테고리</div>
+                           		</div>
+                            </a>
+                          <c:forEach items="${beforePrjVoList}" var="item">  
+                            <a href="<%=contextPath%>/project/view?num=${item.no}">
+                            	<div class="column" >
+                                <div class="prjNo">${item.no}</div>
+                                <div class="prjMaker">${item.makerName}</div>
+                                <div class="prjName">${item.projectName}</div>
+                                <div class="prjCategory">${item.categoryName}</div>
+                           		</div>
+                            </a>
+                          </c:forEach>  
                         </div>
                     </div>
-                    <div id="todayStartPrj" class="animationHover">
-                        <div id="todayStartPrjText"><a>오늘 시작하는 프로젝트</a></div>
-                        <div id="todayStartPrjTable">
-                             <table>
-                            	<tr>
-                            		<td>asd</td>
-                            		<td>qeqw</td>
-                            		<td>qwesa</td>
-                            		<td>asda</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qweqw</td>
-                            		<td>sada</td>
-                            		<td>zxzxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asdas</td>
-                            		<td>qweqw</td>
-                            		<td>asdas</td>
-                            		<td>zxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
-                            	
-                            </table>
+
+
+
+                    <div id="todayPrj" class="animationHover">
+                        <div id="todayPrjText" class="textWrap">진행중 프로젝트</div>
+                        <div id="todayPrjTable" class="tableWrap">
+                            <a>
+                            	<div class="column" >
+                                <div class="prjNo">번호</div>
+                                <div class="prjMaker">메이커</div>
+                                <div class="prjName">프로젝트명</div>
+                                <div class="prjCategory">카테고리</div>
+                           		</div>
+                            </a>
+                          <c:forEach items="${prjVoList}" var="item">  
+                            <a href="<%=contextPath%>/project/view?num=${item.no}">
+                            	<div class="column" >
+                                <div class="prjNo">${item.no}</div>
+                                <div class="prjMaker">${item.makerName}</div>
+                                <div class="prjName">${item.projectName}</div>
+                                <div class="prjCategory">${item.categoryName}</div>
+                           		</div>
+                            </a>
+                          </c:forEach>   
                         </div>
                     </div>
-                    <div id="todayReport" class="animationHover">
-                        <div id="todayReportText">
-                            <a>마감임박 이벤트</a>
-                        </div>
-                        <div id="todayReportTable">
-                             <table>
-                            	<tr>
-                            		<td>asd</td>
-                            		<td>qeqw</td>
-                            		<td>qwesa</td>
-                            		<td>asda</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qweqw</td>
-                            		<td>sada</td>
-                            		<td>zxzxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asdas</td>
-                            		<td>qweqw</td>
-                            		<td>asdas</td>
-                            		<td>zxc</td>
-                            	</tr>
-                            	<tr>
-                            		<td>asda</td>
-                            		<td>qwewq</td>
-                            		<td>asdas</td>
-                            		<td>zxcz</td>
-                            	</tr>
-                            	
-                            </table>
+
+
+
+                    <div id="successproject" class="animationHover">
+                        <div id="successprojectText" class="textWrap">성공한 프로젝트</div>
+                        <div id="successprojectTable" class="tableWrap">
+                            <a>
+                            	<div class="column" class="firstColumn">
+                                <div class="prjNo">번호</div>
+                                <div class="prjMaker">메이커</div>
+                                <div class="prjName">프로젝트명</div>
+                                <div class="prjCategory">카테고리</div>
+                           		</div>
+                            </a>
+                           <c:forEach items="${successPrjVoList}" var="item">  
+                            <a href="<%=contextPath%>/project/view?num=${item.no}">
+                            	<div class="column" >
+                                <div class="prjNo">${item.no}</div>
+                                <div class="prjMaker">${item.makerName}</div>
+                                <div class="prjName">${item.projectName}</div>
+                                <div class="prjCategory">${item.categoryName}</div>
+                           		</div>
+                            </a>
+                          </c:forEach> 
+                            
                         </div>
                     </div>
                 </div>

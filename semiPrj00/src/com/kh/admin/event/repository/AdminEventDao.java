@@ -9,6 +9,7 @@ import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.admin.attachment.vo.AdminEventAttachmentVo;
 import com.kh.admin.event.vo.AdminEventVo;
+import com.kh.admin.project.vo.AdminPrjVo;
 import com.kh.common.vo.PageVo;
 
 public class AdminEventDao {
@@ -387,5 +388,104 @@ public class AdminEventDao {
 			
 			return result;
 		}
+
+	//대시보드 - 진행중 이벤트 카운트
+	public String getEventCnt(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String count = "";
+		
+		String sql = "SELECT COUNT(NO) AS COUNT FROM EVENT WHERE STATUS= 'I'";
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getString("COUNT");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return count;
+	
 	}
+
+	// 대시보드 - 이벤트 관련 정보 가져오기
+	public List<AdminEventVo> getMainData(Connection conn) {
+		List<AdminEventVo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT E.NO , A.NAME , E.TITLE , E.CONTENT , E.THUMBNAIL_PATH , E.THUMBNAIL_NAME , E.WRITE_DATE , TO_CHAR(E.START_DATE,'YYYY-MM-DD') AS START_DATE , TO_CHAR(E.END_DATE,'YYYY-MM-DD') AS END_DATE , E.IMPORTANT_YN , E.EDIT_DATE , E.EDIT_ADMIN_NO , E.STATUS FROM EVENT E JOIN ADMIN A ON E.ADMIN_NO = A.NO WHERE E.STATUS = 'I' ORDER BY E.NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 4";
+		
+		try {
+			
+			pstmt= conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<AdminEventVo>();
+			
+			while(rs.next()) {
+				
+				AdminEventVo vo = new AdminEventVo();
+				
+				String no = rs.getString("NO");
+				String title = rs.getString("TITLE");
+				String thumbnailPath = rs.getString("THUMBNAIL_PATH");
+				String thumbnailName = rs.getString("THUMBNAIL_NAME"); 
+				String endDate = rs.getString("END_DATE"); 
+				String importantYn = rs.getString("IMPORTANT_YN"); 
+				String status = rs.getString("STATUS"); 
+				
+				if ("I".equals(status)) {
+					status = "진행중";
+				}
+				
+				if("N".equals(importantYn)) {
+					importantYn = "-";
+				} else if ("Y".equals(importantYn)) {
+					importantYn = "중요*";
+				}
+				
+				int nameLength = title.length();
+				int subStringLength = 13;
+				if(nameLength<subStringLength) {
+					subStringLength = nameLength;
+				}
+				String subTitle = title.substring(0,subStringLength);
+				
+				vo.setNo(no);
+				vo.setTitle(subTitle);
+				vo.setThumbnailPath(thumbnailPath);
+				vo.setThumbnailName(thumbnailName);
+				vo.setEndDate(endDate);
+				vo.setImportantYN(importantYn);
+				
+				
+				list.add(vo);
+				
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		
+		return list;
+	}
+
+}
 

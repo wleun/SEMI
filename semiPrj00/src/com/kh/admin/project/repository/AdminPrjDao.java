@@ -227,6 +227,268 @@ public class AdminPrjDao {
 		return projectVo;
 		
 	}
+
+	//대시보드 - 시작전인 프로젝트 카운트
+	public String getBeforePrjCnt(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String count = "";
+		
+		String sql = "SELECT COUNT(PROJECT_NO) AS COUNT FROM PROJECT WHERE STATUS = 'B'";
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getString("COUNT");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return count;
+	
+	}
+
+	//대시보드 - 진행중인 프로젝트 카운트
+	public String getPrjCnt(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String count = "";
+		
+		String sql = "SELECT COUNT(PROJECT_NO) AS COUNT FROM PROJECT WHERE STATUS = 'I'";
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getString("COUNT");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return count;
+	
+	}
+
+	//대시보드 - 시작전 프로젝트 정보 가져오기
+	public List<AdminPrjVo> getBeforePrjData(Connection conn) {
+		List<AdminPrjVo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql="SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT P.PROJECT_NO , P.STATUS , C.NAME AS CATEGORY_NAME , P.NAME AS PROJECT_NAME , M.NICK AS MAKER_NAME , TO_CHAR(P.START_DATE,'YYYY-MM-DD') AS START_DATE , TO_CHAR(P.END_DATE,'YYYY-MM-DD') AS END_DATE FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C USING(CATEGORY_NO) WHERE P.STATUS='B' ORDER BY P.PROJECT_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 4";
+		
+		try {
+			
+			pstmt= conn.prepareStatement(sql);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<AdminPrjVo>();
+			
+			while(rs.next()) {
+				
+				
+				AdminPrjVo vo = new AdminPrjVo();
+				
+				String no = rs.getString("PROJECT_NO");
+				String status = rs.getString("STATUS");
+				String projectName = rs.getString("PROJECT_NAME");
+				String makerName = rs.getString("MAKER_NAME");
+				
+				
+				
+				if("B".equals(status)) {
+					status = "진행전";
+				} else if("I".equals(status)) {
+					status = "진행중";
+				} else if("S".equals(status)) {
+					status = "성공";
+				} else if("F".equals(status)) {
+					status = "실패";
+				} else {
+					status = "삭제됨";
+				}
+				
+				
+				int nameLength = projectName.length();
+				int subStringLength = 13;
+				if(nameLength<subStringLength) {
+					subStringLength = nameLength;
+				}
+				String subName = projectName.substring(0,subStringLength);
+				
+				
+				vo.setNo(no);
+				vo.setStatus(status);
+				vo.setProjectName(subName);
+				vo.setMakerName(makerName);
+				
+				
+				list.add(vo);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	
+	}
+
+	//대시보드 - 진행중 프로젝트 정보 가져오기
+	public List<AdminPrjVo> getPrjData(Connection conn) {
+		List<AdminPrjVo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql="SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT P.PROJECT_NO , P.STATUS , C.NAME AS CATEGORY_NAME , P.NAME AS PROJECT_NAME , M.NICK AS MAKER_NAME , TO_CHAR(P.START_DATE,'YYYY-MM-DD') AS START_DATE , TO_CHAR(P.END_DATE,'YYYY-MM-DD') AS END_DATE FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C USING(CATEGORY_NO) WHERE P.STATUS='I' ORDER BY P.PROJECT_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 4";
+		
+		try {
+			
+			pstmt= conn.prepareStatement(sql);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<AdminPrjVo>();
+			
+			while(rs.next()) {
+				
+				
+				AdminPrjVo vo = new AdminPrjVo();
+				
+				String no = rs.getString("PROJECT_NO");
+				String status = rs.getString("STATUS");
+				String projectName = rs.getString("PROJECT_NAME");
+				String makerName = rs.getString("MAKER_NAME");
+				
+				
+				
+				if("B".equals(status)) {
+					status = "진행전";
+				} else if("I".equals(status)) {
+					status = "진행중";
+				} else if("S".equals(status)) {
+					status = "성공";
+				} else if("F".equals(status)) {
+					status = "실패";
+				} else {
+					status = "삭제됨";
+				}
+				
+				
+				int nameLength = projectName.length();
+				int subStringLength = 13;
+				if(nameLength<subStringLength) {
+					subStringLength = nameLength;
+				}
+				String subName = projectName.substring(0,subStringLength);
+				
+				
+				vo.setNo(no);
+				vo.setStatus(status);
+				vo.setProjectName(subName);
+				vo.setMakerName(makerName);
+				
+				
+				list.add(vo);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	//대시보드 - 성공한 프로젝트 정보 가져오기
+	public List<AdminPrjVo> getsuccessPrjData(Connection conn) {
+		List<AdminPrjVo> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql="SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM ( SELECT P.PROJECT_NO , P.STATUS , C.NAME AS CATEGORY_NAME , P.NAME AS PROJECT_NAME , M.NICK AS MAKER_NAME , TO_CHAR(P.START_DATE,'YYYY-MM-DD') AS START_DATE , TO_CHAR(P.END_DATE,'YYYY-MM-DD') AS END_DATE FROM PROJECT P JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN CATEGORY C USING(CATEGORY_NO) WHERE P.STATUS='S' ORDER BY P.PROJECT_NO DESC ) T ) WHERE RNUM BETWEEN 1 AND 4";
+		
+		try {
+			
+			pstmt= conn.prepareStatement(sql);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			list = new ArrayList<AdminPrjVo>();
+			
+			while(rs.next()) {
+				
+				
+				AdminPrjVo vo = new AdminPrjVo();
+				
+				String no = rs.getString("PROJECT_NO");
+				String status = rs.getString("STATUS");
+				String projectName = rs.getString("PROJECT_NAME");
+				String makerName = rs.getString("MAKER_NAME");
+				
+				
+				
+				if("B".equals(status)) {
+					status = "진행전";
+				} else if("I".equals(status)) {
+					status = "진행중";
+				} else if("S".equals(status)) {
+					status = "성공";
+				} else if("F".equals(status)) {
+					status = "실패";
+				} else {
+					status = "삭제됨";
+				}
+				
+				int nameLength = projectName.length();
+				int subStringLength = 13;
+				if(nameLength<subStringLength) {
+					subStringLength = nameLength;
+				}
+				String subName = projectName.substring(0,subStringLength);
+				
+				vo.setNo(no);
+				vo.setStatus(status);
+				vo.setProjectName(subName);
+				vo.setMakerName(makerName);
+				
+				
+				list.add(vo);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 		
 		
 

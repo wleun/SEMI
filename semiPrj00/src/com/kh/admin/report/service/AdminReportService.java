@@ -58,4 +58,16 @@ public class AdminReportService {
 		return result;
 	}
 
+	//대시보드 - 메인페이지 데이터 가져오기
+	public List<AdminReportVo> getMainData() {
+		Connection conn = getConnection();
+		
+		List<AdminReportVo> reportVoList = new AdminReportDao().getMainData(conn);
+	
+		close(conn);
+		
+		return reportVoList;
+	
+	}
+
 }

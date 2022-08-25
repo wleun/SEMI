@@ -1,12 +1,13 @@
 package com.kh.admin.project.service;
 
 import static com.kh.common.JDBCTemplate.*;
-import static com.kh.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kh.admin.event.repository.AdminEventDao;
+import com.kh.admin.event.vo.AdminEventVo;
 import com.kh.admin.member.repository.AdminMemberDao;
 import com.kh.admin.member.vo.AdminMemberVo;
 import com.kh.admin.project.repository.AdminPrjDao;
@@ -87,6 +88,39 @@ public class AdminPrjService {
 		close(conn);
 		return projectVoList;
 		
+	}
+
+	//대시보드 - 메인페이지 정보 가져오기 (시작전 프로젝트)
+	public List<AdminPrjVo> getBeforePrjData() {
+		Connection conn = getConnection();
+		
+		List<AdminPrjVo> beforePrjVoList = new AdminPrjDao().getBeforePrjData(conn);
+		
+		close(conn);
+		
+		return beforePrjVoList;
+	}
+
+	//대시보드 - 메인페이지 정보 가져오기 (진행중 프로젝트)
+	public List<AdminPrjVo> getPrjData() {
+		Connection conn = getConnection();
+		
+		List<AdminPrjVo> prjVoList = new AdminPrjDao().getPrjData(conn);
+		
+		close(conn);
+		
+		return prjVoList;
+	}
+
+	//대시보드 - 메인페이지 정보 가져오기 (성공한 프로젝트)
+	public List<AdminPrjVo> getSuccessPrjData() {
+		Connection conn = getConnection();
+		
+		List<AdminPrjVo> successPrjData = new AdminPrjDao().getsuccessPrjData(conn);
+		
+		close(conn);
+		
+		return successPrjData;
 	}
 
 }
