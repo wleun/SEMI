@@ -48,8 +48,8 @@ public class EventDao {
 	 */
 	public List<AdminEventVo> selectList(Connection conn, PageVo pageVo) {
 
-		String sql = "SELECT * FROM ( SELECT ROWNUM AS RNUM , T.* FROM (SELECT * FROM  DONATE_LIST d LEFT OUTER JOIN (SELECT p.NAME P_TITLE, r.NO REARD_NO FROM REWARD r LEFT OUTER JOIN PROJECT p ON r.PROJECT_NO = p.PROJECT_NO) j ON d.REWARD_NO = REWARD_NO WHERE d.MEMBER_NO=?) T ) WHERE RNUM BETWEEN ? AND ?";
-
+		String sql = "SELECT T.* FROM ( SELECT ROWNUM RNUM, E.* FROM EVENT E ) T WHERE RNUM BETWEEN ? AND ?"; 
+				
 		List<AdminEventVo> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -68,50 +68,12 @@ public class EventDao {
 			list = new ArrayList<AdminEventVo>();
 			
 			while(rs.next()) {
-				String no = rs.getString("NO");
-				String name = rs.getString("NAME");
-				String title = rs.getString("TITLE");
-				String content = rs.getString("CONTENT"); 
-				String thumbnailPath = rs.getString("THUMBNAIL_PATH");
-				String thumbnailName = rs.getString("THUMBNAIL_NAME"); 
-				String writeDate = rs.getString("WRITE_DATE"); 
-				String startDate = rs.getString("START_DATE"); 
-				String endDate = rs.getString("END_DATE"); 
-				String importantYn = rs.getString("IMPORTANT_YN"); 
-				String eidtDate = rs.getString("EDIT_DATE"); 
-				String editAdminNo = rs.getString("EDIT_ADMIN_NO"); 
-				String status = rs.getString("STATUS"); 
-				
-				if("B".equals(status)) {
-					status = "진행예정";
-				} else if ("I".equals(status)) {
-					status = "진행중";
-				} else if ("E".equals(status)) {
-					status = "종료됨";
-				} else {
-					status = "삭제됨";
-				}
-				
-				if("N".equals(importantYn)) {
-					importantYn = "-";
-				} else if ("Y".equals(importantYn)) {
-					importantYn = "중요*";
-				}
-				
 				AdminEventVo vo = new AdminEventVo();
-				vo.setNo(no);
-				vo.setAdminName(name);
-				vo.setTitle(title);
-				vo.setContent(content);
-				vo.setThumbnailPath(thumbnailPath);
-				vo.setThumbnailName(thumbnailName);
-				vo.setWriteDate(writeDate);
-				vo.setStartDate(startDate);
-				vo.setEndDate(endDate);
-				vo.setImportantYN(importantYn);
-				vo.setEditDate(eidtDate);
-				vo.setEditAdminNo(editAdminNo);
-				vo.setStatus(status);
+				
+				vo.setTitle(rs.getString("TITLE"));
+				vo.setNo(rs.getString("NO"));
+				vo.setWriteDate(rs.getString("WRITE_DATE"));
+				vo.setThumbnailName(rs.getString("THUMBNAIL_NAME"));
 				
 				list.add(vo);
 			}
