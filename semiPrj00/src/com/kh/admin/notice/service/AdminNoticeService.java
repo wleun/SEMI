@@ -197,5 +197,16 @@ public class AdminNoticeService {
 		return result1 * result2;
 	}
 
+	//대시보드 - 메인 페이지 정보 가져오기
+	public List<AdminNoticeVo> getMainData() {
+		Connection conn = getConnection();
+		
+		List<AdminNoticeVo> noticeVoList = new AdminNoticeDao().getMainData(conn);
+		
+		close(conn);
+		
+		return noticeVoList;
+	}
+
 
 }

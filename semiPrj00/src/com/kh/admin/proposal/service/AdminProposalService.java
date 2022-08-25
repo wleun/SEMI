@@ -1,12 +1,13 @@
 package com.kh.admin.proposal.service;
 
 import static com.kh.common.JDBCTemplate.*;
-import static com.kh.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
 import java.util.List;
 
 import com.kh.admin.attachment.vo.AdminProposalAttachmentVo;
+import com.kh.admin.event.repository.AdminEventDao;
+import com.kh.admin.event.vo.AdminEventVo;
 import com.kh.admin.member.repository.AdminMemberDao;
 import com.kh.admin.notice.repository.AdminNoticeDao;
 import com.kh.admin.notice.vo.AdminNoticeVo;
@@ -87,6 +88,17 @@ public class AdminProposalService {
 		
 		close(conn);
 		return status;
+	}
+
+	//대시보드 - 메인페이지 정보 가져오기
+	public List<AdminProposalVo> getMainData() {
+		Connection conn = getConnection();
+		
+		List<AdminProposalVo> proposalVoList = new AdminProposalDao().getMainData(conn);
+		
+		close(conn);
+		
+		return proposalVoList;
 	}
 
 }
