@@ -113,4 +113,15 @@ public class PrjViewService {
 		}
 		return like;
 	}
+
+	//서버 가서 플젝 번호와 일치하는 메이커 no 조회해오기
+	public String getMakerNo(String prjNum) {
+		Connection conn = getConnection();
+		
+		String mnum = dao.getMakerNo(conn, prjNum);
+		if(mnum != null) {
+			close(conn);
+		}
+		return mnum;
+	}
 }

@@ -726,7 +726,7 @@
                     <div id="creator-desc">${projectVo.makerInfo}</div>
                     <div class="btns" id="btn-div2">
                         <button>+ 팔로우</button>
-                        <button onclick="location.href='/semiPrj00/member/qdetail?mnum=${projectVo.makerNo}'">1:1 문의하기</button>
+                        <button onclick="location.href='/semiPrj00/member/qdetail?mnum=${mnum}'">1:1 문의하기</button>
                     </div>
                 </div>
 

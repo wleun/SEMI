@@ -278,4 +278,27 @@ public class PrjViewDao {
 		System.out.println("현재 로그인한 멤버가 해당 플젝을 좋아요 했는지 확인한 dao 결과:"+like);
 		return like;
 	}
+
+	//서버 가서 플젝 번호와 일치하는 메이커 no 조회해오기
+	public String getMakerNo(Connection conn, String prjNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String mnum = null;
+		String sql = "SELECT MAKER_NO FROM PROJECT WHERE PROJECT_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, prjNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				mnum = rs.getString("MAKER_NO");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return mnum;
+	}
 }
