@@ -24,6 +24,9 @@ public class PrjCategoryController extends HttpServlet{
 		
 		String category = req.getParameter("category");
 		String sort = req.getParameter("sort");
+		if(sort == null) {
+			sort = "all";
+		}
 		
 		/*
 		 * 페이징 처리

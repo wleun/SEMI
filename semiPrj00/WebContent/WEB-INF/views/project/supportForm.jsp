@@ -7,8 +7,16 @@
 	ProjectVo prjVo = (ProjectVo)request.getAttribute("prjVo");
 	ProjectRewardVo rewardVo = (ProjectRewardVo)request.getAttribute("rewardVo");
 	
-	AddrVo defaultAddr = ((ArrayList<AddrVo>)request.getAttribute("addrList")).get(0);
-	PaymentVo defaultPayment = ((ArrayList<PaymentVo>)request.getAttribute("paymentList")).get(0);
+	ArrayList<AddrVo> addrList_ = (ArrayList<AddrVo>)request.getAttribute("addrList");
+	ArrayList<PaymentVo> paymentList_ = (ArrayList<PaymentVo>)request.getAttribute("paymentList");
+	AddrVo defaultAddr  = null;
+	PaymentVo defaultPayment  = null;
+	if(addrList_.size()!=0){
+		defaultAddr = addrList_.get(0);
+	}
+	if(paymentList_.size()!=0){
+		defaultPayment = paymentList_.get(0);
+	}
 	
 	String quantity = (String)request.getAttribute("quantity");
 	String add = (String)request.getAttribute("add");

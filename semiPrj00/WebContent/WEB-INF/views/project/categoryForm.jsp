@@ -92,9 +92,11 @@
     }
     .prj-title{
     	font-size : 18px;
+    	height: 75px
     }
     .prj-subscribe{
     	color : gray;
+    	height: 25px;
     }
     .gage-div{
         height: 10%;
@@ -128,6 +130,7 @@
     #page-area{
         text-align: center;
         padding: 30px;
+        margin-top: 50px;
     }
     #page-area a{
         width: 35px;
@@ -178,7 +181,11 @@
 	                    <%=vo.getName()%>
 	                </div>
 	                <div class="prj-content prj-subscribe">
-	                    <%=vo.getText()%>
+	                	<%if(vo.getText().length() > 50){ %>
+	                    	<%=vo.getText().substring(0, 50)%> ...
+	                    <%}else{ %>
+	                    	<%=vo.getText()%>
+	                    <%} %>
 	                </div>
 	                <div class="prj-content gage-div">
 	                    <div class="prj-content">

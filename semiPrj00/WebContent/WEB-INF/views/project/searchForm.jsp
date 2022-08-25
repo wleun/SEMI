@@ -74,6 +74,9 @@
         width: 300px;
         margin: 42px;
     }
+    .prj-wrap:hover{
+        cursor: pointer;
+    }
     .prj-img{
     	background-color: gray;
         height: 200px;
@@ -81,6 +84,17 @@
     }
     .prj-content{
         margin: 5px 0px;
+    }
+    .prj-category{
+    	color : #48CA7D;
+    }
+    .prj-title{
+    	font-size : 18px;
+    	height: 75px
+    }
+    .prj-subscribe{
+    	color : gray;
+    	height: 25px;
     }
     .gage-div{
         height: 10%;
@@ -114,6 +128,7 @@
     #page-area{
         text-align: center;
         padding: 30px;
+        margin-top: 50px;
     }
     #page-area a{
         width: 35px;
@@ -133,17 +148,6 @@
         <div id="search-voca">
             <%=searching%> 의 검색결과
         </div>
-        <div id="category-sort" class="dropdown">
-            <button type="button" id="sort-btn" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
-                상태
-            </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=all">전체 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=ongoing">진행중인 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=complete">성사된 프로젝트</a></li>
-                    <li><a class="dropdown-item" href="<%=contextPath%>/project/category?category=<%=searching%>&sort=intended">공개예정 프로젝트</a></li>
-                </ul>
-        </div>
         <div id="quantity-div">
             <span id="quantity"><%=pageVo.getListCount()%></span>개의 프로젝트가 있습니다
         </div>
@@ -162,7 +166,11 @@
 	                    <%=vo.getName()%>
 	                </div>
 	                <div class="prj-content prj-subscribe">
-	                    <%=vo.getText()%>
+	                    <%if(vo.getText().length() > 50){ %>
+	                    	<%=vo.getText().substring(0, 50)%> ...
+	                    <%}else{ %>
+	                    	<%=vo.getText()%>
+	                    <%} %>
 	                </div>
 	                <div class="prj-content gage-div">
 	                    <div class="prj-content">
@@ -201,19 +209,32 @@
         </div>
         <div id="page-area">
             <%if(currentPage!=1){ %>
-				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/searching?searching=<%=searching%>&sort=<%=sort%>&p=<%=currentPage-1%>"> &lt; </a>
+            	<%if(sort != null){ %>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/search?searching=<%=searching%>&sort=<%=sort%>&p=<%=currentPage-1%>"> &lt; </a></a>				
+				<%}else{%>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/search?searching=<%=searching%>&p=<%=currentPage-1%>"> &lt; </a>	
+				<%}%>
+				
 			<%} %>
 			
 			<% for(int i=startPage; i<=endPage;i++){ %>
 				<%if(i==currentPage){%>
 					<a class="btn btn-sm btn-success"><%=i%></a>
 				<%}else{%>
-					<a class="btn btn-sm" href="<%=contextPath%>/project/searching?searching=<%=searching%>&sort=<%=sort%>&p=<%=i%>"><%=i%></a>				
+					<%if(sort != null){ %>
+					<a class="btn btn-sm" href="<%=contextPath%>/project/search?searching=<%=searching%>&sort=<%=sort%>&p=<%=i%>"><%=i%></a>				
+					<%}else{%>
+					<a class="btn btn-sm" href="<%=contextPath%>/project/search?searching=<%=searching%>&p=<%=i%>"><%=i%></a>	
+					<%}%>
 				<%}%>
 			<% } %>
 			
 			<% if(currentPage!=maxPage){ %>
-				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/searching?searching=<%=searching%>&sort=<%=sort%>&p=<%=currentPage+1%>"> &gt; </a>
+				<%if(sort != null){ %>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/search?searching=<%=searching%>&sort=<%=sort%>&p=<%=currentPage+1%>"> &gt; </a>				
+				<%}else{%>
+				<a class="btn btn-sm btn-success" href="<%=contextPath%>/project/search?searching=<%=searching%>&p=<%=currentPage+1%>"> &gt; </a>	
+				<%}%>
 			<% }%>
         </div>
     </div>
