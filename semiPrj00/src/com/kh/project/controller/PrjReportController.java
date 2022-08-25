@@ -47,10 +47,10 @@ public class PrjReportController extends HttpServlet{
 		
 		if(result == 1) {
 			req.getSession().setAttribute("alertMsg", "접수되었습니다. 처리 결과는 별도로 답변을 드리지 않습니다.");
-			req.getRequestDispatcher(req.getContextPath()+"/project/view");
+			resp.sendRedirect(req.getContextPath());
 		}else {
 			req.getSession().setAttribute("alertMsg", "처리 과정에 문제가 발생하였습니다. 다시 시도해 주세요.");
-			req.getRequestDispatcher(req.getContextPath()+"/project/view");
+			resp.sendRedirect(req.getContextPath());
 		}
 	}
 		
