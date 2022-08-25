@@ -2,14 +2,14 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
     
   	  List<ProjectVo> recommendList = (List<ProjectVo>)request.getAttribute("recommendList");
    	  List<ProjectVo> earlyList = (List<ProjectVo>)request.getAttribute("earlyList");
       List<ProjectVo> deadlineList = (List<ProjectVo>)request.getAttribute("deadlineList");
 
-      %>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -256,7 +256,7 @@
 				onclick="location.href='<%=contextPath%>/project/view?num=<%=recommendList.get(i).getPrjectNo()%>'">
 				<div class="prj-content prj-img">
 					<img
-						src="<%=contextPath%>/resources/upload/<%=earlyList.get(i).getThumbnailName()%>"
+						src="<%=contextPath%>/resources/upload/<%=recommendList.get(i).getThumbnailName()%>"
 						alt="프로젝트 메인 사진">
 				</div>
 				<div class="prj-content prj-category">
@@ -268,9 +268,14 @@
 				<!-- 프로젝트 달성도 부분 -->
 				<div class="prj-content gage-div">
 					<div class="prj-content">
-						<span class="percentage" id="percentage"> <%int total = Integer.parseInt(recommendList.get(i).getEtc())*100/recommendList.get(i).getGoal();%>
+						<span class="percentage" id="percentage"> <%long total = Math.round(Double.parseDouble(recommendList.get(i).getEtc())*100/recommendList.get(i).getGoal());%>
 							<%=total %>%
-						</span> <span class="amount"><fmt:formatNumber value="${recommendList.get(i).getEtc()}" pattern="#,###.##"/>원</span>
+						</span> <span class="amount" id="rAmount<%=i%>"></span>
+						<script>
+							//정규식으로 3자리마다 , 처리
+							var amount = (<%=recommendList.get(i).getEtc()%>).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+							$("#rAmount<%=i%>").text(amount+'원');
+						</script>
 					</div>
 					<div class="prj-content d-day" id="<%=i%>">
 						<!-- 남은 날짜 계산 -->
@@ -304,31 +309,6 @@
 			<%} %>
 			<%} %>
 
-
-			<div class="prj-wrap">
-				<div class="prj-content prj-img">
-					<img src="" alt="프로젝트 메인 사진">
-				</div>
-				<div class="prj-content prj-category">
-					<span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-				</div>
-				<div class="prj-content prj-title">프로젝트 타이틀</div>
-				<!-- <div class="prj-content prj-subscribe">
-                    프로젝트 설명
-                </div> -->
-				<!-- 프로젝트 달성도 부분 -->
-				<div class="prj-content gage-div">
-					<div class="prj-content">
-						<span class="percentage">달성률</span> 
-						<span class="amount">모인 금액</span>
-					</div>
-					<div class="prj-content d-day">남은 날짜</div>
-					<div class="prj-content gage-bar progress" style="height: 5px;">
-						<div class="progress-bar"
-							style="width: 50%; height: 5px; background-color: #48CA7D !important;"></div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!--첫번째 추천 스크롤버튼-->
 		<div class="btndiv">
@@ -353,8 +333,7 @@
 		<!-- 2번째 추천 -->
 
 		<!-- 카테고리 내용 래퍼 -->
-		<br>
-		<br>
+		<br> <br>
 		<h2>신규 프로젝트</h2>
 		<h5>신제품을 빠르게 만나보세요!</h5>
 		<div id="category-content-wrap">
@@ -377,9 +356,15 @@
 				<!-- 프로젝트 달성도 부분 -->
 				<div class="prj-content gage-div">
 					<div class="prj-content">
-						<span class="percentage" id="percentage"> <%int total = Integer.parseInt(earlyList.get(i).getEtc())*100/earlyList.get(i).getGoal();%>
+						<span class="percentage" id="percentage"> <%long total = Math.round(Double.parseDouble(earlyList.get(i).getEtc())*100/earlyList.get(i).getGoal());%>
 							<%=total %>%
-						</span> <span class="amount"><%=earlyList.get(i).getEtc()%>원</span>
+						</span> <span class="amount" id="eAmount<%=i%>"></span>
+						<script>
+							//정규식으로 3자리마다 , 처리
+							var amount = (<%=earlyList.get(i).getEtc()%>).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+							$("#eAmount<%=i%>").text(amount+'원');
+						
+						</script>
 					</div>
 					<div class="prj-content d-day" id="n<%=i%>">
 						<!-- 남은 날짜 계산 -->
@@ -413,37 +398,11 @@
 			<%} %>
 			<%} %>
 
-
-			<div class="prj-wrap">
-				<div class="prj-content prj-img">
-					<img src="" alt="프로젝트 메인 사진">
-				</div>
-				<div class="prj-content prj-category">
-					<span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-				</div>
-				<div class="prj-content prj-title">프로젝트 타이틀</div>
-				<!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-				<!-- 프로젝트 달성도 부분 -->
-				<div class="prj-content gage-div">
-					<div class="prj-content">
-						<span class="percentage">달성률</span> <span class="amount">모인
-							금액</span>
-					</div>
-					<div class="prj-content d-day">남은 날짜</div>
-					<div class="prj-content gage-bar progress" style="height: 5px;">
-						<div class="progress-bar"
-							style="width: 50%; height: 5px; background-color: #48CA7D !important;"></div>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<!--세번째 추천-->
 		<!-- 카테고리 내용 래퍼 -->
-		<br>
-		<br>
+		<br> <br>
 		<h2>마감 임박 프로젝트</h2>
 		<h5>놓치지 말고 막차탑승!</h5>
 		<div id="category-content-wrap">
@@ -466,9 +425,14 @@
 				<!-- 프로젝트 달성도 부분 -->
 				<div class="prj-content gage-div">
 					<div class="prj-content">
-						<span class="percentage" id="percentage"> <%int total = Integer.parseInt(deadlineList.get(i).getEtc())*100/deadlineList.get(i).getGoal();%>
+						<span class="percentage" id="percentage"> <%long total = Math.round(Double.parseDouble(deadlineList.get(i).getEtc())*100/deadlineList.get(i).getGoal());%>
 							<%=total %>%
-						</span> <span class="amount"><%=deadlineList.get(i).getEtc()%>원</span>
+						</span> <span class="amount" id="dAmount<%=i%>"></span>
+						<script>
+							//정규식으로 3자리마다 , 처리
+							var amount = (<%=deadlineList.get(i).getEtc()%>).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+							$("#dAmount<%=i%>").text(amount+'원');
+						</script>
 					</div>
 					<div class="prj-content d-day" id="d<%=i%>">
 						<!-- 남은 날짜 계산 -->
@@ -480,6 +444,7 @@
 					    	var endDate = new Date(endDateStr);
 					    	var differenceMsec = endDate.getTime() - date.getTime();
 					    	var differenceDay = differenceMsec/1000/60/60/24;
+					    	console.log(Math.floor(differenceDay));
 					    	$("#d<%=i%>").text(Math.floor(differenceDay) + "일 남음");
 					    	if(Math.floor(differenceDay)<0){
 					    		$("#d<%=i%>").text("마감");
@@ -503,33 +468,14 @@
 			<%}%>
 
 
-			<div class="prj-wrap">
-				<div class="prj-content prj-img">
-					<img src="" alt="프로젝트 메인 사진">
-				</div>
-				<div class="prj-content prj-category">
-					<span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-				</div>
-				<div class="prj-content prj-title">프로젝트 타이틀</div>
-				<!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-				<!-- 프로젝트 달성도 부분 -->
-				<div class="prj-content gage-div">
-					<div class="prj-content">
-						<span class="percentage">달성률</span> <span class="amount">모인
-							금액</span>
-					</div>
-					<div class="prj-content d-day">남은 날짜</div>
-					<div class="prj-content gage-bar progress" style="height: 5px;">
-						<div class="progress-bar"
-							style="width: 50%; height: 5px; background-color: #48CA7D !important;"></div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
-	<br><br><br><br><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 	<%@ include file="/WEB-INF/views/common/userFooter.jsp"%>
 </body>
