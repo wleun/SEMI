@@ -120,7 +120,7 @@ public class MainPageDao {
 		//마감날짜가 오늘~3일 이후까지이고 프로젝트별 후원 토탈값을 구한 sql문
 		String sql = "SELECT p.*, m.*, c.name categoty_name, total FROM PROJECT P "
 				+ "JOIN MEMBER M ON P.MAKER_NO = M.NO JOIN category C ON p.category_no = c.category_no JOIN (SELECT p.project_no, SUM(TOTAL) total FROM PROJECT P "
-				+ "JOIN REWARD R ON p.project_no = r.project_no JOIN (SELECT R.NO, SUM(((d.amount))) total FROM REWARD R "
+				+ "JOIN REWARD R ON p.project_no = r.project_no JOIN (SELECT R.NO, SUM(d.amount) total FROM REWARD R "
 				+ "JOIN DONATE_LIST D ON r.no = d.reward_no WHERE d.cancel_yn='N' GROUP BY R.NO) T ON T.NO = R.NO GROUP BY p.project_no) T ON p.project_no = t.PROJECT_NO "
 				+ "WHERE P.STATUS = 'I' AND p.end_date >= TO_CHAR(SYSDATE, 'YYYY/MM/DD') and p.end_date <= TO_CHAR(SYSDATE+3, 'YYYY/MM/DD') ORDER BY end_date";
 		

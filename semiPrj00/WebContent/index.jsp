@@ -9,7 +9,7 @@
    	  List<ProjectVo> earlyList = (List<ProjectVo>)request.getAttribute("earlyList");
       List<ProjectVo> deadlineList = (List<ProjectVo>)request.getAttribute("deadlineList");
 
-    %>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -309,31 +309,6 @@
 			<%} %>
 			<%} %>
 
-
-			<div class="prj-wrap">
-				<div class="prj-content prj-img">
-					<img src="" alt="프로젝트 메인 사진">
-				</div>
-				<div class="prj-content prj-category">
-					<span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-				</div>
-				<div class="prj-content prj-title">프로젝트 타이틀</div>
-				<!-- <div class="prj-content prj-subscribe">
-                    프로젝트 설명
-                </div> -->
-				<!-- 프로젝트 달성도 부분 -->
-				<div class="prj-content gage-div">
-					<div class="prj-content">
-						<span class="percentage">달성률</span> <span class="amount">모인
-							금액</span>
-					</div>
-					<div class="prj-content d-day">남은 날짜</div>
-					<div class="prj-content gage-bar progress" style="height: 5px;">
-						<div class="progress-bar"
-							style="width: 50%; height: 5px; background-color: #48CA7D !important;"></div>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!--첫번째 추천 스크롤버튼-->
 		<div class="btndiv">
@@ -423,31 +398,6 @@
 			<%} %>
 			<%} %>
 
-
-			<div class="prj-wrap">
-				<div class="prj-content prj-img">
-					<img src="" alt="프로젝트 메인 사진">
-				</div>
-				<div class="prj-content prj-category">
-					<span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-				</div>
-				<div class="prj-content prj-title">프로젝트 타이틀</div>
-				<!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-				<!-- 프로젝트 달성도 부분 -->
-				<div class="prj-content gage-div">
-					<div class="prj-content">
-						<span class="percentage">달성률</span> <span class="amount">모인
-							금액</span>
-					</div>
-					<div class="prj-content d-day">남은 날짜</div>
-					<div class="prj-content gage-bar progress" style="height: 5px;">
-						<div class="progress-bar"
-							style="width: 50%; height: 5px; background-color: #48CA7D !important;"></div>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<!--세번째 추천-->
@@ -518,30 +468,6 @@
 			<%}%>
 
 
-			<div class="prj-wrap">
-				<div class="prj-content prj-img">
-					<img src="" alt="프로젝트 메인 사진">
-				</div>
-				<div class="prj-content prj-category">
-					<span>프로젝트 카테고리</span> | <span>프로젝트 메이커</span>
-				</div>
-				<div class="prj-content prj-title">프로젝트 타이틀</div>
-				<!-- <div class="prj-content prj-subscribe">
-                     프로젝트 설명
-                 </div> -->
-				<!-- 프로젝트 달성도 부분 -->
-				<div class="prj-content gage-div">
-					<div class="prj-content">
-						<span class="percentage">달성률</span> <span class="amount">모인
-							금액</span>
-					</div>
-					<div class="prj-content d-day">남은 날짜</div>
-					<div class="prj-content gage-bar progress" style="height: 5px;">
-						<div class="progress-bar"
-							style="width: 50%; height: 5px; background-color: #48CA7D !important;"></div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<br>
