@@ -17,8 +17,8 @@ public class MemberQDetailController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		String makerNo = req.getParameter("mnum");
-		String makerNo = "1"; //임시번호
+		String makerNo = req.getParameter("mnum");
+//		String makerNo = "1"; //임시번호
 		//jsp에 세팅해주고 그거 다시 받아올거 -> post 로
 		req.setAttribute("makerNo", makerNo);
 		req.getRequestDispatcher("/WEB-INF/views/member/memberQDetailPage.jsp").forward(req, resp);

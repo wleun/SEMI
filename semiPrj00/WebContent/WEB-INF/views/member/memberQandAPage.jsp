@@ -1,5 +1,15 @@
+<%@page import="com.kh.member.qanda.vo.MypageAdetailVo"%>
+<%@page import="com.kh.member.qanda.vo.MypageQdetailVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<%
+	List<MypageQdetailVo> qVoList = (List<MypageQdetailVo>)request.getAttribute("qVoList"); 
+	List<MypageAdetailVo> aVoList = (List<MypageAdetailVo>)request.getAttribute("aVoList");
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -190,47 +200,52 @@
          
                 </div>
 
+				<%for(MypageAdetailVo vo : aVoList) { %>
                 <div id="content-3">
 
                     <table>
 
                         <tr>
-                            <td><a href="/semiPrj00/member/qandadetail">이런이런 프로젝트</a></td>
+                            <td><a href="/semiPrj00/member/qandadetail">프로젝트</a></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>회원이름</td>
+                            <td><%=vo.getMakerQuestionNo() %></td>
                             <td><button onclick="location.href='/semiPrj00/member/adetail'">답변하기</button></td>
                         </tr>
                         <tr>
-                            <td>받은 날짜 : 2022-08-05</td>
+                            <td>받은 날짜 : <%=vo.getWriteDate() %></td>
                             <td></td>
                         </tr>
 
                     </table>
 
                 </div>
+				<%} %>
 
+
+				<% for(MypageQdetailVo vo : qVoList) { %>
                 <div id="content-4">
 
                     <table>
 
                         <tr>
-                            <td><a href="/semiPrj00/member/qandadetail">이런이런 프로젝트</a></td>
+                            <td><a href="/semiPrj00/member/qandadetail">프로젝트</a></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td>회원이름</td>
+                            <td><%= vo.getNo() %></td>
                             <td><button>삭제</button></td>
                         </tr>
                         <tr>
-                            <td>받은 날짜 : 2022-08-05</td>
+                            <td>보낸 날짜 : <%= vo.getWriteDate() %></td>
                             <td></td>
                         </tr>
 
                     </table>
 
                 </div>
+                <% } %>
 
             </div>
 

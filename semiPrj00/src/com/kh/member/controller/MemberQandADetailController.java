@@ -21,7 +21,7 @@ public class MemberQandADetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String no = ((MemberVo)req.getSession().getAttribute("loginMember")).getNo();
-		String makerNo = "1";
+		String makerNo = req.getParameter("mnum");
 		
 		List<MypageQdetailVo> qVoList = new MemberQandADetailService().selectQdetailList(no, makerNo);
 		List<MypageAdetailVo> aVoList = new MemberQandADetailService().selectAdetailList(no);

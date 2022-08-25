@@ -11,11 +11,11 @@ import static com.kh.common.JDBCTemplate.*;
 import com.kh.member.qanda.vo.MypageAdetailVo;
 import com.kh.member.qanda.vo.MypageQdetailVo;
 
-public class MemberQandADetailDao {
+public class MemberQandaDao {
 
-	public List<MypageQdetailVo> selectQdetailList(Connection conn, String no, String makerNo) {
-		
-		String sql = "SELECT MEMBER_NO, MAKER_NO, TITLE, CONTENT, WRITE_DATE FROM MAKER_QUESTION WHERE MAKER_NO = ?";
+	public List<MypageQdetailVo> selectQList(Connection conn, String no) {
+
+		String sql = "SELECT M.NICK NICK, Q.WRITE_DATE WRITE_DATE FROM MAKER_QUESTION Q JOIN MEMBER M ON Q.MAKER_NO = M.NO WHERE Q.MEMBER_NO = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -24,22 +24,16 @@ public class MemberQandADetailDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, makerNo);
+			pstmt.setString(1,no);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String memberNo = rs.getString("MEMBER_NO");
-				String makerNo1 = rs.getString("MAKER_NO");
-				String title = rs.getString("TITLE");
-				String content = rs.getString("CONTENT");
+				String nick = rs.getString("NICK");
 				String writeDate = rs.getString("WRITE_DATE");
 				
 				MypageQdetailVo vo = new MypageQdetailVo();
-				vo.setMemberNo(memberNo);
-				vo.setMakerNo(makerNo1);
-				vo.setTitle(title);
-				vo.setContent(content);
+				vo.setMakerNo(nick);
 				vo.setWriteDate(writeDate);
 				
 				list.add(vo);
@@ -52,12 +46,11 @@ public class MemberQandADetailDao {
 		}
 		
 		return list;
-		
 	}
 
-	public List<MypageAdetailVo> selectAdetailList(Connection conn, String no) {
-
-		String sql = "SELECT TITLE, CONTENT, WRITE_DATE, MAKER_QUESTION_NO FROM MAKER_ANSWER WHERE MAKER_QUESTION_NO = ?";
+	public List<MypageAdetailVo> selectAList(Connection conn, String no) {
+		
+		String sql = "SELECT M.NICK NICK FROM MAKER_ANSWER A JOIN MAKER_QUESTION Q ON A.MAKER_QUESTION_NO = Q.NO JOIN MEMBER M ON M.NO = Q.MEMBER_NO WHERE Q.MAKER_NO = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -66,22 +59,15 @@ public class MemberQandADetailDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
 			pstmt.setString(1, no);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String title = rs.getString("TITLE");
-				String content = rs.getString("CONTENT");
-				String writeDate = rs.getString("WRITE_DATE");
-				String makerQuestionNo = rs.getString("MAKER_QUESTION_NO");
+				String nick = rs.getString("NICK");
 				
 				MypageAdetailVo vo = new MypageAdetailVo();
-				vo.setTitle(title);
-				vo.setContent(content);
-				vo.setWriteDate(writeDate);
-				vo.setNo(makerQuestionNo);
+				vo.setMakerQuestionNo(nick);
 				
 				list.add(vo);
 			}
