@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.project.service.PrjViewService;
+import com.kh.member.vo.MemberVo;
 import com.kh.project.notice.vo.ProjectNoticeVo;
 import com.kh.project.vo.ProjectVo;
 import com.kh.reward.vo.ProjectRewardVo;
@@ -87,10 +89,21 @@ public class PrjViewController extends HttpServlet{
 			System.out.println("dao에서 가져온 리워드 리스트:"+optionList);
 		
 			//현재 로그인한 멤버가 해당 플젝을 좋아요 했는지 확인
-		
+			MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
+			int selectLikeResult = 0;
+			if(loginMember != null) {
+				System.out.println("로그인회원 번호, 닉:"+loginMember.getNo() +","+loginMember.getNick());
+				String memNo = loginMember.getNo();
+				selectLikeResult = new PrjViewService().selectLike(memNo, prjNum);
+			}
+			System.out.println("현재 로그인한 멤버가 해당 플젝을 좋아요 했는지 확인한 서블릿 결과:"+selectLikeResult);
+
+			
 			//상세페이지 이미지 가져오기
-			List<String> pathList = new PrjViewService().getDescriptionImage(prjNum);
-			System.out.println("컨트롤러에서 경로list:"+pathList);
+			String contextPath = req.getContextPath();
+			List<String> pathList = new PrjViewService().getDescriptionImage(prjNum, contextPath);
+			
+			System.out.println("컨트롤러에서 상세이미지 경로list:"+pathList);
 			
 		//전달할거 가지고 (  ) jsp 파일로 포워딩
 		
@@ -103,6 +116,7 @@ public class PrjViewController extends HttpServlet{
 			req.setAttribute("totalDonator", totalDonator);
 			req.setAttribute("noticeList", noticeList);
 			req.setAttribute("optionList", optionList);
+			req.setAttribute("selectLikeResult", selectLikeResult);
 			req.setAttribute("pathList", pathList);
 			req.getRequestDispatcher("/WEB-INF/views/project/projectDescriptionView.jsp").forward(req, resp);
 		}else{

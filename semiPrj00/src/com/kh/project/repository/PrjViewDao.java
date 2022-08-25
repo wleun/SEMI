@@ -150,7 +150,7 @@ public class PrjViewDao {
 		ResultSet rs = null;
 		List<ProjectNoticeVo> noticeList = new ArrayList<ProjectNoticeVo>();
 		
-		String sql = "SELECT M.NICK AS MEMBER_NO, N.CONTENT, TO_CHAR(N.NEWS_DATE, 'YYYY/MM/DD') AS NEWS_DATE FROM NEWS N JOIN MEMBER M ON N.MEMBER_NO = M.NO WHERE N.PROJECT_NO = ? AND N.DELETE_YN = 'N'";
+		String sql = "SELECT M.NICK AS MEMBER_NO, N.CONTENT, TO_CHAR(N.NEWS_DATE, 'YYYY/MM/DD hh24:mi') AS NEWS_DATE FROM NEWS N JOIN MEMBER M ON N.MEMBER_NO = M.NO WHERE N.PROJECT_NO = ? AND N.DELETE_YN = 'N' ORDER BY NEWS_DATE DESC";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -226,12 +226,12 @@ public class PrjViewDao {
 	}
 
 	//상세페이지 이미지 가져오기
-	public List<String> getDescriptionImage(Connection conn, String prjNum) {
+	public List<String> getDescriptionImage(Connection conn, String prjNum, String contextPath) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<String> pathList = new ArrayList<String>();
  		
-		String sql = "SELECT FILE_SRC,CHANGE_NAME FROM DESCRIPTION_FILE WHERE PROJECT_NO = ?";
+		String sql = "SELECT FILE_SRC,CHANGE_NAME FROM DESCRIPTION_FILE WHERE PROJECT_NO=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -241,8 +241,7 @@ public class PrjViewDao {
 				String fileSrc = rs.getString("FILE_SRC");
 				String changeName = rs.getString("CHANGE_NAME");
 				
-				String path = fileSrc.substring(fileSrc.length()-17,fileSrc.length())+"\\"+changeName;
-				
+				String path = contextPath + fileSrc.substring(fileSrc.length()-17,fileSrc.length())+"\\"+changeName;
 				pathList.add(path);
 			}
 		} catch (SQLException e) {
@@ -253,5 +252,30 @@ public class PrjViewDao {
 		}
 		System.out.println("dao에서 경로list:"+pathList);
 		return pathList;
+	}
+
+	//현재 로그인한 멤버가 해당 플젝을 좋아요 했는지 확인
+	public int selectLike(Connection conn, String memNo, String prjNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int like = 0;
+		String sql = "SELECT * FROM PROJECT_LIKE WHERE MEMBER_NO = ? AND PROJECT_NO = ? AND STATUS = 'L'";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memNo);
+			pstmt.setString(2, prjNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				like = 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		System.out.println("현재 로그인한 멤버가 해당 플젝을 좋아요 했는지 확인한 dao 결과:"+like);
+		return like;
 	}
 }
