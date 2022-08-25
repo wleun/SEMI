@@ -85,7 +85,7 @@
                      <li><br> <div id="noti-title"><%=vo.getTitle() %></div></li>
                      <li><div class="noti-date">작성일 :<%=vo.getWriteDate() %> &nbsp;</div></li>
                    
-                     <li><div class="noti-img"><img src="<%=attachVo.getPath() %>" alt="이미지파일입니다"></div></li>
+                     <li><div class="noti-img"><img src="<%=contextPath%>/resources/admin/event/<%=attachVo.getName()%>" alt="이미지파일입니다"></div></li>
                      <li><div style="font-size : 25px;"><%=vo.getContent() %></div></li>
                  </ul>
                 </div>

@@ -145,8 +145,7 @@
             
             
             //글 번호 가져오기
-            const num = $('#notiNo').text();
-            console.log(num);
+            const num = $(this).children().children().last().children().text();
             //해당 번호 이용해서 요청 보내기
             location.href='<%=contextPath%>/notice/detail?num=' + num;
          });
