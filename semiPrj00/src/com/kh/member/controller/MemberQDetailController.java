@@ -17,7 +17,10 @@ public class MemberQDetailController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+//		String makerNo = req.getParameter("mnum");
+		String makerNo = "1"; //임시번호
+		//jsp에 세팅해주고 그거 다시 받아올거 -> post 로
+		req.setAttribute("makerNo", makerNo);
 		req.getRequestDispatcher("/WEB-INF/views/member/memberQDetailPage.jsp").forward(req, resp);
 		
 	}
@@ -26,30 +29,24 @@ public class MemberQDetailController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("UTF-8");
-		
-		String no = req.getParameter("no");
+		//내 회원번호
 		String memberNo = req.getParameter("memberNo");
 		String makerNo = req.getParameter("makerNo");
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		
-		MemberVo vo = (MemberVo)req.getSession().getAttribute("loginMember");
+		MypageQdetailVo vo = new MypageQdetailVo();
+		vo.setMemberNo(memberNo);
+		vo.setTitle(title);
+		vo.setContent(content);
+		vo.setMakerNo(makerNo);
 		
-		MypageQdetailVo qvo = new MypageQdetailVo();
-		qvo.setNo(no);
-		qvo.setMemberNo(memberNo);
-		qvo.setMakerNo(makerNo);
-		qvo.setTitle(title);
-		qvo.setContent(content);
-
-		int result = new MypageQdetailService().insertQdetail(qvo, vo);
-		
+		int result = new MypageQdetailService().insertQdetail(vo);
 		if(result == 1) {
-			req.getSession().setAttribute("alertMsg", "문의 등록 성공!");
+			req.getSession().setAttribute("alertMsg", "문의하기 성공!");
 			resp.sendRedirect("/semiPrj00/member/qanda");
 		}else {
-			req.setAttribute("alertMsg", "문의글 작성 실패!");
-			req.getRequestDispatcher("/member/qanda").forward(req, resp);
+			req.getRequestDispatcher("/").forward(req, resp);
 		}
 		
 	}

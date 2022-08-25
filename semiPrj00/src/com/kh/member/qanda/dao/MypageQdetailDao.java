@@ -9,29 +9,31 @@ import com.kh.member.vo.MemberVo;
 
 public class MypageQdetailDao {
 
-	public static int insertQdetail(Connection conn, MypageQdetailVo qvo, MemberVo vo) {
-		
-		String sql ="INSERT INTO MAKER_QUESTION( NO , MEMBER_NO , MAKER_NO , TITLE , CONTENT ) VALUES( SEQ_MAKER_QUESTION_NO.NEXTVAL , ? , ? , ? , ?)";
+	public int insertQdetail(Connection conn, MypageQdetailVo vo) {
+
+		String sql = "INSERT INTO MAKER_QUESTION ( NO ,MEMBER_NO ,MAKER_NO ,TITLE ,CONTENT ) VALUES ( SEQ_MAKER_QUESTION_NO.NEXTVAL ,? ,? ,? ,? )";
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getNo());
-			pstmt.setString(2, vo.getNo());
-			pstmt.setString(3, qvo.getTitle());
-			pstmt.setString(4, qvo.getContent());
 			
-			pstmt.executeUpdate();
-		}catch(Exception e) {
+			pstmt.setString(1, vo.getMemberNo());
+			pstmt.setString(2, vo.getMakerNo());
+			pstmt.setString(3, vo.getTitle());
+			pstmt.setString(4, vo.getContent());
+			System.out.println(vo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
-		
+	
 		return result;
-		
 	}
 
 }

@@ -1,10 +1,8 @@
-<%@page import="com.kh.coupon.vo.CouponVo"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<% List<CouponVo> cVoList = (List<CouponVo>)request.getAttribute("cVoList"); %>
-    
+    <%
+    String qNo = (String) request.getAttribute("qNo");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,14 +41,6 @@
             color: #48CA7D;
         }
 
-        button {
-            color: white;
-            margin-top: 10px;
-            border-radius: 100px;
-            background-color: #48CA7D;
-            border: 0px
-        }
-
         section{
             display: flex;
             flex-direction: row;
@@ -60,53 +50,21 @@
 
         section button {
             color: white;
-            border-radius: 100px;
+            border-radius: 50px;
             background-color: #48CA7D;
             border: 0px
         }
 
-        
-        /*----------------coupon-------------*/
-        #content-wrap{
-            display: inline-flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            width: 930px;
-            height: auto;
-            max-height: auto;
+        #content-2 table{
+            width: 90%;
+            height: 90%;
         }
-        .coupon-wrap{
-            width: 370px;
-            height: 130px;
-            background-color: white;
-            display: flex;
-            flex-direction: row;
+
+        #content-2{
+            width: 800px;
+            height: 500px;
             text-align: center;
-            margin: 30px;
-        }
-        .coupon-name{
-            display: flex;
-            flex-direction: column;
-            width: 50%;
-            font-weight: 600;
-            margin-top: 40px;
-            font-size: 2rem;
-        }
-        
-        .sale{
-            width: 50%;
-            font-size: 2.2rem;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .line{
-            border-right: 1px solid darkgray;
-            height: 80%;
-            align-self: center;
+            margin-top: 50px;
         }
 
        /* ------------------content-1---------------------------- */
@@ -163,11 +121,12 @@
             <a href="/semiPrj00/member/mycoupon">쿠폰내역</a>
             <a href="/semiPrj00/member/qanda">문의&답변내역</a>
 
-
         </div>
             
-        <input type="hidden" name="memberNo" value="<%= loginMember.getNo() %>">
-
+        <form action="/semiPrj00/member/adetailinsert" method="post">
+    		<input type="hidden" name="qNo" value=<%=qNo %>>
+			<input type="hidden" name="memberNo" value="<%= loginMember.getNo() %>">
+        	
             <section>
             
                 <div class="member-info">
@@ -192,26 +151,32 @@
                     </div>
                 </div>
 
-            <div id="content-wrap">
-
-				<% for(CouponVo vo : cVoList){ %>
-                <div class="coupon-wrap">
-                    <div class="coupon-name">
-                        <span><%= vo.getName() %></span>
-                    </div>
-                    <div class="line"></div>
-                    <div class="sale">
-                        <span><%= vo.getDiscount() %>원 할인</span>
-                    </div>
-                </div>
-                <% } %>   
-
-            </div>
-
-            
-
-
-        </section>
+	            <div id="content-wrap">
+	                
+	                <div id="content-2">
+			            <table>
+			                <tr>
+			                    <td>제목</td>
+			                    <td><input type="text" name="title" placeholder="제목을 입력해 주세요." required style="width: 600px;"></td>
+			                </tr>
+			                <tr>
+			                    <td>내용</td>
+			                    <td><input type="text" name="content" placeholder="내용을 입력해주세요." required style="width: 600px; height: 400px;"></td>
+			                    
+			                </tr>
+			                <tr>
+			                	<td>
+									<button type="submit">작성하기</button>
+			                	</td>
+			                </tr>
+			            </table>
+			        </div>
+	
+	            </div>
+	
+	
+	        </section>
+        </form>
            
     </div>
     

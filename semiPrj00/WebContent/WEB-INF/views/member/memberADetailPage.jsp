@@ -1,5 +1,10 @@
+<%@page import="com.kh.member.qanda.vo.MypageQdetailVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% List<MypageQdetailVo> qVoList = (List<MypageQdetailVo>)request.getAttribute("qVoList"); %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,7 +139,9 @@
 
         </div>
             
-        <input type="hidden" name="memberNo" value="<%= loginMember.getNo() %>">
+     	<form action="/semiPrj00/member/adetail" method="post">
+     	
+     		   <input type="hidden" name="memberNo" value="<%= loginMember.getNo() %>">
 
             <section>
             
@@ -162,27 +169,36 @@
 
             <div id="content-wrap">
                 
+                <%for(MypageQdetailVo vo : qVoList) {%>
                 <div id="content-2">
                     <table>
                         <tr>
                             <td>제목 : </td>
-                            <td></td>
+                            <td><%= vo.getTitle() %></td>
                         </tr>
                         <tr>
-                            <td>유형 :</td>
-                            <td>선물/후원</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">저는 정말 이해가 안가요</td>
+                            <td>내용 :</td>
+                            <td><%= vo.getContent() %></td>
                         </tr>
                         <tr>
                             <td>보낸 날짜 : </td>
-                            <td>2022-08-05</td>
+                            <td><%= vo.getWriteDate() %></td>
                         </tr>
+                        <tr>
+                            <td>
+                                <div align="center">
+                                    <button type="button" onclick="location.href='<%=contextPath%>/member/adetailinsert?qnum=<%= vo.getNo() %>'">작성하기</button>
+                                    <button type="reset">취소하기</button>
+                                </div>
+
+                            </td>
+                        </tr>
+                        
                     </table>
                 </div>
+                <% } %>
 
-                <div id="content-3">
+                <!-- <div id="content-3">
                     <table>
                         <tr>
                             <td>제목</td>
@@ -191,16 +207,15 @@
                         <tr>
                             <td>내용</td>
                             <td><input type="text" name="content" placeholder="내용을 입력해주세요." required style="width: 600px; height: 400px;"></td>
+                            
                         </tr>
                     </table>
-                </div>
+                </div> -->
 
-                <div align="center">
-                    <button type="submit">작성하기</button>
-                    <button type="reset">취소하기</button>
-                </div>
 
         </section>
+     	
+     	</form>
            
     </div>
     
