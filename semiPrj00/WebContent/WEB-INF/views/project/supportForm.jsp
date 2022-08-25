@@ -9,13 +9,20 @@
 	
 	ArrayList<AddrVo> addrList_ = (ArrayList<AddrVo>)request.getAttribute("addrList");
 	ArrayList<PaymentVo> paymentList_ = (ArrayList<PaymentVo>)request.getAttribute("paymentList");
-	AddrVo defaultAddr  = null;
-	PaymentVo defaultPayment  = null;
+	AddrVo defaultAddr  = new AddrVo();
+	PaymentVo defaultPayment  = new PaymentVo();
 	if(addrList_.size()!=0){
 		defaultAddr = addrList_.get(0);
+	}else{
+		defaultAddr.setName("");
+		defaultAddr.setAddr1("");
+		defaultAddr.setAddr2("");
+		defaultAddr.setPhone("");
 	}
 	if(paymentList_.size()!=0){
 		defaultPayment = paymentList_.get(0);
+	}else{
+		defaultPayment.setCardNum("");
 	}
 	
 	String quantity = (String)request.getAttribute("quantity");
