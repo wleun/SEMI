@@ -29,7 +29,7 @@ public class MemberPaymentService {
 			
 			if(paymentVo.getCardNum()==null || paymentVo.getValidDate()==null || paymentVo.getCardPwd()==null || paymentVo.getPassword()==null){
 				result = -1;
-			}else if(paymentVo.getCardNum().length()<16 || paymentVo.getCardPwd().length()<2 || paymentVo.getPassword().length()<6 || paymentVo.getRegistration().length()<10) {
+			}else if(paymentVo.getCardNum().length()<16 || paymentVo.getCardPwd().length()<2 || paymentVo.getPassword().length()<6) {
 				result = -2;
 			}else {
 				result = dao.insertPayment(conn, paymentVo);

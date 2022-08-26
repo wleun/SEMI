@@ -385,12 +385,16 @@
                 <span class="green-theme" id="pay-date">
                 	<script>
                     	var today = new Date();
-                    	var payDate = new Date(today.setDate(today.getDate() + 7));
+                    	var payDate = new Date(endDate.setDate(endDate.getDate() + 7));
                     	var month = payDate.getMonth() + 1
                         if(month < 10){
                             month = "0" + month;
                         }
-                    	var payDateStr = payDate.getFullYear() + "-" + month + "-" + payDate.getDate();
+                    	var day = payDate.getDate();
+                    	if(day < 10){
+                    		day = "0" + day;
+                    	}
+                    	var payDateStr = payDate.getFullYear() + "-" + month + "-" + day;
                     	$("#pay-date").text(payDateStr);
                     </script>
                 </span>
